@@ -1,5 +1,5 @@
-main: main.o lang.o json.o aff.o
-	gcc -o main main.o lang.o json.o aff.o -lSDL2main -lSDL2 -lSDL2_ttf
+main: main.o lang.o json.o aff.o button.o
+	gcc -o main main.o lang.o json.o aff.o button.o -lSDL2main -lSDL2 -lSDL2_ttf
 
 main.o: main.c
 	gcc -o main.o -c main.c -W -Wall
@@ -12,6 +12,9 @@ json.o: option/json.c option/json.h
 
 aff.o: affichage/aff.c affichage/aff.h
 	gcc -o aff.o -c affichage/aff.c -W -Wall
+
+button.o: button/button.c button/button.h
+	gcc -o button.o -c button/button.c -W -Wall
 
 clean:
 	rm -f main *.o
