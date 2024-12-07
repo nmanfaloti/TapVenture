@@ -4,6 +4,7 @@
 
 #include "traduction/lang.h"
 #include "option/json.h"
+#include "affichage/aff.h"
 
 /* TRADUCTION UTILISATION EXEMPLE */
 /*
@@ -44,6 +45,12 @@ int main() {
         return 1;
     };
     
+    printf("Test Width: \n");
+    printf("Avant : %d\n",widthscreen);
+    widthscreen = 640;
+    printf("Apres : %d\n",widthscreen);
+
+
     SDL_Window * window = SDL_CreateWindow("Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
     if (window == NULL){
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Error SDL_CreateWindow : %s\n", SDL_GetError());
@@ -59,6 +66,7 @@ int main() {
         return 1;
     }
 
+
     int running = 1;
     SDL_Event event;
 
@@ -72,10 +80,15 @@ int main() {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
+        int x, y;
+        SDL_GetMouseState(&x, &y);
+
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawLine(renderer, 320, 200, 300, 240);
-        SDL_RenderDrawLine(renderer, 300, 240, 340, 240);
-        SDL_RenderDrawLine(renderer, 340, 240, 320, 200);
+        SDL_RenderDrawLine(renderer, 0, 0, x, y);
+        SDL_RenderDrawLine(renderer, 640, 0, x, y);
+        SDL_RenderDrawLine(renderer, 0, 480, x, y);
+        SDL_RenderDrawLine(renderer, 640, 480, x, y);
+
 
         SDL_RenderPresent(renderer);
     }
