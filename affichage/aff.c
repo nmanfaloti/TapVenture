@@ -8,11 +8,6 @@
 int widthscreen = 800;
 int heightscreen = 500;
 
-TTF_Font* font = TTF_OpenFont("..\assets\fonts\Planes_ValMore.ttf", 20);
-if (font == NULL){
-    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[DEBUG] > %s", TTF_GetError());
-}
-
 void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect dest, SDL_Color color){
     SDL_Surface* texte = TTF_RenderText_Blended(font, txt, color); // Crée un surface qui contient le texte
 
@@ -31,4 +26,5 @@ void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect d
     SDL_RenderCopyEx(pRenderer, texture, NULL, &dest, angle, &center, flip);
     SDL_FreeSurface(texte);
     SDL_DestroyTexture(texture);
+
 }
