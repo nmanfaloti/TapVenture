@@ -44,12 +44,12 @@ int main() {
 
     SelectLanguage(en);
     Button listButton[BUTTON_COUNT];
-    int growEffect[BUTTON_COUNT];
+    float growEffect[BUTTON_COUNT] = {0};
     listButton[BUTTON_TEST1].rect = (SDL_Rect){widthscreen/8,heightscreen/8, 240, 80};
     listButton[BUTTON_TEST1].iniRect = listButton[BUTTON_TEST1].rect;
     listButton[BUTTON_TEST1].color = (SDL_Color){0, 0, 255, 255};
     listButton[BUTTON_TEST1].text = Traduction(BIENVENUE_MSG);
-    growEffect[BUTTON_TEST1] = 1;
+    growEffect[BUTTON_TEST1] = 1.1;
     SelectLanguage(fr);
     listButton[BUTTON_TEST2].rect = (SDL_Rect){widthscreen/2,heightscreen/2,100,50};
     listButton[BUTTON_TEST2].iniRect = listButton[BUTTON_TEST2].rect;
@@ -94,13 +94,12 @@ int main() {
             draw_button(renderer, listButton[i].rect, listButton[i].color, listButton[i].text, font);
             if (checkBoutton(listButton[i].rect, x, y)) {
                 listButton[i].color = (SDL_Color){125, 125, 0, 255};
-                if (growEffect[i]){
-                    float scaleFactor = 1.1;
+                if (growEffect[i] != 0) {
                     listButton[i].rect = (SDL_Rect){
-                        listButton[i].iniRect.x - (listButton[i].iniRect.w * (scaleFactor - 1) / 2),
-                        listButton[i].iniRect.y - (listButton[i].iniRect.h * (scaleFactor - 1) / 2),
-                        listButton[i].iniRect.w * scaleFactor,
-                        listButton[i].iniRect.h * scaleFactor
+                        listButton[i].iniRect.x - (listButton[i].iniRect.w * (growEffect[i] - 1) / 2),
+                        listButton[i].iniRect.y - (listButton[i].iniRect.h * (growEffect[i] - 1) / 2),
+                        listButton[i].iniRect.w * growEffect[i],
+                        listButton[i].iniRect.h * growEffect[i]
                     };
                 }
             } else {
