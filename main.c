@@ -7,7 +7,6 @@
 #include "affichage/aff.h"
 #include "button/button.h"
 
-
 int main() {
     if (SDL_Init(SDL_INIT_VIDEO)){
         printf("Error SDL_Init\n");
@@ -18,7 +17,7 @@ int main() {
         SDL_Quit();
         return 1;
     }
-    SDL_Window * window = SDL_CreateWindow("Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_SHOWN);
+    SDL_Window * window = SDL_CreateWindow("Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, widthscreen, heightscreen, SDL_WINDOW_SHOWN);
     if (window == NULL){
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Error SDL_CreateWindow : %s\n", SDL_GetError());
         SDL_Quit();
@@ -43,13 +42,19 @@ int main() {
         return 1;
     }
 
-    Button listButton[10];
-    listButton[0].rect = (SDL_Rect){200, 150, 240, 80};
-    listButton[0].color = (SDL_Color){0, 0, 255, 255};
-    listButton[0].text = "Click Me";
-    listButton[1].rect = (SDL_Rect){15,250,100,50};
-    listButton[1].color = (SDL_Color){255, 0, 0, 255};
-    listButton[1].text = "Click Me";
+    SelectLanguage(en);
+    Button listButton[BUTTON_COUNT];
+    int growEffect[BUTTON_COUNT];
+    listButton[BUTTON_TEST1].rect = (SDL_Rect){widthscreen/8,heightscreen/8, 240, 80};
+    listButton[BUTTON_TEST1].iniRect = listButton[BUTTON_TEST1].rect;
+    listButton[BUTTON_TEST1].color = (SDL_Color){0, 0, 255, 255};
+    listButton[BUTTON_TEST1].text = Traduction(BIENVENUE_MSG);
+    growEffect[BUTTON_TEST1] = 1;
+    SelectLanguage(fr);
+    listButton[BUTTON_TEST2].rect = (SDL_Rect){widthscreen/2,heightscreen/2,100,50};
+    listButton[BUTTON_TEST2].iniRect = listButton[BUTTON_TEST2].rect;
+    listButton[BUTTON_TEST2].color = (SDL_Color){255, 0, 0, 255};
+    listButton[BUTTON_TEST2].text = Traduction(BIENVENUE_MSG);
 
     int running = 1;
     int x, y;
@@ -88,9 +93,21 @@ int main() {
        for (int i = 0; i < 2; i++) {
             draw_button(renderer, listButton[i].rect, listButton[i].color, listButton[i].text, font);
             if (checkBoutton(listButton[i].rect, x, y)) {
-                listButton[i].color = (SDL_Color){255, 255, 0, 255};
+                listButton[i].color = (SDL_Color){125, 125, 0, 255};
+                if (growEffect[i]){
+                    float scaleFactor = 1.1;
+                    listButton[i].rect = (SDL_Rect){
+                        listButton[i].iniRect.x - (listButton[i].iniRect.w * (scaleFactor - 1) / 2),
+                        listButton[i].iniRect.y - (listButton[i].iniRect.h * (scaleFactor - 1) / 2),
+                        listButton[i].iniRect.w * scaleFactor,
+                        listButton[i].iniRect.h * scaleFactor
+                    };
+                }
             } else {
                 listButton[i].color = (SDL_Color){0, 0, 255, 255};
+                if (growEffect[i]){
+                    listButton[i].rect = listButton[i].iniRect;
+                }
             }
         }
 

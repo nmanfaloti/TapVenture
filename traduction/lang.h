@@ -13,6 +13,6 @@ extern Lang en;
 extern Lang fr;
 extern Lang LanguageAct;
 
-const char* Traduction(CleMsg key);
+char* Traduction(CleMsg key);
 
 void SelectLanguage(Lang lang);

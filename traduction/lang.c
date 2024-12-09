@@ -18,8 +18,8 @@ Lang fr = {
 
 Lang LanguageAct;
 
-const char* Traduction(CleMsg key) {
-    return LanguageAct.messages[key];
+char* Traduction(CleMsg key) {
+    return (char*)LanguageAct.messages[key];
 }
 
 void SelectLanguage(Lang lang) {

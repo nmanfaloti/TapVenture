@@ -1,5 +1,14 @@
+typedef enum {
+    BUTTON_TEST1,
+    BUTTON_TEST2,
+    BUTTON_COUNT
+} ButtonIndex;
+
+
+
 typedef struct {
     SDL_Rect rect;
+    SDL_Rect iniRect;
     SDL_Color color;
     char *text;
 } Button;
