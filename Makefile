@@ -1,5 +1,5 @@
-main: main.o lang.o json.o aff.o button.o combat.o boutique.o
-	gcc -o main main.o lang.o json.o aff.o button.o combat.o boutique.o -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lm
+main: main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o
+	gcc -o main main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lm
 
 main.o: main.c
 	gcc -o main.o -c main.c -W -Wall
@@ -21,6 +21,9 @@ combat.o: combat/combat.c combat/combat.h
 
 boutique.o: boutique/boutique.c boutique/boutique.h
 	gcc -o boutique.o -c boutique/boutique.c -W -Wall
+
+heros.o: heros/heros.c heros/heros.h
+	gcc -o heros.o -c heros/heros.c -W -Wall
 
 clean:
 	rm -f main *.o

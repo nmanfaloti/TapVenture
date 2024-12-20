@@ -10,6 +10,7 @@
 #include "button/button.h"
 #include "combat/combat.h"
 #include "boutique/boutique.h"
+#include "heros/heros.h"
 
 void refreshButton(Button listButton[]) {
     listButton[BUTTON_CLICK].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);
@@ -105,6 +106,14 @@ int main() {
     listButtonImg[BUTTON_IMG].offsetLogo = 10;
 
     initLevel(level.monstre);
+
+    hero listHeros[HEROS_COUNT];
+    initHeros(listHeros);
+    void * argument[20];
+    argument[0] = &level.monstre[level.currentLvl];
+    argument[1] = &gold;
+    argument[3] = &level.mobKilled;
+    argument[4] = &level.mobToKill;
     
     int running = 1;
     int x, y;
@@ -169,6 +178,14 @@ int main() {
                             printf("Souris Coords : %d %d ", x, y);
                             printf("Center Screen coord %d %d", widthscreen/2, heightscreen/2);
                             break;
+                        case '0':
+                            upgradeHero(listHeros,0,&gold);
+                            printf("tentative Upgrade Hero 0, nouveaux prix: %d\n", listHeros[0].prix);
+                            break;
+                        case '1':
+                            upgradeHero(listHeros,1,&gold);
+                            printf("tentative Upgrade Hero 1, nouveaux prix: %d\n",listHeros[1].prix);
+                            break;
                         default:
                             printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
                             break;
@@ -177,6 +194,8 @@ int main() {
                     break;
             }
         }
+        
+        attackHeros(listHeros, argument);
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
