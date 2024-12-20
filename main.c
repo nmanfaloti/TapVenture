@@ -204,7 +204,12 @@ int main() {
             if (checkBoutton(listButton[i].rect, x, y)) {
                 listButton[i].color = (SDL_Color){125, 125, 0, 255};
                 if (growEffect[i] != 0) {
+                if (growEffect[i] != 0) {
                     listButton[i].rect = (SDL_Rect){
+                        listButton[i].iniRect.x - (listButton[i].iniRect.w * (growEffect[i] - 1) / 2),
+                        listButton[i].iniRect.y - (listButton[i].iniRect.h * (growEffect[i] - 1) / 2),
+                        listButton[i].iniRect.w * growEffect[i],
+                        listButton[i].iniRect.h * growEffect[i]
                         listButton[i].iniRect.x - (listButton[i].iniRect.w * (growEffect[i] - 1) / 2),
                         listButton[i].iniRect.y - (listButton[i].iniRect.h * (growEffect[i] - 1) / 2),
                         listButton[i].iniRect.w * growEffect[i],
