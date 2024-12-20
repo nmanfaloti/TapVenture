@@ -26,5 +26,4 @@ void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect d
     SDL_RenderCopyEx(pRenderer, texture, NULL, &dest, angle, &center, flip);
     SDL_FreeSurface(texte);
     SDL_DestroyTexture(texture);
-
 }
