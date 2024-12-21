@@ -27,3 +27,9 @@ void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect d
     SDL_FreeSurface(texte);
     SDL_DestroyTexture(texture);
 }
+
+SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest){
+    int w, h;
+    TTF_SizeText(font, txt, &w, &h);
+    return (SDL_Rect){dest.x, dest.y, w, h};
+}

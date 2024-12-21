@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include "combat.h"
-
+#include "../affichage/aff.h"
 
 int initLevel(monstreInfo monstre[]) {
     monstre[0].mobHealth = 100;
@@ -35,14 +37,6 @@ int attackButton(void * args[20]) {
     int * mobToKill = args[4];
 
     monstreInfo * currentMonstre = &level->monstre[level->currentLvl];
-    //Gestion des combats de boss (Le combat commence des que le joueur attaque le boss)
-    if (level->currentLvl % 5 ==0){
-        level->timeToKill = 30.0;
-        level->mobToKill = 1;
-    }else{
-        level->timeToKill = -1.0;
-        level->mobToKill = 10;
-    }
     currentMonstre->mobHealth -= *damage;
 
     if (currentMonstre->mobHealth <= 0) {
@@ -53,7 +47,39 @@ int attackButton(void * args[20]) {
         if (*mobKilled >= *mobToKill) {
             level->currentLvl += 1;
             *mobKilled = 0;
+
+            if (level->currentLvl % 5 == 0) {
+                InitBoss(level, 30);
+            }
         }
     }
     return 1;
 }
+
+int InitBoss(levelInfo *level, int difficultyTime) {
+    level->mobToKill = 1;
+    level->timeToKill = difficultyTime;
+    level->startTimer = SDL_GetTicks();
+
+    return 1;
+}
+
+int isBoss(int currentLvl) {
+    return currentLvl % 5 == 0;
+}
+
+int writeBossTimer(levelInfo *level, SDL_Renderer* pRenderer, TTF_Font* font, SDL_Rect dest) {
+    if (level->currentLvl % 5 != 0 || level->timeToKill == -1) {
+        return 0;
+    }
+
+    int timeLeft = level->timeToKill - (SDL_GetTicks() - level->startTimer) / 1000;
+    char timeLeftTxt[100];
+    sprintf(timeLeftTxt, "%d", timeLeft);
+    affiche_txt(pRenderer, font, timeLeftTxt, getSizeForText(font,timeLeftTxt, dest), (SDL_Color){255, 255, 255, 255});
+    if (timeLeft <= 0) {
+        return 1;
+    }
+    return 0;
+}
+

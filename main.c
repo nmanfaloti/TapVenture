@@ -17,8 +17,6 @@ void refreshButton(Button listButton[]) {
     listButton[BUTTON_CLICK].iniRect = listButton[BUTTON_CLICK].rect;
     listButton[BUTTON_DMG].rect = getRectForCentenredCord(110, heightscreen/2, 160, 80);
     listButton[BUTTON_DMG].iniRect = listButton[BUTTON_DMG].rect;
-    listButton[BUTTON_DMG].text = Traduction(UPG_MSG);
-    listButton[BUTTON_CLICK].text = Traduction(CLICK_MSG);
 }
 
 int main() {
@@ -49,7 +47,6 @@ int main() {
         SDL_Quit();
         return 1;
     }
-
     TTF_Font *font = TTF_OpenFont("assets/fonts/Planes_ValMore.ttf", 20);
     if (font == NULL) {
         printf("Failed to load font: %s\n", TTF_GetError());
@@ -72,7 +69,6 @@ int main() {
     shop.nextPrice = getPriceForLevels(shop.damageLevel+1);
     int damage = getDamageFromLevel(shop.damageLevel);
     SelectLanguage(en);
-
 
     char damagebutton[100],health_txt[100], gold_txt[100], dmg_txt[100], remainingMob[100],currentLvl[100];
     sprintf(damagebutton, "%s: %d", Traduction(UPG_MSG), shop.nextPrice);
@@ -186,6 +182,10 @@ int main() {
                             upgradeHero(listHeros,1,&gold);
                             printf("tentative Upgrade Hero 1, nouveaux prix: %d\n",listHeros[1].prix);
                             break;
+                        case '4': 
+                            level.currentLvl = 4;
+                            damage = 500;
+                            break;
                         default:
                             printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
                             break;
@@ -212,6 +212,17 @@ int main() {
         sprintf(dmg_txt, "%s %d", Traduction(DMG_MSG), damage);
         sprintf(remainingMob, "%s: %d/%d", Traduction(MOB_MSG), level.mobKilled, level.mobToKill);
         sprintf(currentLvl, "%s: %d", Traduction(LVL_MSG), level.currentLvl);
+
+        if (isBoss(level.currentLvl)) {
+            if (writeBossTimer(&level, renderer, font, (SDL_Rect){widthscreen/2,100,100,50}) == 1) {
+                level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
+                level.startTimer = SDL_GetTicks();
+            }
+        }else{
+            if (level.mobToKill == 1){
+                level.mobToKill = 10;
+            }
+        }
 
         affiche_txt(renderer, font, currentLvl, getRectForCentenredCord(widthscreen/2,30,100,50), (SDL_Color){255, 255, 255, 255});
         affiche_txt(renderer, font, remainingMob, getRectForCentenredCord(widthscreen/2, 30+50, 200, 50), (SDL_Color){255, 255, 255, 255});

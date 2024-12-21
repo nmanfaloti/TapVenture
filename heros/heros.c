@@ -8,7 +8,7 @@ int initHeros(hero heros[HEROS_COUNT]){
     heros[HERO0].degat = 10;
     heros[HERO0].prix = 100;
     heros[HERO0].level = 0;
-    heros[HERO0].cooldown = 1000; //en millisecondes soit 2s
+    heros[HERO0].cooldown = 1000; //en millisecondes
     heros[HERO0].lastAttack = 0;
     for (int i = HERO1; i < HEROS_COUNT; i++) {
         heros[i].degat = heros[i-1].degat * 1.5;
