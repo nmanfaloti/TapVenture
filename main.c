@@ -68,7 +68,16 @@ int main() {
     shop.lastPrice = 0;
     shop.nextPrice = getPriceForLevels(shop.damageLevel+1);
     int damage = getDamageFromLevel(shop.damageLevel);
-    SelectLanguage(en);
+    SelectLanguage("English");
+    
+    char data_string[DATA_COUNT_CHAR][50];
+    int data_int[DATA_COUNT_INT];
+    hero listHeros[HEROS_COUNT];
+    initVariable(data_string, data_int, listHeros);
+    SelectLanguage(data_string[LANGUAGE]);
+    //level.currentLvl = data_int[LEVEL];
+    gold = data_int[GOLD];
+    damage = data_int[DAMAGE_CLICK];
 
     char damagebutton[100],health_txt[100], gold_txt[100], dmg_txt[100], remainingMob[100],currentLvl[100];
     sprintf(damagebutton, "%s: %d", Traduction(UPG_MSG), shop.nextPrice);
@@ -103,8 +112,6 @@ int main() {
 
     initLevel(level.monstre);
 
-    hero listHeros[HEROS_COUNT];
-    initHeros(listHeros);
     void * argument[20];
     argument[0] = &level.monstre[level.currentLvl];
     argument[1] = &gold;
@@ -158,11 +165,11 @@ int main() {
                             refreshButton(listButton);
                             break;
                         case 'E': 
-                            SelectLanguage(en);
+                            SelectLanguage("English");
                             refreshButton(listButton);
                             break;
                         case 'R':
-                            SelectLanguage(fr);
+                            SelectLanguage("French");
                             refreshButton(listButton);
                             break;
                         case 'W':
@@ -176,11 +183,11 @@ int main() {
                             break;
                         case '0':
                             upgradeHero(listHeros,0,&gold);
-                            printf("tentative Upgrade Hero 0, nouveaux prix: %d\n", listHeros[0].prix);
+                            printf("tentative Upgrade Hero 0, prix: %d, level %d, Degat %d\n",listHeros[0].level, listHeros[0].prix, listHeros[0].degat);
                             break;
                         case '1':
                             upgradeHero(listHeros,1,&gold);
-                            printf("tentative Upgrade Hero 1, nouveaux prix: %d\n",listHeros[1].prix);
+                            printf("tentative Upgrade Hero 1,level %d prix: %d Degat %d\n",listHeros[1].level, listHeros[1].prix, listHeros[1].degat);
                             break;
                         case '4': 
                             level.currentLvl = 4;
@@ -265,6 +272,13 @@ int main() {
         SDL_RenderPresent(renderer);
 
     }
+    //save
+    strcpy(data_string[USERNAME], "Dev");
+    strcpy(data_string[LANGUAGE],LanguageAct.Language);
+    data_int[LEVEL] = level.currentLvl;
+    data_int[GOLD] = gold;
+    data_int[DAMAGE_CLICK] = damage;
+    makeSave("save/save.json", data_string, data_int, listHeros);
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
@@ -287,11 +301,11 @@ SDL_GetWindowSize(window, &widthscreen, &heightscreen);
 
 /* TRADUCTION UTILISATION EXEMPLE */
 /*
-SelectLanguage(en);
+SelectLanguage("English");
 printf("%s\n", Traduction(BIENVENUE_MSG));
 printf("%s\n", Traduction(AUREVOIR_MSG));
 
-SelectLanguage(fr);
+SelectLanguage("French");
 printf("%s\n", Traduction(BIENVENUE_MSG));
 printf("%s\n", Traduction(AUREVOIR_MSG));
 */

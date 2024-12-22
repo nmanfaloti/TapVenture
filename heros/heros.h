@@ -1,3 +1,6 @@
+#ifndef HEROS_H
+#define HEROS_H
+
 typedef enum {
     HERO0,
     HERO1,
@@ -16,3 +19,6 @@ typedef struct {
 int initHeros(hero heros[HEROS_COUNT]);
 int attackHeros(hero heros[HEROS_COUNT], void * args[20]);
 int upgradeHero(hero heros[HEROS_COUNT], int HeroIndex, int * gold);
+int upgradeHeroAtLevel(hero heros[HEROS_COUNT], int HeroIndex, int level);
+
+#endif // HEROS_H

@@ -22,4 +22,4 @@ extern Lang LanguageAct;
 
 char* Traduction(CleMsg key);
 
-void SelectLanguage(Lang lang);
+void SelectLanguage(const char *lang);

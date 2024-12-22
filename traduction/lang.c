@@ -1,3 +1,4 @@
+#include <string.h>
 #include "lang.h"
 
 Lang en = {
@@ -37,6 +38,12 @@ char* Traduction(CleMsg key) {
     return (char*)LanguageAct.messages[key];
 }
 
-void SelectLanguage(Lang lang) {
-    LanguageAct = lang;
+void SelectLanguage(const char *lang) {
+    if (strcmp(lang, "French") == 0) {
+        LanguageAct = fr;
+    } else if (strcmp(lang, "English") == 0) {
+        LanguageAct = en;
+    } else {
+        LanguageAct = en;
+    }
 }
