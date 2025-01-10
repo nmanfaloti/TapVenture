@@ -1,0 +1,6 @@
+# Ignore le fichier VScode
+/.vscode
+
+# Ignore les fichiers de compilation
+*.o
+main
