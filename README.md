@@ -11,7 +11,7 @@ description ( jeu ) :
 
 
 formation : 
-L2 info - le mans universiter 
+L2 info - le mans université
 
 
-projet realiser dans le cadre de notre formation aux cours de l'anne 2025
+projet realiser dans le cadre de notre formation aux cours de l'année 2025

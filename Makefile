@@ -13,7 +13,8 @@ OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
 
-all:$(BINDIR) $(OBJDIR) ../$(BINDIR)/$(EXEC)
+all:$(BINDIR) $(OBJDIR) ../$(BINDIR)/$(EXEC) lancement remove
+
 #cree les dossiers obj et bin si ils n'existent pas
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
@@ -28,6 +29,8 @@ $(BINDIR):
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
 	$(CC) -c $< -o $@ $(CFLAG)
 
+lancement:
+	$(BINDIR)/$(EXEC)
 
 .PHONY:	clean
 clean:
