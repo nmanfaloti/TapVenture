@@ -4,6 +4,7 @@
 #include "../lib/heros.h"
 #include "../lib/lang.h"
 #include "../lib/button.h"
+#include "../lib/player.h"
 
 int mouseX = 0;
 int mouseY = 0;
@@ -69,6 +70,14 @@ int input_event(SDL_Event event){
                         break;
                     default:
                         printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
+                        break;
+                    case '0':
+                        upgradeHero(heros, 0, &gold);
+                        printf("Upgrade Hero 0\n");
+                        break;
+                    case '1':
+                        upgradeHero(heros, 1, &gold);
+                        printf("Upgrade Hero 1\n");
                         break;
                 }
             default:

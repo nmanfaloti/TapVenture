@@ -1,10 +1,7 @@
 {
-	"USERNAME": "Dev",
+	"USERNAME": "Default",
 	"LANGUAGE": "English",
 	"LEVEL": "0",
-	"GOLD": "37",
-	"DAMAGE_CLICK": "10",
-	"HERO_LEVEL_0": "0",
-	"HERO_LEVEL_1": "0",
-	"SAVETIME": "1737742459"
+	"GOLD": "636",
+	"DAMAGE_CLICK": "2172"
 }

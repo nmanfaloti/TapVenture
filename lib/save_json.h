@@ -20,4 +20,4 @@ int createValueForKey(char * key, char * value, char * nom_ficher);
 
 int makeSave();
 int loadSave();
-int initVariable();
+int initVariableGlobal();

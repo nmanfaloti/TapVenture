@@ -44,15 +44,3 @@ int upgradeHero(hero heros[HEROS_COUNT], int HeroIndex, int * gold) {
     }
     return 1;
 }
-
-int upgradeHeroAtLevel(hero heros[HEROS_COUNT], int HeroIndex, int level) {
-    if (HeroIndex < HEROS_COUNT) {
-        heros[HeroIndex].level = level;
-        heros[HeroIndex].prix = 100 * pow(1.5, level);
-        heros[HeroIndex].degat = 10 * pow(1.5, level);
-        heros[HeroIndex].cooldown = 1000 * pow(0.9, level);
-        heros[HeroIndex].lastAttack = 0;
-        return 0;
-    }
-    return 1;
-}

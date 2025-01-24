@@ -143,69 +143,110 @@ char *dataIndexInts[] = {
 };
 
 int makeSave(){
-    char * nom_ficher = "save/save.json";
+    char * global_save = "save/save.json";
+    char * save_heros = "save/save_heros.json";
     system("rm save/save.json");
+    system("rm save/save_heros.json");
     
-    createValueForKey("USERNAME", username, nom_ficher);
-    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, nom_ficher);
+    createValueForKey("USERNAME", username, global_save);
+    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, global_save);
     //dataInt
     char value[30];
     sprintf(value, "%d", level);
-    createValueForKey("LEVEL", value, nom_ficher);
+    createValueForKey("LEVEL", value, global_save);
     sprintf(value, "%d", gold);
-    createValueForKey("GOLD", value, nom_ficher);
+    createValueForKey("GOLD", value, global_save);
     sprintf(value, "%d", damage_click);
-    createValueForKey("DAMAGE_CLICK", value, nom_ficher);
+    createValueForKey("DAMAGE_CLICK", value, global_save);
 
     //heros
     for(int i = 0; i < HEROS_COUNT; i++){
         char value[10];
         char key[20];
+        sprintf(key, "HERO_%d_LEVEL", i);
         sprintf(value, "%d", heros[i].level);
-        sprintf(key, "HERO_LEVEL_%d", i);
-        createValueForKey(key, value, nom_ficher);
+        createValueForKey(key, value, save_heros);
+
+        sprintf(key, "HERO_%d_DEGAT", i);
+        sprintf(value, "%d", heros[i].degat);
+        createValueForKey(key, value, save_heros);
+
+        sprintf(key, "HERO_%d_PRIX", i);
+        sprintf(value, "%d", heros[i].prix);
+        createValueForKey(key, value, save_heros);
+
+        sprintf(key, "HERO_%d_COOLDOWN", i);
+        sprintf(value, "%d", heros[i].cooldown);
+        createValueForKey(key, value, save_heros);
+
     }
-    time_t current_time = time(NULL);
-    sprintf(value, "%ld", current_time);
-    createValueForKey("SAVETIME", value, nom_ficher);
-    printf("Save done\n");
     return 0;
 }
 
 int loadSave(){
-    char * nom_ficher = "save/save.json";
-    char * saveTime = getValueForKey("SAVETIME", "save/save.json");
-    if (saveTime == NULL) {
-        //No save file found
-        initVariable();
-        return 1;
+    char * global_save = "save/save.json";
+    char * save_heros = "save/save_heros.json";
+    if(system("test -e save/save.json") != 0){
+        //No global save file found
+        initVariableGlobal();
     }
-    //load save
-    char * value;
-    value = getValueForKey("USERNAME", "save/save.json");
-    strcpy(username, value);
-    value = getValueForKey("LANGUAGE", "save/save.json");
-    SelectLanguage(value);
-    //dataInt
-    value = getValueForKey("LEVEL", nom_ficher);
-    level = atoi(value);
-    value = getValueForKey("GOLD", nom_ficher);
-    gold = atoi(value);
-    value = getValueForKey("DAMAGE_CLICK", nom_ficher);
-    damage_click = atoi(value);
+    else{
+        //load global save
+        char * value;
+        value = getValueForKey("USERNAME", "save/save.json");
+        strcpy(username, value);
+        free(value);
+
+        value = getValueForKey("LANGUAGE", "save/save.json");
+        SelectLanguage(value);
+        free(value);
+        //dataInt
+        value = getValueForKey("LEVEL", global_save);
+        level = atoi(value);
+        free(value);
+        value = getValueForKey("GOLD", global_save);
+        gold = atoi(value);
+        free(value);
+        value = getValueForKey("DAMAGE_CLICK", global_save);
+        damage_click = atoi(value);
+        free(value);
+    }
     //heros
-    for(int i = 0; i < HEROS_COUNT; i++){
-        char key[20];
-        sprintf(key, "HERO_LEVEL_%d", i);
-        char * level = getValueForKey(key, "save/save.json");
-        upgradeHeroAtLevel(heros,i,atoi(level));
+    if(system("test -e save/save_heros.json") != 0){
+        //No heros save file found
+        initHeros(heros);
+    }
+    else{
+        for(int i = 0; i < HEROS_COUNT; i++){
+            char key[20];
+            sprintf(key, "HERO_%d_LEVEL", i);
+            char * level = getValueForKey(key, save_heros);
+            heros[i].level = atoi(level);
+            free(level);
+
+            sprintf(key, "HERO_%d_DEGAT", i);
+            char * degat = getValueForKey(key, save_heros);
+            heros[i].degat = atoi(degat);
+            free(degat);
+
+            sprintf(key, "HERO_%d_PRIX", i);
+            char * prix = getValueForKey(key, save_heros);
+            heros[i].prix = atoi(prix);
+            free(prix);
+
+            sprintf(key, "HERO_%d_COOLDOWN", i);
+            char * cooldown = getValueForKey(key, save_heros);
+            heros[i].cooldown = atoi(cooldown);
+            free(cooldown);
+
+            heros[i].lastAttack = 0;
+        }
     }
     return 0;
 }
 
 
-int initVariable(){
-    initHeros(heros);
+int initVariableGlobal(){
     strcpy(username, "Default");
     SelectLanguage("English");
     level = 0;
@@ -213,6 +254,5 @@ int initVariable(){
     damage_click = 10;
     return 0;
 }
-
 
 
