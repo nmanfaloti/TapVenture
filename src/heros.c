@@ -2,8 +2,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <math.h>
-#include "lib/heros.h"
-#include "lib/combat.h"
+#include "../lib/heros.h"
+#include "../lib/combat.h"
 
 int initHeros(hero heros[HEROS_COUNT]){
     heros[HERO0].degat = 10;

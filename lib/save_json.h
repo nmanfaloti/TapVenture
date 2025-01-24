@@ -1,4 +1,4 @@
-#include "../heros/heros.h"
+#include "heros.h"
 
 typedef enum {
     USERNAME,

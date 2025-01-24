@@ -4,13 +4,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "src/lang.h"
-#include "src/json.h"
-#include "src/aff.h"
-#include "srcsrc/button.h"
-#include "src/combat.h"
-#include "src/boutique.h"
-#include "src/heros.h"
+#include "../lib/lang.h"
+#include "../lib/save_json.h"
+#include "../lib/aff.h"
+#include "../lib/button.h"
+#include "../lib/combat.h"
+#include "../lib/boutique.h"
+#include "../lib/heros.h"
 
 void refreshButton(Button listButton[]) {
     listButton[BUTTON_CLICK].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);

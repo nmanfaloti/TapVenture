@@ -1,5 +1,5 @@
 #include <string.h>
-#include "lang.h"
+#include "../lib/lang.h"
 
 Lang en = {
     .Language = "English",
