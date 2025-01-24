@@ -33,3 +33,12 @@ SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest){
     TTF_SizeText(font, txt, &w, &h);
     return (SDL_Rect){dest.x, dest.y, w, h};
 }
+
+// Viewport width
+int vw(float percent) {
+    return (int)(widthscreen * percent / 100.0);
+}
+//Viewport height
+int vh(float percent) {
+    return (int)(heightscreen * percent / 100.0);
+}

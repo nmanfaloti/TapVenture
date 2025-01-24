@@ -16,6 +16,7 @@
 
 int main() {
     if (init_SDL()){
+        printf("Error SDL_Init\n");
         return 1;
     }
 
@@ -42,11 +43,12 @@ int main() {
     damage = data_int[DAMAGE_CLICK];
 
     char health_txt[100], gold_txt[100], dmg_txt[100], remainingMob[100],currentLvl[100];
-
-    createButton(getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attackButton, 5,&level.monstre[level.currentLvl], &gold, &damage, &level.mobKilled, &level.mobToKill);
-    createButton(getRectForCentenredCord(110, heightscreen/2, 160, 80), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.5,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage, &gold, &shop);
     
-    createImgButton(getRectForCentenredCord(widthscreen/2, heightscreen/2+100, 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, upgradeButton, 3 , &damage, &gold, &shop);
+    createButton(getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attackButton, 5,&level.monstre[level.currentLvl], &gold, &damage, &level.mobKilled, &level.mobToKill);
+    createButton(getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.05,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage, &gold, &shop);
+    
+    createImgButton(getRectForCentenredCord(vw(50), vh(70), 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, upgradeButton, 3 , &damage, &gold, &shop);
+
 
     initLevel(level.monstre);
 
@@ -56,7 +58,7 @@ int main() {
     argument[3] = &level.mobKilled;
     argument[4] = &level.mobToKill;
     
-    int running;
+    int running = 1;
     int x, y;
     SDL_Event event;
 
@@ -111,7 +113,7 @@ int main() {
     data_int[GOLD] = gold;
     data_int[DAMAGE_CLICK] = damage;
     makeSave("save/save.json", data_string, data_int, listHeros);
-
+    printf("Sortie du jeu\n");
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();
