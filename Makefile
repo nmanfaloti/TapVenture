@@ -1,19 +1,31 @@
-CC=gcc -o
+CC=gcc
 CFLAGSMAIN=-lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lm
 CFLAG=-W -Wall
 SRCDIR   = src
 LIBDIR   = lib
+OBJDIR   = obj
+BINDIR   = bin
+BINDIREXEC = ../$(BINDIR)
 EXEC     = main
-OBJ	  = main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o
 
-$(EXEC):$(OBJ)
-	$(CC) $(OBJ) $(CFLAGSMAIN)
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(LIBDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+rm       = rm -f
 
-%.o:$(SRCDIR)/%.c $(LIBDIR)/%.h
-	$(CC) -c $< -o $@ $(CFLAGS)
+$(BINDIREXEC)/$(EXEC):$(OBJECTS)
+	$(CC) -o $(OBJDIR)/$@ $(OBJECTS) $(CFLAGSMAIN)
 
-$(EXEC).o:$(SRCDIR)/$(EXEC).c
-	$(CC) -c $< -o $@ $(CFLAGS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
+	$(CC) -c $< -o $@ $(CFLAG)
 
+
+.PHONY:	clean
 clean:
-	rm -f main *.o
+	$(rm) $(OBJDIR)/*.o
+	@echo "Cleanup complete!"
+
+.PHONY: remove
+remove:clean
+	$(rm) $(BINDIR)/$(EXEC)
+	@echo "Executable removed!"
