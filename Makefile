@@ -1,19 +1,40 @@
-CC=gcc -o
+CC=gcc
 CFLAGSMAIN=-lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lm
 CFLAG=-W -Wall
 SRCDIR   = src
 LIBDIR   = lib
+OBJDIR   = obj
+BINDIR   = bin
 EXEC     = main
-OBJ	  = main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o
 
-$(EXEC):$(OBJ)
-	$(CC) $(OBJ) $(CFLAGSMAIN)
+SOURCES  := $(wildcard $(SRCDIR)/*.c)
+INCLUDES := $(wildcard $(LIBDIR)/*.h)
+OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+rm       = rm -f
 
-%.o:$(SRCDIR)/%.c $(LIBDIR)/%.h
-	$(CC) -c $< -o $@ $(CFLAGS)
 
-$(EXEC).o:$(SRCDIR)/$(EXEC).c
-	$(CC) -c $< -o $@ $(CFLAGS)
+all:$(BINDIR) $(OBJDIR) ../$(BINDIR)/$(EXEC)
+#cree les dossiers obj et bin si ils n'existent pas
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
+
+../$(BINDIR)/$(EXEC):$(OBJECTS)
+	$(CC) -o $(OBJDIR)/$@ $(OBJECTS) $(CFLAGSMAIN)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
+	$(CC) -c $< -o $@ $(CFLAG)
+
+
+.PHONY:	clean
 clean:
-	rm -f main *.o
+	$(rm) $(OBJECTS)
+	@echo "Cleanup complete!"
+
+.PHONY: remove
+remove:clean
+	$(rm) $(BINDIR)/$(EXEC)
+	@echo "Executable removed!"
