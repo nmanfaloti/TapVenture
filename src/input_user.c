@@ -3,12 +3,14 @@
 #include "../lib/aff.h"
 #include "../lib/heros.h"
 #include "../lib/lang.h"
+#include "../lib/button.h"
 
 int mouseX = 0;
 int mouseY = 0;
 int mouseXclickG = 0;
 int mouseXclickD = 0;
 int game_running = 1;
+
 
 int input_event(SDL_Event event){
     switch (event.type) {
@@ -20,6 +22,13 @@ int input_event(SDL_Event event){
                     mouseXclickG = event.button.x;
                     mouseXclickD = event.button.y;
                     /*appelle de la fonction pour check si on click sur un bouton */
+                    for (int i = 0; i < listeButton->nbButton; i++) {
+                        if (checkBoutton(listeButton->buttons[i].rect, mouseXclickG, mouseXclickD)) {
+                            if (listeButton->buttons[i].callFunction) {
+                                listeButton->buttons[i].callFunction(listeButton->buttons[i].args);
+                            }
+                        }
+                    }
                 }
                 break;
             case SDL_KEYDOWN:

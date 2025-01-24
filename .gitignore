@@ -3,4 +3,5 @@
 
 # Ignore les fichiers de compilation
 *.o
+*.json
 main

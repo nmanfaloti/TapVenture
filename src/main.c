@@ -14,13 +14,6 @@
 #include "../lib/input_user.h"
 #include "../lib/sdl_init.h"
 
-void refreshButton(Button listButton[]) {
-    listButton[BUTTON_CLICK].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);
-    listButton[BUTTON_CLICK].iniRect = listButton[BUTTON_CLICK].rect;
-    listButton[BUTTON_DMG].rect = getRectForCentenredCord(110, heightscreen/2, 160, 80);
-    listButton[BUTTON_DMG].iniRect = listButton[BUTTON_DMG].rect;
-}
-
 int main() {
     if (init_SDL()){
         return 1;
@@ -48,36 +41,10 @@ int main() {
     gold = data_int[GOLD];
     damage = data_int[DAMAGE_CLICK];
 
-    char damagebutton[100],health_txt[100], gold_txt[100], dmg_txt[100], remainingMob[100],currentLvl[100];
-    sprintf(damagebutton, "%s: %d", Traduction(UPG_MSG), shop.nextPrice);
-    Button listButton[BUTTON_COUNT];
-    float growEffect[BUTTON_COUNT] = {0};
-    listButton[BUTTON_CLICK].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);
-    listButton[BUTTON_CLICK].iniRect = listButton[BUTTON_CLICK].rect;
-    listButton[BUTTON_CLICK].color = (SDL_Color){0, 0, 255, 255};
-    listButton[BUTTON_CLICK].text = Traduction(CLICK_MSG);
-    listButton[BUTTON_CLICK].callFunction = attackButton;
-    listButton[BUTTON_CLICK].args[0] = &level.monstre[level.currentLvl];
-    listButton[BUTTON_CLICK].args[1] = &gold;
-    listButton[BUTTON_CLICK].args[2] = &damage;
-    listButton[BUTTON_CLICK].args[3] = &level.mobKilled;
-    listButton[BUTTON_CLICK].args[4] = &level.mobToKill;
-    growEffect[BUTTON_CLICK] = 1.1;
-    listButton[BUTTON_DMG].rect = getRectForCentenredCord(110, heightscreen/2, 160, 80);
-    listButton[BUTTON_DMG].iniRect = listButton[BUTTON_DMG].rect;
-    listButton[BUTTON_DMG].color = (SDL_Color){150, 0, 0, 255};
-    listButton[BUTTON_DMG].text = damagebutton;
-    listButton[BUTTON_DMG].callFunction = upgradeButton;
-    listButton[BUTTON_DMG].args[0] = &damage;
-    listButton[BUTTON_DMG].args[1] = &gold;
-    listButton[BUTTON_DMG].args[2] = &shop;
-    
-    ButtonImg listButtonImg[BUTTON_IMG_COUNT];
-    listButtonImg[BUTTON_IMG].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);
-    listButtonImg[BUTTON_IMG].iniRect = listButtonImg[BUTTON_IMG].rect;
-    listButtonImg[BUTTON_IMG].background = "assets/ui/buttons/Button_Blue.png";
-    listButtonImg[BUTTON_IMG].texture = "assets/ui/icons/Arrow_Left.png";
-    listButtonImg[BUTTON_IMG].offsetLogo = 10;
+    char health_txt[100], gold_txt[100], dmg_txt[100], remainingMob[100],currentLvl[100];
+
+    createButton(getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attackButton, 5,&level.monstre[level.currentLvl], &gold, &damage, &level.mobKilled, &level.mobToKill);
+    createButton(getRectForCentenredCord(110, heightscreen/2, 160, 80), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.5,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage, &gold, &shop);
 
     initLevel(level.monstre);
 
@@ -107,7 +74,6 @@ int main() {
         SDL_RenderDrawLine(renderer, 0, heightscreen, x, y);
         SDL_RenderDrawLine(renderer, widthscreen, heightscreen, x, y);
 
-        sprintf(damagebutton, "%s: %d", Traduction(UPG_MSG), shop.nextPrice);
         sprintf(health_txt, "%s: %d", Traduction(VIE_MSG), level.monstre[level.currentLvl].mobHealth);
         sprintf(gold_txt, "%s: %d", Traduction(OR_MSG), gold);
         sprintf(dmg_txt, "%s %d", Traduction(DMG_MSG), damage);
@@ -125,44 +91,14 @@ int main() {
             }
         }
 
+        ButtonHandle(renderer, font, x,y);
         affiche_txt(renderer, font, currentLvl, getRectForCentenredCord(widthscreen/2,30,100,50), (SDL_Color){255, 255, 255, 255});
         affiche_txt(renderer, font, remainingMob, getRectForCentenredCord(widthscreen/2, 30+50, 200, 50), (SDL_Color){255, 255, 255, 255});
         affiche_txt(renderer, font, health_txt, getRectForCentenredCord(widthscreen/2, heightscreen/2-70, 200, 50), (SDL_Color){255, 255, 255, 255});
         affiche_txt(renderer, font, gold_txt,(SDL_Rect){10,10,100,50}, (SDL_Color){255, 255, 255, 255});
         affiche_txt(renderer, font, dmg_txt,(SDL_Rect){widthscreen-140,10,130,50}, (SDL_Color){255, 255, 255, 255});
-        for (int i = 0; i < BUTTON_COUNT; i++) {
-            draw_button(renderer, listButton[i].rect, listButton[i].color, listButton[i].text, font);
-            if (checkBoutton(listButton[i].rect, x, y)) {
-                listButton[i].color = (SDL_Color){125, 125, 0, 255};
-                if (growEffect[i] != 0) {
-                    listButton[i].rect = (SDL_Rect){
-                        listButton[i].iniRect.x - (listButton[i].iniRect.w * (growEffect[i] - 1) / 2),
-                        listButton[i].iniRect.y - (listButton[i].iniRect.h * (growEffect[i] - 1) / 2),
-                        listButton[i].iniRect.w * growEffect[i],
-                        listButton[i].iniRect.h * growEffect[i]
-                    };
-                }
-            } else {
-                listButton[i].color = (SDL_Color){0, 0, 255, 255};
-                if (growEffect[i]){
-                    listButton[i].rect = listButton[i].iniRect;
-                }
-            }
-        }
-        for (int i = 0; i < BUTTON_IMG_COUNT; i++) {
-            // draw_button_image(renderer, listButtonImg[i].rect, listButtonImg[i].texture, listButtonImg[i].background, listButtonImg[i].offsetLogo);
-            if (checkBoutton(listButtonImg[i].rect, x, y)) {
-                listButtonImg[i].rect = (SDL_Rect){
-                    listButtonImg[i].iniRect.x - (listButtonImg[i].iniRect.w * 0.1 / 2),
-                    listButtonImg[i].iniRect.y - (listButtonImg[i].iniRect.h * 0.1 / 2),
-                    listButtonImg[i].iniRect.w * 1.1,
-                    listButtonImg[i].iniRect.h * 1.1
-                };
-            } else {
-                listButtonImg[i].rect = listButtonImg[i].iniRect;
-            }
-        }
-
+        
+        
         SDL_RenderPresent(renderer);
 
     }
