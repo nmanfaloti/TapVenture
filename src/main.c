@@ -13,10 +13,10 @@
 #include "../lib/heros.h"
 #include "../lib/input_user.h"
 #include "../lib/sdl_init.h"
+#include "../lib/player.h"
 
 int main() {
     if (init_SDL()){
-        printf("Error SDL_Init\n");
         return 1;
     }
 
@@ -25,30 +25,20 @@ int main() {
     level.mobKilled = 0;
     level.mobToKill = 10;
     level.currentLvl = 0;
-    int gold = 0;
     damageShop shop;
     shop.damageLevel = 0;
     shop.lastPrice = 0;
     shop.nextPrice = getPriceForLevels(shop.damageLevel+1);
-    int damage = getDamageFromLevel(shop.damageLevel);
-    SelectLanguage("English");
+    damage_click = getDamageFromLevel(shop.damageLevel);
     
-    char data_string[DATA_COUNT_CHAR][50];
-    int data_int[DATA_COUNT_INT];
-    hero listHeros[HEROS_COUNT];
-    initVariable(data_string, data_int, listHeros);
-    SelectLanguage(data_string[LANGUAGE]);
-    //level.currentLvl = data_int[LEVEL];
-    gold = data_int[GOLD];
-    damage = data_int[DAMAGE_CLICK];
+    loadSave();
 
     char health_txt[100], gold_txt[100], dmg_txt[100], remainingMob[100],currentLvl[100];
-    
-    createButton(getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attackButton, 5,&level.monstre[level.currentLvl], &gold, &damage, &level.mobKilled, &level.mobToKill);
-    createButton(getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.05,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage, &gold, &shop);
-    
-    createImgButton(getRectForCentenredCord(vw(50), vh(70), 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, upgradeButton, 3 , &damage, &gold, &shop);
 
+    createButton(getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attackButton, 5,&level.monstre[level.currentLvl], &gold, &damage_click, &level.mobKilled, &level.mobToKill);
+    createButton(getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.05,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage_click, &gold, &shop);
+    
+    createImgButton(getRectForCentenredCord(vw(50), vh(70), 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, upgradeButton, 3 , &damage_click, &gold, &shop);
 
     initLevel(level.monstre);
 
@@ -67,7 +57,7 @@ int main() {
             running = input_event(event);
         }
         
-        attackHeros(listHeros, argument);
+        attackHeros(heros, argument);
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
@@ -80,7 +70,7 @@ int main() {
 
         sprintf(health_txt, "%s: %d", Traduction(VIE_MSG), level.monstre[level.currentLvl].mobHealth);
         sprintf(gold_txt, "%s: %d", Traduction(OR_MSG), gold);
-        sprintf(dmg_txt, "%s %d", Traduction(DMG_MSG), damage);
+        sprintf(dmg_txt, "%s %d", Traduction(DMG_MSG), damage_click);
         sprintf(remainingMob, "%s: %d/%d", Traduction(MOB_MSG), level.mobKilled, level.mobToKill);
         sprintf(currentLvl, "%s: %d", Traduction(LVL_MSG), level.currentLvl);
 
@@ -106,14 +96,8 @@ int main() {
         SDL_RenderPresent(renderer);
 
     }
-    //save
-    strcpy(data_string[USERNAME], "Dev");
-    strcpy(data_string[LANGUAGE],LanguageAct.Language);
-    data_int[LEVEL] = level.currentLvl;
-    data_int[GOLD] = gold;
-    data_int[DAMAGE_CLICK] = damage;
-    makeSave("save/save.json", data_string, data_int, listHeros);
-    printf("Sortie du jeu\n");
+    makeSave();
+
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

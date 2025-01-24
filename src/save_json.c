@@ -3,6 +3,9 @@
 #include <string.h>
 #include <time.h>
 #include "../lib/save_json.h"
+#include "../lib/player.h"
+#include "../lib/heros.h"
+#include "../lib/lang.h"
 
 char * getValueForKey(char * key, char * nom_ficher) {
     FILE * f = fopen(nom_ficher, "r");
@@ -139,18 +142,21 @@ char *dataIndexInts[] = {
     "DAMAGE_CLICK"
 };
 
-int makeSave(char * nom_ficher, char dataStr[DATA_COUNT_CHAR][50], int dataInt[DATA_COUNT_INT],hero heros[HEROS_COUNT]){
+int makeSave(){
+    char * nom_ficher = "save/save.json";
     system("rm save/save.json");
-    //dataSrt
-    for(int i = 0; i < DATA_COUNT_CHAR; i++){
-        createValueForKey(dataIndexStrings[i], dataStr[i], nom_ficher);
-    }
+    
+    createValueForKey("USERNAME", username, nom_ficher);
+    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, nom_ficher);
     //dataInt
-    for(int i = 0; i < DATA_COUNT_INT; i++){
-        char value[10];
-        sprintf(value, "%d", dataInt[i]);
-        createValueForKey(dataIndexInts[i], value, nom_ficher);
-    }
+    char value[30];
+    sprintf(value, "%d", level);
+    createValueForKey("LEVEL", value, nom_ficher);
+    sprintf(value, "%d", gold);
+    createValueForKey("GOLD", value, nom_ficher);
+    sprintf(value, "%d", damage_click);
+    createValueForKey("DAMAGE_CLICK", value, nom_ficher);
+
     //heros
     for(int i = 0; i < HEROS_COUNT; i++){
         char value[10];
@@ -160,46 +166,51 @@ int makeSave(char * nom_ficher, char dataStr[DATA_COUNT_CHAR][50], int dataInt[D
         createValueForKey(key, value, nom_ficher);
     }
     time_t current_time = time(NULL);
-    char value[10];
     sprintf(value, "%ld", current_time);
     createValueForKey("SAVETIME", value, nom_ficher);
+    printf("Save done\n");
+    return 0;
+}
 
+int loadSave(){
+    char * nom_ficher = "save/save.json";
+    char * saveTime = getValueForKey("SAVETIME", "save/save.json");
+    if (saveTime == NULL) {
+        //No save file found
+        initVariable();
+        return 1;
+    }
+    //load save
+    char * value;
+    value = getValueForKey("USERNAME", "save/save.json");
+    strcpy(username, value);
+    value = getValueForKey("LANGUAGE", "save/save.json");
+    SelectLanguage(value);
+    //dataInt
+    value = getValueForKey("LEVEL", nom_ficher);
+    level = atoi(value);
+    value = getValueForKey("GOLD", nom_ficher);
+    gold = atoi(value);
+    value = getValueForKey("DAMAGE_CLICK", nom_ficher);
+    damage_click = atoi(value);
+    //heros
+    for(int i = 0; i < HEROS_COUNT; i++){
+        char key[20];
+        sprintf(key, "HERO_LEVEL_%d", i);
+        char * level = getValueForKey(key, "save/save.json");
+        upgradeHeroAtLevel(heros,i,atoi(level));
+    }
     return 0;
 }
 
 
-
-int initVariable(char dataStr[DATA_COUNT_CHAR][50], int dataInt[DATA_COUNT_INT], hero heros[HEROS_COUNT]){
-    time_t current_time = time(NULL);
-    char * saveTime = getValueForKey("SAVETIME", "save/save.json");
-    if(saveTime && atoi(saveTime) <= current_time){
-        //dataSrt
-        for (int i = 0; i < DATA_COUNT_CHAR; i++){
-            char * value = getValueForKey(dataIndexStrings[i], "save/save.json");
-            strcpy(dataStr[i], value);
-        }
-        //dataInt
-        for (int i = 0; i < DATA_COUNT_INT; i++){
-            char * value = getValueForKey(dataIndexInts[i], "save/save.json");
-            dataInt[i] = atoi(value);
-        }
-        //heros
-        for(int i = 0; i < HEROS_COUNT; i++){
-            char key[20];
-            sprintf(key, "HERO_LEVEL_%d", i);
-            char * level = getValueForKey(key, "save/save.json");
-            upgradeHeroAtLevel(heros,i,atoi(level));
-        }
-        return 0;
-    }
-    printf("No save file found or save file in future\n");
+int initVariable(){
     initHeros(heros);
-    strcpy(dataStr[USERNAME], "Default");
-    strcpy(dataStr[LANGUAGE], "English");
-    dataInt[LEVEL] = 0;
-    dataInt[GOLD] = 0;
-    dataInt[DAMAGE_CLICK] = 10;
-    
+    strcpy(username, "Default");
+    SelectLanguage("English");
+    level = 0;
+    gold = 0;
+    damage_click = 10;
     return 0;
 }
 

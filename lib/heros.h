@@ -21,4 +21,6 @@ int attackHeros(hero heros[HEROS_COUNT], void * args[20]);
 int upgradeHero(hero heros[HEROS_COUNT], int HeroIndex, int * gold);
 int upgradeHeroAtLevel(hero heros[HEROS_COUNT], int HeroIndex, int level);
 
+extern hero heros[HEROS_COUNT];
+
 #endif // HEROS_H

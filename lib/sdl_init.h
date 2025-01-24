@@ -7,8 +7,8 @@
 
 int init_SDL();
 
-extern SDL_Window * window;
-extern SDL_Renderer * renderer;
+extern SDL_Window *window;
+extern SDL_Renderer *renderer;
 extern TTF_Font *font;
 
 #endif // SDL_INIT_H

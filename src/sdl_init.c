@@ -3,8 +3,8 @@
 
 #define LINK_FONT "assets/fonts/Planes_ValMore.ttf"
 
-SDL_Window * window = NULL;
-SDL_Renderer * renderer = NULL;
+SDL_Window *window = NULL;
+SDL_Renderer *renderer = NULL;
 TTF_Font *font = NULL;
 
 int init_SDL(){

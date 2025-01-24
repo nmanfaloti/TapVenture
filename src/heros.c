@@ -5,6 +5,8 @@
 #include "../lib/heros.h"
 #include "../lib/combat.h"
 
+hero heros[HEROS_COUNT];
+
 int initHeros(hero heros[HEROS_COUNT]){
     heros[HERO0].degat = 10;
     heros[HERO0].prix = 100;
