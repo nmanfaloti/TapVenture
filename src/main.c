@@ -45,6 +45,8 @@ int main() {
 
     createButton(getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attackButton, 5,&level.monstre[level.currentLvl], &gold, &damage, &level.mobKilled, &level.mobToKill);
     createButton(getRectForCentenredCord(110, heightscreen/2, 160, 80), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.5,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage, &gold, &shop);
+    
+    createImgButton(getRectForCentenredCord(widthscreen/2, heightscreen/2+100, 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, upgradeButton, 3 , &damage, &gold, &shop);
 
     initLevel(level.monstre);
 

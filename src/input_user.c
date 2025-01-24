@@ -29,6 +29,13 @@ int input_event(SDL_Event event){
                             }
                         }
                     }
+                    for (int i = 0; i < listeButtonImg->nbButton; i++) {
+                        if (checkBoutton(listeButtonImg->buttons[i].rect, mouseXclickG, mouseXclickD)) {
+                            if (listeButtonImg->buttons[i].callFunction) {
+                                listeButtonImg->buttons[i].callFunction(listeButtonImg->buttons[i].args);
+                            }
+                        }
+                    }
                 }
                 break;
             case SDL_KEYDOWN:

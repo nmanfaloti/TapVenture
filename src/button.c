@@ -41,7 +41,7 @@ SDL_Rect getRectForCentenredCord(int x, int y, int w, int h) {
     return (SDL_Rect){x - w / 2, y - h / 2, w, h};
 }
 
-void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, char *pathBackground, int offsetLogo) {
+void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, char *pathBackground, int offsetLogoX, int offsetLogoY) {
     SDL_Surface *surface = IMG_Load(pathText);
     if (!surface) {
         printf("Failed to load image: %s\n", IMG_GetError());
@@ -53,6 +53,7 @@ void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, ch
         SDL_FreeSurface(surface);
         return;
     }
+    
     SDL_Surface *surfaceBackground = IMG_Load(pathBackground);
     if (!surfaceBackground) {
         printf("Failed to load image: %s\n", IMG_GetError());
@@ -72,10 +73,9 @@ void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, ch
     SDL_FreeSurface(surface);
     SDL_FreeSurface(surfaceBackground);
 
-
     int icon_width, icon_height;
     SDL_QueryTexture(texture, NULL, NULL, &icon_width, &icon_height);
-    SDL_Rect rectOffest = {rect.x - offsetLogo, rect.y - offsetLogo, rect.w, rect.h};
+    SDL_Rect rectOffest = {rect.x - offsetLogoX, rect.y - offsetLogoY, rect.w, rect.h};
 
     SDL_RenderCopy(renderer, textureBackground, NULL, &rect);
     SDL_RenderCopy(renderer, texture, NULL, &rectOffest);
@@ -85,7 +85,6 @@ void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, ch
 }
 
 ListeButton *listeButton = NULL;
-
 void initListButton() {
     listeButton = malloc(sizeof(ListeButton));
     if (listeButton != NULL) {
@@ -94,6 +93,17 @@ void initListButton() {
         printf("listeButton initialisé avec succès\n");
     } else {
         printf("Erreur d'allocation mémoire pour listeButton\n");
+    }
+}
+ListeButtonImg *listeButtonImg = NULL;
+void initListButtonImg() {
+    listeButtonImg = malloc(sizeof(ListeButtonImg));
+    if (listeButtonImg != NULL) {
+        listeButtonImg->nbButton = 0;
+        listeButtonImg->buttons = NULL;
+        printf("listeButtonImg initialisé avec succès\n");
+    } else {
+        printf("Erreur d'allocation mémoire pour listeButtonImg\n");
     }
 }
 
@@ -133,14 +143,62 @@ void createButton(SDL_Rect rect, SDL_Color color, int txtInd, int * info,float g
     }
 }
 
+void createImgButton(SDL_Rect rect, char *texture, char *background, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
+    if (listeButtonImg == NULL) {
+        initListButtonImg();
+    }
+    va_list args;
+    va_start(args, numArgs);
+    void *params[numArgs];
+    for (int i = 0; i < numArgs; i++) {
+        params[i] = va_arg(args, void *);
+    }
+    va_end(args);
+
+    ButtonImg newButton;
+    newButton.rect = rect;
+    newButton.texture = texture;
+    newButton.background = background;
+    newButton.offsetLogoX = offsetLogoX;
+    newButton.offsetLogoY = offsetLogoY;
+    newButton.callFunction = callFunction;
+    newButton.args = malloc(numArgs * sizeof(void *));
+    for (int i = 0; i < numArgs; i++) {
+        newButton.args[i] = params[i];
+    }
+
+    listeButtonImg->buttons = realloc(listeButtonImg->buttons, (listeButtonImg->nbButton + 1) * sizeof(ButtonImg));
+    if (listeButtonImg->buttons != NULL) {
+        listeButtonImg->buttons[listeButtonImg->nbButton] = newButton;
+        listeButtonImg->nbButton++;
+    } else {
+        free(newButton.args);
+    }
+}
+
+
 void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font, int x, int y) {
     if (listeButton == NULL) {
         printf("Initialisation de listeButton\n");
         initListButton();
     }
-
+    if (listeButtonImg == NULL) {
+        printf("Initialisation de listeButtonImg\n");
+        initListButtonImg();
+    }
+    if (listeButtonImg != NULL) {
+        for (int i = 0; i < listeButtonImg->nbButton; i++) {
+            draw_button_image(renderer, listeButtonImg->buttons[i].rect, listeButtonImg->buttons[i].background, listeButtonImg->buttons[i].texture, listeButtonImg->buttons[i].offsetLogoX , listeButtonImg->buttons[i].offsetLogoY);
+            if (checkBoutton(listeButtonImg->buttons[i].rect, x, y)) {
+                if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+                    listeButtonImg->buttons[i].callFunction(listeButtonImg->buttons[i].args);
+                }
+            }
+        }
+    } else {
+        printf("Erreur: listeButtonImg est toujours NULL après initialisation\n");
+    }
     if (listeButton != NULL) {
-
         for (int i = 0; i < listeButton->nbButton; i++) {
             char txt[50] = "";
             if (listeButton->buttons[i].info != NULL) {
@@ -178,4 +236,12 @@ void destroyButton() {
     }
     free(listeButton->buttons);
     free(listeButton);
+}
+
+void destroyButtonImg() {
+    for (int i = 0; i < listeButtonImg->nbButton; i++) {
+        free(listeButtonImg->buttons[i].args);
+    }
+    free(listeButtonImg->buttons);
+    free(listeButtonImg);
 }
