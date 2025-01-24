@@ -5,7 +5,6 @@ SRCDIR   = src
 LIBDIR   = lib
 OBJDIR   = obj
 BINDIR   = bin
-BINDIREXEC = ../$(BINDIR)
 EXEC     = main
 
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
@@ -13,7 +12,17 @@ INCLUDES := $(wildcard $(LIBDIR)/*.h)
 OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
-$(BINDIREXEC)/$(EXEC):$(OBJECTS)
+
+all:$(BINDIR) $(OBJDIR) ../$(BINDIR)/$(EXEC)
+#cree les dossiers obj et bin si ils n'existent pas
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
+
+$(BINDIR):
+	mkdir -p $(BINDIR)
+
+
+../$(BINDIR)/$(EXEC):$(OBJECTS)
 	$(CC) -o $(OBJDIR)/$@ $(OBJECTS) $(CFLAGSMAIN)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
@@ -22,7 +31,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c $(INCLUDES)
 
 .PHONY:	clean
 clean:
-	$(rm) $(OBJDIR)/*.o
+	$(rm) $(OBJECTS)
 	@echo "Cleanup complete!"
 
 .PHONY: remove
