@@ -1,29 +1,19 @@
-main: main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o
-	gcc -o main main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o -lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lm
+CC=gcc -o
+CFLAGSMAIN=-lSDL2main -lSDL2 -lSDL2_ttf -lSDL2_image -lm
+CFLAG=-W -Wall
+SRCDIR   = src
+LIBDIR   = lib
+EXEC     = main
+OBJ	  = main.o lang.o json.o aff.o button.o combat.o boutique.o heros.o
 
-main.o: main.c
-	gcc -o main.o -c main.c -W -Wall
+$(EXEC):$(OBJ)
+	$(CC) $(OBJ) $(CFLAGSMAIN)
 
-lang.o: traduction/lang.c traduction/lang.h
-	gcc -o lang.o -c traduction/lang.c -W -Wall
+%.o:$(SRCDIR)/%.c $(LIBDIR)/%.h
+	$(CC) -c $< -o $@ $(CFLAGS)
 
-json.o: option/json.c option/json.h
-	gcc -o json.o -c option/json.c -W -Wall
-
-aff.o: affichage/aff.c affichage/aff.h
-	gcc -o aff.o -c affichage/aff.c -W -Wall
-
-button.o: button/button.c button/button.h
-	gcc -o button.o -c button/button.c -W -Wall
-
-combat.o: combat/combat.c combat/combat.h
-	gcc -o combat.o -c combat/combat.c -W -Wall
-
-boutique.o: boutique/boutique.c boutique/boutique.h
-	gcc -o boutique.o -c boutique/boutique.c -W -Wall
-
-heros.o: heros/heros.c heros/heros.h
-	gcc -o heros.o -c heros/heros.c -W -Wall
+$(EXEC).o:$(SRCDIR)/$(EXEC).c
+	$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:
 	rm -f main *.o
