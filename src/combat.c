@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
-#include "combat.h"
-#include "../affichage/aff.h"
+#include "lib/combat.h"
+#include "lib/aff.h"
 
 int initLevel(monstreInfo monstre[]) {
     monstre[0].mobHealth = 100;

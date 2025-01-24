@@ -1,4 +1,4 @@
-#include "boutique.h"
+#include "lib/boutique.h"
 #include <math.h>
 
 double getPriceForLevels(int levels) {

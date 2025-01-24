@@ -4,13 +4,13 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
-#include "traduction/lang.h"
-#include "option/json.h"
-#include "affichage/aff.h"
-#include "button/button.h"
-#include "combat/combat.h"
-#include "boutique/boutique.h"
-#include "heros/heros.h"
+#include "src/lang.h"
+#include "src/json.h"
+#include "src/aff.h"
+#include "srcsrc/button.h"
+#include "src/combat.h"
+#include "src/boutique.h"
+#include "src/heros.h"
 
 void refreshButton(Button listButton[]) {
     listButton[BUTTON_CLICK].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);
@@ -111,10 +111,7 @@ int main() {
     listButtonImg[BUTTON_IMG].offsetLogo = 10;
 
     initLevel(level.monstre);
-
-    void * argument[20];
-    argument[0] = &level.monstre[level.currentLvl];
-    argument[1] = &gold;
+lib/
     argument[3] = &level.mobKilled;
     argument[4] = &level.mobToKill;
     
@@ -188,7 +185,7 @@ int main() {
                         case '1':
                             upgradeHero(listHeros,1,&gold);
                             printf("tentative Upgrade Hero 1,level %d prix: %d Degat %d\n",listHeros[1].level, listHeros[1].prix, listHeros[1].degat);
-                            break;
+                            break;lib/
                         case '4': 
                             level.currentLvl = 4;
                             damage = 500;

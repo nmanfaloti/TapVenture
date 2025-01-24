@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <SDL2/SDL_ttf.h>
 
-#include "aff.h"
+#include "lib/aff.h"
 
 int widthscreen = 800;
 int heightscreen = 500;

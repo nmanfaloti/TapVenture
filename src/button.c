@@ -4,7 +4,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
-#include "button.h"
+#include "lib/button.h"
 
 void draw_button(SDL_Renderer *renderer, SDL_Rect rect, SDL_Color color, const char *text, TTF_Font *font) {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);

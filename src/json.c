@@ -1,8 +1,8 @@
-#include "json.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include "lib/json.h"
 
 char * getValueForKey(char * key, char * nom_ficher) {
     FILE * f = fopen(nom_ficher, "r");

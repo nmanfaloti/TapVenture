@@ -16,8 +16,6 @@ typedef struct {
     const char *messages[NB_MSG];
 } Lang;
 
-extern Lang en;
-extern Lang fr;
 extern Lang LanguageAct;
 
 char* Traduction(CleMsg key);
