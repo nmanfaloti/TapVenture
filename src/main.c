@@ -11,6 +11,8 @@
 #include "../lib/combat.h"
 #include "../lib/boutique.h"
 #include "../lib/heros.h"
+#include "../lib/input_user.h"
+#include "../lib/sdl_init.h"
 
 void refreshButton(Button listButton[]) {
     listButton[BUTTON_CLICK].rect = getRectForCentenredCord(widthscreen/2, heightscreen/2, 240, 80);
@@ -20,40 +22,7 @@ void refreshButton(Button listButton[]) {
 }
 
 int main() {
-    if (SDL_Init(SDL_INIT_VIDEO)){
-        printf("Error SDL_Init\n");
-        return 1;
-    };
-    if (TTF_Init() == -1) {
-        printf("TTF_Init: %s\n", TTF_GetError());
-        SDL_Quit();
-        return 1;
-    }
-    if (IMG_Init(IMG_INIT_PNG) == -1) {
-        printf("IMG_Init: %s\n", IMG_GetError());
-        SDL_Quit();
-        return 1;
-    }
-    SDL_Window * window = SDL_CreateWindow("Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, widthscreen, heightscreen, SDL_WINDOW_SHOWN);
-    if (window == NULL){
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Error SDL_CreateWindow : %s\n", SDL_GetError());
-        SDL_Quit();
-        return 1;
-    }
-    SDL_Renderer * renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-    if (renderer == NULL){
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Error SDL_CreateRenderer : %s\n", SDL_GetError());
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-    TTF_Font *font = TTF_OpenFont("assets/fonts/Planes_ValMore.ttf", 20);
-    if (font == NULL) {
-        printf("Failed to load font: %s\n", TTF_GetError());
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        TTF_Quit();
-        SDL_Quit();
+    if (init_SDL()){
         return 1;
     }
 
@@ -111,92 +80,20 @@ int main() {
     listButtonImg[BUTTON_IMG].offsetLogo = 10;
 
     initLevel(level.monstre);
-lib/
+
+    void * argument[20];
+    argument[0] = &level.monstre[level.currentLvl];
+    argument[1] = &gold;
     argument[3] = &level.mobKilled;
     argument[4] = &level.mobToKill;
     
-    int running = 1;
+    int running;
     int x, y;
     SDL_Event event;
 
     while (running){
         while (SDL_PollEvent(&event)){
-            switch (event.type) {
-                case SDL_QUIT:
-                    running = 0;
-                    break;
-                case SDL_MOUSEBUTTONDOWN:
-                    if (event.button.button == SDL_BUTTON_LEFT) {
-                        int mouseX = event.button.x;
-                        int mouseY = event.button.y;
-                        for (int i = 0; i < BUTTON_COUNT; i++) {
-                            if (checkBoutton(listButton[i].rect, mouseX, mouseY)) {
-                                if (listButton[i].callFunction) {
-                                    listButton[i].callFunction(listButton[i].args);
-                                }
-                            }
-                        }
-                        // for (int i = 0; i < BUTTON_IMG_COUNT; i++) {
-                        //     if (checkBoutton(listButtonImg[i].rect, mouseX, mouseY)) {
-                        //         if (listButtonImg[i].callFunction) {
-                        //             listButtonImg[i].callFunction(listButtonImg[i].args);
-                        //         }
-                        //     }
-                        // }
-                    }
-                    break;
-                case SDL_KEYDOWN:
-                    switch (SDL_GetKeyName(event.key.keysym.sym)[0]){
-                        case 'F':
-                            if (SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP) {
-                                SDL_SetWindowFullscreen(window, 0);
-                                SDL_GetWindowSize(window, &widthscreen, &heightscreen);
-                            } else {
-                                SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-                                SDL_GetRendererOutputSize(renderer, &widthscreen, &heightscreen);
-                            }
-                            refreshButton(listButton);
-                            break;
-                        case 'H':
-                            SDL_GetWindowSize(window, &widthscreen, &heightscreen);
-                            refreshButton(listButton);
-                            break;
-                        case 'E': 
-                            SelectLanguage("English");
-                            refreshButton(listButton);
-                            break;
-                        case 'R':
-                            SelectLanguage("French");
-                            refreshButton(listButton);
-                            break;
-                        case 'W':
-                            printf("Windowed\n");
-                            SDL_SetWindowFullscreen(window, 0);
-                            SDL_GetWindowSize(window, &widthscreen, &heightscreen);
-                            break;
-                        case 'Q':
-                            printf("Souris Coords : %d %d ", x, y);
-                            printf("Center Screen coord %d %d", widthscreen/2, heightscreen/2);
-                            break;
-                        case '0':
-                            upgradeHero(listHeros,0,&gold);
-                            printf("tentative Upgrade Hero 0, prix: %d, level %d, Degat %d\n",listHeros[0].level, listHeros[0].prix, listHeros[0].degat);
-                            break;
-                        case '1':
-                            upgradeHero(listHeros,1,&gold);
-                            printf("tentative Upgrade Hero 1,level %d prix: %d Degat %d\n",listHeros[1].level, listHeros[1].prix, listHeros[1].degat);
-                            break;lib/
-                        case '4': 
-                            level.currentLvl = 4;
-                            damage = 500;
-                            break;
-                        default:
-                            printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
-                            break;
-                    }
-                default:
-                    break;
-            }
+            running = input_event(event);
         }
         
         attackHeros(listHeros, argument);

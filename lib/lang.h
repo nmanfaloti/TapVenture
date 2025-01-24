@@ -1,3 +1,5 @@
+#ifndef LANG_H
+#define LANG_H
 typedef enum {
     BIENVENUE_MSG,
     AUREVOIR_MSG,
@@ -21,3 +23,5 @@ extern Lang LanguageAct;
 char* Traduction(CleMsg key);
 
 void SelectLanguage(const char *lang);
+
+#endif //LANG_H
