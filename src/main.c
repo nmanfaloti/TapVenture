@@ -56,7 +56,7 @@ int main() {
     }
     destroyButton();
     destroyButtonImg();
-
+    destroyUItxt();
     makeSave();
     SDLExit();
     return 0;

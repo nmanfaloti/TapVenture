@@ -25,5 +25,5 @@ int vh(float percent);
 void createUIText(int tradID, int * info, SDL_Rect dest, SDL_Color color);
 void uiHandle();
 void initUItxt();
-
+void destroyUItxt();
 #endif // AFF_H

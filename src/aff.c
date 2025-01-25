@@ -97,3 +97,7 @@ void initUItxt(){
     createUIText(LVL_MSG, &level.currentLvl, getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255});
 
 }
+
+void destroyUItxt(){
+    free(container.txt);
+}
