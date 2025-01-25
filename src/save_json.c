@@ -6,6 +6,7 @@
 #include "../lib/player.h"
 #include "../lib/heros.h"
 #include "../lib/lang.h"
+#include "../lib/combat.h"
 
 char * getValueForKey(char * key, char * nom_ficher) {
     FILE * f = fopen(nom_ficher, "r");
@@ -152,7 +153,7 @@ int makeSave(){
     createValueForKey("LANGUAGE", (char *)LanguageAct.Language, global_save);
     //dataInt
     char value[30];
-    sprintf(value, "%d", level);
+    sprintf(value, "%d", level.currentLvl);
     createValueForKey("LEVEL", value, global_save);
     sprintf(value, "%d", gold);
     createValueForKey("GOLD", value, global_save);
@@ -202,7 +203,7 @@ int loadSave(){
         free(value);
         //dataInt
         value = getValueForKey("LEVEL", global_save);
-        level = atoi(value);
+        level.currentLvl = atoi(value);
         free(value);
         value = getValueForKey("GOLD", global_save);
         gold = atoi(value);
@@ -249,7 +250,6 @@ int loadSave(){
 int initVariableGlobal(){
     strcpy(username, "Default");
     SelectLanguage("English");
-    level = 0;
     gold = 0;
     damage_click = 10;
     return 0;

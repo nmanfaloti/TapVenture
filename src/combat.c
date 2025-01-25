@@ -2,10 +2,18 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+
 #include "../lib/combat.h"
 #include "../lib/aff.h"
+#include "../lib/sdl.h"
+
+levelInfo level;
 
 int initLevel(monstreInfo monstre[]) {
+    level.timeToKill = -1.0;
+    level.mobKilled = 0;
+    level.mobToKill = 10;
+    level.currentLvl = 0;
     monstre[0].mobHealth = 100;
     monstre[0].iniHealth = 100;
     monstre[0].coinMin = 5;
@@ -30,13 +38,12 @@ int initLevel(monstreInfo monstre[]) {
 }
 
 int attackButton(void * args[20]) {
-    levelInfo * level = args[0];
-    int * gold = args[1];
-    int * damage = args[2];
-    int * mobKilled = args[3];
-    int * mobToKill = args[4];
+    int * gold = args[0];
+    int * damage = args[1];
+    int * mobKilled = args[2];
+    int * mobToKill = args[3];
 
-    monstreInfo * currentMonstre = &level->monstre[level->currentLvl];
+    monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     currentMonstre->mobHealth -= *damage;
 
     if (currentMonstre->mobHealth <= 0) {
@@ -45,21 +52,18 @@ int attackButton(void * args[20]) {
         currentMonstre->mobHealth = currentMonstre->iniHealth;
 
         if (*mobKilled >= *mobToKill) {
-            level->currentLvl += 1;
+            level.currentLvl += 1;
             *mobKilled = 0;
-
-            if (level->currentLvl % 5 == 0) {
-                InitBoss(level, 30);
-            }
+            mobHandler();
         }
     }
     return 1;
 }
 
-int InitBoss(levelInfo *level, int difficultyTime) {
-    level->mobToKill = 1;
-    level->timeToKill = difficultyTime;
-    level->startTimer = SDL_GetTicks();
+int initBoss(int difficultyTime) {
+    level.mobToKill = 1;
+    level.timeToKill = difficultyTime;
+    level.startTimer = SDL_GetTicks();
 
     return 1;
 }
@@ -68,18 +72,30 @@ int isBoss(int currentLvl) {
     return currentLvl % 5 == 0;
 }
 
-int writeBossTimer(levelInfo *level, SDL_Renderer* pRenderer, TTF_Font* font, SDL_Rect dest) {
-    if (level->currentLvl % 5 != 0 || level->timeToKill == -1) {
+int writeBossTimer(SDL_Rect dest) {
+    if (level.currentLvl % 5 != 0 || level.timeToKill == -1) {
         return 0;
     }
-
-    int timeLeft = level->timeToKill - (SDL_GetTicks() - level->startTimer) / 1000;
+    int timeLeft = level.timeToKill - (SDL_GetTicks() - level.startTimer) / 1000;
     char timeLeftTxt[100];
     sprintf(timeLeftTxt, "%d", timeLeft);
-    affiche_txt(pRenderer, font, timeLeftTxt, getSizeForText(font,timeLeftTxt, dest), (SDL_Color){255, 255, 255, 255});
+    affiche_txt(renderer, font, timeLeftTxt, getSizeForText(font,timeLeftTxt, dest), (SDL_Color){255, 255, 255, 255});
     if (timeLeft <= 0) {
         return 1;
     }
     return 0;
 }
 
+void mobHandler() {
+    initBoss(30);
+    if (isBoss(level.currentLvl)) {
+        if (writeBossTimer((SDL_Rect){vh(50),100,100,50}) == 1) {
+            level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
+            level.startTimer = SDL_GetTicks();
+        }
+    }else{
+        if (level.mobToKill == 1){
+            level.mobToKill = 10;
+        }
+    }
+}

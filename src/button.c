@@ -7,6 +7,7 @@
 
 #include "../lib/button.h"
 #include "../lib/lang.h"
+#include "../lib/input_user.h"
 
 void draw_button(SDL_Renderer *renderer, SDL_Rect rect, SDL_Color color, const char *text, TTF_Font *font) {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
@@ -177,7 +178,7 @@ void createImgButton(SDL_Rect rect, char *texture, char *background, int offsetL
 }
 
 
-void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font, int x, int y) {
+void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font) {
     if (listeButton == NULL) {
         printf("Initialisation de listeButton\n");
         initListButton();
@@ -189,11 +190,6 @@ void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font, int x, int y) {
     if (listeButtonImg != NULL) {
         for (int i = 0; i < listeButtonImg->nbButton; i++) {
             draw_button_image(renderer, listeButtonImg->buttons[i].rect, listeButtonImg->buttons[i].background, listeButtonImg->buttons[i].texture, listeButtonImg->buttons[i].offsetLogoX , listeButtonImg->buttons[i].offsetLogoY);
-            if (checkBoutton(listeButtonImg->buttons[i].rect, x, y)) {
-                if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-                    listeButtonImg->buttons[i].callFunction(listeButtonImg->buttons[i].args);
-                }
-            }
         }
     } else {
         printf("Erreur: listeButtonImg est toujours NULL après initialisation\n");
@@ -208,7 +204,7 @@ void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font, int x, int y) {
                 sprintf(txt, "%s", Traduction(listeButton->buttons[i].text));
             }
             draw_button(renderer, listeButton->buttons[i].rect, listeButton->buttons[i].color, txt, font);
-            if (checkBoutton(listeButton->buttons[i].rect, x, y)) {
+            if (checkBoutton(listeButton->buttons[i].rect, mouseX, mouseY)) {
                 listeButton->buttons[i].color = listeButton->buttons[i].colorHover;
                 if (listeButton->buttons[i].growEffect != 0) {
                     listeButton->buttons[i].rect = (SDL_Rect){

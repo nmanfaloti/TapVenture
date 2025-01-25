@@ -1,3 +1,5 @@
+#include <SDL2/SDL.h>
+
 typedef struct {
     int mobHealth;
     int iniHealth;
@@ -14,9 +16,12 @@ typedef struct {
     int currentLvl;
 } levelInfo;
 
+extern levelInfo level;
+
 int attackButton(void * args[20]);
 int initLevel(monstreInfo monstre[]);
-int InitBoss(levelInfo *level, int diffTime);
+int InitBoss(int diffTime);
 int isBoss(int currentLvl);
-int writeBossTimer(levelInfo *level, SDL_Renderer* pRenderer, TTF_Font* font, SDL_Rect dest);
+int writeBossTimer(SDL_Rect dest);
 int setLevel(levelInfo *level, int lvl);
+void mobHandler();

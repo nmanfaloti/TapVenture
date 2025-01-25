@@ -5,5 +5,7 @@
 
 int input_event(SDL_Event event);
 
+extern int mouseX;
+extern int mouseY;
 
 #endif // INPUT_USER_H

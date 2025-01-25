@@ -36,7 +36,7 @@ typedef struct {
 extern ListeButton *listeButton;
 extern ListeButtonImg *listeButtonImg;
 
-void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font, int x, int y);
+void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font);
 void initListButton();
 void initListButtonImg();
 void createButton(SDL_Rect rect, SDL_Color color, int txtInd, int * info,float growEffect,SDL_Color colorHover,  int (*callFunction)(void **), int numArgs, ...);
