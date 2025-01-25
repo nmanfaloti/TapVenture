@@ -71,12 +71,22 @@ void uiHandle(){
         sprintf(info, "%d", *container.txt[i].info);
         if (container.txt[i].info != NULL){
             const char *trad = Traduction(container.txt[i].tradID);
-            txt = malloc(strlen(trad) + strlen(info) + 2);
-            sprintf(txt, "%s: %s", trad, info);
+            size_t txt_size = strlen(trad) + strlen(info) + 3; // +3 pour : et \0
+            txt = malloc(txt_size);
+            if (txt == NULL) {
+                fprintf(stderr, "Memory allocation failed\n");
+                exit(1);
+            }
+            snprintf(txt, txt_size, "%s: %s", trad, info);
         } else {
             const char *trad = Traduction(container.txt[i].tradID);
-            txt = malloc(strlen(trad) + 1);
-            sprintf(txt, "%s", trad);
+            size_t txt_size = strlen(trad) + 1;  // +1 pour \0
+            txt = malloc(txt_size);
+            if (txt == NULL) {
+                fprintf(stderr, "Memory allocation failed\n");
+                exit(1);
+            }
+            snprintf(txt, txt_size, "%s", trad);
         }
         affiche_txt(renderer, font, txt, container.txt[i].dest, container.txt[i].color);
         free(txt);
