@@ -28,7 +28,7 @@ char * getValueForKey(char * key, char * nom_ficher) {
                 char * end = strchr(start, '\"');
                 if (end) {
                     *end = '\0';
-                    result = strdup(start);
+                    result = strdup(start);// equivalent a un malloc() donc nessaisaire de free()
                     break;
                 }
             }
@@ -133,6 +133,43 @@ int createValueForKey(char * key, char * value, char * nom_ficher){
     return 0;
 }
 
+//concatene 2 chaine et malloc un espace pour les stocker
+char * strCatMalloc(const char * srt1, const char * str2){
+    char * result = malloc(strlen(srt1) + strlen(str2) + 1);
+    if (result == NULL) {
+        printf("Erreur lors de l'allocation de mémoire dans strCatMalloc\n");
+        return NULL;
+    }
+    sprintf(result, "%s%s", srt1, str2);
+    return result;
+}
+
+int isHereFile(char * nameFile){
+    //RETURN 1 if file exist, else 0
+    char * srtPressance = strCatMalloc("test -e ", nameFile);
+    if(srtPressance == NULL){
+        printf("Erreur lors de la verification de l'existance du fichier %s\n", nameFile);
+        return 0;
+    }
+    if (system(srtPressance)){
+        free(srtPressance);
+        return 0;
+    }
+    free(srtPressance);
+    return 1;
+}
+int rmFile(char * nameFile){
+    char * strRm = strCatMalloc("rm ", nameFile);
+    if(strRm == NULL){
+        return 1;
+    }
+    if(isHereFile(nameFile)){
+        system(strRm);
+    }
+    free(strRm);
+    return 0;
+}
+
 char *dataIndexStrings[] = {
     "USERNAME",
     "LANGUAGE"
@@ -143,116 +180,131 @@ char *dataIndexInts[] = {
     "DAMAGE_CLICK"
 };
 
+int loadSave(){
+    loadSavePlayer("save/player.json");
+    loadSaveHeros("save/heros.json");
+    return 0;
+}
+
 int makeSave(){
-    char * global_save = "save/save.json";
-    char * save_heros = "save/save_heros.json";
-    system("rm save/save.json");
-    system("rm save/save_heros.json");
+    makeSavePlayer("save/player.json");
+    makeSaveHeros("save/heros.json");
+    return 0;
+}
     
-    createValueForKey("USERNAME", username, global_save);
-    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, global_save);
+int makeSavePlayer(char * save){
+    rmFile(save);
+
+    createValueForKey("USERNAME", username, save);
+    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, save);
     //dataInt
     char value[30];
     sprintf(value, "%d", level.currentLvl);
-    createValueForKey("LEVEL", value, global_save);
+    createValueForKey("LEVEL", value, save);
     sprintf(value, "%d", gold);
-    createValueForKey("GOLD", value, global_save);
+    createValueForKey("GOLD", value, save);
     sprintf(value, "%d", damage_click);
-    createValueForKey("DAMAGE_CLICK", value, global_save);
+    createValueForKey("DAMAGE_CLICK", value, save);
+    return 0;
+}
 
-    //heros
+int loadSavePlayer(char * save){
+    if(!isHereFile(save)){
+        initPlayer();
+        return 1;
+    }
+
+    /*En cas de fichier avec des valeurs manqantes, ne pas free le pointeur*/
+    char * value;
+    value = getValueForKey("USERNAME", save);
+    strcpy(username, value);
+    free(value);
+
+    value = getValueForKey("LANGUAGE", save);
+    SelectLanguage(value);
+    free(value);
+    //dataInt
+    value = getValueForKey("LEVEL", save);
+    level.currentLvl = atoi(value);
+    free(value);
+
+    value = getValueForKey("GOLD", save);
+    gold = atoi(value);
+    free(value);
+
+    value = getValueForKey("DAMAGE_CLICK", save);
+    damage_click = atoi(value);
+    free(value);
+    return 0;
+}
+
+int makeSaveHeros(char * save){
+    rmFile(save);
+
     for(int i = 0; i < HEROS_COUNT; i++){
         char value[10];
         char key[20];
         sprintf(key, "HERO_%d_LEVEL", i);
         sprintf(value, "%d", heros[i].level);
-        createValueForKey(key, value, save_heros);
+        createValueForKey(key, value, save);
 
         sprintf(key, "HERO_%d_DEGAT", i);
         sprintf(value, "%d", heros[i].degat);
-        createValueForKey(key, value, save_heros);
+        createValueForKey(key, value, save);
 
         sprintf(key, "HERO_%d_PRIX", i);
         sprintf(value, "%d", heros[i].prix);
-        createValueForKey(key, value, save_heros);
+        createValueForKey(key, value, save);
 
         sprintf(key, "HERO_%d_COOLDOWN", i);
         sprintf(value, "%d", heros[i].cooldown);
-        createValueForKey(key, value, save_heros);
-
+        createValueForKey(key, value, save);
     }
     return 0;
 }
 
-int loadSave(){
-    char * global_save = "save/save.json";
-    char * save_heros = "save/save_heros.json";
-    if(system("test -e save/save.json") != 0){
-        //No global save file found
-        initVariableGlobal();
-    }
-    else{
-        //load global save
-        char * value;
-        value = getValueForKey("USERNAME", "save/save.json");
-        strcpy(username, value);
-        free(value);
-
-        value = getValueForKey("LANGUAGE", "save/save.json");
-        SelectLanguage(value);
-        free(value);
-        //dataInt
-        value = getValueForKey("LEVEL", global_save);
-        level.currentLvl = atoi(value);
-        free(value);
-        value = getValueForKey("GOLD", global_save);
-        gold = atoi(value);
-        free(value);
-        value = getValueForKey("DAMAGE_CLICK", global_save);
-        damage_click = atoi(value);
-        free(value);
-    }
-    //heros
-    if(system("test -e save/save_heros.json") != 0){
-        //No heros save file found
+int loadSaveHeros(char * save){
+    if(!isHereFile(save)){
         initHeros(heros);
+        return 1;
     }
-    else{
-        for(int i = 0; i < HEROS_COUNT; i++){
-            char key[20];
-            sprintf(key, "HERO_%d_LEVEL", i);
-            char * level = getValueForKey(key, save_heros);
-            heros[i].level = atoi(level);
-            free(level);
+    
+    for(int i = 0; i < HEROS_COUNT; i++){
+        char key[20];
+        sprintf(key, "HERO_%d_LEVEL", i);
+        char * level = getValueForKey(key, save);
+        heros[i].level = atoi(level);
+        free(level);
 
-            sprintf(key, "HERO_%d_DEGAT", i);
-            char * degat = getValueForKey(key, save_heros);
-            heros[i].degat = atoi(degat);
-            free(degat);
+        sprintf(key, "HERO_%d_DEGAT", i);
+        char * degat = getValueForKey(key, save);
+        heros[i].degat = atoi(degat);
+        free(degat);
 
-            sprintf(key, "HERO_%d_PRIX", i);
-            char * prix = getValueForKey(key, save_heros);
-            heros[i].prix = atoi(prix);
-            free(prix);
+        sprintf(key, "HERO_%d_PRIX", i);
+        char * prix = getValueForKey(key, save);
+        heros[i].prix = atoi(prix);
+        free(prix);
 
-            sprintf(key, "HERO_%d_COOLDOWN", i);
-            char * cooldown = getValueForKey(key, save_heros);
-            heros[i].cooldown = atoi(cooldown);
-            free(cooldown);
+        sprintf(key, "HERO_%d_COOLDOWN", i);
+        char * cooldown = getValueForKey(key, save);
+        heros[i].cooldown = atoi(cooldown);
+        free(cooldown);
 
-            heros[i].lastAttack = 0;
-        }
+        heros[i].lastAttack = 0;
     }
     return 0;
 }
 
 
-int initVariableGlobal(){
+int initPlayer(){
     strcpy(username, "Default");
     SelectLanguage("English");
+    level.currentLvl = 0;
     gold = 0;
     damage_click = 10;
     return 0;
 }
+
 
 
