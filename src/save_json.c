@@ -187,6 +187,9 @@ int loadSave(){
 }
 
 int makeSave(){
+    if(!isHereFile("save")){
+        system("mkdir save");
+    }
     makeSavePlayer("save/player.json");
     makeSaveHeros("save/heros.json");
     return 0;
