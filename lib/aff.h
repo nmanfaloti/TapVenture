@@ -26,4 +26,5 @@ void createUIText(int tradID, int * info, SDL_Rect dest, SDL_Color color);
 void uiHandle();
 void initUItxt();
 void destroyUItxt();
+void refreshMobHealth();
 #endif // AFF_H

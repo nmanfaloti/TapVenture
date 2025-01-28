@@ -71,22 +71,13 @@ void uiHandle(){
         sprintf(info, "%d", *container.txt[i].info);
         if (container.txt[i].info != NULL){
             const char *trad = Traduction(container.txt[i].tradID);
-            size_t txt_size = strlen(trad) + strlen(info) + 3; // +3 pour : et \0
-            txt = malloc(txt_size);
-            if (txt == NULL) {
-                fprintf(stderr, "Memory allocation failed\n");
-                exit(1);
-            }
-            snprintf(txt, txt_size, "%s: %s", trad, info);
+            txt = malloc(strlen(trad) + strlen(info) + 3);
+            sprintf(txt, "%s: %s", trad, info);
+
         } else {
             const char *trad = Traduction(container.txt[i].tradID);
-            size_t txt_size = strlen(trad) + 1;  // +1 pour \0
-            txt = malloc(txt_size);
-            if (txt == NULL) {
-                fprintf(stderr, "Memory allocation failed\n");
-                exit(1);
-            }
-            snprintf(txt, txt_size, "%s", trad);
+            txt = malloc(strlen(trad) + 1);
+            sprintf(txt, "%s", trad);
         }
         affiche_txt(renderer, font, txt, container.txt[i].dest, container.txt[i].color);
         free(txt);
@@ -102,10 +93,18 @@ void initUItxt(){
 
     createUIText(VIE_MSG, &(level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255});
     createUIText(OR_MSG, &gold, (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255});
-    // createUIText(DMG_MSG, &damage, (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255});
+    createUIText(DMG_MSG, &damage_click, (SDL_Rect) {vw(90),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255});
     createUIText(MOB_MSG, &level.mobKilled, getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255});
     createUIText(LVL_MSG, &level.currentLvl, getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255});
+}
 
+void refreshMobHealth(){
+    for (int i = 0; i < container.nbTxt; i++){
+        if (container.txt[i].tradID == VIE_MSG){
+            container.txt[i].info = &(level.monstre[level.currentLvl].mobHealth);
+            break; // Break pour sortir plus vite de la boucle une fois qu'on a trouvé ce qu'on voulais modifier
+        }
+    }
 }
 
 void destroyUItxt(){

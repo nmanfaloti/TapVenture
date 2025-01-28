@@ -6,6 +6,7 @@
 #include "../lib/combat.h"
 #include "../lib/aff.h"
 #include "../lib/sdl.h"
+#include "../lib/player.h"
 
 levelInfo level;
 
@@ -38,23 +39,20 @@ int initLevel(monstreInfo monstre[]) {
 }
 
 int attackButton(void * args[20]) {
-    int * gold = args[0];
-    int * damage = args[1];
-    int * mobKilled = args[2];
-    int * mobToKill = args[3];
-
+    int * damage= args[0];
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
-    currentMonstre->mobHealth -= *damage;
+    currentMonstre->mobHealth -=  *damage;
 
     if (currentMonstre->mobHealth <= 0) {
-        *mobKilled += 1;
-        *gold += currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1);
+        level.mobKilled += 1;
+        gold += currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1);
         currentMonstre->mobHealth = currentMonstre->iniHealth;
 
-        if (*mobKilled >= *mobToKill) {
+        if (level.mobKilled >= level.mobToKill) {
             level.currentLvl += 1;
-            *mobKilled = 0;
+            level.mobKilled = 0;
             mobHandler();
+            refreshMobHealth();
         }
     }
     return 1;

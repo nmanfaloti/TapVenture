@@ -27,7 +27,7 @@ int attackHeros(hero heros[HEROS_COUNT], void * args[20]) {
     for (int i = HERO0; i < HEROS_COUNT; i++) {
         if( heros[i].level > 0 && heros[i].lastAttack + heros[i].cooldown <= SDL_GetTicks() ){
             heros[i].lastAttack = SDL_GetTicks();
-            args[2] = &heros[i].degat;
+            args[1] = &heros[i].degat;
             attackButton(args); 
         }
     }

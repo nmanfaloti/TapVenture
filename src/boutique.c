@@ -1,5 +1,18 @@
 #include "../lib/boutique.h"
+#include "../lib/player.h"
 #include <math.h>
+
+
+damageShop shop;
+
+void initShop() {
+    shop.damageLevel = 0;
+    shop.lastPrice = 0;
+    shop.nextPrice = getPriceForLevels(shop.damageLevel+1);
+    damage_click = getDamageFromLevel(shop.damageLevel);
+}
+
+
 
 double getPriceForLevels(int levels) {
     double base_price = 70; 
@@ -26,16 +39,12 @@ int getDamageFromLevel(int level) {
 }
 
 int upgradeButton(void * args[20]) {
-    int * damage = args[0];
-    int * gold = args[1];
-    damageShop * shop = args[2];
-
-    if (*gold >= shop->nextPrice) {
-        *gold -= shop->nextPrice;
-        shop->damageLevel += 1;
-        shop->lastPrice = shop->nextPrice;
-        shop->nextPrice = getPriceKnowLevel(shop->lastPrice, shop->damageLevel + 1);
-        *damage = *damage * 1.25;
+    if (gold >= shop.nextPrice) {
+        gold -= shop.nextPrice;
+        shop.damageLevel += 1;
+        shop.lastPrice = shop.nextPrice;
+        shop.nextPrice = getPriceKnowLevel(shop.lastPrice, shop.damageLevel + 1);
+        damage_click = damage_click * 1.25;
     }
 
     return 0;
