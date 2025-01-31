@@ -1,4 +1,8 @@
-# TapVenture
+<div align="center">
+  <img src="https://github.com/nmanfaloti/TapVenture/blob/main/assets/logo100x100.png?raw=true" alt="logo">
+</div>
+
+# TapVenture 
 
 ## Credits
 
