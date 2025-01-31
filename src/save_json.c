@@ -8,6 +8,8 @@
 #include "../lib/lang.h"
 #include "../lib/combat.h"
 
+
+
 char * getValueForKey(char * key, char * nom_ficher) {
     FILE * f = fopen(nom_ficher, "r");
     if (f == NULL) {
@@ -208,6 +210,12 @@ int makeSavePlayer(char * save){
     createValueForKey("GOLD", value, save);
     sprintf(value, "%d", damage_click);
     createValueForKey("DAMAGE_CLICK", value, save);
+
+
+    time_t temps = time(NULL);
+    sprintf(value, "%ld", temps);
+    createValueForKey("TIME", value, save);
+
     return 0;
 }
 
@@ -238,6 +246,17 @@ int loadSavePlayer(char * save){
     value = getValueForKey("DAMAGE_CLICK", save);
     damage_click = atoi(value);
     free(value);
+
+    // Calculer l'or gagné en fonction du temps écoulé
+    value = getValueForKey("TIME", save);
+    time_t lastSaveTime = atol(value);
+    free(value);
+    time_t currentTime = time(NULL);
+    double elapsedTime = difftime(currentTime, lastSaveTime);
+
+    // Calculer l'or gagné 0.1 or par seconde par niveau
+    int goldEarned = (int)((elapsedTime * level.currentLvl)/10);
+    gold += goldEarned;
     return 0;
 }
 
