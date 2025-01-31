@@ -262,6 +262,7 @@ int loadSavePlayer(char * save){
     return 0;
 }
 
+
 int makeSaveHeros(char * save){
     rmFile(save);
 
@@ -271,51 +272,26 @@ int makeSaveHeros(char * save){
         sprintf(key, "HERO_%d_LEVEL", i);
         sprintf(value, "%d", heros[i].level);
         createValueForKey(key, value, save);
-
-        sprintf(key, "HERO_%d_DEGAT", i);
-        sprintf(value, "%d", heros[i].degat);
-        createValueForKey(key, value, save);
-
-        sprintf(key, "HERO_%d_PRIX", i);
-        sprintf(value, "%d", heros[i].prix);
-        createValueForKey(key, value, save);
-
-        sprintf(key, "HERO_%d_COOLDOWN", i);
-        sprintf(value, "%d", heros[i].cooldown);
-        createValueForKey(key, value, save);
     }
     return 0;
 }
 
 int loadSaveHeros(char * save){
     if(!isHereFile(save)){
-        initHeros(heros);
+        initHeros();
         return 1;
     }
-    
+    initHeros();
+    int levelH =0;
     for(int i = 0; i < HEROS_COUNT; i++){
         char key[20];
         sprintf(key, "HERO_%d_LEVEL", i);
         char * level = getValueForKey(key, save);
-        heros[i].level = atoi(level);
+        levelH = atoi(level);
         free(level);
 
-        sprintf(key, "HERO_%d_DEGAT", i);
-        char * degat = getValueForKey(key, save);
-        heros[i].degat = atoi(degat);
-        free(degat);
-
-        sprintf(key, "HERO_%d_PRIX", i);
-        char * prix = getValueForKey(key, save);
-        heros[i].prix = atoi(prix);
-        free(prix);
-
-        sprintf(key, "HERO_%d_COOLDOWN", i);
-        char * cooldown = getValueForKey(key, save);
-        heros[i].cooldown = atoi(cooldown);
-        free(cooldown);
-
-        heros[i].lastAttack = 0;
+        makeHeroAtLevel(i,levelH);
+        levelH = 0;
     }
     return 0;
 }

@@ -15,10 +15,10 @@ typedef struct {
     unsigned int lastAttack;
 }hero;
 
-
-int initHeros(hero heros[HEROS_COUNT]);
-int attackHeros(hero heros[HEROS_COUNT], void * args[20]);
-int upgradeHero(hero heros[HEROS_COUNT], int HeroIndex, int * gold);
+int initHeros();
+int attackHeros();
+int upgradeHero(int HeroIndex, int * gold);
+int makeHeroAtLevel(int heroIndex, int level);
 
 extern hero heros[HEROS_COUNT];
 
