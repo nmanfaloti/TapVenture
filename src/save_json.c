@@ -7,6 +7,7 @@
 #include "../lib/heros.h"
 #include "../lib/lang.h"
 #include "../lib/combat.h"
+#include "../lib/aff.h"
 
 
 
@@ -185,6 +186,7 @@ char *dataIndexInts[] = {
 int loadSave(){
     loadSavePlayer("save/player.json");
     loadSaveHeros("save/heros.json");
+    refreshMobHealth();
     return 0;
 }
 

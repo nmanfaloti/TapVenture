@@ -6,8 +6,11 @@
 #include <SDL2/SDL_image.h>
 
 #include "../lib/button.h"
+#include "../lib/ui.h"
+
 #include "../lib/lang.h"
 #include "../lib/input_user.h"
+#include "../lib/aff.h"
 
 void draw_button(SDL_Renderer *renderer, SDL_Rect rect, SDL_Color color, const char *text, TTF_Font *font) {
     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
@@ -85,8 +88,7 @@ void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, ch
     SDL_DestroyTexture(texture);
 }
 
-ListeButton *listeButton = NULL;
-void initListButton() {
+void initListButton(ListeButton *listeButton) {
     listeButton = malloc(sizeof(ListeButton));
     if (listeButton != NULL) {
         listeButton->nbButton = 0;
@@ -96,8 +98,8 @@ void initListButton() {
         printf("Erreur d'allocation mémoire pour listeButton\n");
     }
 }
-ListeButtonImg *listeButtonImg = NULL;
-void initListButtonImg() {
+
+void initListButtonImg(ListeButtonImg *listeButtonImg) {
     listeButtonImg = malloc(sizeof(ListeButtonImg));
     if (listeButtonImg != NULL) {
         listeButtonImg->nbButton = 0;
@@ -108,9 +110,10 @@ void initListButtonImg() {
     }
 }
 
-void createButton(SDL_Rect rect, SDL_Color color, int txtInd, int * info,float growEffect,SDL_Color colorHover,  int (*callFunction)(void **), int numArgs, ...) {
-    if (listeButton == NULL) {
-        initListButton();
+
+void createButton(uiPage * page,SDL_Rect rect, SDL_Color color, int txtInd, int * info,float growEffect,SDL_Color colorHover,  int (*callFunction)(void **), int numArgs, ...) {
+    if (page->buttonsList == NULL) {
+        initListButton(page->buttonsList);
     }
     va_list args;
     va_start(args, numArgs);
@@ -135,18 +138,18 @@ void createButton(SDL_Rect rect, SDL_Color color, int txtInd, int * info,float g
         newButton.args[i] = params[i];
     }
 
-    listeButton->buttons = realloc(listeButton->buttons, (listeButton->nbButton + 1) * sizeof(Button));
-    if (listeButton->buttons != NULL) {
-        listeButton->buttons[listeButton->nbButton] = newButton;
-        listeButton->nbButton++;
+    page->buttonsList->buttons = realloc(page->buttonsList->buttons, (page->buttonsList->nbButton + 1) * sizeof(Button));
+    if (page->buttonsList->buttons != NULL) {
+        page->buttonsList->buttons[page->buttonsList->nbButton] = newButton;
+        page->buttonsList->nbButton++;
     } else {
         free(newButton.args);
     }
 }
 
-void createImgButton(SDL_Rect rect, char *texture, char *background, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
-    if (listeButtonImg == NULL) {
-        initListButtonImg();
+void createImgButton(uiPage * page,SDL_Rect rect, char *texture, char *background, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
+    if (page->buttonsImgList == NULL) {
+        initListButtonImg(page->buttonsImgList);
     }
     va_list args;
     va_start(args, numArgs);
@@ -168,56 +171,55 @@ void createImgButton(SDL_Rect rect, char *texture, char *background, int offsetL
         newButton.args[i] = params[i];
     }
 
-    listeButtonImg->buttons = realloc(listeButtonImg->buttons, (listeButtonImg->nbButton + 1) * sizeof(ButtonImg));
-    if (listeButtonImg->buttons != NULL) {
-        listeButtonImg->buttons[listeButtonImg->nbButton] = newButton;
-        listeButtonImg->nbButton++;
+    page->buttonsImgList->buttons = realloc(page->buttonsImgList->buttons, (page->buttonsImgList->nbButton + 1) * sizeof(ButtonImg));
+    if (page->buttonsImgList->buttons != NULL) {
+        page->buttonsImgList->buttons[page->buttonsImgList->nbButton] = newButton;
+        page->buttonsImgList->nbButton++;
     } else {
         free(newButton.args);
     }
 }
 
-
 void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font) {
-    if (listeButton == NULL) {
+    if (currentpage->buttonsList == NULL) {
         printf("Initialisation de listeButton\n");
-        initListButton();
+        initListButton(currentpage->buttonsList);
     }
-    if (listeButtonImg == NULL) {
+    if (currentpage->buttonsImgList == NULL) {
         printf("Initialisation de listeButtonImg\n");
-        initListButtonImg();
+        initListButtonImg(currentpage->buttonsImgList);
     }
-    if (listeButtonImg != NULL) {
-        for (int i = 0; i < listeButtonImg->nbButton; i++) {
-            draw_button_image(renderer, listeButtonImg->buttons[i].rect, listeButtonImg->buttons[i].background, listeButtonImg->buttons[i].texture, listeButtonImg->buttons[i].offsetLogoX , listeButtonImg->buttons[i].offsetLogoY);
+    if (currentpage->buttonsImgList != NULL) {
+        for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) {
+            draw_button_image(renderer, currentpage->buttonsImgList->buttons[i].rect, currentpage->buttonsImgList->buttons[i].background, currentpage->buttonsImgList->buttons[i].texture, currentpage->buttonsImgList->buttons[i].offsetLogoX , currentpage->buttonsImgList->buttons[i].offsetLogoY);
         }
     } else {
         printf("Erreur: listeButtonImg est toujours NULL après initialisation\n");
     }
-    if (listeButton != NULL) {
-        for (int i = 0; i < listeButton->nbButton; i++) {
+    if (currentpage->buttonsList != NULL) {
+        for (int i = 0; i < currentpage->buttonsList->nbButton; i++) {
             char txt[50] = "";
-            if (listeButton->buttons[i].info != NULL) {
-                sprintf(txt, "%s %d", Traduction(listeButton->buttons[i].text), *listeButton->buttons[i].info);
+            if (currentpage->buttonsList->buttons[i].info != NULL) {
+                sprintf(txt, "%s %d", Traduction(currentpage->buttonsList->buttons[i].text), *currentpage->buttonsList->buttons[i].info);
             }   
             else{
-                sprintf(txt, "%s", Traduction(listeButton->buttons[i].text));
+                sprintf(txt, "%s", Traduction(currentpage->buttonsList->buttons[i].text));
             }
-            draw_button(renderer, listeButton->buttons[i].rect, listeButton->buttons[i].color, txt, font);
-            if (checkBoutton(listeButton->buttons[i].rect, mouseX, mouseY)) {
-                listeButton->buttons[i].color = listeButton->buttons[i].colorHover;
-                if (listeButton->buttons[i].growEffect != 0) {
-                    listeButton->buttons[i].rect = (SDL_Rect){
-                        listeButton->buttons[i].iniRect.x - (listeButton->buttons[i].iniRect.w * (listeButton->buttons[i].growEffect - 1) / 2),
-                        listeButton->buttons[i].iniRect.y - (listeButton->buttons[i].iniRect.h * (listeButton->buttons[i].growEffect - 1) / 2),
-                        listeButton->buttons[i].iniRect.w * listeButton->buttons[i].growEffect,
-                        listeButton->buttons[i].iniRect.h * listeButton->buttons[i].growEffect
+            draw_button(renderer, currentpage->buttonsList->buttons[i].rect, currentpage->buttonsList->buttons[i].color, txt, font);
+            if (checkBoutton(currentpage->buttonsList->buttons[i].rect, mouseX, mouseY)) {
+                currentpage->buttonsList->buttons[i].color = currentpage->buttonsList->buttons[i].colorHover;
+                if (currentpage->buttonsList->buttons[i].growEffect != 0) {
+                    currentpage->buttonsList->buttons[i].rect = (SDL_Rect){
+                        currentpage->buttonsList->buttons[i].iniRect.x - (currentpage->buttonsList->buttons[i].iniRect.w * (currentpage->buttonsList->buttons[i].growEffect - 1) / 2),
+                        currentpage->buttonsList->buttons[i].iniRect.y - (currentpage->buttonsList->buttons[i].iniRect.h * (currentpage->buttonsList->buttons[i].growEffect - 1) / 2),
+                        currentpage->buttonsList->buttons[i].iniRect.w * currentpage->buttonsList->buttons[i].growEffect,
+                        currentpage->buttonsList->buttons[i].iniRect.h * currentpage->buttonsList->buttons[i].growEffect
                     };
                 }
             } else {
-                listeButton->buttons[i].color = listeButton->buttons[i].iniColor;
-                if (listeButton->buttons[i].growEffect) {
-                    listeButton->buttons[i].rect = listeButton->buttons[i].iniRect;
+                currentpage->buttonsList->buttons[i].color = currentpage->buttonsList->buttons[i].iniColor;
+                if (currentpage->buttonsList->buttons[i].growEffect) {
+                    currentpage->buttonsList->buttons[i].rect = currentpage->buttonsList->buttons[i].iniRect;
                 }
             }
         }
@@ -226,18 +228,23 @@ void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font) {
     }
 }
 
-void destroyButton() {
+
+void destroyButton(ListeButton *listeButton) {
     for (int i = 0; i < listeButton->nbButton; i++) {
         free(listeButton->buttons[i].args);
+        listeButton->buttons[i].args = NULL;
     }
     free(listeButton->buttons);
+    listeButton->buttons = NULL;
     free(listeButton);
 }
 
-void destroyButtonImg() {
+void destroyButtonImg(ListeButtonImg *listeButtonImg) {
     for (int i = 0; i < listeButtonImg->nbButton; i++) {
         free(listeButtonImg->buttons[i].args);
+        listeButtonImg->buttons[i].args = NULL;
     }
     free(listeButtonImg->buttons);
+    listeButtonImg->buttons = NULL;
     free(listeButtonImg);
 }

@@ -14,6 +14,7 @@ typedef struct uiContainer_s{
     uiTxt *txt;
 }uiContainer;
 
+
 extern int widthscreen;
 extern int heightscreen;
 
@@ -22,9 +23,11 @@ SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest);
 int vw(float percent);
 int vh(float percent);
 
-void createUIText(int tradID, int * info, SDL_Rect dest, SDL_Color color);
 void uiHandle();
 void initUItxt();
 void destroyUItxt();
 void refreshMobHealth();
+
+void initMainPage();
+void initPage();
 #endif // AFF_H

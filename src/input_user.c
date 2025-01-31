@@ -5,6 +5,7 @@
 #include "../lib/lang.h"
 #include "../lib/button.h"
 #include "../lib/player.h"
+#include "../lib/ui.h"
 
 int mouseX = 0;
 int mouseY = 0;
@@ -24,17 +25,17 @@ int input_event(SDL_Event event){
                 mouseXclickG = event.button.x;
                 mouseXclickD = event.button.y;
                 /*appelle de la fonction pour check si on click sur un bouton */
-                for (int i = 0; i < listeButton->nbButton; i++) {
-                    if (checkBoutton(listeButton->buttons[i].rect, mouseXclickG, mouseXclickD)) {
-                        if (listeButton->buttons[i].callFunction) {
-                            listeButton->buttons[i].callFunction(listeButton->buttons[i].args);
+                for (int i = 0; i < currentpage->buttonsList->nbButton; i++) {
+                    if (checkBoutton(currentpage->buttonsList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
+                        if (currentpage->buttonsList->buttons[i].callFunction) {
+                            currentpage->buttonsList->buttons[i].callFunction(currentpage->buttonsList->buttons[i].args);
                         }
                     }
                 }
-                for (int i = 0; i < listeButtonImg->nbButton; i++) {
-                    if (checkBoutton(listeButtonImg->buttons[i].rect, mouseXclickG, mouseXclickD)) {
-                        if (listeButtonImg->buttons[i].callFunction) {
-                            listeButtonImg->buttons[i].callFunction(listeButtonImg->buttons[i].args);
+                for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) {
+                    if (checkBoutton(currentpage->buttonsImgList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
+                        if (currentpage->buttonsImgList->buttons[i].callFunction) {
+                            currentpage->buttonsImgList->buttons[i].callFunction(currentpage->buttonsImgList->buttons[i].args);
                         }
                     }
                 }
