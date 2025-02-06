@@ -56,10 +56,10 @@ int input_event(SDL_Event event){
                     SDL_GetWindowSize(window, &widthscreen, &heightscreen);
                     break;
                 case 'E': 
-                    SelectLanguage("English");
+                    // SelectLanguage("English");
                     break;
                 case 'R':
-                    SelectLanguage("French");
+                    // SelectLanguage("French");
                     break;
                 case 'W':
                     printf("Windowed\n");

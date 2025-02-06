@@ -234,7 +234,7 @@ int loadSavePlayer(char * save){
     free(value);
 
     value = getValueForKey("LANGUAGE", save);
-    SelectLanguage(value);
+    initLang(value);
     free(value);
     //dataInt
     value = getValueForKey("LEVEL", save);
@@ -299,7 +299,7 @@ int loadSaveHeros(char * save){
 
 int initPlayer(){
     strcpy(username, "Default");
-    SelectLanguage("English");
+    initLang("English");
     level.currentLvl = 0;
     gold = 0;
     damage_click = 10;

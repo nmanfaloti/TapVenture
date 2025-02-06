@@ -10,6 +10,9 @@ typedef enum {
     UPG_MSG,
     MOB_MSG,
     LVL_MSG,
+    SETTING_MSG,
+    FR_MSG,
+    EN_MSG,
     NB_MSG
 } CleMsg;
 
@@ -22,6 +25,7 @@ extern Lang LanguageAct;
 
 char* Traduction(CleMsg key);
 
-void SelectLanguage(const char *lang);
+int SelectLanguage(void * l[20]);
 
+void initLang(char * lang);
 #endif //LANG_H

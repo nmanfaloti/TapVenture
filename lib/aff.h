@@ -29,5 +29,7 @@ void destroyUItxt();
 void refreshMobHealth();
 
 void initMainPage();
+void initSettingsPage();
 void initPage();
+void destroyAllPages();
 #endif // AFF_H

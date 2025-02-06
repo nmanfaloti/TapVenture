@@ -24,7 +24,7 @@ int main() {
     
     initLevel(level.monstre);
     initShop();
-    initMainPage();
+    initPage();
 
     void * argument[20];
     argument[0] = &gold;
@@ -46,7 +46,7 @@ int main() {
         
         SDL_RenderPresent(renderer);
     }
-    destroyPage(currentpage);
+    destroyAllPages();
     makeSave();
     SDLExit();
     return 0;

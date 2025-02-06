@@ -1,4 +1,5 @@
 #include <string.h>
+#include <stdio.h>
 #include "../lib/lang.h"
 
 Lang en = {
@@ -13,6 +14,9 @@ Lang en = {
         [UPG_MSG] = "Damage Upgrade",
         [MOB_MSG] = "Remaining Monsters",
         [LVL_MSG] = "Level",
+        [SETTING_MSG] = "Settings",
+        [FR_MSG] = "French",
+        [EN_MSG] = "English",
         
     }
 };
@@ -29,6 +33,9 @@ Lang fr = {
         [UPG_MSG] = "Amelioration Degats",
         [MOB_MSG] = "Monstre Restants",
         [LVL_MSG] = "Niveau",
+        [SETTING_MSG] = "Parametres",
+        [FR_MSG] = "Francais",
+        [EN_MSG] = "Anglais",
     }
 };
 
@@ -38,7 +45,20 @@ char* Traduction(CleMsg key) {
     return (char*)LanguageAct.messages[key];
 }
 
-void SelectLanguage(const char *lang) {
+int SelectLanguage(void * l[20]) {
+    char **lang = (char **)l[0];
+    if (strcmp(*lang, "French") == 0) {
+        LanguageAct = fr;
+    } else if (strcmp(*lang, "English") == 0) {
+        LanguageAct = en;
+    } else {
+        printf("Language not found %s\n", *lang);
+        LanguageAct = en;
+    }
+    return 0;
+}
+
+void initLang(char * lang){
     if (strcmp(lang, "French") == 0) {
         LanguageAct = fr;
     } else if (strcmp(lang, "English") == 0) {
