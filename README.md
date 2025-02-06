@@ -1,5 +1,5 @@
 <div align="center">
-  <img style="width:100px;height:auto;" src="https://github.com/nmanfaloti/TapVenture/blob/main/assets/logo100x100.png?raw=true" alt="logo">
+  <img style="width:100px;height:auto;" src="https://github.com/nmanfaloti/TapVenture/blob/main/assets/ui/logo.png?raw=true" alt="logo">
   <img style="width:auto;height:100px;" src="https://emploi.univ-lemans.fr/wp-content/uploads/sites/312/2020/05/logo-LeMansUniversite-300x157.png" alt="logo">
 </div>
 
