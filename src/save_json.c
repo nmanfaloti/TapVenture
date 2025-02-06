@@ -8,6 +8,7 @@
 #include "../lib/lang.h"
 #include "../lib/combat.h"
 #include "../lib/aff.h"
+#include "../lib/boutique.h"
 
 
 
@@ -212,6 +213,9 @@ int makeSavePlayer(char * save){
     createValueForKey("GOLD", value, save);
     sprintf(value, "%d", damage_click);
     createValueForKey("DAMAGE_CLICK", value, save);
+    sprintf(value, "%d", shop.damageLevel);
+    createValueForKey("SHOP", value, save);
+
 
 
     time_t temps = time(NULL);
@@ -224,6 +228,7 @@ int makeSavePlayer(char * save){
 int loadSavePlayer(char * save){
     if(!isHereFile(save)){
         initPlayer();
+        initShop();
         return 1;
     }
 
@@ -247,6 +252,11 @@ int loadSavePlayer(char * save){
 
     value = getValueForKey("DAMAGE_CLICK", save);
     damage_click = atoi(value);
+    free(value);
+
+    value = getValueForKey("SHOP", save);
+    shop.damageLevel = atoi(value);
+    shop.nextPrice=getPriceForLevels(shop.damageLevel+1);
     free(value);
 
     // Calculer l'or gagné en fonction du temps écoulé
