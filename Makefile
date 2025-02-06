@@ -6,6 +6,7 @@ LIBDIR   = lib
 OBJDIR   = obj
 BINDIR   = bin
 EXEC     = main
+SAVE	 = save
 
 SOURCES  := $(wildcard $(SRCDIR)/*.c)
 INCLUDES := $(wildcard $(LIBDIR)/*.h)
@@ -44,3 +45,7 @@ remove:clean
 
 val: ../$(BINDIR)/$(EXEC)
 	valgrind --leak-check=full $(BINDIR)/$(EXEC)
+
+rmsave:
+	$(rm) $(SAVE)/*.json
+	@echo "Save removed!"
