@@ -11,8 +11,9 @@
 - Lucas Dupont
 - Ibrahim Sapiev
 
+Ce projet a été réalisé sur une periode de 3 mois dans le cadre de notre formation en L2 Informatique à l'Université du Mans en cours l'année 2025.
+
 ## Description du Jeu
-Ce projet a été réalisé dans le cadre de notre formation en L2 Informatique à l'Université du Mans durant l'année 2025.
 
 Le jeu commence en cliquant sur les monstres pour les tuer et ramasser leur or. Puis vous pouvez dépenser cet or pour recruter de nouveaux alliés et augmenter vos dégâts. Plus vous infligez des dégâts, plus vous obtiendrez de l'or. Faites croître votre puissance de façon exponentielle pour tout dominer !
 Nous pouvons recruter des alliées pour vous aider à infliger des dégâts sans avoir à cliquer ! 
