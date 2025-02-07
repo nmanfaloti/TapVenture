@@ -18,7 +18,7 @@ typedef struct {
 
 extern levelInfo level;
 
-int attackButton(void * args[20]);
+int attack(void * args[20]);
 int initLevel(monstreInfo monstre[]);
 int InitBoss(int diffTime);
 int isBoss(int currentLvl);

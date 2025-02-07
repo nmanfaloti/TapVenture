@@ -81,6 +81,12 @@ int input_event(SDL_Event event){
                     upgradeHero(1, &gold);
                     printf("hero 1, level : %d, degat : %d, prix : %d\n", heros[1].level, heros[1].degat,heros[1].prix );
                     break;
+                case '2':
+                    printf("Degat générer par les heors /s %d\n",herosDPS());
+                    break;
+                case '3':
+                    printf("Gold générer par les heors /s %d\n",herosGoldGenParSec());
+                    break;
             }
         default:
             break;

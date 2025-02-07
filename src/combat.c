@@ -38,7 +38,7 @@ int initLevel(monstreInfo monstre[]) {
     return 0;
 }
 
-int attackButton(void * args[20]) {
+int attack(void * args[20]) {
     int * damage= args[0];
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     currentMonstre->mobHealth -=  *damage;

@@ -20,6 +20,9 @@ int attackHeros();
 int upgradeHero(int HeroIndex, int * gold);
 int makeHeroAtLevel(int heroIndex, int level);
 
+int herosDPS();
+int herosGoldGenParSec();
+
 extern hero heros[HEROS_COUNT];
 
 #endif // HEROS_H
