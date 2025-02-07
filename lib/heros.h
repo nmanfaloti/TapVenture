@@ -21,7 +21,7 @@ int upgradeHero(int HeroIndex, int * gold);
 int makeHeroAtLevel(int heroIndex, int level);
 
 int herosDPS();
-int herosGoldGenParSec();
+int herosGoldGenBySec();
 
 extern hero heros[HEROS_COUNT];
 

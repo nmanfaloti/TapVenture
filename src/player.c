@@ -6,10 +6,10 @@ int gold = 0;
 int damage_click = 1;
 char username[50];
 
-void goldHorsLigne(time_t lastSaveTime){
+void goldGainOffline(time_t lastSaveTime){
     time_t currentTime = time(NULL);
     double elapsedTime = difftime(currentTime, lastSaveTime);
-    int goldParSec = herosGoldGenParSec();
-    int goldEarned = (int)(elapsedTime * goldParSec);
+    int goldBySec = herosGoldGenBySec();
+    int goldEarned = (elapsedTime * goldBySec);
     gold += (int)(goldEarned/10);
 }

@@ -209,6 +209,8 @@ int makeSavePlayer(char * save){
     char value[30];
     sprintf(value, "%d", level.currentLvl);
     createValueForKey("LEVEL", value, save);
+    sprintf(value, "%d", level.mobKilled);
+    createValueForKey("MOB_KILLED", value, save);
     sprintf(value, "%d", gold);
     createValueForKey("GOLD", value, save);
     sprintf(value, "%d", damage_click);
@@ -246,6 +248,10 @@ int loadSavePlayer(char * save){
     level.currentLvl = atoi(value);
     free(value);
 
+    value = getValueForKey("MOB_KILLED", save);
+    level.mobKilled = atoi(value);
+    free(value);
+
     value = getValueForKey("GOLD", save);
     gold = atoi(value);
     free(value);
@@ -259,11 +265,11 @@ int loadSavePlayer(char * save){
     shop.nextPrice=getPriceForLevels(shop.damageLevel+1);
     free(value);
 
-    // Calculer l'or gagné en fonction du temps écoulé
+    // Calculer l'or gagné en fonction du temps écoulé depuis la dernière sauvegarde
     value = getValueForKey("TIME", save);
     time_t lastSaveTime = atol(value);
     free(value);
-    goldHorsLigne(lastSaveTime);
+    goldGainOffline(lastSaveTime);
     return 0;
 }
 

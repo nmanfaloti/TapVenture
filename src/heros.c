@@ -84,7 +84,7 @@ int herosDPS(){
     return somme; 
 }
 
-int herosGoldGenParSec(){
+int herosGoldGenBySec(){
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     int coinMoy = (currentMonstre->coinMin + currentMonstre->coinMax) / 2;
     float nbMonstresMortParSecondes = herosDPS() * 1.0 / currentMonstre->iniHealth * 1.0;
