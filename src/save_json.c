@@ -185,8 +185,8 @@ char *dataIndexInts[] = {
 };
 
 int loadSave(){
-    loadSavePlayer("save/player.json");
     loadSaveHeros("save/heros.json");
+    loadSavePlayer("save/player.json");
     refreshMobHealth();
     return 0;
 }
