@@ -263,12 +263,7 @@ int loadSavePlayer(char * save){
     value = getValueForKey("TIME", save);
     time_t lastSaveTime = atol(value);
     free(value);
-    time_t currentTime = time(NULL);
-    double elapsedTime = difftime(currentTime, lastSaveTime);
-
-    // Calculer l'or gagné 0.1 or par seconde par niveau
-    int goldEarned = (int)((elapsedTime * level.currentLvl)/10);
-    gold += goldEarned;
+    goldHorsLigne(lastSaveTime);
     return 0;
 }
 
