@@ -1,21 +1,18 @@
 
 /**
- * @file inv.c
- * @brief Implémentation des fonctions de gestion de l'inventaire.
+ * \file inv.c
+ * \brief Implémentation des fonctions de gestion de l'inventaire.
  */
 #include <stdio.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
 #include "../lib/inv.h"
 
-/// @brief Inventaire global.
+/// \brief Inventaire global.
 inv * inventaire = NULL;
 
-/**
- * @brief Affiche l'inventaire.
- *
- * @param inventaire Pointeur vers l'inventaire à afficher.
- */
 void aff_inv(inv * inventaire){
     printf("label : lab\t");
     printf("|nom: n\t");
@@ -35,41 +32,37 @@ void aff_inv(inv * inventaire){
     printf("    affichage   terminer      \n");
 }
 
-/**
- * @brief Affiche un item.
- *
- * @param item Pointeur vers l'item à afficher.
- */
 void aff_item(item_t * item){
     if ( item == NULL) return;
     printf("------------\taff item\t--------------\n");
     printf("lab:%s\t",item->label);
     printf("|n:%s\t",item->nom);
-    printf("|rar:%s\t",item->rarity);
+    printf("|rar:%d\t",item->rarity);
     printf("|st:%d\t",item->stat);
     printf("|emp:%d\t",item->piece_equipement);
     printf("|st bo:%d\n",item->booste);
 }
 
-/**
- * @brief Détruit un item et libère la mémoire allouée.
- *
- * @param item Pointeur vers le pointeur de l'item à détruire.
- */
+
 void dest_item(item_t ** item){
     if ( *item == NULL) return;
     free((*item)->nom);
     free((*item)->label);
-    free((*item)->rarity);
     free(*item);
     *item = NULL;
 }
 
-/**
- * @brief Détruit un inventaire et libère la mémoire allouée.
- *
- * @param inventaire Pointeur vers le pointeur de l'inventaire à détruire.
- */
+void liberer_item(item_t * item){
+    free(item->nom);
+    item->nom = NULL ;
+    free(item->label);
+    item->label = NULL ;
+    item->piece_equipement = CASQUE ;
+    item->booste = DEGAT ;
+    item->rarity = COMMUN;
+    item->stat = 0 ;
+}
+
 void dest_inv(inv ** inventaire){
     if ( *inventaire == NULL) return;
     for ( int i = 0 ; i < NB_EQU ; i++ ){
@@ -79,27 +72,16 @@ void dest_inv(inv ** inventaire){
     *inventaire = NULL;
 }
 
-/**
- * @brief Vérifie si un item est vide.
- *
- * @param item Pointeur vers l'item à vérifier.
- * @return int 1 si l'item est vide, 0 sinon.
- */
 int est_vide(item_t * item){
     return item->label == NULL;
 }
 
-/**
- * @brief Initialise l'inventaire en remplissant les items à remplir.
- *
- * @param inventaire Pointeur vers l'inventaire à initialiser.
- */
 void init_inv(inv *inventaire){
     for (int i = 0; i < NB_EQU; i++) {
         item_t *test = malloc(sizeof(item_t));
         test->label = NULL;
         test->nom = NULL;
-        test->rarity = NULL;
+        test->rarity = COMMUN;
         test->stat = 0;
         test->piece_equipement = CASQUE;
         test->booste = DEGAT;
@@ -107,38 +89,20 @@ void init_inv(inv *inventaire){
     }
 }
 
-/**
- * @brief Trouve le premier emplacement vide dans l'inventaire.
- *
- * @param inventaire Pointeur vers l'inventaire à vérifier.
- * @return int L'indice du premier emplacement vide, ou -1 si l'inventaire est plein.
- */
 int prem_vide(inv * inventaire){
     for( int i = 0 ; i < NB_EQU ; i++)
         if (est_vide(inventaire->liste[i])) return i;
     return -1;
 }
 
-/**
- * @brief Vérifie si deux items peuvent être fusionnés.
- *
- * @param item1 Pointeur vers le premier item.
- * @param item2 Pointeur vers le second item.
- * @return int Code de retour indiquant si la fusion est possible.
- */
 int droit_fusion(item_t * item1, item_t * item2){
     if (item1 == NULL || item2 == NULL) return -1; // item non recreer probleme code
     if (item1->label == NULL || item2->label == NULL) return -2; // item non remplis
     if (strcmp(item1->label, item2->label) != 0) return -4; // pas le même item
-    if (strcmp(item1->rarity, item2->rarity) != 0) return -5; // pas la même rareté
+    if (item1->rarity != item2->rarity) return -5; // pas la même rareté
     return 1; // fusion autorisée
 }
 
-/**
- * @brief Gère l'inventaire, en l'initialisant et en affichant les items.
- *
- * @param inventaire Pointeur vers le pointeur de l'inventaire à gérer.
- */
 void gestion_inv(inv ** inventaire){
     printf("etape 1\n");
     if(*inventaire == NULL){
@@ -161,12 +125,57 @@ void gestion_inv(inv ** inventaire){
 }
 
 /**
- * @brief Exemple d'initialisation et de destruction de l'inventaire.
+ * \brief Exemple d'initialisation et de destruction de l'inventaire.
  *
- * @code
+ * \code
  * gestion_inv(&inventaire);
  * printf("destruction inventaire : ");
  * dest_inv(&inventaire);
  * printf("OK\n");
- * @endcode
+ * \endcode
  */
+ int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv){// type = {or =  var : 0,7 // degat = var : 1 // vit_att = var : 0,1 }
+    float var ;
+    if (!type)var = 1.0; // si type = degat
+    else var = (type == 1) ? 0,1 : 0,7 ;
+
+    int sum_proba = 0 ;
+    int taille = 10 ;
+
+    int som_croi = 0 ;
+    int liste_stat[] = { 4, 6 , 9 , 16  ,  30 , 15 , 10 , 8 , 4 , 3};
+    int random_nb = rand() % 100 + 1 ;
+    float decalage = ((float)x / nb_max_nv) / 1.5;   // pourcentage localiser par le niv diviser par 2 
+    float rar ;
+    switch (rarete){
+    case COMMUN:rar = 1 ; break;
+    case UNCOMMUN:rar = 1.1 ; break;
+    case RARE:rar = 1.25 ; break;
+    case EPIC:rar = 1.4 ; break;
+    case LEGENDARY:rar = 1.6 ; break;
+    default:break;
+
+    }
+    for ( int i = 0 ; i < taille/2 ; i++ ){
+        int invers = taille - i - 1;
+        int calcule = round(decalage * liste_stat[i]) ;
+        liste_stat[i] -= calcule;
+        liste_stat[invers] += calcule;
+    }
+    for (int i = 0; i < taille; i++) {
+        som_croi += liste_stat[i];
+        if(som_croi >= random_nb)
+            return stat_ameliorer + round(( i + 1 ) * rar * var) ;
+    }
+
+    return -1;
+ }
+void deb_fusion(item_t * item1, item_t * item2) {
+    if (droit_fusion(item1, item2) == 1) {
+        item1->rarity++;        // rareté up / ex: commun -> uncommun / uncommun -> rare etc
+        item1->stat = generate_stat_nb(1, item1->booste, item1->stat, item1->rarity, 1);
+        dest_item(&item2);
+    }
+}
+
+// a verif
