@@ -278,5 +278,5 @@ int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt);
  * @param scrollbar_speed La vitesse de déplacement de la barre de défilement.
  * @param scrollbar_max_position La position maximale de la barre de défilement.
  */
-void handle_scroll_event(SDL_Event event, int* scrollbar_position, int scrollbar_speed, int scrollbar_max_position)
+void handle_scroll_event(SDL_Event event, int* scrollbar_position, int scrollbar_speed, int scrollbar_max_position);
  
