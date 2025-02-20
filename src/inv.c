@@ -3,6 +3,8 @@
  * \file inv.c
  * \brief Implémentation des fonctions de gestion de l'inventaire.
  */
+
+ #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -137,15 +139,14 @@ void gestion_inv(inv ** inventaire){
  int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv){// type = {or =  var : 0,7 // degat = var : 1 // vit_att = var : 0,1 }
     float var ;
     if (!type)var = 1.0; // si type = degat
-    else var = (type == 1) ? 0,1 : 0,7 ;
+    else var = (type == 1) ? 0.1 : 0.7 ;
 
-    int sum_proba = 0 ;
     int taille = 10 ;
 
     int som_croi = 0 ;
     int liste_stat[] = { 4, 6 , 9 , 16  ,  30 , 15 , 10 , 8 , 4 , 3};
     int random_nb = rand() % 100 + 1 ;
-    float decalage = ((float)x / nb_max_nv) / 1.5;   // pourcentage localiser par le niv diviser par 2 
+    float decalage = ((float)x / nb_max_nv) / 1.5;   // pourcentage localiser par le niv diviser par 1.5
     float rar ;
     switch (rarete){
     case COMMUN:rar = 1 ; break;
@@ -178,4 +179,95 @@ void deb_fusion(item_t * item1, item_t * item2) {
     }
 }
 
-// a verif
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
+
+void selection( int mouse_x,int mouse_y,inv * inventaire);
+
+void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon) {
+    for (int w = 0; w < rayon * 2; w++) {
+        for (int h = 0; h < rayon * 2; h++) {
+            int dx = rayon - w , dy = rayon - h; 
+            if ((dx*dx + dy*dy) <= (rayon * rayon)) {
+                SDL_RenderDrawPoint(renderer, x + dx, y + dy);
+            }
+        }
+    }
+}
+
+// Fonction pour dessiner un rectangle avec des bords arrondis
+void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int radius , int r , int g , int b) {
+    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
+
+    // Dessiner les coin arrondi  / dessine des cercle pour les couper pour avoir le coin
+    cercle_graf(renderer, x + radius, y + radius, radius);// haut / gauche
+    cercle_graf(renderer, x + w - radius, y + radius, radius);// haut / droit
+    cercle_graf(renderer, x + radius, y + h - radius, radius);// bas / gauche
+    cercle_graf(renderer, x + w - radius, y + h - radius, radius);// bas / droit
+
+    //dessine le corps
+    SDL_Rect rects[] = {
+        {x + radius, y, w - 2 * radius, radius}, // haut
+        {x + radius, y + h - radius, w - 2 * radius, radius}, // bas
+        {x, y + radius, w   , h - 2 * radius},//milieu
+    };
+    SDL_RenderFillRect(renderer, &rects[0]);
+    SDL_RenderFillRect(renderer, &rects[1]);
+    SDL_RenderFillRect(renderer, &rects[2]);
+
+}
+
+void aff_inv_graf(SDL_Renderer* pRenderer, int scrool_pos ,int cof_scrollbar_window, int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis){
+    int x = 10 , y = 10 - scrool_pos * cof_scrollbar_window ;
+    int widthscreen = 800 ; //800
+    int heightscreen = 500 ; //500
+
+    for (int h = 0 , deb = x ; h < nb_ligne ; h ++){
+        for ( int i = 0 ; i < nb_collone ; i++ ){
+            rectangle_arrondis(pRenderer, x, y,taille, taille, arrondis,128,128,128);
+            x += taille + decalage ;
+        }
+        if ( h%2 == 0) rectangle_arrondis(pRenderer, x, y,380, taille*2, arrondis,128,128,128); // heros
+        x = deb ;
+        y += taille + decalage ;
+    }
+    
+}
+
+void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_position, int scrollbar_height) {
+    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
+    SDL_Rect scrollbar = {780, scrollbar_position, 20, scrollbar_height};
+    SDL_RenderFillRect(renderer, &scrollbar);
+}
+
+int calculate_total_content_height(int nb_ligne, int taille, int decalage) {
+    return ((nb_ligne) * (taille + decalage));
+}
+
+int calculate_scrollbar_height(int visible_area_height, int total_content_height) {
+    float scroll_proportion = (float)visible_area_height / total_content_height;
+    return (int)(scroll_proportion * visible_area_height);
+}
+
+int cof_scrollbar_window(int visible_area_height, int total_content_height){
+    return (int)(total_content_height/visible_area_height);
+}
+
+int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt) {
+    return screen_height - scrollbar_heigt;
+}
+
+void handle_scroll_event(SDL_Event event, int* scrollbar_position,int scrollbar_speed, int scrollbar_max_position) {
+    if (event.type == SDL_MOUSEWHEEL) {
+        if (event.wheel.y > 0) {
+            *scrollbar_position -= scrollbar_speed;
+        } else if (event.wheel.y < 0) {
+            *scrollbar_position += scrollbar_speed;
+        }
+        if (*scrollbar_position < 0) {
+            *scrollbar_position = 0;
+        } else if (*scrollbar_position > scrollbar_max_position) {
+            *scrollbar_position = scrollbar_max_position;
+        }
+    }
+}
