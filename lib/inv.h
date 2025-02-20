@@ -184,4 +184,99 @@ int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv
  * \param item2 Deuxième item à fusionner.
  */
 void deb_fusion(item_t * item1, item_t * item2);
+
+/**
+ * @brief Dessine un cercle.
+ * 
+ * @param renderer Le renderer SDL sur lequel dessiner.
+ * @param x La coordonnée x du centre du cercle.
+ * @param y La coordonnée y du centre du cercle.
+ * @param rayon Le rayon du cercle.
+ */
+void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon);
+
+/**
+ * @brief Dessine un rectangle avec des coins arrondis.
+ * 
+ * @param renderer Le renderer SDL sur lequel dessiner.
+ * @param x La coordonnée x du coin supérieur gauche du rectangle.
+ * @param y La coordonnée y du coin supérieur gauche du rectangle.
+ * @param w La largeur du rectangle.
+ * @param h La hauteur du rectangle.
+ * @param radius Le rayon des coins arrondis.
+ * @param r La composante rouge de la couleur du rectangle.
+ * @param g La composante verte de la couleur du rectangle.
+ * @param b La composante bleue de la couleur du rectangle.
+ */
+void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int radius, int r, int g, int b);
+
+/**
+ * @brief Affiche plusieurs rectangles arrondis en grille.
+ * 
+ * @param pRenderer Le renderer SDL sur lequel dessiner.
+ * @param scrool_pos La position de défilement.
+ * @param cof_scrollbar_window Le coefficient de vitesse de défilement.
+ * @param nb_collone Le nombre de colonnes.
+ * @param nb_ligne Le nombre de lignes.
+ * @param taille La taille de chaque rectangle.
+ * @param decalage L'espace entre les rectangles.
+ * @param arrondis Le rayon des coins arrondis.
+ */
+void aff_inv_graf(SDL_Renderer* pRenderer, int scrool_pos, int cof_scrollbar_window, int nb_collone, int nb_ligne, int taille, int decalage, int arrondis);
+
+/**
+ * @brief Dessine une barre de défilement verticale.
+ * 
+ * @param renderer Le renderer SDL sur lequel dessiner.
+ * @param scrollbar_position La position y du sommet de la barre de défilement.
+ * @param scrollbar_height La hauteur de la barre de défilement.
+ */
+void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_position, int scrollbar_height);
+
+/**
+ * @brief Calcule la hauteur totale du contenu.
+ * 
+ * @param nb_ligne Le nombre de lignes.
+ * @param taille La taille de chaque rectangle.
+ * @param decalage L'espace entre les rectangles.
+ * @return La hauteur totale du contenu.
+ */
+int calculate_total_content_height(int nb_ligne, int taille, int decalage);
+
+/**
+ * @brief Calcule la hauteur de la barre de défilement.
+ * 
+ * @param visible_area_height La hauteur de la zone visible.
+ * @param total_content_height La hauteur totale du contenu.
+ * @return La hauteur de la barre de défilement.
+ */
+int calculate_scrollbar_height(int visible_area_height, int total_content_height);
+
+/**
+ * @brief Calcule le coefficient de vitesse de défilement de la barre de défilement.
+ * 
+ * @param visible_area_height La hauteur de la zone visible.
+ * @param total_content_height La hauteur totale du contenu.
+ * @return Le coefficient de vitesse de défilement de la barre de défilement.
+ */
+int cof_scrollbar_window(int visible_area_height, int total_content_height);
+
+/**
+ * @brief Calcule la position maximale de la barre de défilement.
+ * 
+ * @param screen_height La hauteur de l'écran.
+ * @param scrollbar_heigt La hauteur de la barre de défilement.
+ * @return La position maximale de la barre de défilement.
+ */
+int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt);
+
+/**
+ * @brief Gère les événements de défilement.
+ * 
+ * @param event L'événement SDL à gérer.
+ * @param scrollbar_position La position de la barre de défilement.
+ * @param scrollbar_speed La vitesse de déplacement de la barre de défilement.
+ * @param scrollbar_max_position La position maximale de la barre de défilement.
+ */
+void handle_scroll_event(SDL_Event event, int* scrollbar_position, int scrollbar_speed, int scrollbar_max_position)
  
