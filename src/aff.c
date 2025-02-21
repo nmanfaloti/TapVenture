@@ -12,6 +12,7 @@
 #include "../lib/button.h"
 #include "../lib/player.h"
 #include "../lib/boutique.h"
+#include "../lib/challenge.h"
 
 int widthscreen = 800;
 int heightscreen = 500;
@@ -90,8 +91,12 @@ void uiHandle(){
         free(txt);
     }
     if (currentpage == &mainpage){
-        char remainingMob[10];
-        sprintf(remainingMob, "/%d", level.mobToKill);
+        char remainingMob[challengeTarget];
+        if (challengeActive) {
+            sprintf(remainingMob, "/%d", level.mobToKill - 1);
+            displayChallengeTimer(renderer, font);
+        } 
+        else sprintf(remainingMob, "/%d", level.mobToKill);
         affiche_txt(renderer, font, remainingMob, getRectForCentenredCord(vw(64.5), vh(10), vh(6), vh(6.2)) , (SDL_Color){255, 255, 255, 255});
     }
 }

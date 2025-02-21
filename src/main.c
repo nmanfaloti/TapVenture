@@ -15,6 +15,7 @@
 #include "../lib/sdl.h"
 #include "../lib/player.h"
 #include "../lib/ui.h"
+#include "../lib/challenge.h"
 
 int main() {
     if (init_SDL()){
@@ -43,7 +44,8 @@ int main() {
         ButtonHandle(renderer, font);
         uiHandle();
         attackHeros(heros, argument);
-        
+        updateChallenge();
+
         SDL_RenderPresent(renderer);
     }
     destroyAllPages();

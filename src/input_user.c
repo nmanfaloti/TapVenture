@@ -6,6 +6,7 @@
 #include "../lib/button.h"
 #include "../lib/player.h"
 #include "../lib/ui.h"
+#include "../lib/challenge.h"
 
 int mouseX = 0;
 int mouseY = 0;
@@ -86,6 +87,9 @@ int input_event(SDL_Event event){
                     break;
                 case '3':
                     printf("Gold générer par les heros /s %d\n",herosGoldGenBySec());
+                    break;
+                case 'C':
+                    launchChallenge(NULL);
                     break;
             }
         default:
