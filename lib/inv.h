@@ -222,7 +222,7 @@ void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int 
  * @param decalage L'espace entre les rectangles.
  * @param arrondis Le rayon des coins arrondis.
  */
-void aff_inv_graf(SDL_Renderer* pRenderer, int scrool_pos, int cof_scrollbar_window, int nb_collone, int nb_ligne, int taille, int decalage, int arrondis);
+void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos ,int cof_scrollbar_window, int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis);
 
 /**
  * @brief Dessine une barre de défilement verticale.
@@ -279,4 +279,42 @@ int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt);
  * @param scrollbar_max_position La position maximale de la barre de défilement.
  */
 void handle_scroll_event(SDL_Event event, int* scrollbar_position, int scrollbar_speed, int scrollbar_max_position);
- 
+
+
+/**
+ * @brief Vérifie si les coordonnées de la souris sont dans les limites d'un carré.
+ * 
+ * @param x_deb La coordonnée x de départ du carré.
+ * @param y_deb La coordonnée y de départ du carré.
+ * @param x_fin La coordonnée x de fin du carré.
+ * @param y_fin La coordonnée y de fin du carré.
+ * @return 1 si les coordonnées de la souris sont dans les limites du carré, 0 sinon.
+ */
+int coordonner_realiste(int x_deb, int y_deb, int x_fin, int y_fin);
+
+/**
+ * @brief Calcule les dimensions de la zone de contenu.
+ * 
+ * @param x_larg Pointeur vers la largeur calculée.
+ * @param y_haut Pointeur vers la hauteur calculée.
+ * @param nb_ligne Le nombre de lignes.
+ * @param nb_colonne Le nombre de colonnes.
+ * @param largeur La largeur de chaque élément.
+ * @param hauteur La hauteur de chaque élément.
+ * @param decalage L'espace entre les éléments.
+ */
+void calculate_zone_content(int* x_larg, int* y_haut, int nb_ligne, int nb_colonne, int largeur, int hauteur, int decalage);
+
+/**
+ * @brief Calcule le numéro de case en fonction des coordonnées de la souris.
+ * 
+ * @param x La coordonnée x de départ.
+ * @param y La coordonnée y de départ.
+ * @param nb_collone Le nombre de colonnes.
+ * @param nb_ligne Le nombre de lignes.
+ * @param taille_largeur La largeur de chaque élément.
+ * @param taille_longeur La longueur de chaque élément.
+ * @param decalage L'espace entre les éléments.
+ * @return Le numéro de case en fonction des coordonnées de la souris, ou -1 si aucune case n'est trouvée.
+ */
+int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage);

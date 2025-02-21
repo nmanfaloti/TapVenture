@@ -14,6 +14,10 @@
 
 /// \brief Inventaire global.
 inv * inventaire = NULL;
+int select_graf_item = 0;
+int mouse_X , mouse_Y;
+int carre_X,carre_Y;
+int click_in_progress = 0 ;
 
 void aff_inv(inv * inventaire){
     printf("label : lab\t");
@@ -182,8 +186,6 @@ void deb_fusion(item_t * item1, item_t * item2) {
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
-void selection( int mouse_x,int mouse_y,inv * inventaire);
-
 void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon) {
     for (int w = 0; w < rayon * 2; w++) {
         for (int h = 0; h < rayon * 2; h++) {
@@ -216,12 +218,34 @@ void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int 
     SDL_RenderFillRect(renderer, &rects[2]);
 
 }
+int coordonner_realiste(int x_deb, int y_deb, int x_fin, int y_fin) {
+    return mouse_X >= x_deb && mouse_X < x_fin && mouse_Y >= y_deb && mouse_Y < y_fin;
+}
 
-void aff_inv_graf(SDL_Renderer* pRenderer, int scrool_pos ,int cof_scrollbar_window, int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis){
-    int x = 10 , y = 10 - scrool_pos * cof_scrollbar_window ;
-    int widthscreen = 800 ; //800
-    int heightscreen = 500 ; //500
+// Fonction pour calculer les dimensions de la zone de contenu
+void calculate_zone_content(int *x_larg, int *y_haut, int nb_ligne, int nb_colonne, int largeur, int hauteur, int decalage) {
+    *x_larg = calculate_total_content_height(nb_colonne, largeur, decalage);
+    *y_haut = calculate_total_content_height(nb_ligne, hauteur, decalage);
+}
 
+// Fonction pour calculer le numéro de case en fonction des coordonnées
+int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage) {
+    int case_number = 0;
+    for (int h = 0, deb = x; h < nb_ligne; h++) {
+        for (int i = 0, x_clicable, y_clicable; i < nb_collone; i++) {
+            if (coordonner_realiste(x, y, x + taille_largeur, y + taille_longeur)) return case_number;
+            case_number++;
+            x += taille_largeur + decalage;
+        }
+        x = deb;
+        y += taille_longeur + decalage;
+    }
+    return -1;
+}
+
+
+void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos ,int cof_scrollbar_window, int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis){
+    y -= scrool_pos * cof_scrollbar_window ;
     for (int h = 0 , deb = x ; h < nb_ligne ; h ++){
         for ( int i = 0 ; i < nb_collone ; i++ ){
             rectangle_arrondis(pRenderer, x, y,taille, taille, arrondis,128,128,128);
@@ -231,7 +255,6 @@ void aff_inv_graf(SDL_Renderer* pRenderer, int scrool_pos ,int cof_scrollbar_win
         x = deb ;
         y += taille + decalage ;
     }
-    
 }
 
 void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_position, int scrollbar_height) {
@@ -241,8 +264,10 @@ void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_position, int scrollba
 }
 
 int calculate_total_content_height(int nb_ligne, int taille, int decalage) {
+    if ( nb_ligne == 1) decalage = 0 ;
     return ((nb_ligne) * (taille + decalage));
 }
+
 
 int calculate_scrollbar_height(int visible_area_height, int total_content_height) {
     float scroll_proportion = (float)visible_area_height / total_content_height;
@@ -270,4 +295,22 @@ void handle_scroll_event(SDL_Event event, int* scrollbar_position,int scrollbar_
             *scrollbar_position = scrollbar_max_position;
         }
     }
+    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
+        mouse_X = event.button.x;
+        mouse_Y = event.button.y;
+        int clicked_case = calcule_pos_inv(10, 10, 4, 10, 80, 80, 20);
+        if (clicked_case != -1) {
+            printf("Vous avez cliqué sur le carré numéro : %d\n", clicked_case+1);
+        }
+        printf("x: %d; y: %d\n", mouse_X, mouse_Y);
+    }
+
+    if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
+        mouse_X = 0; 
+        mouse_Y = 0;
+    }
 }
+
+
+// a   realiser  pouvoir attraper la barre et se deplacer 
+
