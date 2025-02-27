@@ -36,6 +36,9 @@ int main() {
     SDL_Event event;
     loadSave();
 
+    // createNotif(NULL, "assets/ui/logo_background.png", 1, 5 , (SDL_Rect){vw(50), vh(50), vw(30), vh(20)},0, 0);
+    createNotif("Bienvenue", "assets/ui/logo_background.png", 1, 5, (SDL_Rect){vw(50), vh(24), vw(30), vh(20)},0, 1, "Bienvenue sur notre jeu");
+
     while (running){
         while (SDL_PollEvent(&event)){
             running = input_event(event);

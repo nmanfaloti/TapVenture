@@ -20,6 +20,7 @@ int heightscreen = 500;
 uiPage * currentpage;
 uiPage mainpage;
 uiPage settingspage;
+NotifList notifList;
 
 void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect dest, SDL_Color color){
     SDL_Surface* texte = TTF_RenderText_Blended(font, txt, color); // Crée un surface qui contient le texte
@@ -46,7 +47,15 @@ void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect d
 SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest){
     int w, h;
     TTF_SizeText(font, txt, &w, &h);
-    return (SDL_Rect){dest.x, dest.y, w, h};
+
+    float defaultratio = (float)w / h;
+    float ratio = (float)dest.w / dest.h;
+
+    float scale = (ratio > defaultratio) ? (float)dest.h / h : (float)dest.w / w;
+    int new_w = (int)(w * scale);
+    int new_h = (int)(h * scale);
+
+    return (SDL_Rect){dest.x, dest.y, new_w, new_h};
 }
 
 // Viewport width
@@ -99,6 +108,7 @@ void uiHandle(){
         else sprintf(remainingMob, "/%d", level.mobToKill);
         affiche_txt(renderer, font, remainingMob, getRectForCentenredCord(vw(64.5), vh(10), vh(6), vh(6.2)) , (SDL_Color){255, 255, 255, 255});
     }
+    uiNotifHandle();
 }
 
 void refreshMobHealth(){
@@ -142,8 +152,15 @@ void destroyPage(uiPage * page){
     }
 }
 
-void changePage(uiPage * page){
-    currentpage = page;
+int changePage(void * args[20]){
+    uiPage * page = args[0];
+    if (currentpage != page){
+        currentpage = page;
+        printf("Changing page\n");
+    }else{
+        printf("Already on this page\n");
+    }
+    return 0;
 }
 
 void initMainPage(){
@@ -153,16 +170,18 @@ void initMainPage(){
     mainpage.container->nbTxt = 0;
     mainpage.container->txt = NULL;
 
-    createUIText(&mainpage,VIE_MSG, &(level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255});
+    createUIText(&mainpage,VIE_MSG, &(level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255});
     createUIText(&mainpage,OR_MSG, &gold, (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255});
-    createUIText(&mainpage,DMG_MSG, &damage_click, (SDL_Rect) {vw(90),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255});
+    createUIText(&mainpage,DMG_MSG, &damage_click, (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255});
     createUIText(&mainpage,MOB_MSG, &level.mobKilled, getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255});
     createUIText(&mainpage,LVL_MSG, &level.currentLvl, getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255});
     
     createButton(&mainpage,getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)), (SDL_Color){0, 0, 255, 255}, CLICK_MSG, NULL, 1.1,(SDL_Color){255, 0, 0, 255}, attack, 1, &damage_click);
     createButton(&mainpage,getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)), (SDL_Color){0, 150, 0, 255}, DMG_MSG, &(shop.nextPrice),1.05,(SDL_Color){100, 0, 0, 255}, upgradeButton, 3, &damage_click, &gold, &shop);
     createImgButton(&mainpage,getRectForCentenredCord(vw(50), vh(70), 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, attack, 1, &damage_click);
+    createImgButton(&mainpage,getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Settings.png", 0, 3, changePage, 1, &settingspage);
 }
+
 char *fr_txt, *en_txt; 
 void initSettingsPage(){
     createPage(&settingspage);
@@ -176,10 +195,10 @@ void initSettingsPage(){
     sprintf(en_txt, "English");
 
     createUIText(&settingspage,SETTING_MSG,NULL, getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255});
-    createButton(&settingspage,getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)), (SDL_Color){0, 150, 0, 255}, FR_MSG, NULL,1.05,(SDL_Color){100, 0, 0, 255}, SelectLanguage, 1, &fr_txt);
-    createButton(&settingspage,getRectForCentenredCord(vw(50), vh(50), vw(25), vh(15)), (SDL_Color){0, 150, 0, 255}, EN_MSG, NULL,1.05,(SDL_Color){100, 0, 0, 255}, SelectLanguage, 1, &en_txt);
+    createButton(&settingspage,getRectForCentenredCord(vw(35), vh(20), vw(15), vh(10)), (SDL_Color){0, 150, 0, 255}, FR_MSG, NULL,1.05,(SDL_Color){100, 0, 0, 255}, SelectLanguage, 1, &fr_txt);
+    createButton(&settingspage,getRectForCentenredCord(vw(65), vh(20), vw(15), vh(10)), (SDL_Color){0, 150, 0, 255}, EN_MSG, NULL,1.05,(SDL_Color){100, 0, 0, 255}, SelectLanguage, 1, &en_txt);
+    createImgButton(&settingspage,getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Settings.png", 0, 3, changePage, 1, &mainpage);
 }
-
 
 void initPage(){
     initMainPage();
@@ -191,4 +210,143 @@ void destroyAllPages(){
     destroyPage(&settingspage);
     free(fr_txt);
     free(en_txt);
+}
+
+
+/*              NOTIFICATIONS              */
+void initNotifList(){
+    notifList.nbNotif = 0;
+    notifList.notif = NULL;
+}
+
+void createNotif(char * title, char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int yOffset, int nbLignes, ...){
+    if (notifList.nbNotif >= MAX_NOTIF){
+        printf("createNotif: Max Notif reached\n");
+        return;
+    }
+    if (notifList.notif == NULL){
+        notifList.notif = malloc(sizeof(Notif));
+    } else {
+        notifList.notif = realloc(notifList.notif, sizeof(Notif) * (notifList.nbNotif + 1));
+    }
+
+    va_list args;
+    va_start(args, nbLignes);
+    char **desc = malloc(sizeof(char *) * nbLignes);
+    for (int i = 0; i < nbLignes; i++){
+        char * ligne = va_arg(args, char *);
+        if (ligne == NULL){
+            printf("createNotif: Missing Arguments\n");
+            return;
+        }
+        desc[i] = strdup(ligne);
+    }
+    va_end(args);
+
+    notifList.notif[notifList.nbNotif].title = title;
+    notifList.notif[notifList.nbNotif].imgBackground = imgBackground;
+    notifList.notif[notifList.nbNotif].tapToClose = tapToClose;
+    notifList.notif[notifList.nbNotif].duration = duration;
+    notifList.notif[notifList.nbNotif].dest = dest;
+    notifList.notif[notifList.nbNotif].desc = desc;
+    notifList.notif[notifList.nbNotif].nbLignes = nbLignes;
+    notifList.notif[notifList.nbNotif].yOffset = yOffset;
+    notifList.nbNotif++;
+}
+
+void showNotif(Notif * notif){
+    if (notif == NULL){
+        printf("showNotif: notif is NULL\n");
+        return;
+    }
+
+    SDL_Texture* bgTexture = IMG_LoadTexture(renderer, notif->imgBackground);
+    if (bgTexture == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[DEBUG] > %s", IMG_GetError());
+        return;
+    }
+    SDL_Rect bg = getRectForCentenredCord(notif->dest.x, notif->dest.y, notif->dest.w, notif->dest.h);
+    SDL_RenderCopy(renderer, bgTexture, NULL, &bg);
+    SDL_DestroyTexture(bgTexture);
+
+    if (notif->title != NULL){
+        affiche_txt(renderer, font, notif->title, getSizeForText(font, notif->title, getRectForCentenredCord(notif->dest.x, notif->dest.y, notif->dest.w / 2,notif->dest.h)), (SDL_Color){255, 255, 255, 255});
+    } 
+    if (notif->desc != NULL){
+        int lineHeight = 15;
+        int startY = notif->dest.y - ((notif->nbLignes * lineHeight)/2) + notif->yOffset;
+        for (int i = 0; i < notif->nbLignes; i++) {
+            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight) , notif->dest.w / 2, lineHeight);
+            affiche_txt(renderer, font, notif->desc[i], getSizeForText(font, notif->desc[i], lineDest), (SDL_Color){255, 255, 255, 255});
+        }
+    }
+}
+
+void markNotifForDeletion(int index) {
+    if (index < 0 || index >= notifList.nbNotif) {
+        return;
+    }
+    notifList.notif[index].duration = -1; // Marquer pour suppression
+}
+
+void deleteNotif(int index){
+    if (index < 0 || index >= notifList.nbNotif){
+        return;
+    }
+    for (int i = 0; i < notifList.notif[index].nbLignes; i++) {
+        free(notifList.notif[index].desc[i]);
+    }
+    free(notifList.notif[index].desc);
+    notifList.nbNotif--;
+
+    if (notifList.nbNotif > 0) {
+        notifList.notif = realloc(notifList.notif, sizeof(Notif) * notifList.nbNotif);
+    } else {
+        free(notifList.notif);
+        notifList.notif = NULL;
+    }
+}
+
+
+int lastNotifUpdate[MAX_NOTIF];
+void uiNotifHandle() {
+    if (notifList.notif == NULL || notifList.nbNotif == 0) {
+        return;
+    }
+    Uint32 currentTime = SDL_GetTicks();
+
+    for (int i = 0; i < notifList.nbNotif; i++) {
+        if (notifList.notif[i].duration > 0) {
+            showNotif(&notifList.notif[i]);
+        }
+
+        if (currentTime - lastNotifUpdate[i] >= 1000) {
+            lastNotifUpdate[i] = currentTime;
+            notifList.notif[i].duration--;
+
+            if (notifList.notif[i].duration <= 0) {
+                //Pas supprimé directement pour éviter de modifier la liste en cours de parcours
+                markNotifForDeletion(i);
+            }
+        }
+    }
+    // Supprimer les notifications marquées pour suppression
+    for (int i = notifList.nbNotif - 1; i >= 0; i--) {
+        if (notifList.notif[i].duration == -1) {
+            deleteNotif(i);
+        }
+    }
+}
+
+void destroyNotifList() {
+    if (notifList.notif == NULL) {
+        return;
+    } else {
+        for (int i = notifList.nbNotif - 1; i >= 0; i--) {
+            deleteNotif(i);
+        }
+        free(notifList.notif);
+    }
+    notifList.notif = NULL;
+    notifList.nbNotif = 0;
 }

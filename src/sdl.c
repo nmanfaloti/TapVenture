@@ -2,7 +2,7 @@
 #include "../lib/aff.h"
 #include "../lib/input_user.h"
 
-#define LINK_FONT "assets/fonts/Planes_ValMore.ttf"
+#define LINK_FONT "assets/fonts/ChakraPetch-SemiBold.ttf"
 
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
