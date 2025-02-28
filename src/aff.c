@@ -279,7 +279,7 @@ void showNotif(Notif * notif){
         int lineHeight = 15;
         int startY = notif->dest.y - ((notif->nbLignes * lineHeight)/2) + notif->messYOffset;
         for (int i = 0; i < notif->nbLignes; i++) {
-            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight), notif->dest.w / 2 * notif->messSize, lineHeight*notif->messSize);
+            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight), notif->dest.w / 2 , lineHeight);
             affiche_txt(renderer, font, notif->desc[i], getSizeForText(font, notif->desc[i], lineDest), (SDL_Color){255, 255, 255, 255});
         }
     }
@@ -292,16 +292,26 @@ void markNotifForDeletion(int index) {
     notifList.notif[index].duration = -1; // Marquer pour suppression
 }
 
-void deleteNotif(int index){
-    if (index < 0 || index >= notifList.nbNotif){
+void deleteNotif(int index) {
+    if (index < 0 || index >= notifList.nbNotif) {
         return;
     }
+
+    // Libérer les chaînes de description
     for (int i = 0; i < notifList.notif[index].nbLignes; i++) {
         free(notifList.notif[index].desc[i]);
     }
+    // Libérer le tableau de descriptions
     free(notifList.notif[index].desc);
+
+    // Décaler les notifications restantes pour combler le vide
+    for (int i = index; i < notifList.nbNotif - 1; i++) {
+        notifList.notif[i] = notifList.notif[i + 1];
+    }
+
     notifList.nbNotif--;
 
+    // Réallouer la mémoire pour le tableau de notifications
     if (notifList.nbNotif > 0) {
         notifList.notif = realloc(notifList.notif, sizeof(Notif) * notifList.nbNotif);
     } else {
