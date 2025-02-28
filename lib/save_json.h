@@ -1,3 +1,5 @@
+#ifndef SAVE_JSON_H
+#define SAVE_JSON_H
 
 typedef enum {
     USERNAME,
@@ -31,3 +33,5 @@ int makeSaveHeros(char * save);
 int loadSaveHeros(char * save);
 
 int initPlayer();
+
+#endif // SAVE_JSON_H

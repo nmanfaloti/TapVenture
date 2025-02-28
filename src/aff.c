@@ -273,13 +273,13 @@ void showNotif(Notif * notif){
     SDL_DestroyTexture(bgTexture);
 
     if (notif->title != NULL){
-        affiche_txt(renderer, font, notif->title, getSizeForText(font, notif->title, getRectForCentenredCord(notif->dest.x, notif->dest.y+notif->titleYOffset, notif->dest.w / 2,notif->dest.h)), (SDL_Color){255, 255, 255, 255});
+        affiche_txt(renderer, font, notif->title, getSizeForText(font, notif->title, getRectForCentenredCord(notif->dest.x, notif->dest.y+notif->titleYOffset, notif->dest.w / 2 * notif->titleSize,notif->dest.h * notif->titleSize)), (SDL_Color){255, 255, 255, 255});
     } 
     if (notif->desc != NULL){
         int lineHeight = 15;
         int startY = notif->dest.y - ((notif->nbLignes * lineHeight)/2) + notif->messYOffset;
         for (int i = 0; i < notif->nbLignes; i++) {
-            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight), notif->dest.w / 2 , lineHeight);
+            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight), notif->dest.w / 2 * notif->messSize, lineHeight * notif->messSize);
             affiche_txt(renderer, font, notif->desc[i], getSizeForText(font, notif->desc[i], lineDest), (SDL_Color){255, 255, 255, 255});
         }
     }

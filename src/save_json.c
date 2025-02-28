@@ -9,6 +9,7 @@
 #include "../lib/combat.h"
 #include "../lib/aff.h"
 #include "../lib/boutique.h"
+#include "../lib/ui.h"
 
 
 
@@ -314,6 +315,7 @@ int initPlayer(){
     level.currentLvl = 0;
     gold = 0;
     damage_click = 10;
+    createNotif(Traduction(WELCOME_MSG),19,1,"assets/ui/notif.png", 1, 5, (SDL_Rect){vw(50), vh(24), vw(30), vh(20)},19, 1.5,1, Traduction(WELCOME_DESC_MSG));
     return 0;
 }
 

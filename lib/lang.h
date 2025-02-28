@@ -13,6 +13,10 @@ typedef enum {
     SETTING_MSG,
     FR_MSG,
     EN_MSG,
+    WELCOME_MSG,
+    WELCOME_DESC_MSG,
+    GOLD_OFFLINE_MSG,
+    GOLD_OFFLINE_DESC_MSG,
     NB_MSG
 } CleMsg;
 

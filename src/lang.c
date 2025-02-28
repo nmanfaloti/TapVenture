@@ -17,6 +17,10 @@ Lang en = {
         [SETTING_MSG] = "Settings",
         [FR_MSG] = "French",
         [EN_MSG] = "English",
+        [WELCOME_MSG] = "Welcome",
+        [WELCOME_DESC_MSG] = "Welcome to TapVenture",
+        [GOLD_OFFLINE_MSG] = "Offline Gold",
+        [GOLD_OFFLINE_DESC_MSG] = "You earned gold while you were away:"
         
     }
 };
@@ -36,6 +40,10 @@ Lang fr = {
         [SETTING_MSG] = "Parametres",
         [FR_MSG] = "Francais",
         [EN_MSG] = "Anglais",
+        [WELCOME_MSG] = "Bienvenue",
+        [WELCOME_DESC_MSG] = "Bienvenue dans TapVenture",
+        [GOLD_OFFLINE_MSG] = "Or Hors Ligne",
+        [GOLD_OFFLINE_DESC_MSG] = "Vous avez gagne de l'or pendant votre absence: "
     }
 };
 
