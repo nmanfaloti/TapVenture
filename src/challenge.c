@@ -4,6 +4,7 @@
 #include "../lib/player.h"
 #include "../lib/ui.h"
 #include "../lib/combat.h"
+#include "../lib/lang.h"
 
 int challengeActive = 0;
 unsigned int challengeStartTime;
@@ -45,15 +46,17 @@ void updateChallenge() {
     unsigned int elapsedTimeChallenge = (currentTime - challengeStartTime) / 1000;
 
     if (elapsedTimeChallenge >= challengeDuration) {
-        printf("Challenge échoué !\n");
+        createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,1, Traduction(CHALLENGE_DESC_MSG_LOSE));
         resetChallenge();
         return;
     }
 
     if (level.mobKilled >= challengeTarget) {
+        char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;
         gold += challengeReward * lvl; 
-        printf("Challenge réussi ! Vous avez gagné %d pièces d'or.\n", challengeReward * lvl);
+        sprintf(goldEarnedMsg, "%d", challengeReward * lvl);
+        createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,2, Traduction(CHALLENGE_DESC_MSG_WIN), goldEarnedMsg);
         resetChallenge();
         return;
     }

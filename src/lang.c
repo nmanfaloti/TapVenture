@@ -22,7 +22,9 @@ Lang en = {
         [GOLD_OFFLINE_MSG] = "Offline Gold",
         [GOLD_OFFLINE_DESC_MSG] = "You earned gold while you were away:",
         [FULLSCREEN_MSG] = "Fullscreen",
-        [WINDOWED_MSG] = "Windowed"
+        [WINDOWED_MSG] = "Windowed",
+        [CHALLENGE_DESC_MSG_WIN] = "You earned gold by completing the challenge: ",
+        [CHALLENGE_DESC_MSG_LOSE] = "You failed the challenge"
         
     }
 };
@@ -47,7 +49,9 @@ Lang fr = {
         [GOLD_OFFLINE_MSG] = "Or Hors Ligne",
         [GOLD_OFFLINE_DESC_MSG] = "Vous avez gagne de l'or pendant votre absence: ",
         [FULLSCREEN_MSG] = "Plein Ecran",
-        [WINDOWED_MSG] = "Mode Fenetre"
+        [WINDOWED_MSG] = "Mode Fenetre",
+        [CHALLENGE_DESC_MSG_WIN] = "Vous avez gagner de l'or en reussissant le challenge: ",
+        [CHALLENGE_DESC_MSG_LOSE] = "Vous avez echouer le challenge"
     }
 };
 
