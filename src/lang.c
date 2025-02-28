@@ -20,7 +20,9 @@ Lang en = {
         [WELCOME_MSG] = "Welcome",
         [WELCOME_DESC_MSG] = "Welcome to TapVenture",
         [GOLD_OFFLINE_MSG] = "Offline Gold",
-        [GOLD_OFFLINE_DESC_MSG] = "You earned gold while you were away:"
+        [GOLD_OFFLINE_DESC_MSG] = "You earned gold while you were away:",
+        [FULLSCREEN_MSG] = "Fullscreen",
+        [WINDOWED_MSG] = "Windowed"
         
     }
 };
@@ -43,7 +45,9 @@ Lang fr = {
         [WELCOME_MSG] = "Bienvenue",
         [WELCOME_DESC_MSG] = "Bienvenue dans TapVenture",
         [GOLD_OFFLINE_MSG] = "Or Hors Ligne",
-        [GOLD_OFFLINE_DESC_MSG] = "Vous avez gagne de l'or pendant votre absence: "
+        [GOLD_OFFLINE_DESC_MSG] = "Vous avez gagne de l'or pendant votre absence: ",
+        [FULLSCREEN_MSG] = "Plein Ecran",
+        [WINDOWED_MSG] = "Mode Fenetre"
     }
 };
 

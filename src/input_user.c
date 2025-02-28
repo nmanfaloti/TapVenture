@@ -44,15 +44,6 @@ int input_event(SDL_Event event){
             break;
         case SDL_KEYDOWN:
             switch (SDL_GetKeyName(event.key.keysym.sym)[0]){
-                case 'F':
-                    if (SDL_GetWindowFlags(window) & SDL_WINDOW_FULLSCREEN_DESKTOP) {
-                        SDL_SetWindowFullscreen(window, 0);
-                        SDL_GetWindowSize(window, &widthscreen, &heightscreen);
-                    } else {
-                        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-                        SDL_GetRendererOutputSize(renderer, &widthscreen, &heightscreen);
-                    }
-                    break;
                 case 'H':
                     SDL_GetWindowSize(window, &widthscreen, &heightscreen);
                     break;

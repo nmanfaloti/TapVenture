@@ -16,5 +16,5 @@ void goldGainOffline(time_t lastSaveTime){
     int goldEarned = (elapsedTime * goldBySec);
     gold += (int)(goldEarned/10);
     sprintf(goldEarnedMsg, "%d", goldEarned/10);
-    createNotif(Traduction(GOLD_OFFLINE_MSG),35,1,"assets/ui/notif.png", 1, 5, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.7,2, Traduction(GOLD_OFFLINE_DESC_MSG), goldEarnedMsg);
+    createNotif(Traduction(GOLD_OFFLINE_MSG),35,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.7,2, Traduction(GOLD_OFFLINE_DESC_MSG), goldEarnedMsg);
 }

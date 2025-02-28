@@ -181,8 +181,20 @@ void initMainPage(){
     createImgButton(&mainpage,getRectForCentenredCord(vw(50), vh(70), 100, 100), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Arrow_Down.png", 0, 5, attack, 1, &damage_click);
     createImgButton(&mainpage,getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Settings.png", 0, 3, changePage, 1, &settingspage);
 }
-
-char *fr_txt, *en_txt; 
+int SelectScreen(void * l[20]){
+    char **lang = (char **)l[0];
+    if (strcmp(*lang, "Window") == 0) {
+        SDL_SetWindowFullscreen(window, 0);
+        SDL_GetWindowSize(window, &widthscreen, &heightscreen);
+        return 1;
+    } else if (strcmp(*lang, "Fullscreen") == 0) {
+        SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+        SDL_GetRendererOutputSize(renderer, &widthscreen, &heightscreen);
+        return 1;
+    }
+    return 0;
+}
+char *fr_txt, *en_txt, *full_txt, *window_txt; 
 void initSettingsPage(){
     createPage(&settingspage);
 
@@ -193,10 +205,16 @@ void initSettingsPage(){
     sprintf(fr_txt, "French");
     en_txt = malloc(strlen("English") + 1);
     sprintf(en_txt, "English");
+    full_txt = malloc(strlen("Fullscreen") + 1);
+    sprintf(full_txt, "Fullscreen");
+    window_txt = malloc(strlen("Window") + 1);
+    sprintf(window_txt, "Window");
 
     createUIText(&settingspage,SETTING_MSG,NULL, getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255});
     createButton(&settingspage,getRectForCentenredCord(vw(35), vh(20), vw(15), vh(10)), (SDL_Color){0, 150, 0, 255}, FR_MSG, NULL,1.05,(SDL_Color){100, 0, 0, 255}, SelectLanguage, 1, &fr_txt);
     createButton(&settingspage,getRectForCentenredCord(vw(65), vh(20), vw(15), vh(10)), (SDL_Color){0, 150, 0, 255}, EN_MSG, NULL,1.05,(SDL_Color){100, 0, 0, 255}, SelectLanguage, 1, &en_txt);
+    createButton(&settingspage,getRectForCentenredCord(vw(35), vh(40), vw(15), vh(10)), (SDL_Color){0, 150, 255, 255}, FULLSCREEN_MSG, NULL,1.05,(SDL_Color){100, 0, 255, 0}, SelectScreen, 1, &full_txt);
+    createButton(&settingspage,getRectForCentenredCord(vw(65), vh(40), vw(15), vh(10)), (SDL_Color){0, 150, 255, 255}, WINDOWED_MSG, NULL,1.05,(SDL_Color){100, 0, 255, 0}, SelectScreen, 1, &window_txt);
     createImgButton(&settingspage,getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/buttons/Button_Blue_3Slides.png", "assets/ui/icons/Settings.png", 0, 3, changePage, 1, &mainpage);
 }
 
@@ -210,6 +228,8 @@ void destroyAllPages(){
     destroyPage(&settingspage);
     free(fr_txt);
     free(en_txt);
+    free(full_txt);
+    free(window_txt);
 }
 
 

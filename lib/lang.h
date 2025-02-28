@@ -17,6 +17,8 @@ typedef enum {
     WELCOME_DESC_MSG,
     GOLD_OFFLINE_MSG,
     GOLD_OFFLINE_DESC_MSG,
+    FULLSCREEN_MSG,
+    WINDOWED_MSG,
     NB_MSG
 } CleMsg;
 
