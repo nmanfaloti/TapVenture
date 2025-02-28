@@ -219,7 +219,7 @@ void initNotifList(){
     notifList.notif = NULL;
 }
 
-void createNotif(char * title, char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int yOffset, int nbLignes, ...){
+void createNotif(char * title, int titleYOffset,float titleSize,char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int messYOffset,float messSize, int nbLignes, ...){
     if (notifList.nbNotif >= MAX_NOTIF){
         printf("createNotif: Max Notif reached\n");
         return;
@@ -250,7 +250,10 @@ void createNotif(char * title, char * imgBackground, int tapToClose, int duratio
     notifList.notif[notifList.nbNotif].dest = dest;
     notifList.notif[notifList.nbNotif].desc = desc;
     notifList.notif[notifList.nbNotif].nbLignes = nbLignes;
-    notifList.notif[notifList.nbNotif].yOffset = yOffset;
+    notifList.notif[notifList.nbNotif].messYOffset = messYOffset;
+    notifList.notif[notifList.nbNotif].messSize = messSize;
+    notifList.notif[notifList.nbNotif].titleYOffset = titleYOffset;
+    notifList.notif[notifList.nbNotif].titleSize = titleSize;
     notifList.nbNotif++;
 }
 
@@ -270,13 +273,13 @@ void showNotif(Notif * notif){
     SDL_DestroyTexture(bgTexture);
 
     if (notif->title != NULL){
-        affiche_txt(renderer, font, notif->title, getSizeForText(font, notif->title, getRectForCentenredCord(notif->dest.x, notif->dest.y, notif->dest.w / 2,notif->dest.h)), (SDL_Color){255, 255, 255, 255});
+        affiche_txt(renderer, font, notif->title, getSizeForText(font, notif->title, getRectForCentenredCord(notif->dest.x, notif->dest.y+notif->titleYOffset, notif->dest.w / 2,notif->dest.h)), (SDL_Color){255, 255, 255, 255});
     } 
     if (notif->desc != NULL){
         int lineHeight = 15;
-        int startY = notif->dest.y - ((notif->nbLignes * lineHeight)/2) + notif->yOffset;
+        int startY = notif->dest.y - ((notif->nbLignes * lineHeight)/2) + notif->messYOffset;
         for (int i = 0; i < notif->nbLignes; i++) {
-            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight) , notif->dest.w / 2, lineHeight);
+            SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight), notif->dest.w / 2 * notif->messSize, lineHeight*notif->messSize);
             affiche_txt(renderer, font, notif->desc[i], getSizeForText(font, notif->desc[i], lineDest), (SDL_Color){255, 255, 255, 255});
         }
     }

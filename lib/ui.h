@@ -20,7 +20,10 @@ typedef struct uiNotif_s{
     char * imgBackground;
     int tapToClose;
     int duration;
-    int yOffset;
+    int messYOffset;
+    int titleYOffset;
+    float messSize;
+    float titleSize;
     SDL_Rect dest;
 }Notif;
 
@@ -40,8 +43,7 @@ void createPage(uiPage * page);
 void destroyPage(uiPage * page);
 int changePage(void * args[20]);
 
-void createNotif(char * title, char * imgBackground, int tapToClose, int duration , SDL_Rect dest ,int yOffset, int nbLignes, ...);
-void deleteNotif(int index);
+void createNotif(char * title, int titleYOffset,float titleSize,char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int messYOffset,float messSize, int nbLignes, ...);
 void showNotif(Notif * notif);
 void initNotifList();
 void uiNotifHandle();
