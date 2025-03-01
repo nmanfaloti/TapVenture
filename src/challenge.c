@@ -5,6 +5,7 @@
 #include "../lib/ui.h"
 #include "../lib/combat.h"
 #include "../lib/lang.h"
+#include <time.h>
 
 int challengeActive = 0;
 unsigned int challengeStartTime;
@@ -12,6 +13,8 @@ unsigned int challengeStartTime;
 unsigned int challengeDuration = 30; // Durée du challenge en secondes
 int challengeTarget = 15; // Nombre de monstres à tuer pour réussir le challenge
 int challengeReward = 500; // Récompense pour avoir réussi le challenge * le lvl actuel
+time_t lastChallengeTime;
+char timeToWaitMsg[100];
 
 int lvl = 1;
 
@@ -24,12 +27,18 @@ int launchChallenge() {
         printf("Impossible de lancer un challenge sur un boss !\n");
         return 1;
     }
+    if (time(NULL) - lastChallengeTime < 60*30) {
+        sprintf(timeToWaitMsg, "%ld %s", 30 - (time(NULL) - lastChallengeTime) / 60,"minutes");
+        createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},35, 1.8,2, Traduction(CHALLENGE_DESC_MSG_COOLDOWN),timeToWaitMsg);
+        return 1;
+    }
 
     printf("Challenge lancé !\n");
     challengeActive = 1;
     challengeStartTime = SDL_GetTicks();
     level.mobKilled = 0; // Réinitialiser le compteur de monstres tués pour le challenge
     level.mobToKill = challengeTarget + 1; 
+    lastChallengeTime = time(NULL);
     return 0;
 }
 

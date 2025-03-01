@@ -10,6 +10,7 @@
 #include "../lib/aff.h"
 #include "../lib/boutique.h"
 #include "../lib/ui.h"
+#include "../lib/challenge.h"
 
 
 
@@ -218,7 +219,8 @@ int makeSavePlayer(char * save){
     createValueForKey("DAMAGE_CLICK", value, save);
     sprintf(value, "%d", shop.damageLevel);
     createValueForKey("SHOP", value, save);
-
+    sprintf(value, "%ld",lastChallengeTime);
+    createValueForKey("LAST_CHALLENGE_TIME", value, save);
 
 
     time_t temps = time(NULL);
@@ -266,7 +268,10 @@ int loadSavePlayer(char * save){
     shop.nextPrice=getPriceForLevels(shop.damageLevel+1);
     free(value);
 
-    // Calculer l'or gagné en fonction du temps écoulé depuis la dernière sauvegarde
+    value = getValueForKey("LAST_CHALLENGE_TIME", save);
+    lastChallengeTime = atol(value);
+    free(value);
+
     value = getValueForKey("TIME", save);
     time_t lastSaveTime = atol(value);
     free(value);
@@ -315,6 +320,7 @@ int initPlayer(){
     level.currentLvl = 0;
     gold = 0;
     damage_click = 10;
+    lastChallengeTime = 0;
     createNotif(Traduction(WELCOME_MSG),19,1,"assets/ui/notif.png", 1, 5, (SDL_Rect){vw(50), vh(24), vw(30), vh(20)},19, 1.5,1, Traduction(WELCOME_DESC_MSG));
     return 0;
 }

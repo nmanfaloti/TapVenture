@@ -10,5 +10,6 @@ extern int challengeActive;
 extern int challengeTarget;
 extern unsigned int challengeStartTime;
 extern unsigned int challengeDuration;
+extern time_t lastChallengeTime;
 
 #endif // CHALLENGE_H

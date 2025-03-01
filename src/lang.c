@@ -24,7 +24,8 @@ Lang en = {
         [FULLSCREEN_MSG] = "Fullscreen",
         [WINDOWED_MSG] = "Windowed",
         [CHALLENGE_DESC_MSG_WIN] = "You earned gold by completing the challenge: ",
-        [CHALLENGE_DESC_MSG_LOSE] = "You failed the challenge"
+        [CHALLENGE_DESC_MSG_LOSE] = "You failed the challenge",
+        [CHALLENGE_DESC_MSG_COOLDOWN] = "You must wait before starting a new challenge: "
         
     }
 };
@@ -37,7 +38,7 @@ Lang fr = {
         [CLICK_MSG] = "Cliquez pour attaquer",
         [VIE_MSG] = "Vie restante",
         [OR_MSG] = "Or",
-        [DMG_MSG] = "Degats :",
+        [DMG_MSG] = "Degats",
         [UPG_MSG] = "Amelioration Degats",
         [MOB_MSG] = "Monstre Restants",
         [LVL_MSG] = "Niveau",
@@ -51,7 +52,8 @@ Lang fr = {
         [FULLSCREEN_MSG] = "Plein Ecran",
         [WINDOWED_MSG] = "Mode Fenetre",
         [CHALLENGE_DESC_MSG_WIN] = "Vous avez gagner de l'or en reussissant le challenge: ",
-        [CHALLENGE_DESC_MSG_LOSE] = "Vous avez echouer le challenge"
+        [CHALLENGE_DESC_MSG_LOSE] = "Vous avez echouer le challenge",
+        [CHALLENGE_DESC_MSG_COOLDOWN] = "Vous devez attendre avant de lancer un nouveau challenge: "
     }
 };
 
