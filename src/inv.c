@@ -4,7 +4,17 @@
  * \brief Implémentation des fonctions de gestion de l'inventaire.
  */
 
- #include <SDL2/SDL.h>
+
+
+
+//liste de heros global / struct heros avec liste d'item
+
+//faire une fonction raffraichissmeent qui rafrechis que si action 
+
+
+
+
+#include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -219,7 +229,7 @@ void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int 
 
 }
 int coordonner_realiste(int x_deb, int y_deb, int x_fin, int y_fin) {
-    return mouse_X >= x_deb && mouse_X < x_fin && mouse_Y >= y_deb && mouse_Y < y_fin;
+    return mouse_X >= x_deb && mouse_X <= x_fin && mouse_Y >= y_deb && mouse_Y <= y_fin;
 }
 
 // Fonction pour calculer les dimensions de la zone de contenu
@@ -229,10 +239,11 @@ void calculate_zone_content(int *x_larg, int *y_haut, int nb_ligne, int nb_colon
 }
 
 // Fonction pour calculer le numéro de case en fonction des coordonnées
-int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage) {
+int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage,int scroll) {
     int case_number = 0;
+    y -= scroll;
     for (int h = 0, deb = x; h < nb_ligne; h++) {
-        for (int i = 0, x_clicable, y_clicable; i < nb_collone; i++) {
+        for (int i = 0; i < nb_collone; i++) {
             if (coordonner_realiste(x, y, x + taille_largeur, y + taille_longeur)) return case_number;
             case_number++;
             x += taille_largeur + decalage;
@@ -244,8 +255,8 @@ int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_large
 }
 
 
-void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos ,int cof_scrollbar_window, int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis){
-    y -= scrool_pos * cof_scrollbar_window ;
+void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos , int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis){
+    y -= scrool_pos ;
     for (int h = 0 , deb = x ; h < nb_ligne ; h ++){
         for ( int i = 0 ; i < nb_collone ; i++ ){
             rectangle_arrondis(pRenderer, x, y,taille, taille, arrondis,128,128,128);
@@ -257,9 +268,10 @@ void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos ,int cof_s
     }
 }
 
-void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_position, int scrollbar_height) {
+void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_x,int scrollbar_y, int scrollbar_height , int scrollbar_wheight ) {
     SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
-    SDL_Rect scrollbar = {780, scrollbar_position, 20, scrollbar_height};
+    int demi_larg = scrollbar_wheight/2;
+    SDL_Rect scrollbar = {scrollbar_x, scrollbar_y, scrollbar_wheight, scrollbar_height};
     SDL_RenderFillRect(renderer, &scrollbar);
 }
 
@@ -269,18 +281,33 @@ int calculate_total_content_height(int nb_ligne, int taille, int decalage) {
 }
 
 
-int calculate_scrollbar_height(int visible_area_height, int total_content_height) {
-    float scroll_proportion = (float)visible_area_height / total_content_height;
-    return (int)(scroll_proportion * visible_area_height);
+int calculate_scrollbar_height(int visible_area_height, int total_content_height,float cof) {
+    return round(visible_area_height/cof);
 }
 
-int cof_scrollbar_window(int visible_area_height, int total_content_height){
-    return (int)(total_content_height/visible_area_height);
+float cof_scrollbar_window(int visible_area_height, int total_content_height){
+    return (total_content_height/(visible_area_height*1.0));
 }
 
-int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt) {
-    return screen_height - scrollbar_heigt;
+int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt , float cof) {
+    return round((screen_height - scrollbar_heigt)*cof);
 }
+
+//pos x,y de la scroll
+void interraction_scroll(int x,int y ,int * scrollbar_position,int scrollbar_max_position){
+    int ecran_height = 500;
+    int taille_scroll = ecran_height - scrollbar_max_position/3 ;
+    if(coordonner_realiste(x,0,x+30,ecran_height)){
+        *scrollbar_position = ( mouse_Y * 3 - (taille_scroll ) ) ;
+        if (*scrollbar_position<0)*scrollbar_position=0;
+        else if(*scrollbar_position>scrollbar_max_position)*scrollbar_position=scrollbar_max_position;
+    }
+}
+
+
+
+int scroll_mouve = 0 ;
+
 
 void handle_scroll_event(SDL_Event event, int* scrollbar_position,int scrollbar_speed, int scrollbar_max_position) {
     if (event.type == SDL_MOUSEWHEEL) {
@@ -296,21 +323,24 @@ void handle_scroll_event(SDL_Event event, int* scrollbar_position,int scrollbar_
         }
     }
     if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-        mouse_X = event.button.x;
-        mouse_Y = event.button.y;
-        int clicked_case = calcule_pos_inv(10, 10, 4, 10, 80, 80, 20);
+        int clicked_case = calcule_pos_inv(10, 10, 4, 15, 80, 80, 20,*scrollbar_position);
+        if ( coordonner_realiste(800-20-10,*scrollbar_position/3,800-20-10+30,(*scrollbar_position + (1500 - scrollbar_max_position))/3))scroll_mouve = 1;
+        else interraction_scroll(800-20-10,*scrollbar_position ,scrollbar_position,scrollbar_max_position);
         if (clicked_case != -1) {
             printf("Vous avez cliqué sur le carré numéro : %d\n", clicked_case+1);
         }
-        printf("x: %d; y: %d\n", mouse_X, mouse_Y);
+        printf("x: %d; y: %d ,scroll:%d,scrool:%d,calc:%d\n", mouse_X, mouse_Y ,scrollbar_max_position,*scrollbar_position,(*scrollbar_position + (1500 - scrollbar_max_position))/3 + mouse_Y);
     }
 
     if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
+        scroll_mouve = 0 ;
         mouse_X = 0; 
         mouse_Y = 0;
     }
 }
 
+void aff_graph_inv_scroll(SDL_Renderer* renderer){
 
-// a   realiser  pouvoir attraper la barre et se deplacer 
+}
+
 

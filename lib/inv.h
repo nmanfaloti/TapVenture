@@ -222,7 +222,7 @@ void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int 
  * @param decalage L'espace entre les rectangles.
  * @param arrondis Le rayon des coins arrondis.
  */
-void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos ,int cof_scrollbar_window, int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis);
+void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos , int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis);
 
 /**
  * @brief Dessine une barre de défilement verticale.
@@ -231,7 +231,7 @@ void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos ,int cof_s
  * @param scrollbar_position La position y du sommet de la barre de défilement.
  * @param scrollbar_height La hauteur de la barre de défilement.
  */
-void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_position, int scrollbar_height);
+void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_x,int scrollbar_y, int scrollbar_height , int scrollbar_wheight ) ;
 
 /**
  * @brief Calcule la hauteur totale du contenu.
@@ -250,7 +250,7 @@ int calculate_total_content_height(int nb_ligne, int taille, int decalage);
  * @param total_content_height La hauteur totale du contenu.
  * @return La hauteur de la barre de défilement.
  */
-int calculate_scrollbar_height(int visible_area_height, int total_content_height);
+int calculate_scrollbar_height(int visible_area_height, int total_content_height , float cof);
 
 /**
  * @brief Calcule le coefficient de vitesse de défilement de la barre de défilement.
@@ -259,7 +259,7 @@ int calculate_scrollbar_height(int visible_area_height, int total_content_height
  * @param total_content_height La hauteur totale du contenu.
  * @return Le coefficient de vitesse de défilement de la barre de défilement.
  */
-int cof_scrollbar_window(int visible_area_height, int total_content_height);
+float cof_scrollbar_window(int visible_area_height, int total_content_height);
 
 /**
  * @brief Calcule la position maximale de la barre de défilement.
@@ -268,7 +268,7 @@ int cof_scrollbar_window(int visible_area_height, int total_content_height);
  * @param scrollbar_heigt La hauteur de la barre de défilement.
  * @return La position maximale de la barre de défilement.
  */
-int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt);
+int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt , float cof);
 
 /**
  * @brief Gère les événements de défilement.
@@ -317,4 +317,4 @@ void calculate_zone_content(int* x_larg, int* y_haut, int nb_ligne, int nb_colon
  * @param decalage L'espace entre les éléments.
  * @return Le numéro de case en fonction des coordonnées de la souris, ou -1 si aucune case n'est trouvée.
  */
-int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage);
+int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage, int scroll);
