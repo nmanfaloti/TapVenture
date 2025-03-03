@@ -5,6 +5,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
+#define LINK_FONT "assets/fonts/ChakraPetch-SemiBold.ttf"
+
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 extern TTF_Font *font;

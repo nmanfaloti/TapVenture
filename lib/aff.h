@@ -5,8 +5,10 @@
 typedef struct uiTxt_s{
     int tradID;
     int * info; 
+    char * label;
     SDL_Rect dest;
     SDL_Color color;
+    SDL_Texture * texture;
 }uiTxt;
 
 typedef struct uiContainer_s{
@@ -18,7 +20,7 @@ typedef struct uiContainer_s{
 extern int widthscreen;
 extern int heightscreen;
 
-void affiche_txt(SDL_Renderer* pRenderer, TTF_Font* font, char * txt, SDL_Rect dest, SDL_Color color);
+void affiche_txt(uiTxt * txt);
 SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest);
 int vw(float percent);
 int vh(float percent);
@@ -27,9 +29,10 @@ void uiHandle();
 void initUItxt();
 void destroyUItxt();
 void refreshMobHealth();
+void refreshUILanguage();
+void refreshMobKilled();
+void refreshCurrentLvl();
 
-void initMainPage();
-void initSettingsPage();
-void initPage();
-void destroyAllPages();
+void setUiText(uiTxt *txt, const char *text);
+
 #endif // AFF_H

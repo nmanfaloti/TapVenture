@@ -5,36 +5,48 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>
 
+#include "../lib/sdl.h"
 #include "../lib/button.h"
 #include "../lib/ui.h"
-
+#include "../lib/boutique.h"
 #include "../lib/lang.h"
 #include "../lib/input_user.h"
 #include "../lib/aff.h"
 
-void draw_button(SDL_Renderer *renderer, SDL_Rect rect, SDL_Color color, const char *text, TTF_Font *font) {
-    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-    SDL_RenderFillRect(renderer, &rect);
-    SDL_Color textColor = {255, 255, 255, 255};
-    SDL_Surface *surface = TTF_RenderText_Blended(font, text, textColor);
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-
-    float scale = 1.0;
-    if (surface->w > rect.w) {
-        scale = (float)rect.w / (float)surface->w;
+static int setButtonTexture(SDL_Texture **texture, char *path) {
+    //Gestion de l'image en svg
+    SDL_RWops* rw = SDL_RWFromFile(path, "rb");
+    SDL_Surface *surface = IMG_LoadSVG_RW(rw);
+    if (!surface) {
+        SDL_FreeRW(rw);
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.texture) -> %s: %s\n", path,IMG_GetError());
+        return 0;
     }
-    if (surface->h > rect.h) {
-        float scale_h = (float)rect.h / (float)surface->h;
-        if (scale_h < scale) {
-            scale = scale_h;
-        }
+    //Création de la texture
+    *texture = SDL_CreateTextureFromSurface(renderer, surface);
+    if (!*texture) {
+        SDL_FreeRW(rw);
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.texture)-> %s : %s\n",path ,IMG_GetError());
+        return 0;
     }
-    SDL_Rect textRect = {rect.x + rect.w / 2 - surface->w * scale / 2, rect.y + rect.h / 2 - surface->h * scale / 2, surface->w * scale, surface->h * scale};
-    
-
+    //Libération de la mémoire
+    SDL_FreeRW(rw);
     SDL_FreeSurface(surface);
-    SDL_RenderCopy(renderer, texture, NULL, &textRect);
-    SDL_DestroyTexture(texture);
+    return 1;
+}
+
+
+void drawButton(Button *button) {
+    if (!button) return;
+    if (button->texture) {
+        SDL_RenderCopy(renderer, button->texture, NULL, &button->rect);
+    }else {
+        SDL_SetRenderDrawColor(renderer, button->textColor.r, button->textColor.g, button->textColor.b, button->textColor.a);
+        SDL_RenderFillRect(renderer, &button->rect);
+    }
+    if (button->textTexture) {
+        SDL_RenderCopy(renderer, button->textTexture, NULL, &button->textRect);
+    }
 }
 
 int checkBoutton(SDL_Rect rect, int mouse_x, int mouse_y) {
@@ -45,47 +57,33 @@ SDL_Rect getRectForCentenredCord(int x, int y, int w, int h) {
     return (SDL_Rect){x - w / 2, y - h / 2, w, h};
 }
 
-void draw_button_image(SDL_Renderer *renderer, SDL_Rect rect, char *pathText, char *pathBackground, int offsetLogoX, int offsetLogoY) {
-    SDL_Surface *surface = IMG_Load(pathText);
-    if (!surface) {
-        printf("Failed to load image: %s\n", IMG_GetError());
-        return;
+void drawButtonImg(ButtonImg *button) {
+    if (!button) return;
+    if (button->backgroundTexture) {
+        SDL_RenderCopy(renderer, button->backgroundTexture, NULL, &button->rect);
     }
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-    if (!texture) {
-        printf("Failed to create texture: %s\n", SDL_GetError());
-        SDL_FreeSurface(surface);
-        return;
+    if (button->imgTexture) {
+        int icon_width, icon_height;
+        SDL_QueryTexture(button->imgTexture, NULL, NULL, &icon_width, &icon_height);
+        
+        // Calcule la taille de l'image en fonction de la taille du bouton
+        int img_width = button->rect.w * 0.6;  // 70% 
+        int img_height = button->rect.h * 0.6; // 70%
+        
+        // Calcule la position de l'image pour la centrer
+        SDL_Rect imgRect = {
+            button->rect.x + (button->rect.w - img_width) / 2,
+            button->rect.y + (button->rect.h - img_height) / 2,
+            img_width,
+            img_height
+        };
+        
+        // Applique l'offset de l'image
+        imgRect.x -= button->offsetLogoX;
+        imgRect.y -= button->offsetLogoY;
+        
+        SDL_RenderCopy(renderer, button->imgTexture, NULL, &imgRect);
     }
-    
-    SDL_Surface *surfaceBackground = IMG_Load(pathBackground);
-    if (!surfaceBackground) {
-        printf("Failed to load image: %s\n", IMG_GetError());
-        SDL_DestroyTexture(texture);
-        SDL_FreeSurface(surface);
-        return;
-    }
-    SDL_Texture *textureBackground = SDL_CreateTextureFromSurface(renderer, surfaceBackground);
-    if (!textureBackground) {
-        printf("Failed to create texture: %s\n", SDL_GetError());
-        SDL_DestroyTexture(texture);
-        SDL_FreeSurface(surface);
-        SDL_FreeSurface(surfaceBackground);
-        return;
-    }
-
-    SDL_FreeSurface(surface);
-    SDL_FreeSurface(surfaceBackground);
-
-    int icon_width, icon_height;
-    SDL_QueryTexture(texture, NULL, NULL, &icon_width, &icon_height);
-    SDL_Rect rectOffest = {rect.x - offsetLogoX, rect.y - offsetLogoY, rect.w, rect.h};
-
-    SDL_RenderCopy(renderer, textureBackground, NULL, &rect);
-    SDL_RenderCopy(renderer, texture, NULL, &rectOffest);
-
-    SDL_DestroyTexture(textureBackground);
-    SDL_DestroyTexture(texture);
 }
 
 void initListButton(ListeButton *listeButton) {
@@ -110,8 +108,7 @@ void initListButtonImg(ListeButtonImg *listeButtonImg) {
     }
 }
 
-
-void createButton(uiPage * page,SDL_Rect rect, SDL_Color color, int txtInd, int * info,float growEffect,SDL_Color colorHover,  int (*callFunction)(void **), int numArgs, ...) {
+void createButton(uiPage * page,SDL_Rect rect, char * pathImg, char *hoverPath,TTF_Font *Textfont,SDL_Color color, int txtInd, int * info,float growEffect,int (*callFunction)(void **), int numArgs, ...) {
     if (page->buttonsList == NULL) {
         initListButton(page->buttonsList);
     }
@@ -122,32 +119,179 @@ void createButton(uiPage * page,SDL_Rect rect, SDL_Color color, int txtInd, int 
         params[i] = va_arg(args, void *);
     }
     va_end(args);
-
+    
+    // Création du bouton
     Button newButton;
     newButton.rect = rect;
     newButton.iniRect = rect;
-    newButton.color = color;
-    newButton.iniColor = color;
+    newButton.textColor = color;
     newButton.text = txtInd;
     newButton.info = info;
     newButton.growEffect = growEffect;
-    newButton.colorHover = colorHover;
     newButton.callFunction = callFunction;
     newButton.args = malloc(numArgs * sizeof(void *));
     for (int i = 0; i < numArgs; i++) {
-        newButton.args[i] = params[i];
+        newButton.args[i] = params[i]; // Assignation des arguments
     }
 
+    //Création de la texture du bouton (arrire plan)
+    if (!setButtonTexture(&newButton.texture, pathImg)){
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.texture): %s\n", IMG_GetError());
+        return;
+    }
+    if (!setButtonTexture(&newButton.initialTexture, pathImg)){
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.initialTexture): %s\n", IMG_GetError());
+        return;
+    }
+    newButton.font = Textfont ? Textfont : font;  // Si la police de caractère n'est pas spécifié on utilise la police par défaut
+
+    // Création de la texture du hover (si spécifié)
+    if (hoverPath){
+        if (!setButtonTexture(&newButton.selectedTexture, hoverPath)){
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.selectedTexture): %s\n", IMG_GetError());
+            return;
+        }
+    }
+    // Création de la texture du texte avec l'info si spécifié
+    SDL_Surface *textSurface;
+    if (newButton.info == NULL) { // Gestion du cas ou le texte n'a pas besoin d'info
+        textSurface = TTF_RenderText_Blended(newButton.font, Traduction(newButton.text), newButton.textColor);
+    }else{
+        // Gestion du cas ou le texte a besoin d'info
+        char infoTxt[50];
+        sprintf(infoTxt, "%d", *info);
+        char *txt=malloc(sizeof(char) * strlen(Traduction(newButton.text)) + sizeof(char) * strlen(infoTxt) + 3);
+        sprintf(txt, "%s: %d", Traduction(newButton.text), *info);
+        textSurface = TTF_RenderText_Blended(newButton.font, txt, newButton.textColor);
+        free(txt);
+    }
+    if (!textSurface) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to render text: %s\n", TTF_GetError());
+        return;
+    }
+    // Création de la texture du texte
+    newButton.textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    if (!newButton.textTexture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to create texture: %s\n", SDL_GetError());
+        SDL_FreeSurface(textSurface);
+        return;
+    }
+    // Calcul de la position du texte pour le centrer
+    float scale = 1.0;
+    if (textSurface->w > newButton.rect.w) {
+        scale = (float)newButton.rect.w / (float) textSurface->w;
+    }
+    if (textSurface->h > newButton.rect.h) {
+        float scale_h = (float)newButton.rect.h / (float) textSurface->h;
+        if (scale_h < scale) {
+            scale = scale_h;
+        }
+    }
+    // -2 sur le y pour centrer le texte car il y a un effet 3d sur le bouton
+    newButton.textRect = (SDL_Rect) {newButton.rect.x + rect.w / 2 - textSurface->w * scale / 2, newButton.rect.y + newButton.rect.h / 2 - textSurface->h * scale / 2 -2, textSurface->w * scale, textSurface->h * scale};
+    newButton.textIniRect = newButton.textRect;
+    SDL_FreeSurface(textSurface);
+
+    // Ajout du bouton à la page
     page->buttonsList->buttons = realloc(page->buttonsList->buttons, (page->buttonsList->nbButton + 1) * sizeof(Button));
     if (page->buttonsList->buttons != NULL) {
         page->buttonsList->buttons[page->buttonsList->nbButton] = newButton;
         page->buttonsList->nbButton++;
     } else {
+        printf("Button: Erreur lors de l'ajout du bouton a la page\n");
         free(newButton.args);
+        SDL_DestroyTexture(newButton.texture);
+        SDL_DestroyTexture(newButton.initialTexture);
+        SDL_DestroyTexture(newButton.selectedTexture);
+        SDL_DestroyTexture(newButton.textTexture);
     }
 }
 
-void createImgButton(uiPage * page,SDL_Rect rect, char *texture, char *background, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
+void setButtonScale(Button *button, float scale) {
+    if (!button) {
+        SDL_Log("Button : setButtonScale : button is NULL");
+        return;
+    }
+    button->rect = (SDL_Rect){
+        button->iniRect.x - (button->iniRect.w * (scale - 1) / 2),
+        button->iniRect.y - (button->iniRect.h * (scale - 1) / 2),
+        button->iniRect.w * scale,
+        button->iniRect.h * scale
+    };
+    if (button->textTexture) {
+        button->textRect = (SDL_Rect){
+            button->textIniRect.x - (button->textIniRect.w * (scale - 1) / 2),
+            button->textIniRect.y - (button->textIniRect.h * (scale - 1) / 2),
+            button->textIniRect.w * scale,
+            button->textIniRect.h * scale
+        };
+    }
+}
+
+void setButtonText(Button *button, const char *text){
+    if (!button) {
+        SDL_Log("Button : setButtonText : button is NULL");
+        return;
+    }
+    if (!text) {
+        SDL_Log("Button : setButtonText : text is NULL");
+        return;
+    }
+    //Détruit l'ancienne texture
+    if (button->textTexture) {
+        SDL_DestroyTexture(button->textTexture);
+        button->textTexture = NULL;
+    }
+    //Création de la nouvelle texture du texte
+    SDL_Surface *textSurface = TTF_RenderText_Blended(button->font, text, button->textColor);
+    if (!textSurface) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to render text: %s\n", TTF_GetError());
+        return;
+    }
+    button->textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    SDL_FreeSurface(textSurface);
+    if (!button->textTexture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to create texture: %s\n", SDL_GetError());
+        SDL_FreeSurface(textSurface);
+        return;
+    }
+}
+
+void refreshButtonShop(){
+    if (pageHolder.page == NULL ||  pageHolder.page[0].buttonsList == NULL){
+        return;
+    }
+    //Update du bouton pour afficher le nouveau prix (1 est son indice dans la liste des boutons)
+    char txt[50] = "";
+    sprintf(txt, "%s: %d", Traduction(pageHolder.page[0].buttonsList->buttons[1].text), shop.nextPrice);
+    setButtonText(&pageHolder.page[0].buttonsList->buttons[1], txt);
+}
+
+void refreshButtonLanguage(){
+    if (pageHolder.page == NULL || pageHolder.page[0].buttonsList == NULL || pageHolder.page[1].buttonsList == NULL){
+        return;
+    }
+    for (int i = 0; i < pageHolder.page[0].buttonsList->nbButton; i++){
+        if (pageHolder.page[0].buttonsList->buttons[i].info != NULL){
+            char txt[50] = "";
+            sprintf(txt, "%s: %d", Traduction(pageHolder.page[0].buttonsList->buttons[i].text), *pageHolder.page[0].buttonsList->buttons[i].info);
+            setButtonText(&pageHolder.page[0].buttonsList->buttons[i], txt);
+        } else {
+            setButtonText(&pageHolder.page[0].buttonsList->buttons[i], Traduction(pageHolder.page[0].buttonsList->buttons[i].text));
+        }
+    }
+    for (int i=0; i<pageHolder.page[1].buttonsList->nbButton; i++){
+        if (pageHolder.page[1].buttonsList->buttons[i].info != NULL){
+            char txt[50] = "";
+            sprintf(txt, "%s: %d", Traduction(pageHolder.page[1].buttonsList->buttons[i].text), *pageHolder.page[1].buttonsList->buttons[i].info);
+            setButtonText(&pageHolder.page[1].buttonsList->buttons[i], txt);
+        } else {
+            setButtonText(&pageHolder.page[1].buttonsList->buttons[i], Traduction(pageHolder.page[1].buttonsList->buttons[i].text));
+        }
+    }
+}
+
+void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
     if (page->buttonsImgList == NULL) {
         initListButtonImg(page->buttonsImgList);
     }
@@ -161,8 +305,6 @@ void createImgButton(uiPage * page,SDL_Rect rect, char *texture, char *backgroun
 
     ButtonImg newButton;
     newButton.rect = rect;
-    newButton.texture = texture;
-    newButton.background = background;
     newButton.offsetLogoX = offsetLogoX;
     newButton.offsetLogoY = offsetLogoY;
     newButton.callFunction = callFunction;
@@ -170,17 +312,28 @@ void createImgButton(uiPage * page,SDL_Rect rect, char *texture, char *backgroun
     for (int i = 0; i < numArgs; i++) {
         newButton.args[i] = params[i];
     }
+    if (!setButtonTexture(&newButton.imgTexture, pathImg)){
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.imgTexture)->%s : %s\n",pathImg,IMG_GetError());
+        return;
+    }
+    if (!setButtonTexture(&newButton.backgroundTexture, pathBackground)){
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.backgroundTexture) ->%s : %s\n", pathBackground,IMG_GetError());
+        return;
+    }
 
     page->buttonsImgList->buttons = realloc(page->buttonsImgList->buttons, (page->buttonsImgList->nbButton + 1) * sizeof(ButtonImg));
     if (page->buttonsImgList->buttons != NULL) {
         page->buttonsImgList->buttons[page->buttonsImgList->nbButton] = newButton;
         page->buttonsImgList->nbButton++;
     } else {
+        printf("Button: Erreur lors de l'ajout du boutonImg a la page\n");
         free(newButton.args);
+        SDL_DestroyTexture(newButton.imgTexture);
+        SDL_DestroyTexture(newButton.backgroundTexture);
     }
 }
 
-void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font) {
+void ButtonHandle() {
     if (currentpage->buttonsList == NULL) {
         printf("Initialisation de listeButton\n");
         initListButton(currentpage->buttonsList);
@@ -190,59 +343,89 @@ void ButtonHandle(SDL_Renderer *renderer, TTF_Font *font) {
         initListButtonImg(currentpage->buttonsImgList);
     }
     if (currentpage->buttonsImgList != NULL) {
-        for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) {
-            draw_button_image(renderer, currentpage->buttonsImgList->buttons[i].rect, currentpage->buttonsImgList->buttons[i].background, currentpage->buttonsImgList->buttons[i].texture, currentpage->buttonsImgList->buttons[i].offsetLogoX , currentpage->buttonsImgList->buttons[i].offsetLogoY);
-        }
+        for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) 
+            drawButtonImg(&currentpage->buttonsImgList->buttons[i]);
     } else {
         printf("Erreur: listeButtonImg est toujours NULL après initialisation\n");
     }
     if (currentpage->buttonsList != NULL) {
         for (int i = 0; i < currentpage->buttonsList->nbButton; i++) {
-            char txt[50] = "";
-            if (currentpage->buttonsList->buttons[i].info != NULL) {
-                sprintf(txt, "%s %d", Traduction(currentpage->buttonsList->buttons[i].text), *currentpage->buttonsList->buttons[i].info);
-            }   
-            else{
-                sprintf(txt, "%s", Traduction(currentpage->buttonsList->buttons[i].text));
-            }
-            draw_button(renderer, currentpage->buttonsList->buttons[i].rect, currentpage->buttonsList->buttons[i].color, txt, font);
+            drawButton(&currentpage->buttonsList->buttons[i]);
             if (checkBoutton(currentpage->buttonsList->buttons[i].rect, mouseX, mouseY)) {
-                currentpage->buttonsList->buttons[i].color = currentpage->buttonsList->buttons[i].colorHover;
-                if (currentpage->buttonsList->buttons[i].growEffect != 0) {
-                    currentpage->buttonsList->buttons[i].rect = (SDL_Rect){
-                        currentpage->buttonsList->buttons[i].iniRect.x - (currentpage->buttonsList->buttons[i].iniRect.w * (currentpage->buttonsList->buttons[i].growEffect - 1) / 2),
-                        currentpage->buttonsList->buttons[i].iniRect.y - (currentpage->buttonsList->buttons[i].iniRect.h * (currentpage->buttonsList->buttons[i].growEffect - 1) / 2),
-                        currentpage->buttonsList->buttons[i].iniRect.w * currentpage->buttonsList->buttons[i].growEffect,
-                        currentpage->buttonsList->buttons[i].iniRect.h * currentpage->buttonsList->buttons[i].growEffect
-                    };
+                if (currentpage->buttonsList->buttons[i].selectedTexture) {
+                    currentpage->buttonsList->buttons[i].texture = currentpage->buttonsList->buttons[i].selectedTexture;
+                }
+                if (currentpage->buttonsList->buttons[i].growEffect > 1) {
+                    setButtonScale(&currentpage->buttonsList->buttons[i], currentpage->buttonsList->buttons[i].growEffect);
                 }
             } else {
-                currentpage->buttonsList->buttons[i].color = currentpage->buttonsList->buttons[i].iniColor;
-                if (currentpage->buttonsList->buttons[i].growEffect) {
-                    currentpage->buttonsList->buttons[i].rect = currentpage->buttonsList->buttons[i].iniRect;
+                if (currentpage->buttonsList->buttons[i].selectedTexture) {
+                    currentpage->buttonsList->buttons[i].texture = currentpage->buttonsList->buttons[i].initialTexture;
+                }
+                if (currentpage->buttonsList->buttons[i].growEffect > 1) {
+                    setButtonScale(&currentpage->buttonsList->buttons[i], 1);
                 }
             }
         }
     } else {
         printf("Erreur: listeButton est toujours NULL après initialisation\n");
     }
-}
+} 
 
-
-void destroyButton(ListeButton *listeButton) {
+void destroyAllButtonFromPage(ListeButton *listeButton) {
+    if (!listeButton) return;
+    
     for (int i = 0; i < listeButton->nbButton; i++) {
-        free(listeButton->buttons[i].args);
-        listeButton->buttons[i].args = NULL;
+        if (listeButton->buttons[i].args) {
+            free(listeButton->buttons[i].args);
+            listeButton->buttons[i].args = NULL;
+        }
+        
+        SDL_Texture *textureToFree = listeButton->buttons[i].texture;
+        SDL_Texture *initialTextureToFree = listeButton->buttons[i].initialTexture;
+        SDL_Texture *selectedTextureToFree = listeButton->buttons[i].selectedTexture;
+        
+        // Libérer texture principale si elle existe
+        if (textureToFree) {
+            SDL_DestroyTexture(textureToFree);
+            listeButton->buttons[i].texture = NULL;
+        }
+        
+        // Libérer initialTexture seulement si elle est différente de texture
+        if (initialTextureToFree && initialTextureToFree != textureToFree) {
+            SDL_DestroyTexture(initialTextureToFree);
+        }
+        listeButton->buttons[i].initialTexture = NULL;
+        
+        // Libérer selectedTexture seulement si elle existe et est différente des autres
+        if (selectedTextureToFree && selectedTextureToFree != textureToFree && selectedTextureToFree != initialTextureToFree) {
+            SDL_DestroyTexture(selectedTextureToFree);
+        }
+        listeButton->buttons[i].selectedTexture = NULL;
+        
+        // Libérer textTexture
+        if (listeButton->buttons[i].textTexture) {
+            SDL_DestroyTexture(listeButton->buttons[i].textTexture);
+            listeButton->buttons[i].textTexture = NULL;
+        }
     }
-    free(listeButton->buttons);
-    listeButton->buttons = NULL;
+    
+    if (listeButton->buttons) {
+        free(listeButton->buttons);
+        listeButton->buttons = NULL;
+    }
+    
     free(listeButton);
 }
 
-void destroyButtonImg(ListeButtonImg *listeButtonImg) {
+void destroyAllButtonImgFromPage(ListeButtonImg *listeButtonImg) {
     for (int i = 0; i < listeButtonImg->nbButton; i++) {
         free(listeButtonImg->buttons[i].args);
         listeButtonImg->buttons[i].args = NULL;
+        SDL_DestroyTexture(listeButtonImg->buttons[i].imgTexture);
+        listeButtonImg->buttons[i].imgTexture = NULL;
+        SDL_DestroyTexture(listeButtonImg->buttons[i].backgroundTexture);
+        listeButtonImg->buttons[i].backgroundTexture = NULL;
     }
     free(listeButtonImg->buttons);
     listeButtonImg->buttons = NULL;

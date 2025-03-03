@@ -7,6 +7,8 @@
 #include "../lib/aff.h"
 #include "../lib/sdl.h"
 #include "../lib/player.h"
+#include "../lib/lang.h"
+#include "../lib/ui.h"
 
 levelInfo level;
 
@@ -40,21 +42,24 @@ int initLevel(monstreInfo monstre[]) {
 
 int attack(void * args[20]) {
     int * damage= args[0];
+    char txt[50] = "";
+    uiTxt * txtHolder;
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     currentMonstre->mobHealth -=  *damage;
-
     if (currentMonstre->mobHealth <= 0) {
         level.mobKilled += 1;
-        gold += currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1);
+        addGold(currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1));
         currentMonstre->mobHealth = currentMonstre->iniHealth;
-
         if (level.mobKilled >= level.mobToKill) {
             level.currentLvl += 1;
             level.mobKilled = 0;
             mobHandler();
-            refreshMobHealth();
+            refreshCurrentLvl();
         }
+        refreshMobKilled();
     }
+    //Actualisation de la vie du monstre (A la fin pour eviter d'avoir la vie du monstre a 0 ou -)
+    refreshMobHealth();
     return 1;
 }
 
@@ -77,7 +82,7 @@ int writeBossTimer(SDL_Rect dest) {
     int timeLeft = level.timeToKill - (SDL_GetTicks() - level.startTimer) / 1000;
     char timeLeftTxt[100];
     sprintf(timeLeftTxt, "%d", timeLeft);
-    affiche_txt(renderer, font, timeLeftTxt, getSizeForText(font,timeLeftTxt, dest), (SDL_Color){255, 255, 255, 255});
+    // affiche_txt(renderer, font, timeLeftTxt, getSizeForText(font,timeLeftTxt, dest), (SDL_Color){255, 255, 255, 255});
     if (timeLeft <= 0) {
         return 1;
     }

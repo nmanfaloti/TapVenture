@@ -2,14 +2,11 @@
 #include "../lib/aff.h"
 #include "../lib/input_user.h"
 
-#define LINK_FONT "assets/fonts/ChakraPetch-SemiBold.ttf"
-
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 TTF_Font *font = NULL;
 
 int init_SDL(){
-    
     if (SDL_Init(SDL_INIT_VIDEO)){
         printf("Error SDL_Init\n");
         return 1;
@@ -51,6 +48,10 @@ int init_SDL(){
 }
 
 void SDLExit(){
+    if (font != NULL){
+        TTF_CloseFont(font);
+        font = NULL;
+    }
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

@@ -22,9 +22,9 @@ int main() {
         return 1;
     }
 
-    
     initLevel(level.monstre);
     initShop();
+    initLang("English");
     initPage();
 
     void * argument[20];
@@ -42,7 +42,7 @@ int main() {
             running = input_event(event);
         }
         SDLScreenHandler();
-        ButtonHandle(renderer, font);
+        ButtonHandle();
         uiHandle();
         attackHeros(heros, argument);
         updateChallenge();

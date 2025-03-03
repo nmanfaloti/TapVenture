@@ -1,6 +1,8 @@
 #include <string.h>
 #include <stdio.h>
 #include "../lib/lang.h"
+#include "../lib/button.h"
+#include "../lib/aff.h"
 
 Lang en = {
     .Language = "English",
@@ -25,7 +27,7 @@ Lang en = {
         [WINDOWED_MSG] = "Windowed",
         [CHALLENGE_DESC_MSG_WIN] = "You earned gold by completing the challenge: ",
         [CHALLENGE_DESC_MSG_LOSE] = "You failed the challenge",
-        [CHALLENGE_DESC_MSG_COOLDOWN] = "You must wait before starting a new challenge: "
+        [NOTIF_TITLE] = "Notification"
         
     }
 };
@@ -53,7 +55,7 @@ Lang fr = {
         [WINDOWED_MSG] = "Mode Fenetre",
         [CHALLENGE_DESC_MSG_WIN] = "Vous avez gagner de l'or en reussissant le challenge: ",
         [CHALLENGE_DESC_MSG_LOSE] = "Vous avez echouer le challenge",
-        [CHALLENGE_DESC_MSG_COOLDOWN] = "Vous devez attendre avant de lancer un nouveau challenge: "
+        [NOTIF_TITLE] = "Notification"
     }
 };
 
@@ -73,6 +75,8 @@ int SelectLanguage(void * l[20]) {
         printf("Language not found %s\n", *lang);
         LanguageAct = en;
     }
+    refreshButtonLanguage();
+    refreshUILanguage();
     return 0;
 }
 
@@ -84,4 +88,6 @@ void initLang(char * lang){
     } else {
         LanguageAct = en;
     }
+    refreshButtonLanguage();
+    refreshUILanguage();
 }

@@ -103,7 +103,6 @@ void printTree(){
     printf("--------------------------------\n");
 }
 
-
 int canBuy(char *selectedTree, int index){
     if (index == 0){
         return 1;

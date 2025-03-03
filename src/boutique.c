@@ -1,5 +1,7 @@
 #include "../lib/boutique.h"
 #include "../lib/player.h"
+#include "../lib/button.h"
+
 #include <math.h>
 
 
@@ -40,11 +42,12 @@ int getDamageFromLevel(int level) {
 
 int upgradeButton(void * args[20]) {
     if (gold >= shop.nextPrice) {
-        gold -= shop.nextPrice;
+        addGold(-shop.nextPrice);
         shop.damageLevel += 1;
         shop.lastPrice = shop.nextPrice;
         shop.nextPrice = getPriceKnowLevel(shop.lastPrice, shop.damageLevel + 1);
-        damage_click = damage_click * 1.25;
+        setPlayerDamage(damage_click*1.25);
+        refreshButtonShop();
     }
 
     return 0;
