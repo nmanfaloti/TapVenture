@@ -12,7 +12,7 @@
 #define DURATION 30 // Durée du challenge en secondes
 #define TARGET 15 // Nombre de monstres à tuer pour réussir le challenge
 #define REWARD 500 // Récompense pour avoir réussi le challenge * le lvl actuel
-#define COOLDOWN 60*0 // Cooldown en minutes entre chaque challenge
+#define COOLDOWN 60*30 // Cooldown en minutes entre chaque challenge
 
 
 Challenge_t challenge = {
@@ -39,8 +39,8 @@ int launchChallenge() {
         return 1;
     }
     if (time(NULL) - challenge.lastTime < challenge.cooldown) {
-        //sprintf(timeToWaitMsg, "%s %ld %s",Traduction(CHALLENGE_DESC_MSG_COOLDOWN), 30 - (time(NULL) - challenge.lastTime) / 60,"minutes");
-        //createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},35, 1.8,1,timeToWaitMsg);
+        sprintf(timeToWaitMsg, "%s %ld %s",Traduction(CHALLENGE_DESC_MSG_COOLDOWN), 30 - (time(NULL) - challenge.lastTime) / 60,"minutes");
+        createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, timeToWaitMsg);
         return 1;
     }
     printf("Challenge lancé !\n");
@@ -77,7 +77,7 @@ void updateChallenge() {
     int currentTime = SDL_GetTicks();
     int elapsedTimeChallenge = (currentTime - challenge.startTime) / 1000;
     if (elapsedTimeChallenge >= challenge.duration) {
-        //createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,1, Traduction(CHALLENGE_DESC_MSG_LOSE));
+        createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, Traduction(CHALLENGE_DESC_MSG_LOSE));
         resetChallenge();
         return;
     }
@@ -87,8 +87,8 @@ void updateChallenge() {
         char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;
         addGold(challenge.reward * lvl);
-        sprintf(goldEarnedMsg, "%d", challenge.reward * lvl);
-        // createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,2, Traduction(CHALLENGE_DESC_MSG_WIN), goldEarnedMsg);
+        sprintf(goldEarnedMsg, "%s %d",Traduction(CHALLENGE_DESC_MSG_WIN), challenge.reward * lvl);
+        createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, goldEarnedMsg);
         resetChallenge();
         return;
     }
