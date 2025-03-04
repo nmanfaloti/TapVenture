@@ -13,6 +13,8 @@
 #include "../lib/player.h"
 #include "../lib/boutique.h"
 #include "../lib/challenge.h"
+#include "../lib/chaine.h"
+
 
 int widthscreen = 800;
 int heightscreen = 500;
@@ -67,18 +69,14 @@ void refreshMobHealth(){
     if (txtHolder == NULL){
         return;
     }
-    char txt[50];
-    sprintf(txt, "%s: %d", Traduction(txtHolder->tradID), level.monstre[level.currentLvl].mobHealth);
-    setUiText(txtHolder, txt);
+    setUiText(txtHolder, formatChaine("%t: %d",VIE_MSG, level.monstre[level.currentLvl].mobHealth));
 }
 void refreshCurrentLvl(){
     uiTxt * txtHolder = getTxtFromLabel("currentLvl");
     if (txtHolder == NULL){
         return;
     }
-    char txt[50];
-    sprintf(txt, "%s: %d", Traduction(txtHolder->tradID), level.currentLvl);
-    setUiText(txtHolder, txt);
+    setUiText(txtHolder, formatChaine("%t: %d",LVL_MSG, level.currentLvl));
 }
 
 void refreshMobKilled(){
@@ -86,19 +84,16 @@ void refreshMobKilled(){
     if (txtHolder == NULL){
         return;
     }
-    char txt[50];
-    sprintf(txt, "%s: %d/%d", Traduction(txtHolder->tradID), level.mobKilled, level.mobToKill);
-    setUiText(txtHolder, txt);
+    setUiText(txtHolder, formatChaine("%t: %d/10",MOB_MSG, level.mobKilled));
 }
 
-void createUIText(uiPage * page,TTF_Font* font,int tradID,int * info, SDL_Rect dest, SDL_Color color, char * label){
+void createUIText(uiPage * page,TTF_Font* font, char * chaine, SDL_Rect dest, SDL_Color color, char * label){
     if (page->container->txt == NULL) {
         page->container->txt = malloc(sizeof(uiTxt));
     } else {
         page->container->txt = realloc(page->container->txt, sizeof(uiTxt) * (page->container->nbTxt + 1));
     }
-    page->container->txt[page->container->nbTxt].tradID = tradID;
-    page->container->txt[page->container->nbTxt].info = info;
+    page->container->txt[page->container->nbTxt].chaine = chaine;
     page->container->txt[page->container->nbTxt].dest = dest;
     page->container->txt[page->container->nbTxt].color = color;
     page->container->txt[page->container->nbTxt].label = malloc(strlen(label) + 1);
@@ -106,17 +101,8 @@ void createUIText(uiPage * page,TTF_Font* font,int tradID,int * info, SDL_Rect d
     
     // Création de la texture du texte avec l'info si spécifié
     SDL_Surface *textSurface;
-    if (info == NULL) { // Gestion du cas ou le texte n'a pas besoin d'info
-        textSurface = TTF_RenderText_Blended(font, Traduction(tradID), color);
-    }else{
-        // Gestion du cas ou le texte a besoin d'info
-        char infoTxt[50];
-        sprintf(infoTxt, "%d", *info);
-        char *txt=malloc(sizeof(char) * strlen(Traduction(tradID)) + sizeof(char) * strlen(infoTxt) + 3);
-        sprintf(txt, "%s: %d", Traduction(tradID), *info);
-        textSurface = TTF_RenderText_Blended(font, txt, color);
-        free(txt);
-    }
+    textSurface = TTF_RenderText_Blended(font, chaine, color);
+    
     if (!textSurface) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to render text: %s\n", TTF_GetError());
         return;
@@ -151,6 +137,10 @@ void uiHandle(){
 
 void destroyUItxt(uiTxt * txt){
     if (txt) {
+        if (txt->chaine) {
+            free(txt->chaine);
+            txt->chaine = NULL;
+        }
         if (txt->label) {
             free(txt->label);
             txt->label = NULL;
@@ -177,6 +167,10 @@ void setUiText(uiTxt *txt, const char *text) {
         SDL_DestroyTexture(txt->texture);
         txt->texture = NULL;
     }
+    //free l'ancienne chaine 
+    free(txt->chaine);
+    txt->chaine = (char *)text;
+
     // Création de la nouvelle texture du texte
     SDL_Surface *textSurface = TTF_RenderText_Blended(font, text, txt->color);
     if (!textSurface) {
@@ -196,34 +190,8 @@ void refreshUILanguage(){
     if (pageHolder.page == NULL) {
         return;
     }
-    // Mettre à jour les textes UI de la page principale
-    if (pageHolder.page[0].container != NULL && pageHolder.page[0].container->txt != NULL) {
-        for (int i = 0; i < pageHolder.page[0].container->nbTxt; i++) {
-            if (pageHolder.page[0].container->txt[i].info != NULL) {
-                char txt[50] = "";
-                sprintf(txt, "%s: %d", Traduction(pageHolder.page[0].container->txt[i].tradID), 
-                       *pageHolder.page[0].container->txt[i].info);
-                setUiText(&pageHolder.page[0].container->txt[i], txt);
-            } else {
-                setUiText(&pageHolder.page[0].container->txt[i], Traduction(pageHolder.page[0].container->txt[i].tradID));
-            }
-        }
-    }
-    
-    // Mettre à jour les textes UI de la page des paramètres
-    if (pageHolder.pageNb > 1 && pageHolder.page[1].container != NULL && 
-        pageHolder.page[1].container->txt != NULL) {
-        for (int i = 0; i < pageHolder.page[1].container->nbTxt; i++) {
-            if (pageHolder.page[1].container->txt[i].info != NULL) {
-                char txt[50] = "";
-                sprintf(txt, "%s: %d", Traduction(pageHolder.page[1].container->txt[i].tradID), 
-                       *pageHolder.page[1].container->txt[i].info);
-                setUiText(&pageHolder.page[1].container->txt[i], txt);
-            } else {
-                setUiText(&pageHolder.page[1].container->txt[i], Traduction(pageHolder.page[1].container->txt[i].tradID));
-            }
-        }
-    }
+    destroyPages();
+    initPage();
 }
 
 
@@ -307,12 +275,17 @@ void initMainPage(){
     pageHolder.page[0].container->nbTxt = 0;
     pageHolder.page[0].container->txt = NULL;
 
-    createUIText(&pageHolder.page[0],font,VIE_MSG, &(level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
+    /*createUIText(&pageHolder.page[0],font,VIE_MSG, &(level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
     createUIText(&pageHolder.page[0],font,OR_MSG, &gold, (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
     createUIText(&pageHolder.page[0],font,DMG_MSG, &damage_click, (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255} , "playerDamage");
     createUIText(&pageHolder.page[0],font,MOB_MSG, &level.mobKilled, getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255}, "mobKilled");
-    createUIText(&pageHolder.page[0],font,LVL_MSG, &level.currentLvl, getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");
-    
+    createUIText(&pageHolder.page[0],font,LVL_MSG, &level.currentLvl, getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");*/
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",VIE_MSG, level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",DMG_MSG, damage_click), (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255} , "playerDamage");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d/10",MOB_MSG, level.mobKilled), getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255}, "mobKilled");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",LVL_MSG, level.currentLvl), getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");
+
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, CLICK_MSG, NULL, 1.1, attack, 1, &damage_click);
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, &(shop.nextPrice),0.5, upgradeButton, 3, &damage_click, &gold, &shop);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[1]);
@@ -335,7 +308,7 @@ void initSettingsPage(){
     window_txt = malloc(strlen("Window") + 1);
     sprintf(window_txt, "Window");
 
-    createUIText(&pageHolder.page[1],font,SETTING_MSG,NULL, getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255}, "settingsTitle");
+    createUIText(&pageHolder.page[1],font,formatChaine("%t",SETTING_MSG), getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255}, "settingsTitle");
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(20), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FR_MSG, NULL, 1.05, SelectLanguage, 1, &fr_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(20), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, EN_MSG, NULL, 1.05, SelectLanguage, 1, &en_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FULLSCREEN_MSG, NULL, 1.05, SelectScreen, 1, &full_txt);
@@ -350,6 +323,11 @@ void initPage(){
     pageHolder.page = malloc(sizeof(uiPage) * pageHolder.pageNb);
     initMainPage();
     initSettingsPage();
+}
+
+void destroyPages(){
+    destroyPage(&pageHolder.page[0]);
+    destroyPage(&pageHolder.page[1]);
 }
 
 void destroyAllPages(){
@@ -417,7 +395,7 @@ char * createNotif(int tradId, int titleYOffset,float titleSize,char * imgBackgr
         dest.w / 2 * notifList.notif[notifList.nbNotif].titleSize,
         dest.h * notifList.notif[notifList.nbNotif].titleSize
     );
-    createUIText(currentpage, font, tradId, NULL, titleRect, (SDL_Color){255, 255, 255, 255}, strdup(notif_label));
+    createUIText(currentpage, font, formatChaine("%t",tradId), titleRect, (SDL_Color){255, 255, 255, 255}, strdup(notif_label));
     
     // Créer les UIText pour chaque ligne de description
     int lineHeight = 15;
@@ -430,7 +408,7 @@ char * createNotif(int tradId, int titleYOffset,float titleSize,char * imgBackgr
             dest.w / 2 * notifList.notif[notifList.nbNotif].messSize, 
             lineHeight * notifList.notif[notifList.nbNotif].messSize
         );
-        createUIText(currentpage, font, tradId, NULL, lineDest, (SDL_Color){255, 255, 255, 255}, strdup(notif_label));
+        createUIText(currentpage, font, formatChaine("%t",tradId), lineDest, (SDL_Color){255, 255, 255, 255}, strdup(notif_label));
     }
     
     notifList.nbNotif++;

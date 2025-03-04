@@ -16,8 +16,11 @@
 #include "../lib/player.h"
 #include "../lib/ui.h"
 #include "../lib/challenge.h"
+#include "../lib/chaine.h"
+
 
 int main() {
+
     if (init_SDL()){
         return 1;
     }
@@ -26,11 +29,6 @@ int main() {
     initShop();
     initLang("English");
     initPage();
-
-    void * argument[20];
-    argument[0] = &gold;
-    argument[2] = &level.mobKilled;
-    argument[3] = &level.mobToKill;
     
     int running = 1;
     SDL_Event event;
@@ -44,7 +42,7 @@ int main() {
         SDLScreenHandler();
         ButtonHandle();
         uiHandle();
-        attackHeros(heros, argument);
+        attackHeros();
         updateChallenge();
 
         SDL_RenderPresent(renderer);

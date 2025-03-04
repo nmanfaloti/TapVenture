@@ -3,6 +3,7 @@
 #include "../lib/ui.h"
 #include "../lib/lang.h"
 #include "../lib/aff.h"
+#include "../lib/chaine.h"
 #include <time.h>
 
 int gold = 0;
@@ -25,17 +26,13 @@ void goldGainOffline(time_t lastSaveTime){
 void addGold(int goldToAdd){
     gold += goldToAdd;
     //Update l'affichage de l'or
-    char txt[50];
     uiTxt *txtToChange = getTxtFromLabel("playerGold");
-    sprintf(txt, "%s: %d", Traduction(txtToChange->tradID), gold);
-    setUiText(txtToChange, txt);
+    setUiText(txtToChange, formatChaine("%t: %d",OR_MSG, gold));
 }
 
 void setPlayerDamage(int damage){
     damage_click = damage;
     //Update l'affichage des dégats
-    char txt[50];
     uiTxt *txtToChange = getTxtFromLabel("playerDamage");
-    sprintf(txt, "%s: %d", Traduction(txtToChange->tradID), damage_click);
-    setUiText(txtToChange, txt);
+    setUiText(txtToChange, formatChaine("%t: %d",DMG_MSG, damage_click));
 }

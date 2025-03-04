@@ -3,8 +3,7 @@
 #include <SDL2/SDL_ttf.h>
 
 typedef struct uiTxt_s{
-    int tradID;
-    int * info; 
+    char * chaine;
     char * label;
     SDL_Rect dest;
     SDL_Color color;

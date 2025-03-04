@@ -11,6 +11,7 @@
 #include "../lib/boutique.h"
 #include "../lib/ui.h"
 #include "../lib/button.h"
+#include "../lib/chaine.h"
 
 
 
@@ -139,16 +140,6 @@ int createValueForKey(char * key, char * value, char * nom_ficher){
     return 0;
 }
 
-//concatene 2 chaine et malloc un espace pour les stocker
-char * strCatMalloc(const char * srt1, const char * str2){
-    char * result = malloc(strlen(srt1) + strlen(str2) + 1);
-    if (result == NULL) {
-        printf("Erreur lors de l'allocation de mémoire dans strCatMalloc\n");
-        return NULL;
-    }
-    sprintf(result, "%s%s", srt1, str2);
-    return result;
-}
 
 int isHereFile(char * nameFile){
     //RETURN 1 if file exist, else 0

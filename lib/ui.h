@@ -43,7 +43,7 @@ extern uiPageHolder pageHolder;
 
 void createButton(uiPage * page,SDL_Rect rect, char * pathImg, char *hoverPath,TTF_Font *Textfont,SDL_Color color, int txtInd, int * info,float growEffect, int (*callFunction)(void **), int numArgs, ...);
 void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...);
-void createUIText(uiPage * page,TTF_Font* font,int tradID,int * info, SDL_Rect dest, SDL_Color color, char * label);
+void createUIText(uiPage * page,TTF_Font* font,char * chaine, SDL_Rect dest, SDL_Color color, char * label);
 void setButtonText(Button * button, const char * txt);
 uiTxt * getTxtFromLabel(char * label);
 
@@ -54,6 +54,7 @@ int changePage(void * args[20]);
 void initMainPage();
 void initSettingsPage();
 void initPage();
+void destroyPages();
 void destroyAllPages();
 
 char * createNotif(int tradId, int titleYOffset,float titleSize,char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int messYOffset,float messSize, int nbLignes, ...);
