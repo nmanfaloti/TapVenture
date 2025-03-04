@@ -74,11 +74,15 @@ int makeHeroAtLevel(int heroIndex, int levelH) {
     return 1;
 }
 
-int herosDPS(){
+float herosDPS(int indice){
+    return heros[indice].degat / (heros[indice].cooldown /1000 ); 
+}
+
+int herosAllDPS(){
     int somme = 0;
     for (int i = HERO0; i < HEROS_COUNT; i++) {
         if (heros[i].level > 0){
-            somme += heros[i].degat / (heros[i].cooldown /1000 );
+            somme += herosDPS(i);
         }
     }
     return somme; 
@@ -87,7 +91,7 @@ int herosDPS(){
 int herosGoldGenBySec(){
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     int coinMoy = (currentMonstre->coinMin + currentMonstre->coinMax) / 2;
-    float nbMonstresMortParSecondes = herosDPS() * 1.0 / currentMonstre->iniHealth * 1.0;
+    float nbMonstresMortParSecondes = herosAllDPS() * 1.0 / currentMonstre->iniHealth * 1.0;
     return nbMonstresMortParSecondes * coinMoy;
 
 }

@@ -74,7 +74,7 @@ int input_event(SDL_Event event){
                     printf("hero 1, level : %d, degat : %d, prix : %d\n", heros[1].level, heros[1].degat,heros[1].prix );
                     break;
                 case '2':
-                    printf("Degat générer par les heros /s %d\n",herosDPS());
+                    printf("Degat générer par les heros /s %d\n",herosAllDPS());
                     break;
                 case '3':
                     printf("Gold générer par les heros /s %d\n",herosGoldGenBySec());
