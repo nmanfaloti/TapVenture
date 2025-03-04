@@ -12,6 +12,7 @@
 #include "../lib/ui.h"
 #include "../lib/button.h"
 #include "../lib/chaine.h"
+#include "../lib/challenge.h"
 
 
 
@@ -210,6 +211,8 @@ int makeSavePlayer(char * save){
     createValueForKey("DAMAGE_CLICK", value, save);
     sprintf(value, "%d", shop.damageLevel);
     createValueForKey("SHOP", value, save);
+    sprintf(value, "%ld",challenge.lastTime);
+    createValueForKey("LAST_CHALLENGE_TIME", value, save);
 
 
 
@@ -262,6 +265,10 @@ int loadSavePlayer(char * save){
     refreshButtonShop();
     free(value);
 
+    value = getValueForKey("LAST_CHALLENGE_TIME", save);
+    challenge.lastTime = atol(value);
+    free(value);
+
     // Calculer l'or gagné en fonction du temps écoulé depuis la dernière sauvegarde
     value = getValueForKey("TIME", save);
     time_t lastSaveTime = atol(value);
@@ -311,6 +318,7 @@ int initPlayer(){
     level.currentLvl = 0;
     gold = 0;
     damage_click = 10;
+    challenge.lastTime = 0;
     // createNotif(Traduction(WELCOME_MSG),19,1,"assets/ui/notif.png", 1, 5, (SDL_Rect){vw(50), vh(24), vw(30), vh(20)},19, 1.5,1, Traduction(WELCOME_DESC_MSG));
     return 0;
 }

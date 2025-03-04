@@ -48,6 +48,9 @@ int main() {
 
         SDL_RenderPresent(renderer);
     }
+    if(challenge.active){
+        resetChallenge();
+    }
     destroyAllPages();
     makeSave();
     SDLExit();

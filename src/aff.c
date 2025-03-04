@@ -93,7 +93,8 @@ void refreshMobKilled(){
     if (txtHolder == NULL){
         return;
     }
-    setUiText(txtHolder, formatChaine("%t: %d/10",MOB_MSG, level.mobKilled));
+    if (challenge.active) setUiText(txtHolder, formatChaine("%t: %d/%d",MOB_MSG, level.mobKilled, challenge.target));
+    else setUiText(txtHolder, formatChaine("%t: %d/%d",MOB_MSG, level.mobKilled, level.mobToKill));
 }
 
 void createUIText(uiPage * page,TTF_Font* font, char * chaine, SDL_Rect dest, SDL_Color color, char * label){

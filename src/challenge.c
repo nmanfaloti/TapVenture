@@ -1,22 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "../lib/challenge.h"
 #include "../lib/player.h"
-#include "../lib/ui.h"
 #include "../lib/combat.h"
 #include "../lib/lang.h"
+#include "../lib/ui.h"
+#include "../lib/aff.h"
+#include "../lib/sdl.h"
 
-int challengeActive = 0;
-unsigned int challengeStartTime;
+#define DURATION 30 // Durée du challenge en secondes
+#define TARGET 15 // Nombre de monstres à tuer pour réussir le challenge
+#define REWARD 500 // Récompense pour avoir réussi le challenge * le lvl actuel
+#define COOLDOWN 60*0 // Cooldown en minutes entre chaque challenge
 
-unsigned int challengeDuration = 30; // Durée du challenge en secondes
-int challengeTarget = 15; // Nombre de monstres à tuer pour réussir le challenge
-int challengeReward = 500; // Récompense pour avoir réussi le challenge * le lvl actuel
+
+Challenge_t challenge = {
+    .active = 0,
+    .startTime = 0,
+    .duration = DURATION,
+    .target = TARGET,
+    .reward = REWARD,
+    .cooldown = COOLDOWN,
+    .lastTime = 0
+};
+char timeToWaitMsg[100];
+
 
 int lvl = 1;
 
 int launchChallenge() {
-    if (challengeActive) {
+    if (challenge.active) {
         printf("Un challenge est déjà en cours !\n");
         return 1;
     }
@@ -24,50 +38,60 @@ int launchChallenge() {
         printf("Impossible de lancer un challenge sur un boss !\n");
         return 1;
     }
-
+    if (time(NULL) - challenge.lastTime < challenge.cooldown) {
+        //sprintf(timeToWaitMsg, "%s %ld %s",Traduction(CHALLENGE_DESC_MSG_COOLDOWN), 30 - (time(NULL) - challenge.lastTime) / 60,"minutes");
+        //createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},35, 1.8,1,timeToWaitMsg);
+        return 1;
+    }
     printf("Challenge lancé !\n");
-    challengeActive = 1;
-    challengeStartTime = SDL_GetTicks();
+    challenge.active = 1;
+    challenge.startTime = SDL_GetTicks();
     level.mobKilled = 0; // Réinitialiser le compteur de monstres tués pour le challenge
-    level.mobToKill = challengeTarget + 1; 
+    level.mobToKill = challenge.target + 1; 
+    refreshMobKilled();
+    challenge.lastTime = time(NULL);
+    //createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",CHALLENGE_MSG_TIMER), getRectForCentenredCord(vw(50), vh(20), vh(50), vh(7)), (SDL_Color){255, 255, 255, 255}, "TimerChallenge");
     return 0;
 }
 
 void resetChallenge() {
-    challengeActive = 0;
+    challenge.active = 0;
     level.mobToKill = 10;
     level.mobKilled = 0;
+    refreshMobKilled();
+    destroyUItxt(getTxtFromLabel("TimerChallenge"), &pageHolder.page[0]);
+}
+
+void displayChallengeTimer(int elapsedTimeChallenge) {
+    int remainingTime = challenge.duration - elapsedTimeChallenge;
+    uiTxt * txtHolder = getTxtFromLabel("TimerChallenge");
+    if (txtHolder == NULL){
+        return;
+    }
+    char timerText[50];
+    //setUiText(txtHolder, formatChaine("%t: %d",CHALLENGE_MSG_TIMER, remainingTime));
 }
 
 void updateChallenge() {
-    if (!challengeActive) return;
-
-    unsigned int currentTime = SDL_GetTicks();
-    unsigned int elapsedTimeChallenge = (currentTime - challengeStartTime) / 1000;
-
-    if (elapsedTimeChallenge >= challengeDuration) {
-        // createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,1, Traduction(CHALLENGE_DESC_MSG_LOSE));
+    if (!challenge.active) return;
+    int currentTime = SDL_GetTicks();
+    int elapsedTimeChallenge = (currentTime - challenge.startTime) / 1000;
+    if (elapsedTimeChallenge >= challenge.duration) {
+        //createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,1, Traduction(CHALLENGE_DESC_MSG_LOSE));
         resetChallenge();
         return;
     }
-
-    if (level.mobKilled >= challengeTarget) {
+    
+    displayChallengeTimer(elapsedTimeChallenge);
+    if (level.mobKilled >= challenge.target) {
         char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;
-        addGold(challengeReward * lvl);
-        sprintf(goldEarnedMsg, "%d", challengeReward * lvl);
+        addGold(challenge.reward * lvl);
+        sprintf(goldEarnedMsg, "%d", challenge.reward * lvl);
         // createNotif("Challenge",32,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.8,2, Traduction(CHALLENGE_DESC_MSG_WIN), goldEarnedMsg);
         resetChallenge();
         return;
     }
 }
 
-void displayChallengeTimer(TTF_Font* font) {
-    unsigned int currentTime = SDL_GetTicks();
-            unsigned int elapsedTimeChallenge = (currentTime - challengeStartTime) / 1000;
-            unsigned int remainingTime = challengeDuration - elapsedTimeChallenge;
 
-            char timerText[50];
-            sprintf(timerText, "Temps restant: %d secondes", remainingTime);
-            // affiche_txt(renderer, font, timerText, getRectForCentenredCord(vw(50), vh(20), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255});
-}
