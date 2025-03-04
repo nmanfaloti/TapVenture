@@ -39,7 +39,7 @@ int launchChallenge() {
         return 1;
     }
     if (time(NULL) - challenge.lastTime < challenge.cooldown) {
-        sprintf(timeToWaitMsg, "%s %ld %s",Traduction(CHALLENGE_DESC_MSG_COOLDOWN), 30 - (time(NULL) - challenge.lastTime) / 60,"minutes");
+        sprintf(timeToWaitMsg, "%s %ld %s",Traduction(CHALLENGE_MSG_COOLDOWN), 30 - (time(NULL) - challenge.lastTime) / 60,"minutes");
         createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, timeToWaitMsg);
         return 1;
     }
@@ -77,7 +77,7 @@ void updateChallenge() {
     int currentTime = SDL_GetTicks();
     int elapsedTimeChallenge = (currentTime - challenge.startTime) / 1000;
     if (elapsedTimeChallenge >= challenge.duration) {
-        createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, Traduction(CHALLENGE_DESC_MSG_LOSE));
+        createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, Traduction(CHALLENGE_MSG_LOSE));
         resetChallenge();
         return;
     }
@@ -87,7 +87,7 @@ void updateChallenge() {
         char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;
         addGold(challenge.reward * lvl);
-        sprintf(goldEarnedMsg, "%s %d",Traduction(CHALLENGE_DESC_MSG_WIN), challenge.reward * lvl);
+        sprintf(goldEarnedMsg, "%s %d",Traduction(CHALLENGE_MSG_WIN), challenge.reward * lvl);
         createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, goldEarnedMsg);
         resetChallenge();
         return;
