@@ -41,6 +41,15 @@ uiTxt * getTxtFromLabel(char * label){
     return NULL;
 }
 
+uiImg * getImgFromLabel(char * label){
+    for (int i = 0; i < currentpage->container->nbImg; i++){
+        if (strcmp(currentpage->container->img[i].label, label) == 0){
+            return &currentpage->container->img[i];
+        }
+    }
+    return NULL;
+}
+
 SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest){
     int w, h;
     TTF_SizeText(font, txt, &w, &h);
@@ -118,20 +127,15 @@ void createUIText(uiPage * page,TTF_Font* font, char * chaine, SDL_Rect dest, SD
     page->container->nbTxt++;
 }
 
-
 void uiHandle(){
+    //Affichage des textes avant les images
     for (int i = 0; i < currentpage->container->nbTxt; i++){
         affiche_txt(&currentpage->container->txt[i]);
     }
-    // if (currentpage == &pageHolder.page[0]){
-    //     char remainingMob[challengeTarget];
-    //     if (challengeActive) {
-    //         sprintf(remainingMob, "/%d", level.mobToKill - 1);
-    //         displayChallengeTimer(font);
-    //     } 
-    //     else sprintf(remainingMob, "/%d", level.mobToKill);
-    //     affiche_txt(renderer, font, remainingMob, getRectForCentenredCord(vw(64.5), vh(10), vh(6), vh(6.2)) , (SDL_Color){255, 255, 255, 255});
-    // }
+    for (int i=0;i< currentpage->container->nbImg; i++){
+        SDL_RenderCopy(renderer, currentpage->container->img[i].texture, NULL, &currentpage->container->img[i].dest);
+    }
+
     uiNotifHandle();
 }
 
@@ -149,6 +153,28 @@ void destroyUItxt(uiTxt * txt){
             SDL_DestroyTexture(txt->texture);
             txt->texture = NULL;
         }
+    }
+}
+
+void destroyUIImg(uiImg * img, uiPage * page){
+    if (!img) {
+        SDL_Log("destroyUIImg: img is NULL");
+        return;
+    }
+    if (!page) {
+        SDL_Log("destroyUIImg: page is NULL");
+        return;
+    }
+    if (img->texture) {
+        SDL_DestroyTexture(img->texture);
+        img->texture = NULL;
+    }
+    if (img->label) {
+        free(img->label);
+        img->label = NULL;
+    }
+    if (page->container->nbImg > 0) {
+        page->container->nbImg--;
     }
 }
 
@@ -201,6 +227,8 @@ void createPage(uiPage * page){
     page->container = malloc(sizeof(uiContainer));
     page->container->nbTxt = 0;
     page->container->txt = NULL;
+    page->container->nbImg = 0;
+    page->container->img = NULL;
     page->buttonsList = malloc(sizeof(ListeButton));
     page->buttonsList->nbButton = 0;
     page->buttonsList->buttons = NULL;
@@ -208,6 +236,7 @@ void createPage(uiPage * page){
     page->buttonsImgList->nbButton = 0;
     page->buttonsImgList->buttons = NULL;
 }
+
 
 void destroyPage(uiPage *page) {
     if (page == NULL) {
@@ -221,6 +250,13 @@ void destroyPage(uiPage *page) {
             }
             free(page->container->txt);
             page->container->txt = NULL;
+        }
+        if (page->container->img != NULL) {
+            for (int i = 0; i < page->container->nbImg; i++) {
+                destroyUIImg(&page->container->img[i], page);
+            }
+            free(page->container->img);
+            page->container->img = NULL;
         }
         free(page->container);
         page->container = NULL;
@@ -328,6 +364,11 @@ void initPage(){
 void destroyPages(){
     destroyPage(&pageHolder.page[0]);
     destroyPage(&pageHolder.page[1]);
+	free(fr_txt);
+    free(en_txt);
+    free(full_txt);
+    free(window_txt);
+    free(pageHolder.page);
 }
 
 void destroyAllPages(){
@@ -337,111 +378,112 @@ void destroyAllPages(){
     free(en_txt);
     free(full_txt);
     free(window_txt);
+    free(pageHolder.page);
 }
 
 
 /*              NOTIFICATIONS              */
+
 void initNotifList(){
     notifList.nbNotif = 0;
     notifList.notif = NULL;
 }
-
-char * createNotif(int tradId, int titleYOffset,float titleSize,char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int messYOffset,float messSize, int nbLignes, ...){
-    if (notifList.nbNotif >= MAX_NOTIF){
+void createNotif(char * title, int titleYOffset, float titleSize, char * imgBackground, int tapToClose, int duration, SDL_Rect dest, int messYOffset, float messSize, char *notifMess) {
+    if (notifList.nbNotif >= MAX_NOTIF) {
         printf("createNotif: Max Notif reached\n");
-        return NULL;
+        return;
     }
-    if (notifList.notif == NULL){
+    if (notifList.notif == NULL) {
         notifList.notif = malloc(sizeof(Notif));
     } else {
         notifList.notif = realloc(notifList.notif, sizeof(Notif) * (notifList.nbNotif + 1));
     }
-
-    va_list args;
-    va_start(args, nbLignes);
-    char **desc = malloc(sizeof(char *) * nbLignes);
-    for (int i = 0; i < nbLignes; i++){
-        char * ligne = va_arg(args, char *);
-        if (ligne == NULL){
-            printf("createNotif: Missing Arguments\n");
-            return NULL;
-        }
-        desc[i] = strdup(ligne);
+    
+    if (notifList.notif == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "createNotif: Memory allocation failed\n");
+        return;
     }
-    va_end(args);
 
-    notifList.notif[notifList.nbNotif].tradId = tradId;
-    notifList.notif[notifList.nbNotif].imgBackground = imgBackground;
     notifList.notif[notifList.nbNotif].tapToClose = tapToClose;
     notifList.notif[notifList.nbNotif].duration = duration;
     notifList.notif[notifList.nbNotif].dest = dest;
-    notifList.notif[notifList.nbNotif].desc = desc;
-    notifList.notif[notifList.nbNotif].nbLignes = nbLignes;
     notifList.notif[notifList.nbNotif].messYOffset = messYOffset;
     notifList.notif[notifList.nbNotif].messSize = messSize;
     notifList.notif[notifList.nbNotif].titleYOffset = titleYOffset;
     notifList.notif[notifList.nbNotif].titleSize = titleSize;
-    
-    //Creation du label de la notif pour pouvoir l'attribuer au UITxt correspondant
-    char notif_label[50];
-    sprintf(notif_label, "%s%d", Traduction(tradId), notifList.nbNotif);
-    notifList.notif[notifList.nbNotif].label = strdup(notif_label);
-    
-    // Créer l'UIText du titre avec le bon placement
-    sprintf(notif_label, "title_%s%d", Traduction(tradId), notifList.nbNotif);
-    SDL_Rect titleRect = getRectForCentenredCord(
-        dest.x, 
-        dest.y + notifList.notif[notifList.nbNotif].titleYOffset, 
-        dest.w / 2 * notifList.notif[notifList.nbNotif].titleSize,
-        dest.h * notifList.notif[notifList.nbNotif].titleSize
-    );
-    createUIText(currentpage, font, formatChaine("%t",tradId), titleRect, (SDL_Color){255, 255, 255, 255}, strdup(notif_label));
-    
-    // Créer les UIText pour chaque ligne de description
-    int lineHeight = 15;
-    int startY = dest.y - ((nbLignes * lineHeight)/2) + notifList.notif[notifList.nbNotif].messYOffset;
-    for (int i = 0; i < nbLignes; i++) {
-        sprintf(notif_label, "desc_%s%d_%d", Traduction(tradId), notifList.nbNotif, i);
-        SDL_Rect lineDest = getRectForCentenredCord(
-            dest.x,
-            startY + (i * lineHeight), 
-            dest.w / 2 * notifList.notif[notifList.nbNotif].messSize, 
-            lineHeight * notifList.notif[notifList.nbNotif].messSize
-        );
-        createUIText(currentpage, font, formatChaine("%t",tradId), lineDest, (SDL_Color){255, 255, 255, 255}, strdup(notif_label));
+
+    // Initialisation des textures
+    notifList.notif[notifList.nbNotif].imgTexture = NULL;
+    notifList.notif[notifList.nbNotif].titleTexture = NULL;
+    notifList.notif[notifList.nbNotif].descTexture = NULL;
+
+    // Creation de l'image de fond de la notification
+    notifList.notif[notifList.nbNotif].imgTexture = IMG_LoadTexture(renderer, imgBackground);
+    if (!notifList.notif[notifList.nbNotif].imgTexture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "createNotif: Failed to load image: %s\n", SDL_GetError());
+        return;
+    }
+
+    SDL_Rect titleRect = getSizeForText(font, title, (SDL_Rect){
+        dest.x,
+        dest.y + notifList.notif[notifList.nbNotif].titleYOffset + dest.h / 4,
+        dest.w / 2 * titleSize,
+        dest.h / 2 * titleSize
+    });
+
+    // Ajuster la position pour centrer le texte
+    titleRect.x = dest.x + (dest.w - titleRect.w) / 2;
+    notifList.notif[notifList.nbNotif].titleRect = titleRect;
+
+    // Créer la texture du titre
+    SDL_Surface *surface = TTF_RenderText_Blended(font, title, (SDL_Color){255, 255, 255, 255});
+    if (!surface) {
+        SDL_DestroyTexture(notifList.notif[notifList.nbNotif].imgTexture);
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "createNotif: Failed to render title text: %s\n", TTF_GetError());
+        return;
     }
     
-    notifList.nbNotif++;
-
-    return notifList.notif[notifList.nbNotif-1].label;
-}
-
-void showNotif(Notif * notif){
-    // if (notif == NULL){
-    //     printf("showNotif: notif is NULL\n");
-    //     return;
-    // }
-
-    // SDL_Texture* bgTexture = IMG_LoadTexture(renderer, notif->imgBackground);
-    // if (bgTexture == NULL) {
-    //     SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "[DEBUG] > %s", IMG_GetError());
-    //     return;
-    // }
-    // SDL_Rect bg = getRectForCentenredCord(notif->dest.x, notif->dest.y, notif->dest.w, notif->dest.h);
-    // SDL_RenderCopy(renderer, bgTexture, NULL, &bg);
-    // SDL_DestroyTexture(bgTexture);
+    notifList.notif[notifList.nbNotif].titleTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
     
-    // if (notif->title != NULL){
-    //     affiche_txt(renderer, font, notif->title, getSizeForText(font, notif->title, getRectForCentenredCord(notif->dest.x, notif->dest.y+notif->titleYOffset, notif->dest.w / 2 * notif->titleSize,notif->dest.h * notif->titleSize)), (SDL_Color){255, 255, 255, 255});
-    // } 
-    // if (notif->desc != NULL){
-    //     int lineHeight = 15;
-    //     int startY = notif->dest.y - ((notif->nbLignes * lineHeight)/2) + notif->messYOffset;
-    //     for (int i = 0; i < notif->nbLignes; i++) {
-    //         SDL_Rect lineDest = getRectForCentenredCord(notif->dest.x,startY + (i * lineHeight), notif->dest.w / 2 * notif->messSize, lineHeight * notif->messSize);
-    //         affiche_txt(renderer, font, notif->desc[i], getSizeForText(font, notif->desc[i], lineDest), (SDL_Color){255, 255, 255, 255});
-    //     }
-    // }
+    if (!notifList.notif[notifList.nbNotif].titleTexture) {
+        SDL_DestroyTexture(notifList.notif[notifList.nbNotif].imgTexture);
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "createNotif: Failed to create title texture: %s\n", SDL_GetError());
+        return;
+    }
+    
+    // Créer la texture de la description
+    surface = TTF_RenderUTF8_Blended_Wrapped(font, notifMess, (SDL_Color){255, 255, 255, 255}, dest.w - 40);
+    if (!surface) {
+        SDL_DestroyTexture(notifList.notif[notifList.nbNotif].imgTexture);
+        SDL_DestroyTexture(notifList.notif[notifList.nbNotif].titleTexture);
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "createNotif: Failed to render description text: %s\n", TTF_GetError());
+        return;
+    }
+    
+    // Récupérer la taille de la surface
+    int textWidth = surface->w * messSize;
+    int textHeight = surface->h * messSize;
+    
+    // Créer la texture de la description
+    notifList.notif[notifList.nbNotif].descRect = (SDL_Rect){
+        dest.x + 20,
+        dest.y + notifList.notif[notifList.nbNotif].messYOffset + (dest.h * titleSize / 2) + 10,
+        textWidth,
+        textHeight
+    };
+    
+    notifList.notif[notifList.nbNotif].descTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+    
+    if (!notifList.notif[notifList.nbNotif].descTexture) {
+        SDL_DestroyTexture(notifList.notif[notifList.nbNotif].imgTexture);
+        SDL_DestroyTexture(notifList.notif[notifList.nbNotif].titleTexture);
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "createNotif: Failed to create description texture: %s\n", SDL_GetError());
+        return;
+    }
+
+    notifList.nbNotif++;
 }
 
 void markNotifForDeletion(int index) {
@@ -455,67 +497,20 @@ void deleteNotif(int index) {
     if (index < 0 || index >= notifList.nbNotif) {
         return;
     }
-    
-    // Libérer la mémoire pour les descriptions
-    for (int i = 0; i < notifList.notif[index].nbLignes; i++) {
-        free(notifList.notif[index].desc[i]);
-    }
-    free(notifList.notif[index].desc);
-    
-    // Libérer le label de la notification
-    free(notifList.notif[index].label);
-    
-    // Rechercher et supprimer les UIText correspondants
-    char title_label[60];
-    sprintf(title_label, "title_%s%d", "notif", index); // Assurez-vous que "notif" correspond à votre valeur de "title"
-    
-    // Supprimer l'UIText du titre
-    uiTxt *titleText = getTxtFromLabel(title_label);
-    if (titleText) {
-        // Trouver l'index de l'UIText à supprimer
-        int txtIndex = titleText - currentpage->container->txt;
-        if (txtIndex >= 0 && txtIndex < currentpage->container->nbTxt) {
-            // Libérer les ressources
-            SDL_DestroyTexture(currentpage->container->txt[txtIndex].texture);
-            free(currentpage->container->txt[txtIndex].label);
-            
-            // Déplacer les UIText suivants pour combler le trou
-            for (int i = txtIndex; i < currentpage->container->nbTxt - 1; i++) {
-                currentpage->container->txt[i] = currentpage->container->txt[i + 1];
-            }
-            currentpage->container->nbTxt--;
-        }
-    }
-    
-    // Supprimer les UIText des descriptions
-    for (int i = 0; i < notifList.notif[index].nbLignes; i++) {
-        sprintf(title_label, "desc_%s%d_%d", "notif", index, i);
-        uiTxt *descText = getTxtFromLabel(title_label);
-        if (descText) {
-            int txtIndex = descText - currentpage->container->txt;
-            if (txtIndex >= 0 && txtIndex < currentpage->container->nbTxt) {
-                // Libérer les ressources
-                SDL_DestroyTexture(currentpage->container->txt[txtIndex].texture);
-                free(currentpage->container->txt[txtIndex].label);
-                
-                // Déplacer les UIText suivants pour combler le trou
-                for (int j = txtIndex; j < currentpage->container->nbTxt - 1; j++) {
-                    currentpage->container->txt[j] = currentpage->container->txt[j + 1];
-                }
-                currentpage->container->nbTxt--;
-            }
-        }
-    }
-    
-    // Déplacer les notifications suivantes pour combler le trou
+
+    // Destruction de l'image de fon de la notification
+    SDL_DestroyTexture(notifList.notif[index].imgTexture);
+    // Destruction du titre de la notification
+    SDL_DestroyTexture(notifList.notif[index].titleTexture);
+    // Destruction de la description de la notification
+    SDL_DestroyTexture(notifList.notif[index].descTexture);
+    // Décaler les notifications suivantes
     for (int i = index; i < notifList.nbNotif - 1; i++) {
         notifList.notif[i] = notifList.notif[i + 1];
     }
-    
-    // Décrémenter le nombre de notifications
     notifList.nbNotif--;
-    
-    // Redimensionner le tableau de notifications si nécessaire
+
+    // Réallouer la mémoire pour la liste des notifications
     if (notifList.nbNotif > 0) {
         notifList.notif = realloc(notifList.notif, sizeof(Notif) * notifList.nbNotif);
     } else {
@@ -524,6 +519,17 @@ void deleteNotif(int index) {
     }
 }
 
+void showNotif(Notif * notif) {
+    if (notif == NULL) {
+        return;
+    }
+    // Affichage de l'image de fond de la notification
+    SDL_RenderCopy(renderer, notif->imgTexture, NULL, &notif->dest);
+    // Affichage du titre
+    SDL_RenderCopy(renderer, notif->titleTexture, NULL, &notif->titleRect);
+    // Affichage de la description
+    SDL_RenderCopy(renderer, notif->descTexture, NULL, &notif->descRect);
+}
 
 int lastNotifUpdate[MAX_NOTIF];
 void uiNotifHandle() {
@@ -533,7 +539,11 @@ void uiNotifHandle() {
     Uint32 currentTime = SDL_GetTicks();
 
     for (int i = 0; i < notifList.nbNotif; i++) {
-
+        // Affichage de la description
+        if (notifList.notif[i].descTexture){
+            showNotif(&notifList.notif[i]);
+        }
+        // Gestion du temps d'affichage de la notification 
         if (currentTime - lastNotifUpdate[i] >= 1000) {
             lastNotifUpdate[i] = currentTime;
             notifList.notif[i].duration--;

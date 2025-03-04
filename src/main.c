@@ -33,6 +33,7 @@ int main() {
     int running = 1;
     SDL_Event event;
     loadSave();
+    createNotif(Traduction(WELCOME_MSG),0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(30), vh(4), vw(40), vh(40)),0, 1, "EZ ez ez ez ezez ez ezezez ez ezez");
 
 
     while (running){

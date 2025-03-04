@@ -19,10 +19,7 @@ typedef struct uiPageHolder_s{
 }uiPageHolder;
 
 typedef struct uiNotif_s{
-    int tradId;
-    char ** desc;
-    char * label;
-    int nbLignes;
+    char * desc;
     char * imgBackground;
     int tapToClose;
     int duration;
@@ -31,8 +28,12 @@ typedef struct uiNotif_s{
     float messSize;
     float titleSize;
     SDL_Rect dest;
+    SDL_Texture * descTexture;
+    SDL_Rect descRect;
+    SDL_Texture * titleTexture;
+    SDL_Rect titleRect;
+    SDL_Texture * imgTexture;
 }Notif;
-
 typedef struct uiNotifList_s{
     Notif *notif;
     int nbNotif;
@@ -56,8 +57,10 @@ void initSettingsPage();
 void initPage();
 void destroyPages();
 void destroyAllPages();
+void destroyUIImg(uiImg * img, uiPage * page);
 
-char * createNotif(int tradId, int titleYOffset,float titleSize,char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int messYOffset,float messSize, int nbLignes, ...);
+
+void createNotif(char * title, int titleYOffset,float titleSize,char * imgBackground, int tapToClose, int duration, SDL_Rect dest,int messYOffset,float messSize, char *notifMess);
 void showNotif(Notif * notif);
 void initNotifList();
 void uiNotifHandle();

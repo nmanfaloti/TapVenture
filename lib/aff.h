@@ -10,9 +10,17 @@ typedef struct uiTxt_s{
     SDL_Texture * texture;
 }uiTxt;
 
+typedef struct uiImg_s{
+    char * label;
+    SDL_Rect dest;
+    SDL_Texture * texture;
+}uiImg;
+
 typedef struct uiContainer_s{
     int nbTxt;
     uiTxt *txt;
+    int nbImg;
+    uiImg *img;
 }uiContainer;
 
 
