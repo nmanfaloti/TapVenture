@@ -140,20 +140,29 @@ void uiHandle(){
     uiNotifHandle();
 }
 
-void destroyUItxt(uiTxt * txt){
-    if (txt) {
-        if (txt->chaine) {
-            free(txt->chaine);
-            txt->chaine = NULL;
-        }
-        if (txt->label) {
-            free(txt->label);
-            txt->label = NULL;
-        }
-        if (txt->texture) {
-            SDL_DestroyTexture(txt->texture);
-            txt->texture = NULL;
-        }
+void destroyUItxt(uiTxt * txt, uiPage * page){
+    if (!txt) {
+        SDL_Log("destroyUItxt: txt is NULL");
+        return;
+    }
+    if (!page) {
+        SDL_Log("destroyUItxt: page is NULL");
+        return;
+    }
+    if (txt->texture) {
+        SDL_DestroyTexture(txt->texture);
+        txt->texture = NULL;
+    }
+    if (txt->label) {
+        free(txt->label);
+        txt->label = NULL;
+    }
+    if (txt->chaine) {
+        free(txt->chaine);
+        txt->chaine = NULL;
+    }
+    if (page->container->nbTxt > 0) {
+        page->container->nbTxt--;
     }
 }
 
@@ -179,27 +188,28 @@ void destroyUIImg(uiImg * img, uiPage * page){
     }
 }
 
-void setUiText(uiTxt *txt, const char *text) {
+void setUiText(uiTxt *txt, char *text) {
     if (!txt) {
         SDL_Log("setUiText: txt is NULL");
         return;
     }
-    
     if (!text) {
         SDL_Log("setUiText: text is NULL");
         return;
     }
-    // Détruire l'ancienne texture
     if (txt->texture) {
         SDL_DestroyTexture(txt->texture);
         txt->texture = NULL;
     }
-    //free l'ancienne chaine 
-    free(txt->chaine);
-    txt->chaine = (char *)text;
+    
+    if (txt->chaine) {
+        free(txt->chaine);
+    }
+    txt->chaine = text;
 
     // Création de la nouvelle texture du texte
     SDL_Surface *textSurface = TTF_RenderText_Blended(font, text, txt->color);
+
     if (!textSurface) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "setUiText: Failed to render text: %s\n", TTF_GetError());
         return;
@@ -246,14 +256,14 @@ void destroyPage(uiPage *page) {
     // Libérer les textes UI
     if (page->container != NULL) {
         if (page->container->txt != NULL) {
-            for (int i = 0; i < page->container->nbTxt; i++) {
-                destroyUItxt(&page->container->txt[i]);
+            for (int i = page->container->nbTxt - 1; i >= 0; i--) {
+                destroyUItxt(&page->container->txt[i], page);
             }
             free(page->container->txt);
             page->container->txt = NULL;
         }
         if (page->container->img != NULL) {
-            for (int i = 0; i < page->container->nbImg; i++) {
+            for (int i = page->container->nbImg - 1; i >= 0; i--) {
                 destroyUIImg(&page->container->img[i], page);
             }
             free(page->container->img);

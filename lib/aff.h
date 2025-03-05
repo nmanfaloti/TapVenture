@@ -40,6 +40,6 @@ void refreshUILanguage();
 void refreshMobKilled();
 void refreshCurrentLvl();
 
-void setUiText(uiTxt *txt, const char *text);
+void setUiText(uiTxt *txt, char *text);
 
 #endif // AFF_H
