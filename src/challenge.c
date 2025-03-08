@@ -86,7 +86,7 @@ void updateChallenge() {
     if (level.mobKilled >= challenge.target) {
         char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;
-        addGold(challenge.reward * lvl);
+        addGold((unsigned long long int)challenge.reward * lvl);
         sprintf(goldEarnedMsg, "%s %d",Traduction(CHALLENGE_MSG_WIN), challenge.reward * lvl);
         createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, goldEarnedMsg);
         resetChallenge();

@@ -25,7 +25,7 @@ int initHeros(){
     heros[HERO0].level = 0;
     heros[HERO0].cooldown = DEFAULT_COOLDOWN; //en millisecondes
     heros[HERO0].lastAttack = 0;
-    for (int i = HERO1; i < HEROS_COUNT; i++) {
+    for (int i = HERO1; i < HEROS_COUNT; i++){
         heros[i].degat = heros[i-1].degat * DEGAT_UP;
         heros[i].prix = heros[i-1].prix * PRIX_UP;
         heros[i].level = 0;
@@ -37,7 +37,7 @@ int initHeros(){
 
 int attackHeros(){
     void * args[20];
-    for (int i = HERO0; i < HEROS_COUNT; i++) {
+    for (int i = HERO0; i < HEROS_COUNT; i++){
         if( heros[i].level > 0 && heros[i].lastAttack + heros[i].cooldown <= SDL_GetTicks() ){
             heros[i].lastAttack = SDL_GetTicks();
             args[0] = &heros[i].degat;
@@ -47,16 +47,16 @@ int attackHeros(){
     return 0;
 }
 
-int upgradeHero(int heroIndex, int * gold) {
-    if (gold == NULL){
+int upgradeHero(int heroIndex, bool pay){
+    if (!pay && (heroIndex < HEROS_COUNT)){
         heros[heroIndex].level += 1;
         heros[heroIndex].prix *= PRIX_UPGRADE;
         heros[heroIndex].degat *= DEGAT_UPGRADE;
         return 0;
     }
-    if (heroIndex < HEROS_COUNT && heros[heroIndex].prix <= *gold) {
+    else if ((heroIndex < HEROS_COUNT) && (heros[heroIndex].prix <= gold)){
         heros[heroIndex].level += 1;
-        *gold -= heros[heroIndex].prix;
+        addGold((unsigned long long int)-heros[heroIndex].prix);
         heros[heroIndex].prix *= PRIX_UPGRADE;
         heros[heroIndex].degat *= DEGAT_UPGRADE;
         return 0;
@@ -64,18 +64,18 @@ int upgradeHero(int heroIndex, int * gold) {
     return 1;
 }
 
-int makeHeroAtLevel(int heroIndex, int levelH) {
-    if (heroIndex < HEROS_COUNT) {
-        while (heros[heroIndex].level < levelH) {
-            upgradeHero(heroIndex, NULL);
+int makeHeroAtLevel(int heroIndex, int levelH){
+    if (heroIndex < HEROS_COUNT){
+        while (heros[heroIndex].level < levelH){
+            upgradeHero(heroIndex, false);
         }
         return 0;
     }
     return 1;
 }
 
-float herosDPS(int indice){
-    return heros[indice].degat / (heros[indice].cooldown /1000 ); 
+float herosDPS(int indiceHero){
+    return heros[indiceHero].degat / (heros[indiceHero].cooldown /1000 ); 
 }
 
 int herosAllDPS(){

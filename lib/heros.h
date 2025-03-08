@@ -1,6 +1,8 @@
 #ifndef HEROS_H
 #define HEROS_H
 
+#include <stdbool.h>
+
 typedef enum {
     HERO0,
     HERO1,
@@ -17,10 +19,10 @@ typedef struct {
 
 int initHeros();
 int attackHeros();
-int upgradeHero(int HeroIndex, int * gold);
+int upgradeHero(int HeroIndex, bool pay);
 int makeHeroAtLevel(int heroIndex, int level);
 
-float herosDPS(int indice);
+float herosDPS(int indiceHero);
 int herosAllDPS();
 int herosGoldGenBySec();
 

@@ -48,7 +48,7 @@ int attack(void * args[20]) {
     currentMonstre->mobHealth -=  *damage;
     if (currentMonstre->mobHealth <= 0) {
         level.mobKilled += 1;
-        addGold(currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1));
+        addGold((unsigned long long int)(currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1)));
         currentMonstre->mobHealth = currentMonstre->iniHealth;
         if (level.mobKilled >= level.mobToKill) {
             level.currentLvl += 1;

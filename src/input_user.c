@@ -66,11 +66,11 @@ int input_event(SDL_Event event){
                     printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
                     break;
                 case '0':
-                    upgradeHero(0, &gold);
+                    upgradeHero(0, true);
                     printf("hero 0, level : %d, degat : %d, prix : %d\n", heros[0].level, heros[0].degat,heros[0].prix );
                     break;
                 case '1':
-                    upgradeHero(1, &gold);
+                    upgradeHero(1, true);
                     printf("hero 1, level : %d, degat : %d, prix : %d\n", heros[1].level, heros[1].degat,heros[1].prix );
                     break;
                 case '2':

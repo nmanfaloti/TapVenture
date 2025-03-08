@@ -78,7 +78,7 @@ void refreshMobHealth(){
     if (txtHolder == NULL){
         return;
     }
-    setUiText(txtHolder, formatChaine("%t: %d",VIE_MSG, level.monstre[level.currentLvl].mobHealth));
+    setUiText(txtHolder, formatChaine("%t: %w",VIE_MSG, level.monstre[level.currentLvl].mobHealth));
 }
 void refreshCurrentLvl(){
     uiTxt * txtHolder = getTxtFromLabel("currentLvl");
@@ -322,14 +322,9 @@ void initMainPage(){
     pageHolder.page[0].container->nbTxt = 0;
     pageHolder.page[0].container->txt = NULL;
 
-    /*createUIText(&pageHolder.page[0],font,VIE_MSG, &(level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
-    createUIText(&pageHolder.page[0],font,OR_MSG, &gold, (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
-    createUIText(&pageHolder.page[0],font,DMG_MSG, &damage_click, (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255} , "playerDamage");
-    createUIText(&pageHolder.page[0],font,MOB_MSG, &level.mobKilled, getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255}, "mobKilled");
-    createUIText(&pageHolder.page[0],font,LVL_MSG, &level.currentLvl, getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");*/
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",VIE_MSG, level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",DMG_MSG, damage_click), (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255} , "playerDamage");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",VIE_MSG, level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",DMG_MSG, damage_click), (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255} , "playerDamage");
     createUIText(&pageHolder.page[0],font,formatChaine("%t: %d/10",MOB_MSG, level.mobKilled), getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255}, "mobKilled");
     createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",LVL_MSG, level.currentLvl), getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");
 

@@ -3,12 +3,12 @@
 
 #include <time.h>
 
-extern int gold;
-extern int damage_click;
+extern unsigned long long int gold;
+extern unsigned long long int damage_click;
 extern char username[50];
 
 void goldGainOffline(time_t lastSaveTime);
-void addGold(int goldToAdd);
-void setPlayerDamage(int damage);
+void addGold(unsigned long long int goldToAdd);
+void setPlayerDamage(unsigned long long int damage);
 
 #endif // PLAYER_H

@@ -168,15 +168,6 @@ int rmFile(char * nameFile){
     return 0;
 }
 
-char *dataIndexStrings[] = {
-    "USERNAME",
-    "LANGUAGE"
-};
-char *dataIndexInts[] = {
-    "LEVEL",
-    "GOLD",
-    "DAMAGE_CLICK"
-};
 
 int loadSave(){
     loadSaveHeros("save/heros.json");
@@ -191,35 +182,6 @@ int makeSave(){
     }
     makeSavePlayer("save/player.json");
     makeSaveHeros("save/heros.json");
-    return 0;
-}
-    
-int makeSavePlayer(char * save){
-    rmFile(save);
-
-    createValueForKey("USERNAME", username, save);
-    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, save);
-    //dataInt
-    char value[30];
-    sprintf(value, "%d", level.currentLvl);
-    createValueForKey("LEVEL", value, save);
-    sprintf(value, "%d", level.mobKilled);
-    createValueForKey("MOB_KILLED", value, save);
-    sprintf(value, "%d", gold);
-    createValueForKey("GOLD", value, save);
-    sprintf(value, "%d", damage_click);
-    createValueForKey("DAMAGE_CLICK", value, save);
-    sprintf(value, "%d", shop.damageLevel);
-    createValueForKey("SHOP", value, save);
-    sprintf(value, "%ld",challenge.lastTime);
-    createValueForKey("LAST_CHALLENGE_TIME", value, save);
-
-
-
-    time_t temps = time(NULL);
-    sprintf(value, "%ld", temps);
-    createValueForKey("TIME", value, save);
-
     return 0;
 }
 
@@ -252,11 +214,13 @@ int loadSavePlayer(char * save){
     free(value);
 
     value = getValueForKey("GOLD", save);
-    gold = atoi(value);
+    sscanf(value,"%lld", &gold);
     free(value);
 
+    unsigned long long int tempo;
     value = getValueForKey("DAMAGE_CLICK", save);
-    setPlayerDamage(atoi(value));
+    sscanf(value,"%lld", &tempo);
+    setPlayerDamage(tempo);
     free(value);
 
     value = getValueForKey("SHOP", save);
@@ -276,20 +240,35 @@ int loadSavePlayer(char * save){
     goldGainOffline(lastSaveTime);
     return 0;
 }
-
-
-int makeSaveHeros(char * save){
+int makeSavePlayer(char * save){
     rmFile(save);
 
-    for(int i = 0; i < HEROS_COUNT; i++){
-        char value[10];
-        char key[20];
-        sprintf(key, "HERO_%d_LEVEL", i);
-        sprintf(value, "%d", heros[i].level);
-        createValueForKey(key, value, save);
-    }
+    createValueForKey("USERNAME", username, save);
+    createValueForKey("LANGUAGE", (char *)LanguageAct.Language, save);
+    //dataInt
+    char value[30];
+    sprintf(value, "%d", level.currentLvl);
+    createValueForKey("LEVEL", value, save);
+    sprintf(value, "%d", level.mobKilled);
+    createValueForKey("MOB_KILLED", value, save);
+    sprintf(value, "%lld", gold);
+    createValueForKey("GOLD", value, save);
+    sprintf(value, "%lld", damage_click);
+    createValueForKey("DAMAGE_CLICK", value, save);
+    sprintf(value, "%d", shop.damageLevel);
+    createValueForKey("SHOP", value, save);
+    sprintf(value, "%ld",challenge.lastTime);
+    createValueForKey("LAST_CHALLENGE_TIME", value, save);
+
+
+
+    time_t temps = time(NULL);
+    sprintf(value, "%ld", temps);
+    createValueForKey("TIME", value, save);
+
     return 0;
 }
+
 
 int loadSaveHeros(char * save){
     if(!isHereFile(save)){
@@ -310,7 +289,18 @@ int loadSaveHeros(char * save){
     }
     return 0;
 }
+int makeSaveHeros(char * save){
+    rmFile(save);
 
+    for(int i = 0; i < HEROS_COUNT; i++){
+        char value[10];
+        char key[20];
+        sprintf(key, "HERO_%d_LEVEL", i);
+        sprintf(value, "%d", heros[i].level);
+        createValueForKey(key, value, save);
+    }
+    return 0;
+}
 
 int initPlayer(){
     strcpy(username, "Default");
