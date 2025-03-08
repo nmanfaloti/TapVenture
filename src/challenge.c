@@ -62,6 +62,7 @@ void resetChallenge() {
     destroyUItxt(getTxtFromLabel("TimerChallenge"), &pageHolder.page[0]);
 }
 
+/*
 void displayChallengeTimer(int elapsedTimeChallenge) {
     int remainingTime = challenge.duration - elapsedTimeChallenge;
     uiTxt * txtHolder = getTxtFromLabel("TimerChallenge");
@@ -71,7 +72,7 @@ void displayChallengeTimer(int elapsedTimeChallenge) {
     char timerText[50];
     //setUiText(txtHolder, formatChaine("%t: %d",CHALLENGE_MSG_TIMER, remainingTime));
 }
-
+*/
 void updateChallenge() {
     if (!challenge.active) return;
     int currentTime = SDL_GetTicks();
@@ -82,7 +83,7 @@ void updateChallenge() {
         return;
     }
     
-    displayChallengeTimer(elapsedTimeChallenge);
+    //displayChallengeTimer(elapsedTimeChallenge);
     if (level.mobKilled >= challenge.target) {
         char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;

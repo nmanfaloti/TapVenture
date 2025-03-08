@@ -54,7 +54,7 @@ int upgradeHero(int heroIndex, bool pay){
         heros[heroIndex].degat *= DEGAT_UPGRADE;
         return 0;
     }
-    else if ((heroIndex < HEROS_COUNT) && (heros[heroIndex].prix <= gold)){
+    else if ((heroIndex < HEROS_COUNT) && ((long unsigned)heros[heroIndex].prix <= gold)){
         heros[heroIndex].level += 1;
         addGold((unsigned long long int)-heros[heroIndex].prix);
         heros[heroIndex].prix *= PRIX_UPGRADE;

@@ -15,12 +15,11 @@ void goldGainOffline(time_t lastSaveTime){
     double elapsedTime = difftime(currentTime, lastSaveTime);
     int goldBySec = herosGoldGenBySec();
     int goldEarned = (elapsedTime * goldBySec);
-    printf("Gold earned : %d\n", goldEarned);
     addGold((unsigned long long int)(goldEarned/10));
     if (goldEarned != 0){
         char goldEarnedMsg[100];
-        sprintf(goldEarnedMsg, "%d", goldEarned/10);
-        // createNotif(Traduction(GOLD_OFFLINE_MSG),35,1,"assets/ui/notif.png", 1, 3, (SDL_Rect){vw(50), vh(24), vw(40), vh(30)},30, 1.7,2, Traduction(GOLD_OFFLINE_DESC_MSG), goldEarnedMsg);
+        sprintf(goldEarnedMsg, "%s %d",Traduction(GOLD_OFFLINE_DESC_MSG), goldEarned/10);
+        createNotif(Traduction(GOLD_OFFLINE_MSG),0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, goldEarnedMsg);
     }
 }
 

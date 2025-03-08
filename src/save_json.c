@@ -229,7 +229,7 @@ int loadSavePlayer(char * save){
     refreshButtonShop();
     free(value);
 
-    value = getValueForKey("LAST_CHALLENGE_TIME", save);
+    value = getValueForKey("LAST_CHALLENGE", save);
     challenge.lastTime = atol(value);
     free(value);
 
@@ -258,7 +258,7 @@ int makeSavePlayer(char * save){
     sprintf(value, "%d", shop.damageLevel);
     createValueForKey("SHOP", value, save);
     sprintf(value, "%ld",challenge.lastTime);
-    createValueForKey("LAST_CHALLENGE_TIME", value, save);
+    createValueForKey("LAST_CHALLENGE", value, save);
 
 
 
