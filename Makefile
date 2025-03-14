@@ -49,3 +49,9 @@ val: ../$(BINDIR)/$(EXEC)
 rmsave:
 	$(rm) $(SAVE)/*.json
 	@echo "Save removed!"
+
+.PHONY: gdb
+gdb:
+	$(MAKE) clean
+	$(MAKE) CFLAG="$(CFLAG) -g" CFLAGSMAIN="$(CFLAGSMAIN) -g" ../$(BINDIR)/$(EXEC)
+	gdb $(BINDIR)/$(EXEC)
