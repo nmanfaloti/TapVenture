@@ -50,7 +50,6 @@ int launchChallenge() {
     level.mobToKill = challenge.target + 1; 
     refreshMobKilled();
     challenge.lastTime = time(NULL);
-    //createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",CHALLENGE_MSG_TIMER), getRectForCentenredCord(vw(50), vh(20), vh(50), vh(7)), (SDL_Color){255, 255, 255, 255}, "TimerChallenge");
     return 0;
 }
 
@@ -59,20 +58,8 @@ void resetChallenge() {
     level.mobToKill = 10;
     level.mobKilled = 0;
     refreshMobKilled();
-    destroyUItxt(getTxtFromLabel("TimerChallenge"), &pageHolder.page[0]);
 }
 
-/*
-void displayChallengeTimer(int elapsedTimeChallenge) {
-    int remainingTime = challenge.duration - elapsedTimeChallenge;
-    uiTxt * txtHolder = getTxtFromLabel("TimerChallenge");
-    if (txtHolder == NULL){
-        return;
-    }
-    char timerText[50];
-    //setUiText(txtHolder, formatChaine("%t: %d",CHALLENGE_MSG_TIMER, remainingTime));
-}
-*/
 void updateChallenge() {
     if (!challenge.active) return;
     int currentTime = SDL_GetTicks();
@@ -81,9 +68,7 @@ void updateChallenge() {
         createNotif("Challenge",0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, Traduction(CHALLENGE_MSG_LOSE));
         resetChallenge();
         return;
-    }
-    
-    //displayChallengeTimer(elapsedTimeChallenge);
+    }   
     if (level.mobKilled >= challenge.target) {
         char goldEarnedMsg[100];
         if (level.currentLvl != 0) lvl=level.currentLvl;

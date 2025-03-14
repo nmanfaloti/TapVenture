@@ -9,6 +9,7 @@
 #include "../lib/player.h"
 #include "../lib/lang.h"
 #include "../lib/ui.h"
+#include "../lib/challenge.h"
 
 levelInfo level;
 
@@ -42,8 +43,6 @@ int initLevel(monstreInfo monstre[]) {
 
 int attack(void * args[20]) {
     int * damage= args[0];
-    char txt[50] = "";
-    uiTxt * txtHolder;
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     currentMonstre->mobHealth -=  *damage;
     if (currentMonstre->mobHealth <= 0) {
@@ -99,6 +98,57 @@ void mobHandler() {
     }else{
         if (level.mobToKill == 1){
             level.mobToKill = 10;
+        }
+    }
+}
+int challengeUI = 0;
+int bossUI = 0;
+
+void displayTimers() {
+
+    // Pour le Challenge
+    if (challenge.active) {
+        int elapsed = (SDL_GetTicks() - challenge.startTime) / 1000;
+        int remaining = challenge.duration - elapsed;
+        if (remaining < 0) remaining = 0;
+        char *timerStr=malloc(strlen(Traduction(TIMER_MSG)) + 10);
+        sprintf(timerStr, "%s %d s",Traduction(TIMER_MSG), remaining);
+        if (challengeUI == 0) {
+            createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "challengeTimer");
+            challengeUI = 1;
+        } else {
+            uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
+            setUiText(txtHolder, timerStr);
+        }
+    } else {
+        // Si le challenge n'est plus actif, détruire l'UI texte s'il existe
+        if (challengeUI == 1) {
+            uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
+            destroyUItxt(txtHolder, &currentpage);
+            challengeUI = 0;
+        }
+    }
+
+    // Pour le Boss
+    if (isBoss(level.currentLvl) && level.timeToKill > 0) {
+        int elapsed = (SDL_GetTicks() - level.startTimer) / 1000;
+        int remaining = level.timeToKill - elapsed;
+        if (remaining < 0) remaining = 0;
+        char *timerStr=malloc(strlen(Traduction(TIMER_MSG)) + 10);
+        sprintf(timerStr, "%s %d s", Traduction(TIMER_MSG),remaining);
+        if (bossUI == 0) {
+            createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "bossTimer");
+            bossUI = 1;
+        } else {
+            uiTxt * txtHolder = getTxtFromLabel("bossTimer");
+            setUiText(txtHolder, timerStr);
+        }
+    } else {
+        // Si le timer du boss n'est plus nécessaire, détruire l'UI texte correspondant
+        if (bossUI == 1) {
+            uiTxt * txtHolder = getTxtFromLabel("bossTimer");
+            destroyUItxt(txtHolder, &currentpage);
+            bossUI = 0;
         }
     }
 }

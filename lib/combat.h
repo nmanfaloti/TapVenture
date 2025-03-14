@@ -25,3 +25,4 @@ int isBoss(int currentLvl);
 int writeBossTimer(SDL_Rect dest);
 int setLevel(levelInfo *level, int lvl);
 void mobHandler();
+void displayTimers();
