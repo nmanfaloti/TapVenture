@@ -333,6 +333,7 @@ void initMainPage(){
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, (int*)&(shop.nextPrice),0.5, upgradeButton, 0);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[1]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(10), vh(90), 50, 50), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[2]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(20), 50, 50), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_rectangle_depth_line.svg", 0, 2, launchChallenge,0);
     refreshMobKilled();
 }
 

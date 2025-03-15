@@ -114,7 +114,7 @@ void displayTimers() {
     if (challenge.active) {
         int elapsed = (SDL_GetTicks() - challenge.startTime) / 1000;
         int remaining = challenge.duration - elapsed;
-        if (remaining < 0) remaining = 0;
+        if (remaining <= 0) remaining = 0;
         char *timerStr=malloc(strlen(Traduction(TIMER_MSG)) + 10);
         sprintf(timerStr, "%s %d s",Traduction(TIMER_MSG), remaining);
         if (challengeUI == 0) {
@@ -137,7 +137,7 @@ void displayTimers() {
     if (isBoss(level.currentLvl) && level.timeToKill > 0) {
         int elapsed = (SDL_GetTicks() - level.startTimer) / 1000;
         int remaining = level.timeToKill - elapsed;
-        if (remaining < 0) remaining = 0;
+        if (remaining <= 0) remaining = 0;
         char *timerStr=malloc(strlen(Traduction(TIMER_MSG)) + 10);
         sprintf(timerStr, "%s %d s", Traduction(TIMER_MSG),remaining);
         if (bossUI == 0) {
