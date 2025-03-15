@@ -14,6 +14,7 @@
 #include "../lib/boutique.h"
 #include "../lib/challenge.h"
 #include "../lib/chaine.h"
+#include "../lib/heros.h"
 
 
 int widthscreen = 800;
@@ -319,8 +320,8 @@ void initMainPage(){
     createPage(&pageHolder.page[0]);
     currentpage = &pageHolder.page[0];
 
-    pageHolder.page[0].container->nbTxt = 0;
-    pageHolder.page[0].container->txt = NULL;
+    //pageHolder.page[0].container->nbTxt = 0;
+    //pageHolder.page[0].container->txt = NULL;
 
     createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",VIE_MSG, level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
     createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
@@ -329,9 +330,9 @@ void initMainPage(){
     createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",LVL_MSG, level.currentLvl), getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");
 
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, CLICK_MSG, NULL, 1.1, attack, 1, &damage_click);
-    createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, &(shop.nextPrice),0.5, upgradeButton, 3, &damage_click, &gold, &shop);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[1]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(20), 50, 50), "assets/ui/icons/challenge.svg", "assets/ui/buttons/extra/button_rectangle_depth_line.svg", 0, 2, launchChallenge,0);
+    createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, (int*)&(shop.nextPrice),0.5, upgradeButton, 0);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[1]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(10), vh(90), 50, 50), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[2]);
     refreshMobKilled();
 }
 
@@ -356,16 +357,17 @@ void initSettingsPage(){
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(20), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, EN_MSG, NULL, 1.05, SelectLanguage, 1, &en_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FULLSCREEN_MSG, NULL, 1.05, SelectScreen, 1, &full_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, WINDOWED_MSG, NULL, 1.05, SelectScreen, 1, &window_txt);
-    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
 }
 
 //pageHolder.page[0] = main page 
 ///pageHolder.page[1] = settings page
 void initPage(){
-    pageHolder.pageNb = 2;
+    pageHolder.pageNb = 3;
     pageHolder.page = malloc(sizeof(uiPage) * pageHolder.pageNb);
     initMainPage();
     initSettingsPage();
+    initHerosPage();
 }
 
 void destroyPages(){

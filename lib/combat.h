@@ -1,14 +1,14 @@
 #include <SDL2/SDL.h>
 
 typedef struct {
-    int mobHealth;
-    int iniHealth;
-    int coinMax;
-    int coinMin;
+    unsigned long long int mobHealth;
+    unsigned long long int iniHealth;
+    unsigned long long int coinMax;
+    unsigned long long int coinMin;
 } monstreInfo;
 
 typedef struct {
-    monstreInfo monstre[50];
+    monstreInfo monstre[51];
     int timeToKill;
     unsigned int startTimer; 
     int mobKilled;

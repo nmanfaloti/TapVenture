@@ -23,14 +23,14 @@ int initLevel(monstreInfo monstre[]) {
     monstre[0].coinMin = 5;
     monstre[0].coinMax = 15;
     //Initialisation des monstres (En fonction du niveau)
-    for (int i = 1; i < 50; i++) {
+    for (int i = 1; i <= 50; i++) {
         monstre[i].mobHealth = monstre[i-1].mobHealth * 1.5;
         monstre[i].iniHealth = monstre[i].mobHealth;
         monstre[i].coinMin = monstre[i-1].coinMin * 1.25;
         monstre[i].coinMax = monstre[i-1].coinMax * 1.25;
     }
     //Initialisation des Boss apres afin de pas fausser les prochains monstres
-    for (int i = 1; i < 50; i++) {
+    for (int i = 1; i <= 50; i++) {
         if (i % 5 == 0) {
             monstre[i].mobHealth = monstre[i-1].mobHealth * 5;
             monstre[i].iniHealth = monstre[i].mobHealth;
@@ -42,20 +42,24 @@ int initLevel(monstreInfo monstre[]) {
 }
 
 int attack(void * args[20]) {
-    int * damage= args[0];
+    unsigned long long int * damage = args[0];
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
-    currentMonstre->mobHealth -=  *damage;
-    if (currentMonstre->mobHealth <= 0) {
+    if (currentMonstre->mobHealth < *damage){
         level.mobKilled += 1;
-        addGold((unsigned long long int)(currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1)));
+        addGold((currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1)));
         currentMonstre->mobHealth = currentMonstre->iniHealth;
         if (level.mobKilled >= level.mobToKill) {
-            level.currentLvl += 1;
+            if (level.currentLvl < 50) {
+                level.currentLvl++;
+            }
             level.mobKilled = 0;
             mobHandler();
             refreshCurrentLvl();
         }
         refreshMobKilled();
+    }
+    else{
+        currentMonstre->mobHealth -=  *damage;
     }
     //Actualisation de la vie du monstre (A la fin pour eviter d'avoir la vie du monstre a 0 ou -)
     refreshMobHealth();

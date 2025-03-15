@@ -193,7 +193,6 @@ int loadSavePlayer(char * save){
         return 1;
     }
 
-    /*En cas de fichier avec des valeurs manqantes, ne pas free le pointeur*/
     char * value;
     value = getValueForKey("USERNAME", save);
     strcpy(username, value);

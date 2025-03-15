@@ -40,9 +40,9 @@ int getDamageFromLevel(int level) {
     return 10 * pow(1.25, level);
 }
 
-int upgradeButton(void * args[20]) {
-    if (gold >= (unsigned long long int)shop.nextPrice) {
-        addGold((unsigned long long int)-shop.nextPrice);
+int upgradeButton() {
+    if (gold >= shop.nextPrice) {
+        addGold(-shop.nextPrice);
         shop.damageLevel += 1;
         shop.lastPrice = shop.nextPrice;
         shop.nextPrice = getPriceKnowLevel(shop.lastPrice, shop.damageLevel + 1);

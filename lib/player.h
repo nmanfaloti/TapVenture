@@ -3,6 +3,8 @@
 
 #include <time.h>
 
+#define LLD_MAX 802379605485813759
+
 extern unsigned long long int gold;
 extern unsigned long long int damage_click;
 extern char username[50];

@@ -10,8 +10,8 @@ typedef enum {
 } herosIndex;
 
 typedef struct {
-    int degat;
-    int prix;
+    unsigned long long int degat;
+    unsigned long long int prix;
     int level;
     int cooldown;
     unsigned int lastAttack;
@@ -22,9 +22,11 @@ int attackHeros();
 int upgradeHero(int HeroIndex, bool pay);
 int makeHeroAtLevel(int heroIndex, int level);
 
-float herosDPS(int indiceHero);
-int herosAllDPS();
-int herosGoldGenBySec();
+unsigned long long int herosDPS(int indiceHero);
+unsigned long long int herosAllDPS();
+unsigned long long int herosGoldGenBySec();
+
+void initHerosPage();
 
 extern hero heros[HEROS_COUNT];
 

@@ -12,6 +12,8 @@
 #include "../lib/lang.h"
 #include "../lib/input_user.h"
 #include "../lib/aff.h"
+#include "../lib/chaine.h"
+
 
 static int setButtonTexture(SDL_Texture **texture, char *path) {
     //Gestion de l'image en svg
@@ -262,9 +264,9 @@ void refreshButtonShop(){
         return;
     }
     //Update du bouton pour afficher le nouveau prix (1 est son indice dans la liste des boutons)
-    char txt[50] = "";
-    sprintf(txt, "%s: %d", Traduction(pageHolder.page[0].buttonsList->buttons[1].text), shop.nextPrice);
+    char * txt = formatChaine("%t: %w", pageHolder.page[0].buttonsList->buttons[1].text, shop.nextPrice);
     setButtonText(&pageHolder.page[0].buttonsList->buttons[1], txt);
+    free(txt);
 }
 
 void refreshButtonLanguage(){
