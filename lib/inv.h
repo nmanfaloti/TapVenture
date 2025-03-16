@@ -1,3 +1,13 @@
+
+#ifndef INV_H
+#define INV_H
+
+#define NB_BOTTES 6
+#define NB_PLASTRON 6
+#define NB_CASQUE 6
+#define NB_ARME 11
+#define DROP_ITEM 1.5 // en pourcentage par nv.monstre 
+#include "../lib/scroll.h"
 /**
  * @file inv.h
  * @brief Déclarations et définitions pour la gestion de l'inventaire.
@@ -27,7 +37,6 @@
  typedef enum {
      CASQUE,         ///< Casque
      PLASTRON,       ///< Plastron
-     JAMBIERE,       ///< Jambière
      BOTTE,          ///< Botte
      ARME            ///< Arme
  } emplacement;
@@ -54,14 +63,40 @@
      rarity rarity;                     ///< Rareté
      int stat;                          ///< Statistique (représente un pourcentage)
  } item_t;
- 
+
+typedef struct aff_inv_inf_s{
+    SDL_Rect SDL_Rect ;
+    int nb_collone ;
+    int nb_ligne ;
+    int nb_element ;
+    int arrondis ;
+    int decalage_bas ;
+    int decalage_cote ;
+
+} aff_inv_inf;
+
+
  /**
   * @brief Structure représentant un inventaire.
   */
  typedef struct {
-     item_t *liste[NB_EQU]; ///< Liste des items dans l'inventaire
- } inv;
- 
+    int id_scroll;
+    aff_inv_inf info_inv;
+    item_t **liste;  ///< Tableau dynamique de pointeurs sur items
+    int nb_items;    ///< Nombre d’items réel
+} inv;
+
+typedef struct {
+    inv **inventaires;  // Tableau de pointeurs vers les inventaires
+    int nb_inventaires; // Nombre d'inventaires dans la liste
+} liste_inventaires;
+
+extern liste_inventaires * list_inv ; 
+//0 item joueur  / essamble des 1 model items
+ // premier / (2 pour l'instant les item_init sont pas charger ) sont allouer aux item et le reste aux heros
+
+
+
  /**
   * @brief Affiche l'inventaire.
   *
@@ -109,7 +144,8 @@ void liberer_item(item_t * item);
   * \fn void gestion_inv(inv **inventaire)
   * @param inventaire Pointeur vers le pointeur de l'inventaire à gérer.
   */
- void gestion_inv(inv **inventaire);
+ extern void gestion_inv(inv ** inventaire, int NB_items,int scroll_id,SDL_Rect SDL_Rect ,int nb_collone ,int nb_ligne ,int nb_element ,
+    int arrondis ,int decalage_bas ,int decalage_cote);
  
  /**
   * @brief Affiche un item.
@@ -155,13 +191,6 @@ void dest_inv(inv ** inventaire);
   */
  int droit_fusion(item_t *item1, item_t *item2);
 
- /**
- * \brief Gère l'inventaire, en l'initialisant et en affichant les items.
- * \fn void gestion_inv(inv ** inventaire)
- * 
- * \param inventaire Pointeur vers le pointeur de l'inventaire à gérer.
- */
-void gestion_inv(inv ** inventaire);
 
  /**
  * \brief Génère un nombre de statistique influencé par un niveau.
@@ -193,7 +222,7 @@ void deb_fusion(item_t * item1, item_t * item2);
  * @param y La coordonnée y du centre du cercle.
  * @param rayon Le rayon du cercle.
  */
-void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon);
+void cercle_graf(int x, int y, int rayon);
 
 /**
  * @brief Dessine un rectangle avec des coins arrondis.
@@ -208,7 +237,7 @@ void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon);
  * @param g La composante verte de la couleur du rectangle.
  * @param b La composante bleue de la couleur du rectangle.
  */
-void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int radius, int r, int g, int b);
+void rectangle_arrondis(SDL_Rect SDL_Rect, int radius, int r, int g, int b);
 
 /**
  * @brief Affiche plusieurs rectangles arrondis en grille.
@@ -222,8 +251,7 @@ void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int 
  * @param decalage L'espace entre les rectangles.
  * @param arrondis Le rayon des coins arrondis.
  */
-void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos , int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis);
-
+void aff_inv_graf(inv * inventaire);
 /**
  * @brief Dessine une barre de défilement verticale.
  * 
@@ -231,7 +259,7 @@ void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos , int nb_c
  * @param scrollbar_position La position y du sommet de la barre de défilement.
  * @param scrollbar_height La hauteur de la barre de défilement.
  */
-void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_x,int scrollbar_y, int scrollbar_height , int scrollbar_wheight ) ;
+void draw_scrollbar(int scrollbar_x,int scrollbar_y, int scrollbar_height , int scrollbar_wheight ) ;
 
 /**
  * @brief Calcule la hauteur totale du contenu.
@@ -243,14 +271,6 @@ void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_x,int scrollbar_y, int
  */
 int calculate_total_content_height(int nb_ligne, int taille, int decalage);
 
-/**
- * @brief Calcule la hauteur de la barre de défilement.
- * 
- * @param visible_area_height La hauteur de la zone visible.
- * @param total_content_height La hauteur totale du contenu.
- * @return La hauteur de la barre de défilement.
- */
-int calculate_scrollbar_height(int visible_area_height, int total_content_height , float cof);
 
 /**
  * @brief Calcule le coefficient de vitesse de défilement de la barre de défilement.
@@ -278,7 +298,7 @@ int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt , fl
  * @param scrollbar_speed La vitesse de déplacement de la barre de défilement.
  * @param scrollbar_max_position La position maximale de la barre de défilement.
  */
-void handle_scroll_event(SDL_Event event, int* scrollbar_position, int scrollbar_speed, int scrollbar_max_position);
+extern void handle_inv_event(SDL_Event event);
 
 
 /**
@@ -317,4 +337,17 @@ void calculate_zone_content(int* x_larg, int* y_haut, int nb_ligne, int nb_colon
  * @param decalage L'espace entre les éléments.
  * @return Le numéro de case en fonction des coordonnées de la souris, ou -1 si aucune case n'est trouvée.
  */
-int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage, int scroll);
+int calcule_pos_inv();
+
+extern void dest_all_inventaires();
+extern void aff_all_inventaires() ;
+extern void load() ;
+extern void cleanup() ;
+extern void drop_item();
+
+
+extern void load_inv_ref(const char *nom_fichier, inv * inventaire ) ;
+extern void load_inv(const char *nom_fichier, inv * inventaire ) ;
+extern item_t * load_item_ref(FILE *f) ;
+extern item_t * load_item_joueur(FILE *f);
+#endif

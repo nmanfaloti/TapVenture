@@ -10,24 +10,34 @@
 //liste de heros global / struct heros avec liste d'item
 
 //faire une fonction raffraichissmeent qui rafrechis que si action 
-
-
-
-
-#include <SDL2/SDL.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
 #include <math.h>
 #include "../lib/inv.h"
+#include "../lib/sdl.h"
+#include "../lib/input_user.h"
+#include "../lib/heros.h"
+#include "../lib/combat.h"
+#include "../lib/player.h"
+#include "../lib/ui.h"
+#include "../lib/aff.h"
+#include "../lib/lang.h"
+#include "../lib/chaine.h"
 
-/// \brief Inventaire global.
-inv * inventaire = NULL;
-int select_graf_item = 0;
-int mouse_X , mouse_Y;
-int carre_X,carre_Y;
-int click_in_progress = 0 ;
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 500;
+const int SCROLLBAR_WIDTH = 20;
+const int VISIBLE_AREA_HEIGHT = 500;
+const int NB_COLLONE = 4;
+const int NB_LIGNE = 15;
+const int ITEM_SIZE = 80;
+const int DEPLACEMENT = 20;
+const int ARRONDIS = 20;
+
+liste_inventaires * list_inv = NULL ;
+
 
 void aff_inv(inv * inventaire){
     printf("label : lab\t");
@@ -48,6 +58,13 @@ void aff_inv(inv * inventaire){
     printf("    affichage   terminer      \n");
 }
 
+item_t * generation_item(char * name , char * label ){
+    item_t * it = malloc(sizeof(item_t));
+    it->nom = strdup(name);
+    it->label = strdup(label);
+    return it ;
+}
+
 void aff_item(item_t * item){
     if ( item == NULL) return;
     printf("------------\taff item\t--------------\n");
@@ -62,31 +79,34 @@ void aff_item(item_t * item){
 
 void dest_item(item_t ** item){
     if ( *item == NULL) return;
-    free((*item)->nom);
-    free((*item)->label);
+    if ((*item)->nom != NULL) {
+        free((*item)->nom);
+        (*item)->nom = NULL;
+    }
+    if ((*item)->label != NULL) {
+        free((*item)->label);
+        (*item)->label = NULL;
+    }
     free(*item);
     *item = NULL;
 }
 
-void liberer_item(item_t * item){
-    free(item->nom);
-    item->nom = NULL ;
-    free(item->label);
-    item->label = NULL ;
-    item->piece_equipement = CASQUE ;
-    item->booste = DEGAT ;
-    item->rarity = COMMUN;
-    item->stat = 0 ;
-}
+void dest_inv(inv **inventaire) {
+    if (*inventaire == NULL)
+        return;
 
-void dest_inv(inv ** inventaire){
-    if ( *inventaire == NULL) return;
-    for ( int i = 0 ; i < NB_EQU ; i++ ){
-        dest_item(&(*inventaire)->liste[i]);
+    if ((*inventaire)->liste != NULL) {
+        for (int i = 0; i < (*inventaire)->nb_items; i++) {
+            dest_item(&(*inventaire)->liste[i]); 
+        }
+        free((*inventaire)->liste);
+        (*inventaire)->liste = NULL ;
     }
     free(*inventaire);
     *inventaire = NULL;
 }
+
+
 
 int est_vide(item_t * item){
     return item->label == NULL;
@@ -118,39 +138,66 @@ int droit_fusion(item_t * item1, item_t * item2){
     if (item1->rarity != item2->rarity) return -5; // pas la même rareté
     return 1; // fusion autorisée
 }
-
-void gestion_inv(inv ** inventaire){
-    printf("etape 1\n");
-    if(*inventaire == NULL){
-        *inventaire = malloc(sizeof(inv));
-        printf("entrer init \n");
-        init_inv((*inventaire));
+int recherche_emplacement_valide(inv * inventaire){
+    if (inventaire == NULL )return -1 ;
+    for ( int i = 0 ; i < inventaire->nb_items ; i++){
+        item_t * path = inventaire ->liste[i] ;
+        if ( path->label == NULL || path->nom == NULL){
+            return i ;
+        }
     }
-
-    printf ( " est vide (%d): %s \n ",4,est_vide((*inventaire)->liste[4])?"oui":"non");
-    printf ( " premier vide : %d \n ",prem_vide((*inventaire)));
-    printf ( "droit de fusion %d \n ",droit_fusion((*inventaire)->liste[4], (*inventaire)->liste[1]));
-
-    printf("test affichage inv : \n");
-    aff_inv(*inventaire);
-    printf(" / fin etape 1 \n");
-
-    dest_item(&((*inventaire)->liste[4]));
-    printf("test affichage item 4 : \n");
-    aff_item((*inventaire)->liste[4]);
+    return -1 ;
 }
 
-/**
- * \brief Exemple d'initialisation et de destruction de l'inventaire.
- *
- * \code
- * gestion_inv(&inventaire);
- * printf("destruction inventaire : ");
- * dest_inv(&inventaire);
- * printf("OK\n");
- * \endcode
- */
- int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv){// type = {or =  var : 0,7 // degat = var : 1 // vit_att = var : 0,1 }
+int calculate_total_content_size(int nb_ligne, int taille, int decalage) {
+    if (nb_ligne == 1) 
+        return taille;
+    return (nb_ligne * taille) + ((nb_ligne - 1) * decalage);
+}
+
+void insert_inf_aff(inv * inventaire,SDL_Rect SDL_Rect ,int nb_collone ,int nb_ligne ,int nb_element ,
+    int arrondis ,int decalage_bas ,int decalage_cote ){
+        inventaire->info_inv.SDL_Rect = SDL_Rect ;
+        inventaire->info_inv.nb_collone = nb_collone ;
+        inventaire->info_inv.nb_ligne = nb_ligne ;
+        inventaire->info_inv.nb_element = nb_element ;
+        inventaire->info_inv.arrondis = arrondis ;
+        inventaire->info_inv.decalage_bas = decalage_bas ;
+        inventaire->info_inv.decalage_cote = decalage_cote ;
+}
+
+void gestion_inv(inv **inventaire, int NB_items, int id_scroll, SDL_Rect SDL_Rect, int nb_colonne, int nb_ligne, int nb_element, int arrondis, 
+int decalage_bas, int decalage_cote) {
+        if (*inventaire == NULL) {
+            // Allocation de la structure de l'inventaire
+            *inventaire = malloc(sizeof(inv));
+            if (*inventaire == NULL) {
+            printf("Erreur d'allocation mémoire pour l'inventaire\n");
+            return;
+        }
+
+        int total_content_height = calculate_total_content_size(nb_ligne, SDL_Rect.h, decalage_bas);
+        int total_content_width = calculate_total_content_size(nb_colonne, SDL_Rect.w, decalage_cote);
+
+        scroll_liste[id_scroll].total_content_height = total_content_height ;
+        scroll_liste[id_scroll].zone_interaction.w = total_content_width ;
+        printf("\n\n total_content_height : %d   total_content_width : %d",total_content_height,total_content_width);
+        update_scroll(&id_scroll);
+
+
+        // Initialisation des données de l'inventaire
+        (*inventaire)->id_scroll = id_scroll;
+        SDL_Rect.x += scroll_liste[id_scroll].zone_interaction.x;
+        SDL_Rect.y += scroll_liste[id_scroll].zone_interaction.y;
+        insert_inf_aff(*inventaire, SDL_Rect, nb_colonne, nb_ligne, nb_element, arrondis, decalage_bas, decalage_cote);
+
+        (*inventaire)->liste = malloc(NB_items * sizeof(item_t *));
+        (*inventaire)->nb_items = NB_items;  // Stocke le nombre d'items
+
+        printf("Inventaire initialisé avec %d items max \n", NB_items);
+    }
+}
+int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv){// type = {or =  var : 0,7 // degat = var : 1 // vit_att = var : 0,1 }
     float var ;
     if (!type)var = 1.0; // si type = degat
     else var = (type == 1) ? 0.1 : 0.7 ;
@@ -193,10 +240,7 @@ void deb_fusion(item_t * item1, item_t * item2) {
     }
 }
 
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 600;
-
-void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon) {
+void cercle_graf(int x, int y, int rayon) {
     for (int w = 0; w < rayon * 2; w++) {
         for (int h = 0; h < rayon * 2; h++) {
             int dx = rayon - w , dy = rayon - h; 
@@ -208,139 +252,346 @@ void cercle_graf(SDL_Renderer* renderer, int x, int y, int rayon) {
 }
 
 // Fonction pour dessiner un rectangle avec des bords arrondis
-void rectangle_arrondis(SDL_Renderer* renderer, int x, int y, int w, int h, int radius , int r , int g , int b) {
+void rectangle_arrondis(SDL_Rect Rect, int radius , int r , int g , int b) {
     SDL_SetRenderDrawColor(renderer, r, g, b, 255);
 
     // Dessiner les coin arrondi  / dessine des cercle pour les couper pour avoir le coin
-    cercle_graf(renderer, x + radius, y + radius, radius);// haut / gauche
-    cercle_graf(renderer, x + w - radius, y + radius, radius);// haut / droit
-    cercle_graf(renderer, x + radius, y + h - radius, radius);// bas / gauche
-    cercle_graf(renderer, x + w - radius, y + h - radius, radius);// bas / droit
+    cercle_graf(Rect.x + radius, Rect.y + radius, radius);// haut / gauche
+    cercle_graf(Rect.x + Rect.w - radius, Rect.y + radius, radius);// haut / droit
+    cercle_graf(Rect.x + radius, Rect.y + Rect.h - radius, radius);// bas / gauche
+    cercle_graf(Rect.x + Rect.w - radius, Rect.y + Rect.h - radius, radius) ;// bas / droit
 
     //dessine le corps
     SDL_Rect rects[] = {
-        {x + radius, y, w - 2 * radius, radius}, // haut
-        {x + radius, y + h - radius, w - 2 * radius, radius}, // bas
-        {x, y + radius, w   , h - 2 * radius},//milieu
+        {Rect.x + radius, Rect.y, Rect.w - 2 * radius, radius}, // haut
+        {Rect.x + radius, Rect.y + Rect.h - radius, Rect.w - 2 * radius, radius}, // bas
+        {Rect.x,Rect. y + radius, Rect.w   , Rect.h - 2 * radius}//milieu
     };
     SDL_RenderFillRect(renderer, &rects[0]);
     SDL_RenderFillRect(renderer, &rects[1]);
     SDL_RenderFillRect(renderer, &rects[2]);
 
 }
-int coordonner_realiste(int x_deb, int y_deb, int x_fin, int y_fin) {
-    return mouse_X >= x_deb && mouse_X <= x_fin && mouse_Y >= y_deb && mouse_Y <= y_fin;
+
+char * item_rondam(int * piece_equipement){
+    int liste[] = {NB_CASQUE,NB_CASQUE + NB_PLASTRON,NB_CASQUE + NB_PLASTRON + NB_BOTTES,NB_CASQUE + NB_PLASTRON + NB_BOTTES + NB_ARME} ;
+    int nb_item = NB_CASQUE + NB_PLASTRON + NB_BOTTES + NB_ARME ;
+    int id_item = rand() % nb_item  + 1 ;
+    int i = 0 ,run = 1 ;
+    for ( ; i < 4  && run ; i ++){
+        if ( id_item < liste[i] && i!=0 ){
+            id_item -= liste[i] ;
+            run = 0 ;
+        }
+    }
+    *piece_equipement = i ;
+    char * mot = malloc ( strlen("11.png") + 1 ) ;
+    sprintf(mot,"%d.png",id_item);
+    const char *prefix;
+
+    switch(i){
+        case CASQUE : 
+            prefix = "casque-";
+            break ;
+        case PLASTRON : 
+            prefix = "plastron-";
+            break ;
+        case BOTTE :
+            prefix = "botte-";
+            break ;
+
+        case ARME :
+            prefix = "arme-";
+            break ;
+    }
+    char * type = realloc(type , strlen(prefix) + strlen(mot) + 1);
+    strcpy(type,prefix);
+    strcat(type,mot);
+    free(mot);
+    return type ;
 }
 
-// Fonction pour calculer les dimensions de la zone de contenu
-void calculate_zone_content(int *x_larg, int *y_haut, int nb_ligne, int nb_colonne, int largeur, int hauteur, int decalage) {
-    *x_larg = calculate_total_content_height(nb_colonne, largeur, decalage);
-    *y_haut = calculate_total_content_height(nb_ligne, hauteur, decalage);
+int chercher_select(){
+    if ( !list_inv )return -1 ;
+    int id_scroll_select = select_quelle_scroll(3) ;
+    for ( int i = 0 ;  i < list_inv->nb_inventaires ; i++)
+        if (list_inv->inventaires[i]->id_scroll == id_scroll_select)return i ;
+    return -1 ;
 }
 
 // Fonction pour calculer le numéro de case en fonction des coordonnées
-int calcule_pos_inv(int x, int y, int nb_collone, int nb_ligne, int taille_largeur, int taille_longeur, int decalage,int scroll) {
-    int case_number = 0;
-    y -= scroll;
-    for (int h = 0, deb = x; h < nb_ligne; h++) {
-        for (int i = 0; i < nb_collone; i++) {
-            if (coordonner_realiste(x, y, x + taille_largeur, y + taille_longeur)) return case_number;
-            case_number++;
-            x += taille_largeur + decalage;
+int calcule_pos_inv() {
+    int id_inv = chercher_select();
+    printf("--%d--\n",id_inv);
+    if (id_inv == -1 || !list_inv || id_inv >= list_inv->nb_inventaires) 
+        return -1; 
+
+    inv *inventaire = list_inv->inventaires[id_inv];
+
+    if (!inventaire) 
+        return -1;
+        
+    SDL_Point start = {inventaire->info_inv.SDL_Rect.x,inventaire->info_inv.SDL_Rect.y};
+    int hauteur_elem =  inventaire->info_inv.decalage_bas + inventaire->info_inv.SDL_Rect.h ;
+    int largeur_elem = inventaire->info_inv.decalage_cote + inventaire->info_inv.SDL_Rect.w ;
+    int nb_colonnes = inventaire->info_inv.nb_collone;
+    int nb_lignes = inventaire->info_inv.nb_ligne;
+    int items_par_page = inventaire->info_inv.nb_element;
+
+    int pos_y = mouseY + scroll_liste[inventaire->id_scroll].scroll_pos - start.y;
+    int h = pos_y / hauteur_elem ;
+    int w = (mouseX - start.x)/largeur_elem ;
+    int elem_numb = h * nb_colonnes + w ;
+    if (( w >= nb_colonnes || h >= nb_lignes) && ( items_par_page < elem_numb))
+        return -1;
+    return elem_numb;
+}
+
+
+void aff_inv_graf(inv* inventaire) {
+        aff_inv_inf path = inventaire->info_inv;
+        int id_scroll = inventaire->id_scroll;
+        int x = scroll_liste[id_scroll].zone_interaction.x;
+        int y = scroll_liste[id_scroll].zone_interaction.y;
+        int conteur = 0 ;
+        y -= scroll_liste[id_scroll].scroll_pos;
+        for (int h = 0; h < path.nb_ligne; h++) {
+            for (int i = 0; i < path.nb_collone && conteur < inventaire->nb_items ; i++ , conteur ++ ) {
+                // Assurez-vous que les dimensions de SDL_Rect sont correctes
+                char *chemin = malloc(strlen("assets/ui/") + strlen(inventaire->liste[h+i]->label) + 1);
+                strcpy(chemin, "assets/ui/");
+                strcat(chemin, inventaire->liste[h+i]->label);
+                createUIImg(&pageHolder.page[3], chemin, (SDL_Rect){x, y, 64, 64}, inventaire->liste[h+i]->label);
+                rectangle_arrondis((SDL_Rect){x,y,path.SDL_Rect.w,path.SDL_Rect.h}, path.arrondis, 128, 128, 128);
+                x += path.SDL_Rect.w + path.decalage_cote;  // Mise à jour correcte de la position horizontale
+                free(chemin);
+            }
+            x = scroll_liste[id_scroll].zone_interaction.x; // Réinitialisation de x pour une nouvelle ligne
+            y += path.SDL_Rect.h + path.decalage_bas;  // Mise à jour de la position verticale
         }
-        x = deb;
-        y += taille_longeur + decalage;
-    }
-    return -1;
 }
 
+void handle_inv_event(SDL_Event event) {
+    handle_scroll_event(event);
 
-void aff_inv_graf(SDL_Renderer* pRenderer,int x,int y, int scrool_pos , int nb_collone , int nb_ligne ,int taille, int decalage, int arrondis){
-    y -= scrool_pos ;
-    for (int h = 0 , deb = x ; h < nb_ligne ; h ++){
-        for ( int i = 0 ; i < nb_collone ; i++ ){
-            rectangle_arrondis(pRenderer, x, y,taille, taille, arrondis,128,128,128);
-            x += taille + decalage ;
-        }
-        if ( h%2 == 0) rectangle_arrondis(pRenderer, x, y,380, taille*2, arrondis,128,128,128); // heros
-        x = deb ;
-        y += taille + decalage ;
-    }
-}
-
-void draw_scrollbar(SDL_Renderer* renderer, int scrollbar_x,int scrollbar_y, int scrollbar_height , int scrollbar_wheight ) {
-    SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
-    int demi_larg = scrollbar_wheight/2;
-    SDL_Rect scrollbar = {scrollbar_x, scrollbar_y, scrollbar_wheight, scrollbar_height};
-    SDL_RenderFillRect(renderer, &scrollbar);
-}
-
-int calculate_total_content_height(int nb_ligne, int taille, int decalage) {
-    if ( nb_ligne == 1) decalage = 0 ;
-    return ((nb_ligne) * (taille + decalage));
-}
-
-
-int calculate_scrollbar_height(int visible_area_height, int total_content_height,float cof) {
-    return round(visible_area_height/cof);
-}
-
-float cof_scrollbar_window(int visible_area_height, int total_content_height){
-    return (total_content_height/(visible_area_height*1.0));
-}
-
-int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt , float cof) {
-    return round((screen_height - scrollbar_heigt)*cof);
-}
-
-//pos x,y de la scroll
-void interraction_scroll(int x,int y ,int * scrollbar_position,int scrollbar_max_position){
-    int ecran_height = 500;
-    int taille_scroll = ecran_height - scrollbar_max_position/3 ;
-    if(coordonner_realiste(x,0,x+30,ecran_height)){
-        *scrollbar_position = ( mouse_Y * 3 - (taille_scroll ) ) ;
-        if (*scrollbar_position<0)*scrollbar_position=0;
-        else if(*scrollbar_position>scrollbar_max_position)*scrollbar_position=scrollbar_max_position;
-    }
-}
-
-
-
-int scroll_mouve = 0 ;
-
-
-void handle_scroll_event(SDL_Event event, int* scrollbar_position,int scrollbar_speed, int scrollbar_max_position) {
-    if (event.type == SDL_MOUSEWHEEL) {
-        if (event.wheel.y > 0) {
-            *scrollbar_position -= scrollbar_speed;
-        } else if (event.wheel.y < 0) {
-            *scrollbar_position += scrollbar_speed;
-        }
-        if (*scrollbar_position < 0) {
-            *scrollbar_position = 0;
-        } else if (*scrollbar_position > scrollbar_max_position) {
-            *scrollbar_position = scrollbar_max_position;
-        }
-    }
     if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-        int clicked_case = calcule_pos_inv(10, 10, 4, 15, 80, 80, 20,*scrollbar_position);
-        if ( coordonner_realiste(800-20-10,*scrollbar_position/3,800-20-10+30,(*scrollbar_position + (1500 - scrollbar_max_position))/3))scroll_mouve = 1;
-        else interraction_scroll(800-20-10,*scrollbar_position ,scrollbar_position,scrollbar_max_position);
+        int clicked_case = calcule_pos_inv();
         if (clicked_case != -1) {
             printf("Vous avez cliqué sur le carré numéro : %d\n", clicked_case+1);
         }
-        printf("x: %d; y: %d ,scroll:%d,scrool:%d,calc:%d\n", mouse_X, mouse_Y ,scrollbar_max_position,*scrollbar_position,(*scrollbar_position + (1500 - scrollbar_max_position))/3 + mouse_Y);
-    }
-
-    if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
-        scroll_mouve = 0 ;
-        mouse_X = 0; 
-        mouse_Y = 0;
     }
 }
 
-void aff_graph_inv_scroll(SDL_Renderer* renderer){
+
+void cleanup() {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+}
+
+ void aff_all_inventaires() {
+    printf("\n\n -------aff inv all ----------\n\n"); 
+    for (int i = 0; i < list_inv->nb_inventaires; i++) {
+        //aff_inv_graf(list_inv->inventaires[i]);  // Appel à aff_inv_graf pour chaque inventaire
+    }
+    aff_scrollbar_simple(NULL, NULL);
+}
+void dest_all_inventaires() {
+    if(list_inv == NULL) return ;
+    for (int i = 0; i < list_inv->nb_inventaires; i++) {
+        dest_inv(&(list_inv->inventaires[i]));  // Appel à dest_inv pour chaque inventaire
+    }
+    free(list_inv->inventaires);  // Libération du tableau d'inventaires
+    list_inv->inventaires = NULL;
+    list_inv->nb_inventaires = 0;
+    free(list_inv);
+    list_inv = NULL ;
+}
+ void ajouter_inventaire(int nb_inventaires, ...) {
+    va_list args;
+    va_start(args, nb_inventaires);
+    printf("porbleme 1 ;");
+    list_inv->inventaires = realloc(list_inv->inventaires, (list_inv->nb_inventaires + nb_inventaires) * sizeof(inv *));
+    for (int i = 0; i < nb_inventaires; i++) {
+        printf("%d",i);
+        inv *inventaire = va_arg(args, inv *);  // Récupère l'inventaire passé en paramètre
+        list_inv->inventaires[list_inv->nb_inventaires] = inventaire;
+        list_inv->nb_inventaires++;
+    }
+
+    va_end(args);
+}
+
+extern void load(){
+    inv *inventaire_item = NULL;
+    inv *inventaire_heros = NULL;
+
+    int id_scroll1 = creation_scroll((SDL_Rect){0, 0, 0, VISIBLE_AREA_HEIGHT},
+                                     (SDL_Rect){0, 0, SCROLLBAR_WIDTH, VISIBLE_AREA_HEIGHT - 100},
+                                     0, 30,NULL);
+
+    int id_scroll2 = creation_scroll((SDL_Rect){WINDOW_WIDTH/2, 0,WINDOW_WIDTH/2, VISIBLE_AREA_HEIGHT},
+                                     (SDL_Rect){800-20, 0, SCROLLBAR_WIDTH, VISIBLE_AREA_HEIGHT - 10},
+                                     0, 30,NULL);
+    printf("ajoute inv -----");
+
+    gestion_inv(&inventaire_item,100, id_scroll1, (SDL_Rect){0, 10, ITEM_SIZE, ITEM_SIZE},
+    NB_COLLONE, NB_LIGNE, NB_LIGNE * NB_COLLONE, ARRONDIS, DEPLACEMENT, DEPLACEMENT);
+
+    printf("ajoute inv 2 -----");
+    gestion_inv(&inventaire_heros,20, id_scroll2, (SDL_Rect){0, 10,WINDOW_WIDTH/2 -20 , 200},
+    1, 10, 1 * 10, ARRONDIS, 20, 0);
+
+    printf("ajoute inv liste global -----");
+
+
+    ajouter_inventaire(2 , inventaire_item , inventaire_heros);
 
 }
 
 
+void init_liste_inventaires(){
+    list_inv = malloc (sizeof(liste_inventaires));
+    list_inv->inventaires = malloc(sizeof(inv *));
+    list_inv->nb_inventaires = 0 ;
+    load();
+}
+
+int chercher_label(char * label , inv * inventaire){
+    for ( int i = 0 ; i < inventaire ->nb_items ; i++){
+        if ( strcmp ( label , inventaire->liste[i]->label))
+            return i ;
+    } 
+    return -1 ;
+}
+void drop_item(){
+
+    if ( rand() % 100 + 1 > DROP_ITEM * level.mobKilled ) return ; // chance de drop 1 item 
+    int emplacement_vide = recherche_emplacement_valide(list_inv->inventaires[0]);
+    if (emplacement_vide == -1){
+        //notif inv full
+        printf("inventaire remplis\n");
+        return ;
+    }
+
+    int type_stat = rand() % 3 + 1 ;
+    int stat = generate_stat_nb(25,type_stat,1,0,70);// a remplacer 1 et dernier stat 
+    
+    int piece_equipement ;
+    char * nom_path_icon = item_rondam(&piece_equipement);
+    int id_ref = chercher_label(nom_path_icon,list_inv->inventaires[1]);
+
+    char * nom = list_inv->inventaires[1]->liste[id_ref]->nom ;
+
+    item_t * it = generation_item(nom,nom_path_icon);
+    it->stat = stat ;
+    it -> booste = type_stat ;
+    it->piece_equipement = piece_equipement ;
+    it->rarity = COMMUN ;
+
+    list_inv->inventaires[0]->liste[emplacement_vide] = it;
+}
+
+int comparer_items(const void *a, const void *b) {
+    item_t *itemA = *(const item_t **)a;
+    item_t *itemB = *(const item_t **)b;
+
+    if (!itemA || !itemB || !itemA->nom || !itemB->nom) return 0;
+    return strcmp(itemA->nom, itemB->nom);
+}
+
+void trier_inventaire(inv *inventaire) {
+    if (!inventaire || !inventaire->liste || inventaire->nb_items <= 0) {
+        printf("Erreur : Inventaire vide ou invalide.\n");
+        return;
+    }
+
+    qsort(inventaire->liste, inventaire->nb_items, sizeof(item_t *), comparer_items);
+}
+
+#define MAX_LIGNE 500
+
+item_t * load_item_joueur(FILE *f) {
+    item_t *it = malloc(sizeof(item_t));
+    char ligne[MAX_LIGNE];
+    char temp_name[256];
+    char temp_label[256];
+    while (fgets(ligne, MAX_LIGNE, f)) {
+        if (strstr(ligne, "}")) break;
+        if (strstr(ligne, "\"nom\"")) {
+            sscanf(ligne, " \"nom\": \"%s[^\"]\"", temp_name);
+        } else if (strstr(ligne, "\"label\"")) {
+            sscanf(ligne, " \"label\": \"%s[^\"]\"", temp_label);
+        } else if (strstr(ligne, "\"piece_equipement\"")) {
+            sscanf(ligne, " \"piece_equipement\": %d", &it->piece_equipement);
+        } else if (strstr(ligne, "\"booste\"")) {
+            sscanf(ligne, " \"booste\": %d", &it->booste);
+        } else if (strstr(ligne, "\"rarity\"")) {
+            sscanf(ligne, " \"rarity\": %d", &it->rarity);
+        } else if (strstr(ligne, "\"stat\"")) {
+            sscanf(ligne, " \"stat\": %d", &it->stat);
+        }
+    }
+    it->nom = malloc ( strlen ( temp_name) + 1);
+    it->label = malloc ( strlen ( temp_label) + 1);
+
+    strcpy(it->nom, temp_name);
+    strcpy(it->label, temp_label);
+
+    return it;
+}
+
+item_t * load_item_ref(FILE *f) {
+    item_t *it = malloc(sizeof(item_t));
+    char ligne[MAX_LIGNE];
+    char temp_name[256];
+    char temp_label[256];
+    while (fgets(ligne, MAX_LIGNE, f)) {
+        if (strstr(ligne, "}")) break;
+        if (strstr(ligne, "\"nom\"")) {
+            sscanf(ligne, " \"nom\": \"%s[^\"]\"", temp_name);
+        } else if (strstr(ligne, "\"label\"")) {
+            sscanf(ligne, " \"label\": \"%s[^\"]\"", temp_label);
+        }
+    }
+    it->nom = malloc ( strlen ( temp_name) + 1);
+    it->label = malloc ( strlen ( temp_label) + 1);
+
+    strcpy(it->nom, temp_name);
+    strcpy(it->label, temp_label);
+
+    return it;
+}
+
+
+void load_inv(const char *nom_fichier, inv * inventaire ) {
+    FILE *f = fopen(nom_fichier, "r");
+
+    if ( !f )return ;
+    char ligne[MAX_LIGNE];
+
+    while (fgets(ligne, MAX_LIGNE, f) && ! ( inventaire->nb_items >= inventaire->nb_items)) {
+        if (strstr(ligne, "{")) {  // Début d'un objet item_t
+            inventaire->liste[inventaire->nb_items] = load_item_joueur(f);
+            if (inventaire->liste[inventaire->nb_items]) inventaire->nb_items ++ ;
+        }
+    }
+
+    fclose(f);
+}
+
+void load_inv_ref(const char *nom_fichier, inv * inventaire ) {
+    FILE *f = fopen(nom_fichier, "r");
+
+    if ( !f )return ;
+    char ligne[MAX_LIGNE];
+
+    while (fgets(ligne, MAX_LIGNE, f) && ! ( inventaire->nb_items >= inventaire->nb_items)) {
+        if (strstr(ligne, "{")) {  // Début d'un objet item_t
+            inventaire->liste[inventaire->nb_items] = load_item_ref(f);
+            if (inventaire->liste[inventaire->nb_items]) inventaire->nb_items ++ ;
+        }
+    }
+
+    fclose(f);
+}
