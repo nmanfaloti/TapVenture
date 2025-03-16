@@ -10,6 +10,7 @@
 #include "../lib/lang.h"
 #include "../lib/ui.h"
 #include "../lib/challenge.h"
+#include "../lib/prestige.h"
 
 levelInfo level;
 
@@ -51,7 +52,7 @@ int attack(void * args[20]) {
         if (level.mobKilled >= level.mobToKill) {
             if (level.currentLvl < 50) {
                 level.currentLvl++;
-            }
+            }else doPrestige();
             level.mobKilled = 0;
             mobHandler();
             refreshCurrentLvl();
@@ -121,14 +122,16 @@ void displayTimers() {
             createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "challengeTimer");
             challengeUI = 1;
         } else {
-            uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
-            setUiText(txtHolder, timerStr);
+            if (currentpage == &pageHolder.page[0]) {
+                uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
+                setUiText(txtHolder, timerStr);
+            }
         }
     } else {
         // Si le challenge n'est plus actif, détruire l'UI texte s'il existe
-        if (challengeUI == 1) {
+        if (challengeUI == 1 ) {
             uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
-            destroyUItxt(txtHolder, &currentpage);
+            destroyUITxt(txtHolder, &currentpage);
             challengeUI = 0;
         }
     }
@@ -144,14 +147,16 @@ void displayTimers() {
             createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "bossTimer");
             bossUI = 1;
         } else {
-            uiTxt * txtHolder = getTxtFromLabel("bossTimer");
-            setUiText(txtHolder, timerStr);
+            if (currentpage == &pageHolder.page[0]) {
+                uiTxt * txtHolder = getTxtFromLabel("bossTimer");
+                setUiText(txtHolder, timerStr);
+            }
         }
     } else {
         // Si le timer du boss n'est plus nécessaire, détruire l'UI texte correspondant
         if (bossUI == 1) {
             uiTxt * txtHolder = getTxtFromLabel("bossTimer");
-            destroyUItxt(txtHolder, &currentpage);
+            destroyUITxt(txtHolder, &currentpage);
             bossUI = 0;
         }
     }

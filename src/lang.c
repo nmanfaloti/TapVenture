@@ -29,8 +29,13 @@ Lang en = {
         [CHALLENGE_MSG_LOSE] = "You failed the challenge",
         [CHALLENGE_MSG_COOLDOWN] = "You must wait before starting a new challenge:", 
         [TIMER_MSG] = "Time remaining: ",
-        [NOTIF_TITLE] = "Notification"
-        
+        [NOTIF_TITLE] = "Notification",
+        [PRESTIGE_MSG] = "Prestige",
+        [PRESTIGE_COST] = "Cost: ",
+        [PRESTIGE_GOLD_DESC] = "Increase the gold earned by:",
+        [PRESTIGE_DAMAGE_DESC] = "Increase damage by: ",
+        [PRESTIGE_PRESTIGE_DESC] = "Increase prestige points by:",
+        [PRESTIGE_CONGRATS] = "Congratulations for your Prestige, do not forgot to use it in the Prestige Tree !"
     }
 };
 
@@ -59,7 +64,13 @@ Lang fr = {
         [CHALLENGE_MSG_LOSE] = "Vous avez echouer le challenge",
         [CHALLENGE_MSG_COOLDOWN] = "Vous devez attendre avant de commencer un nouveau challenge: ",
         [TIMER_MSG] = "Temps restant : ",
-        [NOTIF_TITLE] = "Notification"
+        [NOTIF_TITLE] = "Notification",
+        [PRESTIGE_MSG] = "Prestige",
+        [PRESTIGE_COST] = "Cout:",
+        [PRESTIGE_GOLD_DESC] = "Augmente la quantité d'or gagnée par:",
+        [PRESTIGE_DAMAGE_DESC] = "Augmente les dégats par:",
+        [PRESTIGE_PRESTIGE_DESC] = "Augmente les points de prestige par:",
+        [PRESTIGE_CONGRATS] = "Felicitation pour votre Prestige, n'oubliez pas de l'utiliser dans l'Arbre de Prestige !"
     }
 };
 
@@ -80,7 +91,7 @@ int SelectLanguage(void * l[20]) {
         LanguageAct = en;
     }
     refreshButtonLanguage();
-    refreshUILanguage();
+    refreshUI();
     return 0;
 }
 
@@ -93,5 +104,5 @@ void initLang(char * lang){
         LanguageAct = en;
     }
     refreshButtonLanguage();
-    refreshUILanguage();
+    refreshUI();
 }

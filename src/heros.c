@@ -117,11 +117,11 @@ unsigned long long int herosGoldGenBySec(){
 }
 
 void initHerosPage(){
-    createPage(&pageHolder.page[2]);
+    createPage(&pageHolder.page[3]);
 
-    pageHolder.page[2].container->nbTxt = 0;
-    pageHolder.page[2].container->txt = NULL; 
+    pageHolder.page[3].container->nbTxt = 0;
+    pageHolder.page[3].container->txt = NULL; 
 
 
-    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[3],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
 }

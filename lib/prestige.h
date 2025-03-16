@@ -1,7 +1,8 @@
 #ifndef PRESTIGE_H
 #define PRESTIGE_H
 
-#define MAX_PRESTIGE_ITEMS 10
+#define MAX_PRESTIGE_ITEMS 8
+#define NB_PRESTIGE_ITEMS_PER_PAGE 4
 
 typedef struct prestigeItem_s{
     char *name;
@@ -10,6 +11,8 @@ typedef struct prestigeItem_s{
     int owned;
     float value;
     void (*effect)(float);
+    int index;
+    SDL_Rect pos;
 } prestigeItem;
 
 typedef struct prestigeList_s{
@@ -30,5 +33,10 @@ void damagePrestige(float value);
 void prestigePrestige(float value);
 void printTree();
 void buyPrestigeItem(char *type, int index);
+void checkDisplayPrestigeItemText();
+void destroyPrestigeList();
+void refreshPrestigePage();
+
+void doPrestige();
 int canBuy(char *type, int index);
 #endif

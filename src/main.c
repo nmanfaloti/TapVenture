@@ -41,6 +41,7 @@ int main() {
             running = input_event(event);
         }
         SDLScreenHandler();
+        uiImgHandle();
         ButtonHandle();
         uiHandle();
         attackHeros();

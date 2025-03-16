@@ -15,7 +15,7 @@
 #include "../lib/challenge.h"
 #include "../lib/chaine.h"
 #include "../lib/heros.h"
-
+#include "../lib/prestige.h"
 
 int widthscreen = 800;
 int heightscreen = 500;
@@ -34,6 +34,10 @@ void affiche_txt(uiTxt * txt){
 }
 
 uiTxt * getTxtFromLabel(char * label){
+    if (currentpage->container == NULL || currentpage->container->txt == NULL || currentpage->container->nbTxt == 0){
+        printf("No txt in page\n");
+        return NULL;
+    }
     for (int i = 0; i < currentpage->container->nbTxt; i++){
         if (strcmp(currentpage->container->txt[i].label, label) == 0){
             return &currentpage->container->txt[i];
@@ -43,6 +47,10 @@ uiTxt * getTxtFromLabel(char * label){
 }
 
 uiImg * getImgFromLabel(char * label){
+    if (currentpage->container == NULL || currentpage->container->img == NULL || currentpage->container->nbImg == 0){
+        printf("No img in page\n");
+        return NULL;
+    }
     for (int i = 0; i < currentpage->container->nbImg; i++){
         if (strcmp(currentpage->container->img[i].label, label) == 0){
             return &currentpage->container->img[i];
@@ -128,26 +136,44 @@ void createUIText(uiPage * page,TTF_Font* font, char * chaine, SDL_Rect dest, SD
     }
     page->container->nbTxt++;
 }
-
-void uiHandle(){
-    //Affichage des textes avant les images
-    for (int i = 0; i < currentpage->container->nbTxt; i++){
-        affiche_txt(&currentpage->container->txt[i]);
+void createUIImg(uiPage * page, char * path, SDL_Rect dest, char * label){
+    if (page->container->img == NULL) {
+        page->container->img = malloc(sizeof(uiImg));
+    } else {
+        page->container->img = realloc(page->container->img, sizeof(uiImg) * (page->container->nbImg + 1));
     }
+    page->container->img[page->container->nbImg].label = malloc(strlen(label) + 1);
+    strcpy(page->container->img[page->container->nbImg].label, label);
+    page->container->img[page->container->nbImg].dest = dest;
+    page->container->img[page->container->nbImg].texture = IMG_LoadTexture(renderer, path);
+    if (!page->container->img[page->container->nbImg].texture) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image: %s\n", IMG_GetError());
+        return;
+    }
+    page->container->nbImg++;
+}
+void uiImgHandle(){
     for (int i=0;i< currentpage->container->nbImg; i++){
         SDL_RenderCopy(renderer, currentpage->container->img[i].texture, NULL, &currentpage->container->img[i].dest);
     }
-
-    uiNotifHandle();
 }
 
-void destroyUItxt(uiTxt * txt, uiPage * page){
+void uiHandle(){
+    for (int i = 0; i < currentpage->container->nbTxt; i++){
+        affiche_txt(&currentpage->container->txt[i]);
+    }
+
+    uiNotifHandle();
+    checkDisplayPrestigeItemText();
+}
+
+void destroyUITxt(uiTxt * txt, uiPage * page){
     if (!txt) {
-        SDL_Log("destroyUItxt: txt is NULL");
+        SDL_Log("destroyUITxt: txt is NULL");
         return;
     }
     if (!page) {
-        SDL_Log("destroyUItxt: page is NULL");
+        SDL_Log("destroyUITxt: page is NULL");
         return;
     }
     if (txt->texture) {
@@ -224,7 +250,7 @@ void setUiText(uiTxt *txt, char *text) {
     }
 }
 
-void refreshUILanguage(){
+void refreshUI(){
     if (pageHolder.page == NULL) {
         return;
     }
@@ -258,7 +284,7 @@ void destroyPage(uiPage *page) {
     if (page->container != NULL) {
         if (page->container->txt != NULL) {
             for (int i = page->container->nbTxt - 1; i >= 0; i--) {
-                destroyUItxt(&page->container->txt[i], page);
+                destroyUITxt(&page->container->txt[i], page);
             }
             free(page->container->txt);
             page->container->txt = NULL;
@@ -308,10 +334,12 @@ int SelectScreen(void * l[20]){
     if (strcmp(*lang, "Window") == 0) {
         SDL_SetWindowFullscreen(window, 0);
         SDL_GetWindowSize(window, &widthscreen, &heightscreen);
+        refreshUI();
         return 1;
     } else if (strcmp(*lang, "Fullscreen") == 0) {
         SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
         SDL_GetRendererOutputSize(renderer, &widthscreen, &heightscreen);
+        refreshUI();
         return 1;
     }
     return 0;
@@ -332,7 +360,8 @@ void initMainPage(){
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, CLICK_MSG, NULL, 1.1, attack, 1, &damage_click);
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, (int*)&(shop.nextPrice),0.5, upgradeButton, 0);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[1]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(10), vh(90), 50, 50), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[2]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(80), 50, 50), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 0, changePage, 1, &pageHolder.page[2]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(10), vh(90), 50, 50), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[3]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(20), 50, 50), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_rectangle_depth_line.svg", 0, 2, launchChallenge,0);
     refreshMobKilled();
 }
@@ -364,31 +393,39 @@ void initSettingsPage(){
 //pageHolder.page[0] = main page 
 ///pageHolder.page[1] = settings page
 void initPage(){
-    pageHolder.pageNb = 3;
+    pageHolder.pageNb = 4;
     pageHolder.page = malloc(sizeof(uiPage) * pageHolder.pageNb);
     initMainPage();
     initSettingsPage();
+    initPrestige();
     initHerosPage();
 }
 
 void destroyPages(){
-    destroyPage(&pageHolder.page[0]);
-    destroyPage(&pageHolder.page[1]);
+    for (int i = 0; i < pageHolder.pageNb; i++) {
+        if (pageHolder.page[i].container != NULL) {
+            destroyPage(&pageHolder.page[i]);
+        }
+    }
+    free(pageHolder.page);
+
 	free(fr_txt);
     free(en_txt);
     free(full_txt);
     free(window_txt);
-    free(pageHolder.page);
 }
 
 void destroyAllPages(){
-    destroyPage(&pageHolder.page[0]);
-    destroyPage(&pageHolder.page[1]);
-    free(fr_txt);
-    free(en_txt);
-    free(full_txt);
-    free(window_txt);
-    free(pageHolder.page);
+    for (int i = 0; i < pageHolder.pageNb; i++) {
+        if (pageHolder.page[i].container != NULL) {
+            destroyPage(&pageHolder.page[i]);
+        }
+    }
+    if (fr_txt) free(fr_txt);
+    if (en_txt) free(en_txt);
+    if (full_txt) free(full_txt);
+    if (window_txt) free(window_txt);
+    if (pageHolder.page) free(pageHolder.page);
 }
 
 

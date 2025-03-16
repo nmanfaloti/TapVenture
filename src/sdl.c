@@ -5,7 +5,7 @@
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 TTF_Font *font = NULL;
-
+TTF_Font *fontBig = NULL;
 int init_SDL(){
     if (SDL_Init(SDL_INIT_VIDEO)){
         printf("Error SDL_Init\n");
@@ -43,7 +43,15 @@ int init_SDL(){
         SDL_Quit();
         return 1;
     }
-
+    fontBig = TTF_OpenFont(LINK_FONT, 45);
+    if (fontBig == NULL) {
+        printf("Failed to load font: %s\n", TTF_GetError());
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        TTF_Quit();
+        SDL_Quit();
+        return 1;
+    }
     return 0;
 }
 

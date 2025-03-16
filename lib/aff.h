@@ -33,10 +33,11 @@ int vw(float percent);
 int vh(float percent);
 
 void uiHandle();
+void uiImgHandle();
 void initUItxt();
-void destroyUItxt();
+void destroyUITxt();
 void refreshMobHealth();
-void refreshUILanguage();
+void refreshUI();
 void refreshMobKilled();
 void refreshCurrentLvl();
 

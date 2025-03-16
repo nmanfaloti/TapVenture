@@ -48,6 +48,9 @@ void createUIText(uiPage * page,TTF_Font* font,char * chaine, SDL_Rect dest, SDL
 void setButtonText(Button * button, const char * txt);
 uiTxt * getTxtFromLabel(char * label);
 
+void createUIImg(uiPage * page, char * path, SDL_Rect dest, char * label);
+uiImg * getImgFromLabel(char * label);
+
 void createPage(uiPage * page);
 void destroyPage(uiPage * page);
 int changePage(void * args[20]);
