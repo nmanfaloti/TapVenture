@@ -17,10 +17,9 @@
 #include "../lib/ui.h"
 #include "../lib/challenge.h"
 #include "../lib/chaine.h"
-
+#include "../lib/prestige.h"
 
 int main() {
-
     if (init_SDL()){
         return 1;
     }
@@ -53,6 +52,7 @@ int main() {
     if(challenge.active){
         resetChallenge();
     }
+    destroyPrestigeList();
     destroyAllPages();
     makeSave();
     SDLExit();

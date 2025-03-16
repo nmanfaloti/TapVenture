@@ -206,7 +206,8 @@ static void initPrestigePage(){
     createUIImg(&pageHolder.page[2], "assets/ui/background/prestigebg1.png", (SDL_Rect){0, 0, vw(100), vh(100)}, "prestigeBackground1");
     createUIImg(&pageHolder.page[2], "assets/ui/background/prestigebg2.png", (SDL_Rect){vw(17.5), vh(17.5), vw(65), vh(65)}, "prestigeBackground2");
     createUIText(&pageHolder.page[2], fontBig, formatChaine("%t", PRESTIGE_MSG), getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255}, "prestigeTitle");
-    createUIText(&pageHolder.page[2], font, formatChaine("POINTS: %d" , prestigePoints), getSizeForText(font, formatChaine("POINTS: %d" , prestigePoints), (SDL_Rect){vw(1), vh(1), vw(10), vh(5)}), (SDL_Color){255, 255, 255, 255}, "prestigePoints");
+    char * desc = formatChaine("POINTS: %d" , prestigePoints);
+    createUIText(&pageHolder.page[2], font, desc, getSizeForText(font, desc, (SDL_Rect){vw(1), vh(1), vw(10), vh(5)}), (SDL_Color){255, 255, 255, 255}, "prestigePoints");
     createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
     
     createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(90), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, 1, 1);
