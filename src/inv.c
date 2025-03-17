@@ -31,7 +31,7 @@ const int WINDOW_HEIGHT = 500;
 const int SCROLLBAR_WIDTH = 20;
 const int VISIBLE_AREA_HEIGHT = 500;
 const int NB_COLLONE = 4;
-const int NB_LIGNE = 15;
+const int NB_LIGNE = 25;
 const int ITEM_SIZE = 80;
 const int DEPLACEMENT = 20;
 const int ARRONDIS = 20;
@@ -166,7 +166,7 @@ void insert_inf_aff(inv * inventaire,SDL_Rect SDL_Rect ,int nb_collone ,int nb_l
         inventaire->info_inv.decalage_cote = decalage_cote ;
 }
 
-void gestion_inv(inv **inventaire, int NB_items, int id_scroll, SDL_Rect SDL_Rect, int nb_colonne, int nb_ligne, int nb_element, int arrondis, 
+void gestion_inv(inv **inventaire, int NB_items, int id_scroll, SDL_Rect SDL_Rect, int nb_colonne, int nb_ligne, int arrondis, 
 int decalage_bas, int decalage_cote) {
         if (*inventaire == NULL) {
             // Allocation de la structure de l'inventaire
@@ -189,7 +189,7 @@ int decalage_bas, int decalage_cote) {
         (*inventaire)->id_scroll = id_scroll;
         SDL_Rect.x += scroll_liste[id_scroll].zone_interaction.x;
         SDL_Rect.y += scroll_liste[id_scroll].zone_interaction.y;
-        insert_inf_aff(*inventaire, SDL_Rect, nb_colonne, nb_ligne, nb_element, arrondis, decalage_bas, decalage_cote);
+        insert_inf_aff(*inventaire, SDL_Rect, nb_colonne, nb_ligne, NB_items, arrondis, decalage_bas, decalage_cote);
 
         (*inventaire)->liste = malloc(NB_items * sizeof(item_t *));
         (*inventaire)->nb_items = NB_items;  // Stocke le nombre d'items
@@ -347,28 +347,35 @@ int calcule_pos_inv() {
     return elem_numb;
 }
 
-
+int existe_item(item_t * it){
+    if ( it -> label == NULL ||it -> nom == NULL || it == NULL)return 0;
+}
 void aff_inv_graf(inv* inventaire) {
-        aff_inv_inf path = inventaire->info_inv;
-        int id_scroll = inventaire->id_scroll;
-        int x = scroll_liste[id_scroll].zone_interaction.x;
-        int y = scroll_liste[id_scroll].zone_interaction.y;
-        int conteur = 0 ;
-        y -= scroll_liste[id_scroll].scroll_pos;
-        for (int h = 0; h < path.nb_ligne; h++) {
-            for (int i = 0; i < path.nb_collone && conteur < inventaire->nb_items ; i++ , conteur ++ ) {
-                // Assurez-vous que les dimensions de SDL_Rect sont correctes
-                char *chemin = malloc(strlen("assets/ui/") + strlen(inventaire->liste[h+i]->label) + 1);
-                strcpy(chemin, "assets/ui/");
-                strcat(chemin, inventaire->liste[h+i]->label);
-                createUIImg(&pageHolder.page[3], chemin, (SDL_Rect){x, y, 64, 64}, inventaire->liste[h+i]->label);
-                rectangle_arrondis((SDL_Rect){x,y,path.SDL_Rect.w,path.SDL_Rect.h}, path.arrondis, 128, 128, 128);
-                x += path.SDL_Rect.w + path.decalage_cote;  // Mise à jour correcte de la position horizontale
+    int id_scroll = inventaire->id_scroll;
+    int x = scroll_liste[id_scroll].zone_interaction.x;
+    int y = scroll_liste[id_scroll].zone_interaction.y;
+    int conteur = 0 ;
+    y -= scroll_liste[id_scroll].scroll_pos;
+    printf("deb-iteration %d nb item , inventaire->info_inv.nb_ligne : %d ,inventaire->info_inv.nb_collone :%d \n",inventaire->nb_items,inventaire->info_inv.nb_ligne,inventaire->info_inv.nb_collone);
+    for (int h = 0; h < inventaire->info_inv.nb_ligne && conteur < inventaire->nb_items; h++) {
+        for (int i = 0; i < inventaire->info_inv.nb_collone && conteur < inventaire->nb_items ; i++ , conteur ++ ) {
+            printf("%d __",conteur);
+            if (existe_item(inventaire->liste[conteur])){
+                printf("conteur numero %d existe ",conteur);
+                char *chemin = malloc(strlen("assets/ui/") + strlen(inventaire->liste[ conteur ]->label) + 1);
+                strcpy(chemin, "../assets/ui/");
+                strcat(chemin, inventaire->liste[conteur]->label);
+                createUIImg(&pageHolder.page[3], chemin, (SDL_Rect){x, y, 64, 64}, inventaire->liste[conteur]->label);
+                //rectangle_arrondis((SDL_Rect){x,y,paths->SDL_Rect.w,paths->SDL_Rect.h}, paths->arrondis, 128, 128, 128);
+                x += inventaire->info_inv.SDL_Rect.w + inventaire->info_inv.decalage_cote;  // Mise à jour correcte de la position horizontale
                 free(chemin);
             }
-            x = scroll_liste[id_scroll].zone_interaction.x; // Réinitialisation de x pour une nouvelle ligne
-            y += path.SDL_Rect.h + path.decalage_bas;  // Mise à jour de la position verticale
+            if ( x == scroll_liste[id_scroll].zone_interaction.x + inventaire->info_inv.nb_collone * (inventaire->info_inv.SDL_Rect.w + inventaire->info_inv.decalage_cote)){
+                x = scroll_liste[id_scroll].zone_interaction.x; // Réinitialisation de x pour une nouvelle ligne
+                y += inventaire->info_inv.SDL_Rect.h + inventaire->info_inv.decalage_bas;  // Mise à jour de la position verticale
+            }
         }
+    }
 }
 
 void handle_inv_event(SDL_Event event) {
@@ -390,9 +397,9 @@ void cleanup() {
 }
 
  void aff_all_inventaires() {
-    printf("\n\n -------aff inv all ----------\n\n"); 
     for (int i = 0; i < list_inv->nb_inventaires; i++) {
-        //aff_inv_graf(list_inv->inventaires[i]);  // Appel à aff_inv_graf pour chaque inventaire
+        printf("\n\n -------aff inv all %p----------\n\n",list_inv->inventaires[i]); 
+        aff_inv_graf(list_inv->inventaires[i]);  // Appel à aff_inv_graf pour chaque inventaire
     }
     aff_scrollbar_simple(NULL, NULL);
 }
@@ -410,13 +417,10 @@ void dest_all_inventaires() {
  void ajouter_inventaire(int nb_inventaires, ...) {
     va_list args;
     va_start(args, nb_inventaires);
-    printf("porbleme 1 ;");
     list_inv->inventaires = realloc(list_inv->inventaires, (list_inv->nb_inventaires + nb_inventaires) * sizeof(inv *));
     for (int i = 0; i < nb_inventaires; i++) {
-        printf("%d",i);
         inv *inventaire = va_arg(args, inv *);  // Récupère l'inventaire passé en paramètre
-        list_inv->inventaires[list_inv->nb_inventaires] = inventaire;
-        list_inv->nb_inventaires++;
+        list_inv->inventaires[list_inv->nb_inventaires++] = inventaire;
     }
 
     va_end(args);
@@ -436,11 +440,11 @@ extern void load(){
     printf("ajoute inv -----");
 
     gestion_inv(&inventaire_item,100, id_scroll1, (SDL_Rect){0, 10, ITEM_SIZE, ITEM_SIZE},
-    NB_COLLONE, NB_LIGNE, NB_LIGNE * NB_COLLONE, ARRONDIS, DEPLACEMENT, DEPLACEMENT);
+    NB_COLLONE, NB_LIGNE , ARRONDIS, DEPLACEMENT, DEPLACEMENT);
 
     printf("ajoute inv 2 -----");
     gestion_inv(&inventaire_heros,20, id_scroll2, (SDL_Rect){0, 10,WINDOW_WIDTH/2 -20 , 200},
-    1, 10, 1 * 10, ARRONDIS, 20, 0);
+    2, 10, ARRONDIS, 20, 0);
 
     printf("ajoute inv liste global -----");
 

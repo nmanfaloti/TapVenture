@@ -144,7 +144,7 @@ void liberer_item(item_t * item);
   * \fn void gestion_inv(inv **inventaire)
   * @param inventaire Pointeur vers le pointeur de l'inventaire à gérer.
   */
- extern void gestion_inv(inv ** inventaire, int NB_items,int scroll_id,SDL_Rect SDL_Rect ,int nb_collone ,int nb_ligne ,int nb_element ,
+ extern void gestion_inv(inv ** inventaire, int NB_items,int scroll_id,SDL_Rect SDL_Rect ,int nb_collone ,int nb_ligne  ,
     int arrondis ,int decalage_bas ,int decalage_cote);
  
  /**
