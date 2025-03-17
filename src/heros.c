@@ -76,7 +76,7 @@ int upgradeHero(int heroIndex, bool pay){
             heros[heroIndex].degat *= DEGAT_UPGRADE;
             heros[heroIndex].level += 1;
             if(currentpage == &pageHolder.page[3]){
-                updateHeroIInShopPage(heroIndex);
+                updateHeroShopPage();
             }
             return 0;
         }
@@ -121,13 +121,16 @@ int makeHeroAtLevel(int heroIndex, int levelH){
 unsigned long long int getHeroPriceByMultiplicator(int heroIndex){
     unsigned long long int price = getHeroPrice(heroIndex);
     unsigned long long int sommePrice = 0;
+        
     for (int i = 0; i < multiplicator; i++){
-        if ((sommePrice + price*PRIX_UPGRADE ) > LLD_MAX){
+        if ((sommePrice + price) > LLD_MAX){
             return LLD_MAX;
+        }
+        else if(multiplicator == 1000 && (sommePrice + price) > gold){//calcul du prix le maximum en fonction du gold
+            return sommePrice;
         }
         sommePrice += price;
         price = price * PRIX_UPGRADE;
-
     }
     return sommePrice;
 }
@@ -223,7 +226,6 @@ void loadHerosMactrice(){
 
 
 void updateHeroShopPage(){
-    addGold(0); //Pour mettre a jour l'affichage de l'or
     for (int i = HERO0; i < HEROS_COUNT; i++){
         updateHeroIInShopPage(i);
     }

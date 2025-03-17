@@ -325,6 +325,7 @@ int changePage(void * args[20]){
         currentpage = page;
         if(currentpage == &pageHolder.page[3]){ //hero shop 
             updateHeroShopPage();
+            addGold(0); //Pour mettre a jour l'affichage de l'or et des heros
         }
         printf("Changing page\n");
     }else{

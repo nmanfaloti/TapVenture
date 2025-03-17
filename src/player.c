@@ -39,6 +39,7 @@ void addGold(unsigned long long int goldToAdd){
     else if (currentpage == &pageHolder.page[3]){
         uiTxt *txtToChange = getTxtFromLabel("playerGoldHeroShop");
         setUiText(txtToChange, formatChaine("%t: %w",OR_MSG, gold));
+        updateHeroShopPage();
     }
 }
 
