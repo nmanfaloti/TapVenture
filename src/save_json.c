@@ -146,10 +146,11 @@ int isHereFile(char * nameFile){
     //RETURN 1 if file exist, else 0
     char * srtPressance = strCatMalloc("test -e ", nameFile);
     if(srtPressance == NULL){
-        printf("Erreur lors de la verification de l'existance du fichier %s\n", nameFile);
+        printf("Erreur lors de la verification de l'existance du fichier %s(Probleme d'allocation memoire)\n", nameFile);
         return 0;
     }
     if (system(srtPressance)){
+        printf("Erreur lors de la verification de l'existance du fichier %s (inexistant)\n", nameFile);
         free(srtPressance);
         return 0;
     }
@@ -194,55 +195,92 @@ int loadSavePlayer(char * save){
     }
 
     char * value;
-    value = getValueForKey("USERNAME", save);
-    strcpy(username, value);
-    free(value);
 
     value = getValueForKey("LANGUAGE", save);
-    initLang(value);
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  LANGUAGE\n");
+    }
+    else{
+        initLang(value);
+        free(value);
+    }
+
     //dataInt
     value = getValueForKey("LEVEL", save);
-    level.currentLvl = atoi(value);
-    refreshCurrentLvl();
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  LEVEL\n");
+    }
+    else{
+        level.currentLvl = atoi(value);
+        refreshCurrentLvl();
+        free(value);
+    }
 
     value = getValueForKey("MOB_KILLED", save);
-    level.mobKilled = atoi(value);
-    refreshMobKilled();
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  MOB_KILLED\n");
+    }
+    else{
+        level.mobKilled = atoi(value);
+        refreshMobKilled();
+        free(value);
+    }
 
     value = getValueForKey("GOLD", save);
-    sscanf(value,"%lld", &gold);
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  GOLD\n");
+    }
+    else{
+        sscanf(value,"%lld", &gold);
+        free(value);
+    }
 
     unsigned long long int tempo;
     value = getValueForKey("DAMAGE_CLICK", save);
-    sscanf(value,"%lld", &tempo);
-    setPlayerDamage(tempo);
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  DAMAGE_CLICK\n");
+    }
+    else{
+        sscanf(value,"%lld", &tempo);
+        setPlayerDamage(tempo);
+        free(value);
+    }
 
     value = getValueForKey("SHOP", save);
-    shop.damageLevel = atoi(value);
-    shop.nextPrice=getPriceForLevels(shop.damageLevel+1);
-    refreshButtonShop();
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  SHOP\n");
+    }
+    else{
+        shop.damageLevel = atoi(value);
+        shop.nextPrice=getPriceForLevels(shop.damageLevel+1);
+        refreshButtonShop();
+        free(value);
+    }
 
     value = getValueForKey("LAST_CHALLENGE", save);
-    challenge.lastTime = atol(value);
-    free(value);
+    if(value == NULL){
+        printf("Save : can't load  LAST_CHALLENGE\n");
+    }
+    else{   
+        challenge.lastTime = atol(value);
+        free(value);
+    }
 
     // Calculer l'or gagné en fonction du temps écoulé depuis la dernière sauvegarde
     value = getValueForKey("TIME", save);
-    time_t lastSaveTime = atol(value);
-    free(value);
-    goldGainOffline(lastSaveTime);
+    if(value == NULL){
+        printf("Save : can't load  TIME\n");
+    }
+    else{
+        time_t lastSaveTime = atol(value);
+        free(value);
+        goldGainOffline(lastSaveTime);
+    }
     return 0;
 }
 int makeSavePlayer(char * save){
     rmFile(save);
 
-    createValueForKey("USERNAME", username, save);
     createValueForKey("LANGUAGE", (char *)LanguageAct.Language, save);
     //dataInt
     char value[30];
@@ -281,7 +319,7 @@ int loadSaveHeros(char * save){
         sprintf(key, "HERO_%d_LEVEL", i);
         char * level = getValueForKey(key, save);
         if (level == NULL) {
-            printf("Erreur lors de la recuperation du niveau du hero %d\n", i);
+            printf("Save : can't load  HERO_%d_LEVEL\n", i);
         }
         else{
             levelH = atoi(level);
@@ -307,7 +345,6 @@ int makeSaveHeros(char * save){
 }
 
 int initPlayer(){
-    strcpy(username, "Default");
     initLang("English");
     level.currentLvl = 0;
     gold = 0;

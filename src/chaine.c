@@ -10,7 +10,7 @@
 char * strCatMalloc(const char * srt1, const char * str2){
     char * result = malloc(strlen(srt1) + strlen(str2) + 1);
     if (result == NULL) {
-        printf("Erreur lors de l'allocation de mémoire dans strCatMalloc\n");
+        printf("Erreur lors de l'allocation de mémoire dans strCatMalloc %s + %s\n", srt1, str2);
         return NULL;
     }
     sprintf(result, "%s%s", srt1, str2);
@@ -27,7 +27,7 @@ char * strCatMallocFree1(char * str1, char * str2){ //identique a strCatMalloc m
 char * strCharMalloc(const char * srt1, const char * str2){
     char * result = malloc(strlen(srt1) + 1 + 1);
     if (result == NULL) {
-        printf("Erreur lors de l'allocation de mémoire dans strCatMalloc\n");
+        printf("Erreur lors de l'allocation de mémoire dans strCharMalloc %s + %c\n", srt1, *str2);
         return NULL;
     }
     sprintf(result, "%s%c", srt1, *str2);
@@ -75,7 +75,12 @@ char * formatChaine(char *chaine,...){ //fonction qui renvoie la chaine formaté
                     break;
                 case 't':
                     s = Traduction(va_arg(ap, int));
-                    retChaine = strCatMallocFree1(retChaine,s);
+                    if(s == NULL){
+                        printf("Erreur lors de la traduction dans formatChaine pour \"%s\"\n",chaine);
+                    }
+                    else{
+                        retChaine = strCatMallocFree1(retChaine,s);
+                    }
                     break;
                 case 'w':
                     lluval = va_arg(ap, unsigned long long int);

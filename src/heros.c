@@ -54,16 +54,20 @@ int attackHeros(){
 }
 
 int upgradeHero(int heroIndex, bool pay){
+    if(heroIndex >= HEROS_COUNT || heroIndex < 0){
+        printf("Erreur lors de l'upgrade du hero %d\n", heroIndex);
+        return 1;
+    }
     if (!pay && (heroIndex < HEROS_COUNT)){
         if (((heros[heroIndex].prix * PRIX_UPGRADE) < LLD_MAX) && ((heros[heroIndex].prix * PRIX_UPGRADE) > 0) && ((heros[heroIndex].degat * DEGAT_UPGRADE) < LLD_MAX) && ((heros[heroIndex].degat * DEGAT_UPGRADE) > 0)){
             heros[heroIndex].prix *= PRIX_UPGRADE;
             heros[heroIndex].degat *= DEGAT_UPGRADE;
             heros[heroIndex].level += 1;
+            return 0;
         }
         else{
             return 1;
         }
-        return 0;
     }
     else if ((heroIndex < HEROS_COUNT) && (heros[heroIndex].prix <= gold)){
         if (((heros[heroIndex].prix * PRIX_UPGRADE) < LLD_MAX) && ((heros[heroIndex].prix * PRIX_UPGRADE) > 0) && ((heros[heroIndex].degat * DEGAT_UPGRADE) < LLD_MAX) && ((heros[heroIndex].degat * DEGAT_UPGRADE) > 0)){
@@ -74,11 +78,11 @@ int upgradeHero(int heroIndex, bool pay){
             if(currentpage == &pageHolder.page[3]){
                 updateHeroIInShopPage(heroIndex);
             }
+            return 0;
         }
         else{
             return 1;
         }
-        return 0;
     }
     return 1;
 }
@@ -92,8 +96,12 @@ int upgradeHeroCB(void * args[20]){
             }
         }
     }
-    else{
-        return 1;
+    else if (multiplicator == 1000){
+        for (int i = 0; i < multiplicator; i++){
+            if (upgradeHero(*heroIndex, true)){
+                return 0;
+            }
+        }
     }
     return 0;
 }
@@ -128,11 +136,12 @@ unsigned long long int getHeroPrice(int heroIndex){
     if (heroIndex < HEROS_COUNT){
         return heros[heroIndex].prix;
     }
+    printf("Erreur lors de la recuperation du prix du hero %d\n", heroIndex);
     return 0;
 }
 
 unsigned long long int herosDPS(int indiceHero){
-    if (indiceHero < HEROS_COUNT){
+    if (indiceHero < HEROS_COUNT && heros[indiceHero].level > 0){
         if( heros[indiceHero].cooldown > 1000){
             return heros[indiceHero].degat / (heros[indiceHero].cooldown /1000 ); 
         }
@@ -245,7 +254,7 @@ int changeMultiplicator(){
         multiplicator = 100;
     }
     else if (multiplicator == 100){
-        multiplicator = 1;
+        multiplicator = 1000;
     }
     else{
         multiplicator = 1;
@@ -254,7 +263,13 @@ int changeMultiplicator(){
         return 1;
     }
     //Update du bouton pour afficher le nouveau multiplicator (0 est son indice dans la liste des boutons)
-    char * txt = formatChaine("%t: %w", pageHolder.page[3].buttonsList->buttons[0].text, multiplicator);
+    char * txt; 
+    if(multiplicator == 1000){
+        txt = formatChaine("%t: %t", pageHolder.page[3].buttonsList->buttons[0].text, MAX_MSG);
+    }
+    else{
+        txt = formatChaine("%t: %w", pageHolder.page[3].buttonsList->buttons[0].text, multiplicator);
+    }
     setButtonText(&pageHolder.page[3].buttonsList->buttons[0], txt);
     free(txt);
     updateHeroShopPage();

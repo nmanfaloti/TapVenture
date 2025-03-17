@@ -34,6 +34,7 @@ typedef enum {
     PRICE_MSG,
     HERO_SHOP_MULTIPLICATOR_MSG,
     DPS_MSG,
+    MAX_MSG,
     NB_MSG
 } CleMsg;
 

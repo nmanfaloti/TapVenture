@@ -39,7 +39,8 @@ Lang en = {
         [HERO_SHOP_TITLE_MSG] = "Hero Shop",
         [PRICE_MSG] = "Price",
         [HERO_SHOP_MULTIPLICATOR_MSG] = "Buy x",
-        [DPS_MSG] = "Degats per second"
+        [DPS_MSG] = "Degats per second",
+        [MAX_MSG] = "Max"
     }
 };
 
@@ -78,7 +79,8 @@ Lang fr = {
         [HERO_SHOP_TITLE_MSG] = "Boutique de Heros",
         [PRICE_MSG] = "Prix",
         [HERO_SHOP_MULTIPLICATOR_MSG] = "Acheter x",
-        [DPS_MSG] = "Degats par secondes"
+        [DPS_MSG] = "Degats par secondes",
+        [MAX_MSG] = "Max"
     }
 };
 

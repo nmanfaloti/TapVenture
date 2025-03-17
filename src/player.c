@@ -9,7 +9,6 @@
 
 unsigned long long int gold = 0;
 unsigned long long int damage_click = 1;
-char username[50];
 
 void goldGainOffline(time_t lastSaveTime){
     time_t currentTime = time(NULL);
