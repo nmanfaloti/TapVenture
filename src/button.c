@@ -65,6 +65,7 @@ void drawButtonImg(ButtonImg *button) {
         SDL_RenderCopy(renderer, button->backgroundTexture, NULL, &button->rect);
     }
     if (button->imgTexture) {
+
         int icon_width, icon_height;
         SDL_QueryTexture(button->imgTexture, NULL, NULL, &icon_width, &icon_height);
         
@@ -263,9 +264,9 @@ void refreshButtonShop(){
     if (pageHolder.page == NULL ||  pageHolder.page[0].buttonsList == NULL){
         return;
     }
-    //Update du bouton pour afficher le nouveau prix (1 est son indice dans la liste des boutons)
-    char * txt = formatChaine("%t: %w", pageHolder.page[0].buttonsList->buttons[1].text, shop.nextPrice);
-    setButtonText(&pageHolder.page[0].buttonsList->buttons[1], txt);
+    //Update du bouton pour afficher le nouveau prix (0 est son indice dans la liste des boutons)
+    char * txt = formatChaine("%t: %w", pageHolder.page[0].buttonsList->buttons[0].text, shop.nextPrice);
+    setButtonText(&pageHolder.page[0].buttonsList->buttons[0], txt);
     free(txt);
 }
 
@@ -295,8 +296,10 @@ void refreshButtonLanguage(){
 
 void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
     if (page->buttonsImgList == NULL) {
+        printf("Initialisation de listeButtonImg\n");
         initListButtonImg(page->buttonsImgList);
     }
+    
     va_list args;
     va_start(args, numArgs);
     void *params[numArgs];
@@ -314,15 +317,24 @@ void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackg
     for (int i = 0; i < numArgs; i++) {
         newButton.args[i] = params[i];
     }
-    if (!setButtonTexture(&newButton.imgTexture, pathImg)){
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.imgTexture)->%s : %s\n",pathImg,IMG_GetError());
-        return;
-    }
-    if (!setButtonTexture(&newButton.backgroundTexture, pathBackground)){
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.backgroundTexture) ->%s : %s\n", pathBackground,IMG_GetError());
-        return;
-    }
 
+    if (pathImg != NULL){
+        if (!setButtonTexture(&newButton.imgTexture, pathImg)){
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.imgTexture)->%s : %s\n",pathImg,IMG_GetError());
+            return;
+        }
+        if (!setButtonTexture(&newButton.backgroundTexture, pathBackground)){
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.backgroundTexture) ->%s : %s\n", pathBackground,IMG_GetError());
+            return;
+        }
+    }else if (pathBackground != NULL){
+        newButton.imgTexture = NULL;
+        newButton.backgroundTexture = IMG_LoadTexture(renderer, pathBackground);
+        if (!newButton.backgroundTexture) {
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.imgTexture)->%s : %s\n",pathImg,IMG_GetError());
+            return;
+        }
+    }
     page->buttonsImgList->buttons = realloc(page->buttonsImgList->buttons, (page->buttonsImgList->nbButton + 1) * sizeof(ButtonImg));
     if (page->buttonsImgList->buttons != NULL) {
         page->buttonsImgList->buttons[page->buttonsImgList->nbButton] = newButton;

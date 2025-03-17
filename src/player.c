@@ -4,6 +4,7 @@
 #include "../lib/lang.h"
 #include "../lib/aff.h"
 #include "../lib/chaine.h"
+#include "../lib/ui.h"
 #include <time.h>
 
 unsigned long long int gold = 0;
@@ -32,8 +33,14 @@ void addGold(unsigned long long int goldToAdd){
         gold += goldToAdd;
     }
     //Update l'affichage de l'or
-    uiTxt *txtToChange = getTxtFromLabel("playerGold");
-    setUiText(txtToChange, formatChaine("%t: %w",OR_MSG, gold));
+    if (currentpage == &pageHolder.page[0]){
+        uiTxt *txtToChange = getTxtFromLabel("playerGold");
+        setUiText(txtToChange, formatChaine("%t: %w",OR_MSG, gold));
+    }
+    else if (currentpage == &pageHolder.page[3]){
+        uiTxt *txtToChange = getTxtFromLabel("playerGoldHeroShop");
+        setUiText(txtToChange, formatChaine("%t: %w",OR_MSG, gold));
+    }
 }
 
 void setPlayerDamage(unsigned long long int damage){

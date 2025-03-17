@@ -323,6 +323,9 @@ int changePage(void * args[20]){
     uiPage * page = args[0];
     if (currentpage != page){
         currentpage = page;
+        if(currentpage == &pageHolder.page[3]){ //hero shop 
+            updateHeroShopPage();
+        }
         printf("Changing page\n");
     }else{
         printf("Already on this page\n");

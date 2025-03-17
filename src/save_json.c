@@ -280,8 +280,13 @@ int loadSaveHeros(char * save){
         char key[20];
         sprintf(key, "HERO_%d_LEVEL", i);
         char * level = getValueForKey(key, save);
-        levelH = atoi(level);
-        free(level);
+        if (level == NULL) {
+            printf("Erreur lors de la recuperation du niveau du hero %d\n", i);
+        }
+        else{
+            levelH = atoi(level);
+            free(level);
+        }
 
         makeHeroAtLevel(i,levelH);
         levelH = 0;
@@ -311,6 +316,5 @@ int initPlayer(){
     createNotif(Traduction(WELCOME_MSG),0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, Traduction(WELCOME_DESC_MSG));
     return 0;
 }
-
 
 

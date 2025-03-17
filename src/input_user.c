@@ -65,20 +65,6 @@ int input_event(SDL_Event event){
                 default:
                     printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
                     break;
-                case '0':
-                    upgradeHero(0, true);
-                    printf("hero 0, level : %d, degat : %lld, prix : %lld\n", heros[0].level, heros[0].degat,heros[0].prix );
-                    break;
-                case '1':
-                    upgradeHero(1, true);
-                    printf("hero 1, level : %d, degat : %lld, prix : %lld\n", heros[1].level, heros[1].degat,heros[1].prix );
-                    break;
-                case '2':
-                    printf("Degat générer par les heros /s %lld\n",herosAllDPS());
-                    break;
-                case '3':
-                    printf("Gold générer par les heros /s %lld\n",herosGoldGenBySec());
-                    break;
                 case 'C':
                     launchChallenge(NULL);
                     break;

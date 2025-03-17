@@ -35,7 +35,11 @@ Lang en = {
         [PRESTIGE_GOLD_DESC] = "Increase the gold earned by:",
         [PRESTIGE_DAMAGE_DESC] = "Increase damage by: ",
         [PRESTIGE_PRESTIGE_DESC] = "Increase prestige points by:",
-        [PRESTIGE_CONGRATS] = "Congratulations for your Prestige, do not forgot to use it in the Prestige Tree !"
+        [PRESTIGE_CONGRATS] = "Congratulations for your Prestige, do not forgot to use it in the Prestige Tree !",
+        [HERO_SHOP_TITLE_MSG] = "Hero Shop",
+        [PRICE_MSG] = "Price",
+        [HERO_SHOP_MULTIPLICATOR_MSG] = "Buy x",
+        [DPS_MSG] = "Degats per second"
     }
 };
 
@@ -70,7 +74,11 @@ Lang fr = {
         [PRESTIGE_GOLD_DESC] = "Augmente la quantité d'or gagnée par:",
         [PRESTIGE_DAMAGE_DESC] = "Augmente les dégats par:",
         [PRESTIGE_PRESTIGE_DESC] = "Augmente les points de prestige par:",
-        [PRESTIGE_CONGRATS] = "Felicitation pour votre Prestige, n'oubliez pas de l'utiliser dans l'Arbre de Prestige !"
+        [PRESTIGE_CONGRATS] = "Felicitation pour votre Prestige, n'oubliez pas de l'utiliser dans l'Arbre de Prestige !",
+        [HERO_SHOP_TITLE_MSG] = "Boutique de Heros",
+        [PRICE_MSG] = "Prix",
+        [HERO_SHOP_MULTIPLICATOR_MSG] = "Acheter x",
+        [DPS_MSG] = "Degats par secondes"
     }
 };
 
