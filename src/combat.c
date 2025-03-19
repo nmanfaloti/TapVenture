@@ -12,7 +12,29 @@
 #include "../lib/challenge.h"
 #include "../lib/prestige.h"
 
-levelInfo level;
+
+levelInfo level = {
+    .monstre = {{0}},
+    .timeToKill = -1,
+    .startTimer = 0,
+    .mobKilled = 0,
+    .mobToKill = 10,
+    .currentLvl = 0,
+    .label = {
+        "Limul",
+        "mob2",
+        "mob3",
+        "mob4",
+        "mob5"
+    },
+    .img = {
+        "assets/ui/monsters/monster1.png",
+        "assets/ui/monsters/monster2.png",
+        "assets/ui/monsters/monster3.png",
+        "assets/ui/monsters/monster4.png",
+        "assets/ui/monsters/monster5.png"
+    }
+};
 
 int initLevel(monstreInfo monstre[]) {
     level.timeToKill = -1.0;
@@ -55,6 +77,7 @@ int attack(void * args[20]) {
             }else doPrestige();
             level.mobKilled = 0;
             mobHandler();
+            refreshCurrentLvl();
             refreshCurrentLvl();
         }
         refreshMobKilled();

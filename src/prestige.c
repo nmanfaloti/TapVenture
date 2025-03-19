@@ -181,11 +181,11 @@ static int ChangePrestigePage(void *args[20]){
         printf("ChangePrestigePage Error: No args\n");
         return 1;
     }
-    int up = args[0];
+    int * up = (int *) args;
 
-    if (up == 2 && prestigePageIndex < MAX_PRESTIGE_ITEMS / NB_PRESTIGE_ITEMS_PER_PAGE - 1){
+    if (*up == 2 && prestigePageIndex < MAX_PRESTIGE_ITEMS / NB_PRESTIGE_ITEMS_PER_PAGE - 1){
         prestigePageIndex++;
-    } else if (up == 1 && prestigePageIndex > 0){
+    } else if (*up == 1 && prestigePageIndex > 0){
         prestigePageIndex--;
     } else {
         return 1;
@@ -431,7 +431,7 @@ void printTree(){
 int canBuy(char *selectedTree, int index){
     if (strcmp(selectedTree, "Gold") == 0){
         if (prestigeTree.Gold->items[index].owned) return 0;
-        if (index == 0) return 1;
+        if (index == 0 && prestigeTree.Gold->items[index].cost < prestigePoints) return 1;
         for (int i = 0; i < index; i++){
             // Vérifie si l'item précédent est acheté
             if (prestigeTree.Gold->items[i].owned == 0){ 
@@ -443,7 +443,7 @@ int canBuy(char *selectedTree, int index){
         return prestigeTree.Gold->items[index].cost < prestigePoints;
     } else if (strcmp(selectedTree, "Damage") == 0){
         if (prestigeTree.Damage->items[index].owned) return 0;
-        if (index == 0) return 1;
+        if (index == 0 && prestigeTree.Damage->items[index].cost < prestigePoints) return 1;
         for (int i = 0; i < index; i++){
             if (prestigeTree.Damage->items[i].owned == 0){
                 printf("Item not owned\n");
@@ -453,7 +453,7 @@ int canBuy(char *selectedTree, int index){
         return prestigeTree.Damage->items[index].cost < prestigePoints;
     } else if (strcmp(selectedTree, "Prestige") == 0){
         if (prestigeTree.Prestige->items[index].owned) return 0;
-        if (index == 0) return 1;
+        if (index == 0 && prestigeTree.Prestige->items[index].cost < prestigePoints) return 1;
         for (int i = 0; i < index; i++){
             if (prestigeTree.Prestige->items[i].owned == 0){
                 printf("Item not owned\n");

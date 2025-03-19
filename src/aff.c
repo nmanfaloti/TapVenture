@@ -38,7 +38,14 @@ uiTxt * getTxtFromLabel(char * label){
         printf("No txt in page\n");
         return NULL;
     }
+    if (label == NULL){
+        printf("No label\n");
+        return NULL;
+    }
     for (int i = 0; i < currentpage->container->nbTxt; i++){
+        if (currentpage->container->txt[i].label == NULL){
+            continue;
+        }
         if (strcmp(currentpage->container->txt[i].label, label) == 0){
             return &currentpage->container->txt[i];
         }
@@ -87,7 +94,16 @@ void refreshMobHealth(){
     if (txtHolder == NULL){
         return;
     }
-    setUiText(txtHolder, formatChaine("%t: %w",VIE_MSG, level.monstre[level.currentLvl].mobHealth));
+    setUiText(txtHolder, formatChaine("%w %t", level.monstre[level.currentLvl].mobHealth, VIE_MSG));
+}
+
+void refreshMobLabel(){
+    uiTxt * txtHolder = getTxtFromLabel("mobName");
+    if (txtHolder == NULL){
+        return;
+    }
+    char * mobName = formatChaine("%s Lvl %d",level.label[(level.currentLvl-1)/10], level.currentLvl);
+    setUiText(txtHolder, mobName);
 }
 void refreshCurrentLvl(){
     uiTxt * txtHolder = getTxtFromLabel("currentLvl");
@@ -187,6 +203,17 @@ void destroyUITxt(uiTxt * txt, uiPage * page){
     if (txt->chaine) {
         free(txt->chaine);
         txt->chaine = NULL;
+    }
+    int txtIndex = -1;
+    for (int i = 0; i < page->container->nbTxt; i++) {
+        if (&page->container->txt[i] == txt) {
+            txtIndex = i;
+            break;
+        }
+    }
+    // Décaler les éléments du tableau
+    for (int i = txtIndex; i < page->container->nbTxt - 1; i++) {
+        page->container->txt[i] = page->container->txt[i + 1];
     }
     if (page->container->nbTxt > 0) {
         page->container->nbTxt--;
@@ -352,23 +379,29 @@ void initMainPage(){
     createPage(&pageHolder.page[0]);
     currentpage = &pageHolder.page[0];
 
-    //pageHolder.page[0].container->nbTxt = 0;
-    //pageHolder.page[0].container->txt = NULL;
+    createUIImg(&pageHolder.page[0],"assets/ui/background/bg1.png", (SDL_Rect) {0, 0, vw(100), vh(100)}, "MainBackground");
+    createUIImg(&pageHolder.page[0],"assets/ui/background/island1.png", getRectForCentenredCord(vw(50), vh(50), vw(60), vh(70)), "islandBackground");
 
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",VIE_MSG, level.monstre[level.currentLvl].mobHealth), getRectForCentenredCord(vw(50), vh(37), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "mobHealth");
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGold");
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",DMG_MSG, damage_click), (SDL_Rect) {vw(80),vh(1), vh(30), vh(10)}, (SDL_Color){255, 255, 255, 255} , "playerDamage");
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d/10",MOB_MSG, level.mobKilled), getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){255, 255, 255, 255}, "mobKilled");
-    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",LVL_MSG, level.currentLvl), getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){255, 255, 255, 255}, "currentLvl");
+    int baseY = vh(40); // Position du monstre en Hauteur
+    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, level.img[(level.currentLvl-1)/10], 0, 2, attack, 1, &damage_click);
+    char *mobName = formatChaine("%s Lvl %d", level.label[(level.currentLvl-1)/10], level.currentLvl);
+    createUIText(&pageHolder.page[0], font, mobName, getSizeForText(font, mobName, getRectForCentenredCord(vw(50), baseY + vh(8.5), vw(11), vh(6))), (SDL_Color){0, 0, 0, 255}, "mobName");
+    createUIText(&pageHolder.page[0], font, formatChaine("%w %t", level.monstre[level.currentLvl].mobHealth, VIE_MSG), getRectForCentenredCord(vw(50), baseY + vh(11), vw(6), vh(4)), (SDL_Color){255, 0, 0, 255}, "mobHealth");
 
-    createButton(&pageHolder.page[0],getRectForCentenredCord(vw(50), vh(50), vw(30), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, CLICK_MSG, NULL, 1.1, attack, 1, &damage_click);
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vh(15), vh(10)}, (SDL_Color){0, 0, 0, 255}, "playerGold");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %w",DMG_MSG, damage_click), (SDL_Rect) {vw(85),vh(1), vh(20), vh(10)}, (SDL_Color){0, 0, 0, 255} , "playerDamage");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d/10",MOB_MSG, level.mobKilled), getRectForCentenredCord(vw(50), vh(10), vh(40), vh(7)), (SDL_Color){0, 0, 0, 255}, "mobKilled");
+    createUIText(&pageHolder.page[0],font,formatChaine("%t: %d",LVL_MSG, level.currentLvl), getRectForCentenredCord(vw(50), vh(4), vh(20), vh(7)), (SDL_Color){0, 0, 0, 255}, "currentLvl");
+    
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, (int*)&(shop.nextPrice),0.5, upgradeButton, 0);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[1]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(80), 50, 50), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 0, changePage, 1, &pageHolder.page[2]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(10), vh(90), 50, 50), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[3]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(20), 50, 50), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_rectangle_depth_line.svg", 0, 2, launchChallenge,0);
+    
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(95), vh(92), vw(6), vh(10)), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, 1, &pageHolder.page[1]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(12), vh(92), vw(6), vh(10)), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, 1, &pageHolder.page[2]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(5), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, 1, &pageHolder.page[3]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(19), vh(92), vw(6), vh(10)), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, launchChallenge,0);
     refreshMobKilled();
 }
+
 
 char *fr_txt, *en_txt, *full_txt, *window_txt; 
 void initSettingsPage(){

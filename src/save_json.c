@@ -174,6 +174,7 @@ int loadSave(){
     loadSaveHeros("save/heros.json");
     loadSavePlayer("save/player.json");
     refreshMobHealth();
+    refreshMobLabel();
     return 0;
 }
 

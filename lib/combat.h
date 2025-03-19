@@ -7,6 +7,7 @@ typedef struct {
     unsigned long long int coinMin;
 } monstreInfo;
 
+
 typedef struct {
     monstreInfo monstre[51];
     int timeToKill;
@@ -14,7 +15,10 @@ typedef struct {
     int mobKilled;
     int mobToKill;
     int currentLvl;
+    char * label[5];
+    char * img[5];
 } levelInfo;
+
 
 extern levelInfo level;
 
