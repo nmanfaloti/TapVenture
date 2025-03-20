@@ -19,6 +19,7 @@
 #include "../lib/chaine.h"
 #include "../lib/prestige.h"
 #include "../lib/inv.h"
+#include "../lib/audio.h"
 
 
 int main() {
@@ -31,6 +32,8 @@ int main() {
     init_inv_main();
     initLang("English");
     initPage();
+    initMusic();
+    playMusic(MUSIC_GAME, CANAL_MUSIC_BACK, 0); // 0 pour une lecture en boucle
     
     int running = 1;
     SDL_Event event;
@@ -78,6 +81,7 @@ int main() {
         resetChallenge();
     }
     makeSave();
+    freeAllMusic();
     dest_all_inventaires() ;
     destroyPrestigeList();
     destroyAllPages();

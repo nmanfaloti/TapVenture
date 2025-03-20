@@ -25,6 +25,16 @@ int init_SDL(){
         SDL_Quit();
         return 1;
     }
+    if (Mix_Init(MIX_INIT_MP3) == 0) {
+        printf("Mix_Init: %s\n", Mix_GetError());
+        SDL_Quit();
+        return 1;
+    }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 2048) < 0) {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        SDL_Quit();
+        return 1;
+    }
     window = SDL_CreateWindow("Hello World", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, widthscreen, heightscreen, SDL_WINDOW_SHOWN);
     if (window == NULL){
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Error SDL_CreateWindow : %s\n", SDL_GetError());
@@ -87,11 +97,17 @@ void SDLExit(){
         TTF_CloseFont(font);
         font = NULL;
     }
+    if (fontBig != NULL){
+        TTF_CloseFont(fontBig);
+        fontBig = NULL;
+    }
     SDL_FreeCursor(classicCursor);
     SDL_FreeCursor(swordCursor);
     SDL_FreeCursor(handCursor);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    Mix_Quit();
+    Mix_CloseAudio();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
