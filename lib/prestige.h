@@ -28,11 +28,12 @@ typedef struct prestigeTree_s{
 
 void initPrestige();
 void addPrestigeItem(prestigeList *list, char *name, char *description, int cost, void (*effect)(float), float value);
+int getMaxPrestigeItems(char * selectedTree);
 void goldPrestige(float value);
 void damagePrestige(float value);
 void prestigePrestige(float value);
 void printTree();
-void buyPrestigeItem(char *type, int index);
+void buyPrestigeItem(char *type, int index, int pay);
 void checkDisplayPrestigeItemText();
 void destroyPrestigeList();
 void refreshPrestigePage();

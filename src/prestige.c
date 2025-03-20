@@ -255,6 +255,36 @@ void initPrestige(){
     loadPrestigeTree();
 }
 
+int getMaxPrestigeItems(char * selectedTree){
+    int max = -1;
+    if (strcmp(selectedTree, "Gold") == 0){
+        for (int i = 0; i < prestigeTree.Gold->count; i++) {
+            if (prestigeTree.Gold->items[i].owned){
+                max++;
+            }else{
+                return max; // Renvoie l'indice du dernier item acheté
+            }
+        }
+    } else if (strcmp(selectedTree, "Damage") == 0){
+        for (int i = 0; i < prestigeTree.Damage->count; i++) {
+            if (prestigeTree.Damage->items[i].owned){
+                max++;
+            }else{
+                return max; // Renvoie l'indice du dernier item acheté
+            }
+        }
+    } else if (strcmp(selectedTree, "Prestige") == 0){
+        for (int i = 0; i < prestigeTree.Prestige->count; i++) {
+            if (prestigeTree.Prestige->items[i].owned){
+                max++;
+            }else{
+                return max; // Renvoie l'indice du dernier item acheté
+            }
+        }
+    }
+    return max;
+}
+
 int created[3] = {-1, -1, -1};
 void checkDisplayPrestigeItemText(){
     if (currentpage != &pageHolder.page[2]){
