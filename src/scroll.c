@@ -48,7 +48,6 @@ extern void update_scroll(int * id_scroll){
     for ( ; i < NOMBRE_MAX_SCROLL ; i += deplacement ){
         if ( scroll_liste[i].empl_alloue != 0){
 
-            printf("\n\n entrer dans f \n");
             scroll_liste[i].rect_scroll = scroll_liste[i].zone_scroll ;
             float coef = cof_scrollbar_window(scroll_liste[i].zone_interaction.h, scroll_liste[i].total_content_height);
             scroll_liste[i].rect_scroll.h = calculate_scrollbar_height(scroll_liste[i].zone_scroll.h, coef);
@@ -62,8 +61,7 @@ extern void update_scroll(int * id_scroll){
                 scroll_liste[i].speed = 0 ;
             }
         }
-        printf("\nindice:%d,coef:%f,arrondis:%f,vrai:%f,rect_scroll.h:%d\n",i,scroll_liste[i].coef,round(scroll_liste[i].coef),scroll_liste[i].zone_scroll.h/scroll_liste[i].coef,scroll_liste[i].rect_scroll.h);
-
+        
     }
 }
 
@@ -78,7 +76,6 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
                 printf("la zone de scroll  (%d) n'est pas dans la zone interaction(visible) = probleme ( bizarre) \n\t\t elem : %d , %d ,%d , %d \n\t\t zone : %d , %d ,%d , %d \n",i+1,zone_scroll.x,zone_scroll.y,zone_scroll.w,zone_scroll.h,zone_interaction.x,zone_interaction.y,zone_interaction.w,zone_interaction.h);
                 exit(2);
             }
-            printf("zone_interaction.h:%d",zone_interaction.h);
             scroll_liste[i].zone_interaction = zone_interaction;
             scroll_liste[i].zone_scroll = zone_scroll ; 
             scroll_liste[i].rect_scroll = zone_scroll ;
@@ -93,7 +90,6 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
             scroll_liste[i].empl_alloue = 1 ;
             scroll_liste[i].min_pos = zone_scroll.y ;
             scroll_liste[i].total_content_height = total_content_height ;
-            printf("Total Content Height: %d,taille scroll :%d\n", total_content_height,zone_scroll.h);
             scroll_liste[i].scrollbar_max_position = total_content_height - zone_scroll.h;
             creation_succes = 1 ; 
             return i ;

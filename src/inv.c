@@ -57,14 +57,11 @@ void aff_item(item_t * item){
 
 void aff_inv(inv * inventaire){
     if ( inventaire == NULL){
-        printf("inventaire non init \n");
         return;
     }
     for( int i = 0 ; i < inventaire->nb_items ; i++){
-        printf("affichage item %d \n",i);
         aff_item(inventaire->liste[i]);
     }
-    printf("    affichage   terminer      \n");
 }
 
 item_t * generation_item(char * name , char * nom_fichier ){
@@ -178,10 +175,8 @@ int decalage_bas, int decalage_cote) {
 
         scroll_liste[id_scroll].total_content_height = total_content_height ;
         scroll_liste[id_scroll].zone_interaction.w = total_content_width ;
-        printf("\n\n 1 id scroll : %d  /total_content_height : %d   total_content_width : %d max pos :%d\n\n",id_scroll,total_content_height,total_content_width,scroll_liste[id_scroll].scrollbar_max_position);
         update_scroll(&id_scroll);
-        printf("\n\n 2 id scroll : %d / total_content_height : %d   total_content_width : %d max pos :%d , scroll_liste[i].total_content_height :%d scroll_liste[i].zone_scroll.h:%d\n\n",id_scroll,total_content_height,total_content_width,scroll_liste[id_scroll].scrollbar_max_position,scroll_liste[id_scroll].total_content_height, scroll_liste[id_scroll].zone_scroll.h);
-
+ 
 
         // Initialisation des données de l'inventaire
         (*inventaire)->id_scroll = id_scroll;
@@ -193,7 +188,6 @@ int decalage_bas, int decalage_cote) {
         (*inventaire)->nb_items = NB_items;  // Stocke le nombre d'items
         init_inv(*inventaire);
 
-        printf("Inventaire initialisé avec %d items max \n", NB_items);
     }
 }
 int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv){// type = {or =  var : 0,7 // degat = var : 1 // vit_att = var : 0,1 }
@@ -299,12 +293,10 @@ char * item_rondam(int * piece_equipement){
     
     int id_item = rand() % nb_item; // Générer un ID valide (de 0 à nb_item - 1)
     int i = 0;
-    printf("avant :id de l'item : %d ,equipement :%d\n",id_item,i);
     // Trouver à quelle catégorie appartient l'item
     for (; i < 4 && id_item > liste[i]; i++) {
         id_item -= liste[i] ; // Ajuster id_item
     }
-    printf("apres : id de l'item : %d ,equipement :%d\n",id_item,i);
     *piece_equipement = i ;
     char * mot = malloc ( strlen("999.png") + 1 ) ;
     sprintf(mot,"%d.png",id_item);
@@ -344,7 +336,6 @@ int chercher_select(){
 // Fonction pour calculer le numéro de case en fonction des coordonnées
 int calcule_pos_inv() {
     int id_inv = chercher_select();
-    printf("--%d--\n",id_inv);
     if (id_inv == -1 || !list_inv || id_inv >= list_inv->nb_inventaires) 
         return -1; 
 
@@ -403,10 +394,8 @@ void img_inv_actualliser(inv * inventaire){
 }
 
 void img_inv_actualliser_all(){
-    printf("list_inv->nb_inventaires:%d\n",list_inv->nb_inventaires);
     for (int i = 0; i < list_inv->nb_inventaires; i++) {
         if ( i != 1  ){
-            printf("inv nb : %d\n",i);
             if ( list_inv->inventaires[i] )
                 img_inv_actualliser(list_inv->inventaires[i]);  // Appel à aff_inv_graf pour chaque inventaire
         }
@@ -420,7 +409,7 @@ typedef struct {
     int target_inv_id;  // ID de l'inventaire cible
     int x_init, y_init; // Position initiale du drag
 } drag_t;
-drag_t drag = {0, -1, -1, 0, 0, 0, 0};
+drag_t drag = {0, -1, -1, 0, 0, 0};
 
 // Détection du clic sur un item
 void detecter_click(SDL_Event event) {
@@ -433,7 +422,6 @@ void detecter_click(SDL_Event event) {
             drag.inv_id = chercher_select();
             drag.x_init = event.button.x;
             drag.y_init = event.button.y;
-            printf("Item %d sélectionné\n", drag.index);
         }
     }
 }
@@ -579,7 +567,6 @@ void lacher_item() {
                     path_img_case_finale->dest.y = y_case_finale;
                 }
 
-                printf(" index : %d x_case_finale : %d y_case_finale : %d\n", case_finale, x_case_finale, y_case_finale);
             }
 
             // Réinitialiser l'état du drag
@@ -610,13 +597,6 @@ void handle_inv_event(SDL_Event event) {
 
     if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
         lacher_item();
-    }
-
-    if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT) {
-        int clicked_case = calcule_pos_inv();
-        if (clicked_case != -1) {
-            printf("Vous avez cliqué sur le carré numéro : %d\n", clicked_case+1);
-        }
     }
     if ( event.type == SDL_MOUSEWHEEL || (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT ))img_inv_actualliser_all();
     
@@ -654,7 +634,6 @@ void dest_all_inventaires() {
     list_inv->inventaires = realloc(list_inv->inventaires, (list_inv->nb_inventaires + nb_inventaires) * sizeof(inv *));
     for (int i = 0; i < nb_inventaires; i++) {
 
-        printf(" \n\nles emplacment : %d\n\n",list_inv->nb_inventaires);
         inv *inventaire = va_arg(args, inv *);  // Récupère l'inventaire passé en paramètre
         list_inv->inventaires[list_inv->nb_inventaires++] = inventaire;
     }
@@ -677,22 +656,18 @@ extern void load(){
     int id_NULL = creation_scroll((SDL_Rect){-10, -10, 0, 0},
                                      (SDL_Rect){-9, -9, -1, -1},
                                      0, 0,NULL);
-    printf("ajoute inv -----");
-    printf("speed scroll 2 :%d\n",scroll_liste[id_scroll2].speed);
+
 
     gestion_inv(&inventaire_item,100, id_scroll1, (SDL_Rect){0, 10, ITEM_SIZE, ITEM_SIZE},
     NB_COLLONE, NB_LIGNE , ARRONDIS, DEPLACEMENT, DEPLACEMENT);
 
-    printf("ajoute inv 2 -----");
     int total_item = NB_BOTTES + NB_PLASTRON + NB_CASQUE + NB_ARME ;
     gestion_inv(&inv_ref,total_item, id_NULL, (SDL_Rect){0, 0,0 , 0},
     0, 0 , 0, 0, 0);
-    printf("ajoute inv 3 -----");
 
     gestion_inv(&inventaire_heros,HEROS_COUNT * NB_AMPLECEMENT, id_scroll2, (SDL_Rect){0, 10,ITEM_SIZE, ITEM_SIZE},
     NB_AMPLECEMENT, HEROS_COUNT , ARRONDIS, 110, 0);
 
-    printf("ajoute inv liste global -----");
 
 
     ajouter_inventaire(3 , inventaire_item , inv_ref ,inventaire_heros);
@@ -721,7 +696,6 @@ void drop_item(){
     int emplacement_vide = prem_vide(list_inv->inventaires[0]);
     if (emplacement_vide == -1){
         //notif inv full
-        printf("inventaire remplis\n");
         return ;
     }
 
@@ -750,18 +724,19 @@ void drop_item(){
     int x = emp_colone * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w)  + raccoursis->SDL_Rect.x ;
     int y = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h)  + raccoursis->SDL_Rect.y ;
     it->pos_y = y ;
-    printf("valeur x:%d emp_colone:%d, y:%d,emp_ligne:%d\n",x,emp_colone,y,emp_ligne);
     racourcis_createUI(it,x,y);
 }
 
-int comparer_items(void *a, void *b) {
+int comparer_items(const void *a, const void *b) {
     item_t *itemA = *(item_t **)a;
     item_t *itemB = *(item_t **)b;
 
-    if (!itemA || !itemB || !itemA->nom || !itemB->nom) return 0;
+    // Check if any of the items or their 'nom' fields are NULL
+    if (!itemA || !itemA->nom) return itemB && itemB->nom ? -1 : 0;
+    if (!itemB || !itemB->nom) return 1;
+
     return strcmp(itemA->nom, itemB->nom);
 }
-
 void trier_inventaire(inv *inventaire) {
     if (!inventaire || !inventaire->liste || inventaire->nb_items <= 0) {
         printf("Erreur : Inventaire vide ou invalide.\n");
