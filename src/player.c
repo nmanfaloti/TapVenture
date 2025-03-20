@@ -12,6 +12,9 @@ unsigned long long int damage_click = 1;
 
 void goldGainOffline(time_t lastSaveTime){
     time_t currentTime = time(NULL);
+    if (lastSaveTime <= 0 || currentTime < lastSaveTime){
+        return;
+    }
     double elapsedTime = difftime(currentTime, lastSaveTime);
     unsigned long long int goldBySec = herosGoldGenBySec();
     unsigned long long int goldEarned = (elapsedTime * goldBySec);

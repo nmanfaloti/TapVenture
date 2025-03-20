@@ -403,24 +403,17 @@ int loadSavePrestige(char * save){
 
 int makeSavePrestige(char * save){
     rmFile(save);
-    printf("Debut\n");
+
     char value[30];
 
     sprintf(value, "%d", prestigePoints);
     createValueForKey("POINTS", value, save);
-    printf("Point\n");
-    int temp=getMaxPrestigeItems("Gold");
-    printf("temp %d\n",temp);
-    sprintf(value, "%d", temp);
-    printf("Gold2\n");
+    sprintf(value, "%d", getMaxPrestigeItems("Gold"));
     createValueForKey("SKILL_TREE_GOLD", value, save);
     sprintf(value, "%d", getMaxPrestigeItems("Damage"));
-    printf("Damage\n");
     createValueForKey("SKILL_TREE_DAMAGE", value, save);
     sprintf(value, "%d", getMaxPrestigeItems("Prestige"));
-    printf("Prestige\n");
     createValueForKey("SKILL_TREE_PRESTIGE", value, save);
-    printf("Fin\n");
     return 0;
 }
 
