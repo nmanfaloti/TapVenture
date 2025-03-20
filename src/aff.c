@@ -211,9 +211,11 @@ void destroyUITxt(uiTxt * txt, uiPage * page){
             break;
         }
     }
-    // Décaler les éléments du tableau
-    for (int i = txtIndex; i < page->container->nbTxt - 1; i++) {
-        page->container->txt[i] = page->container->txt[i + 1];
+    if (txtIndex != -1) {
+        // Décaler les éléments du tableau
+        for (int i = txtIndex; i < page->container->nbTxt - 1; i++) {
+            page->container->txt[i] = page->container->txt[i + 1];
+        }
     }
     if (page->container->nbTxt > 0) {
         page->container->nbTxt--;
@@ -304,6 +306,7 @@ void createPage(uiPage * page){
 
 
 void destroyPage(uiPage *page) {
+    printf("Destroying page\n");
     if (page == NULL) {
         return;
     }

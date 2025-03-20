@@ -35,11 +35,35 @@ void doPrestige(){
 
 static void initPrestigeState(){
     prestigeTree.Gold = malloc(sizeof(prestigeList));
+    if (!prestigeTree.Gold) {
+        fprintf(stderr, "Failed to allocate memory for prestigeTree.Gold\n");
+        exit(EXIT_FAILURE);
+    }
     prestigeTree.Damage = malloc(sizeof(prestigeList));
+    if (!prestigeTree.Damage) {
+        fprintf(stderr, "Failed to allocate memory for prestigeTree.Damage\n");
+        exit(EXIT_FAILURE);
+    }
     prestigeTree.Prestige = malloc(sizeof(prestigeList));
+    if (!prestigeTree.Prestige) {
+        fprintf(stderr, "Failed to allocate memory for prestigeTree.Prestige\n");
+        exit(EXIT_FAILURE);
+    }
     prestigeTree.Gold->items = malloc(sizeof(prestigeItem) * MAX_PRESTIGE_ITEMS);
+    if (!prestigeTree.Gold->items) {
+        fprintf(stderr, "Failed to allocate memory for prestigeTree.Gold->items\n");
+        exit(EXIT_FAILURE);
+    }
     prestigeTree.Damage->items = malloc(sizeof(prestigeItem) * MAX_PRESTIGE_ITEMS);
+    if (!prestigeTree.Damage->items) {
+        fprintf(stderr, "Failed to allocate memory for prestigeTree.Damage->items\n");
+        exit(EXIT_FAILURE);
+    }
     prestigeTree.Prestige->items = malloc(sizeof(prestigeItem) * MAX_PRESTIGE_ITEMS);
+    if (!prestigeTree.Prestige->items) {
+        fprintf(stderr, "Failed to allocate memory for prestigeTree.Prestige->items\n");
+        exit(EXIT_FAILURE);
+    }
 
     prestigeTree.Gold->count = 0;
     prestigeTree.Damage->count = 0;
@@ -122,6 +146,7 @@ static void initPrestigeState(){
     desc = formatChaine("%t 80%%", PRESTIGE_PRESTIGE_DESC);
     addPrestigeItem(prestigeTree.Prestige, "Prestige 8", desc, 8, prestigePrestige, 0.8);
     free(desc);
+
 }
 
 int buyPrestigeButton(void *args[20]){

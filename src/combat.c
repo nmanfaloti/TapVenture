@@ -78,7 +78,7 @@ int attack(void * args[20]) {
             level.mobKilled = 0;
             mobHandler();
             refreshCurrentLvl();
-            refreshCurrentLvl();
+            refreshMobLabel();
         }
         refreshMobKilled();
     }
@@ -102,27 +102,11 @@ int isBoss(int currentLvl) {
     return currentLvl % 5 == 0;
 }
 
-int writeBossTimer(SDL_Rect dest) {
-    if (level.currentLvl % 5 != 0 || level.timeToKill == -1) {
-        return 0;
-    }
-    int timeLeft = level.timeToKill - (SDL_GetTicks() - level.startTimer) / 1000;
-    char timeLeftTxt[100];
-    sprintf(timeLeftTxt, "%d", timeLeft);
-    // affiche_txt(renderer, font, timeLeftTxt, getSizeForText(font,timeLeftTxt, dest), (SDL_Color){255, 255, 255, 255});
-    if (timeLeft <= 0) {
-        return 1;
-    }
-    return 0;
-}
-
 void mobHandler() {
     initBoss(30);
     if (isBoss(level.currentLvl)) {
-        if (writeBossTimer((SDL_Rect){vh(50),100,100,50}) == 1) {
-            level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
-            level.startTimer = SDL_GetTicks();
-        }
+        level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
+        level.startTimer = SDL_GetTicks();
     }else{
         if (level.mobToKill == 1){
             level.mobToKill = 10;
