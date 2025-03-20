@@ -159,7 +159,7 @@ int buyPrestigeButton(void *args[20]){
     prestigeItem *item = (prestigeItem*) args[1];
     int index = item->index;
 
-    buyPrestigeItem(selectedTree, index);
+    buyPrestigeItem(selectedTree, index , 1);
     return 0;
 }
 
@@ -491,10 +491,12 @@ int canBuy(char *selectedTree, int index){
     return 0;
 }
 
-void buyPrestigeItem(char *selectedTree, int index){
+void buyPrestigeItem(char *selectedTree, int index, int pay){
     if (strcmp(selectedTree, "Gold") == 0){
-        if (canBuy(selectedTree, index)){
-            prestigePoints -= prestigeTree.Gold->items[index].cost;
+        if (!pay || canBuy(selectedTree, index)){
+            if (pay) {
+                prestigePoints -= prestigeTree.Gold->items[index].cost;
+            }
             prestigeTree.Gold->items[index].effect(prestigeTree.Gold->items[index].value);
             prestigeTree.Gold->items[index].owned = 1;
             refreshPrestigePage();
@@ -502,8 +504,10 @@ void buyPrestigeItem(char *selectedTree, int index){
             printf("Can't buy this item \n");
         }
     }else if (strcmp(selectedTree, "Damage") == 0){
-        if (canBuy(selectedTree, index)){
-            prestigePoints -= prestigeTree.Damage->items[index].cost;
+        if (!pay || canBuy(selectedTree, index)){
+            if (pay) {
+                prestigePoints -= prestigeTree.Damage->items[index].cost;
+            }
             prestigeTree.Damage->items[index].effect(prestigeTree.Damage->items[index].value);
             prestigeTree.Damage->items[index].owned = 1;
             refreshPrestigePage();
@@ -511,8 +515,10 @@ void buyPrestigeItem(char *selectedTree, int index){
             printf("Can't buy this item\n");
         }
     }else if (strcmp(selectedTree, "Prestige") == 0){
-        if (canBuy(selectedTree, index)){
-            prestigePoints -= prestigeTree.Prestige->items[index].cost;
+        if (!pay || canBuy(selectedTree, index)){
+            if (pay) {
+                prestigePoints -= prestigeTree.Prestige->items[index].cost;
+            }
             prestigeTree.Prestige->items[index].effect(prestigeTree.Prestige->items[index].value);
             prestigeTree.Prestige->items[index].owned = 1;
             refreshPrestigePage();
