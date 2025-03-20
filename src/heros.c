@@ -23,6 +23,8 @@
 #define DEGAT_UPGRADE 1.15
 #define PRIX_UPGRADE 1.40
 
+#define MAX_MULTIPLICATOR 1000
+
 hero heros[HEROS_COUNT];
 int multiplicator = 1;
 
@@ -97,7 +99,7 @@ int upgradeHeroCB(void * args[20]){
             }
         }
     }
-    else if (multiplicator == 1000){
+    else if (multiplicator == MAX_MULTIPLICATOR){
         for (int i = 0; i < multiplicator; i++){
             if (upgradeHero(*heroIndex, true)){
                 return 0;
@@ -127,7 +129,7 @@ unsigned long long int getHeroPriceByMultiplicator(int heroIndex){
         if ((sommePrice + price) > LLD_MAX){
             return LLD_MAX;
         }
-        else if(multiplicator == 1000 && (sommePrice + price) > gold){//calcul du prix le maximum en fonction du gold
+        else if(multiplicator == MAX_MULTIPLICATOR && (sommePrice + price) > gold){//calcul du prix le maximum en fonction du gold
             return sommePrice;
         }
         sommePrice += price;
@@ -258,7 +260,7 @@ int changeMultiplicator(){
         multiplicator = 100;
     }
     else if (multiplicator == 100){
-        multiplicator = 1000;
+        multiplicator = MAX_MULTIPLICATOR;
     }
     else{
         multiplicator = 1;
@@ -268,7 +270,7 @@ int changeMultiplicator(){
     }
     //Update du bouton pour afficher le nouveau multiplicator (0 est son indice dans la liste des boutons)
     char * txt; 
-    if(multiplicator == 1000){
+    if(multiplicator == MAX_MULTIPLICATOR){
         txt = formatChaine("%t: %t", pageHolder.page[3].buttonsList->buttons[0].text, MAX_MSG);
     }
     else{

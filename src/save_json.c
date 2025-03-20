@@ -151,7 +151,6 @@ int isHereFile(char * nameFile){
         return 0;
     }
     if (system(srtPressance)){
-        printf("Erreur lors de la verification de l'existance du fichier %s (inexistant)\n", nameFile);
         free(srtPressance);
         return 0;
     }
