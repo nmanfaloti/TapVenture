@@ -11,18 +11,25 @@
 #include "../lib/chaine.h"
 #include "../lib/input_user.h"
 #include "../lib/player.h"
+#include "../lib/combat.h"
+#include "../lib/heros.h"
 
 prestigeTree_t prestigeTree = {NULL, NULL, NULL};
 
 int prestigePoints=0;
 int prestigePageIndex=0;
 int prestigePointsReward=1;
+int heroKeepUpgrade=0;
+int heroKeepLevel=0;
+
 
 // Hauteur d'un élément de prestige en fonction du nombre total d'éléments par page
 int vectorPrestige;
 
+// Modificateurs des stats liés au prestige
 float goldModifier=1;
 float damageModifier=1;
+float prestigeModifier=1;
 
 void doPrestige(){
     prestigePoints += prestigePointsReward;
@@ -30,11 +37,39 @@ void doPrestige(){
     refreshPrestigePage();
     createNotif(Traduction(PRESTIGE_MSG), 0, 1, "assets/ui/notif.png", 1, 5, getRectForCentenredCord(vw(50), vh(30), vw(30), vh(50)), 0, 1, Traduction(PRESTIGE_CONGRATS));
     //A fair : reset le jeux (gold, heros, degat, level)
+    printf("Prestige \n");
+    gold = 0;
+    printf("Gold reset\n");
+    level.currentLvl = 0;
+    level.maxLevel = 0;
+    printf("Level reset\n");
+    level.mobKilled = 0;
+    printf("MobKilled reset\n");
+    addGold(0);
+    printf("Gold reset\n");
+    setPlayerDamage(10);
+    printf("Damage reset\n");
+    initHeros();
+    if (heroKeepUpgrade > 0){
+        printf("Heros keep upgrade\n");
+        for (int i = 0; i < heroKeepUpgrade; i++){
+            makeHeroAtLevel(i, heroKeepLevel ? heroKeepLevel : 1);
+        }
+        printf("Heros keep upgrade\n");
+    }
+    printf("Refresh current level\n");
+    refreshCurrentLvl();
+    printf("Refresh mob label\n");
+    printf("Prestige done\n");
 }
 
 
 static void initPrestigeState(){
+    if (prestigeTree.Gold != NULL || prestigeTree.Damage != NULL || prestigeTree.Prestige != NULL){
+        return;
+    }
     prestigeTree.Gold = malloc(sizeof(prestigeList));
+    
     if (!prestigeTree.Gold) {
         fprintf(stderr, "Failed to allocate memory for prestigeTree.Gold\n");
         exit(EXIT_FAILURE);
@@ -125,26 +160,26 @@ static void initPrestigeState(){
     desc = formatChaine("%t 1", PRESTIGE_PRESTIGE_DESC);
     addPrestigeItem(prestigeTree.Prestige, "Prestige 1", desc, 1, prestigePrestige, 1);
     free(desc);
-    desc = formatChaine("%t 20%%", PRESTIGE_PRESTIGE_DESC);
-    addPrestigeItem(prestigeTree.Prestige, "Prestige 2", desc, 2, prestigePrestige, 0.2);
+    desc = formatChaine("%t 1", PRESTIGE_HERO_DESC);
+    addPrestigeItem(prestigeTree.Prestige, "Prestige 2", desc, 2, prestigeKeepHero, 1);
     free(desc);
-    desc = formatChaine("%t 30%%", PRESTIGE_PRESTIGE_DESC);
-    addPrestigeItem(prestigeTree.Prestige, "Prestige 3", desc, 3, prestigePrestige, 0.3);
+    desc = formatChaine("%t 5", PRESTIGE_HEROLVL_DESC);
+    addPrestigeItem(prestigeTree.Prestige, "Prestige 3", desc, 3, prestigeKeepHeroLevel, 5);
     free(desc);
     desc = formatChaine("%t 2", PRESTIGE_PRESTIGE_DESC);
     addPrestigeItem(prestigeTree.Prestige, "Prestige 4", desc, 4, prestigePrestige, 2);
     free(desc);
-    desc = formatChaine("%t 50%%", PRESTIGE_PRESTIGE_DESC);
-    addPrestigeItem(prestigeTree.Prestige, "Prestige 5", desc, 5, prestigePrestige, 0.5);
+    desc = formatChaine("%t 10", PRESTIGE_HEROLVL_DESC);
+    addPrestigeItem(prestigeTree.Prestige, "Prestige 5", desc, 5, prestigeKeepHeroLevel, 5);
     free(desc);
-    desc = formatChaine("%t 60%%", PRESTIGE_PRESTIGE_DESC);
-    addPrestigeItem(prestigeTree.Prestige, "Prestige 6", desc, 6, prestigePrestige, 0.6);
+    desc = formatChaine("%t 2", PRESTIGE_HERO_DESC);
+    addPrestigeItem(prestigeTree.Prestige, "Prestige 6", desc, 6, prestigeKeepHero, 1);
     free(desc);
-    desc = formatChaine("%t 70%%", PRESTIGE_PRESTIGE_DESC);
-    addPrestigeItem(prestigeTree.Prestige, "Prestige 7", desc, 7, prestigePrestige, 0.7);
+    desc = formatChaine("%t 5", PRESTIGE_PRESTIGE_DESC);
+    addPrestigeItem(prestigeTree.Prestige, "Prestige 7", desc, 7, prestigePrestige, 5);
     free(desc);
-    desc = formatChaine("%t 80%%", PRESTIGE_PRESTIGE_DESC);
-    addPrestigeItem(prestigeTree.Prestige, "Prestige 8", desc, 8, prestigePrestige, 0.8);
+    desc = formatChaine("%t 20", PRESTIGE_HEROLVL_DESC);
+    addPrestigeItem(prestigeTree.Prestige, "Prestige 8", desc, 8, prestigeKeepHeroLevel, 10);
     free(desc);
 
 }
@@ -162,7 +197,6 @@ int buyPrestigeButton(void *args[20]){
     buyPrestigeItem(selectedTree, index , 1);
     return 0;
 }
-
 
 static void loadPrestigeTree(){
     for (int j = 0; j < NB_PRESTIGE_ITEMS_PER_PAGE; j++){
@@ -238,8 +272,8 @@ static void initPrestigePage(){
     createUIText(&pageHolder.page[2], font, desc, getSizeForText(font, desc, (SDL_Rect){vw(1), vh(1), vw(10), vh(5)}), (SDL_Color){255, 255, 255, 255}, "prestigePoints");
     createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
     
-    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(90), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow1", 1, 1);
-    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(96), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow2",1, 2);
+    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(90), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow1", 1, 2);
+    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(96), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow2",1, 1);
 }
 
 void refreshPrestigePage(){
@@ -252,7 +286,6 @@ void initPrestige(){
     // Calcul une fois pour eviter de le recalculer à chaque fois
     vectorPrestige = vh(100) / NB_PRESTIGE_ITEMS_PER_PAGE;
 
-    destroyPrestigeList();
     initPrestigeState();
     initPrestigePage();
     loadPrestigeTree();
@@ -296,7 +329,11 @@ void checkDisplayPrestigeItemText(){
     uiTxt *existingText = getTxtFromLabel("prestigeDescription");
     uiTxt *existingCost = getTxtFromLabel("prestigeCost");
     
-    for (int i = 0; i < prestigeTree.Gold->count; i++) {
+    for (int j = 0; j < NB_PRESTIGE_ITEMS_PER_PAGE; j++){
+        int i = j;
+        if (prestigePageIndex) {
+            i+=NB_PRESTIGE_ITEMS_PER_PAGE*prestigePageIndex;
+        }
         int hover = checkBoutton(prestigeTree.Gold->items[i].pos, mouseX, mouseY);
         if (hover && created[0] == -1) {
             if (prestigeTree.Gold->items[i].description) {
@@ -315,10 +352,8 @@ void checkDisplayPrestigeItemText(){
             destroyUITxt(existingCost, &pageHolder.page[2]);
             created[0] = -1;
         }
-    }
 
-    for (int i = 0; i < prestigeTree.Damage->count; i++) {
-        int hover = checkBoutton(prestigeTree.Damage->items[i].pos, mouseX, mouseY);
+        hover = checkBoutton(prestigeTree.Damage->items[i].pos, mouseX, mouseY);
         if (hover && created[2] == -1) {
             if (prestigeTree.Damage->items[i].description) {
                 char *desc = malloc(strlen(prestigeTree.Damage->items[i].description) + 1);
@@ -335,10 +370,8 @@ void checkDisplayPrestigeItemText(){
             destroyUITxt(existingCost, &pageHolder.page[2]);
             created[2] = -1;
         }
-    }
-    
-    for (int i = 0; i < prestigeTree.Prestige->count; i++) {
-        int hover = checkBoutton(prestigeTree.Prestige->items[i].pos, mouseX, mouseY);  
+
+        hover = checkBoutton(prestigeTree.Prestige->items[i].pos, mouseX, mouseY);  
         if (hover && created[1] == -1) {
             if (prestigeTree.Prestige->items[i].description) {
                 char *desc = malloc(strlen(prestigeTree.Prestige->items[i].description) + 1);
@@ -442,6 +475,13 @@ void damagePrestige(float value){
 
 void prestigePrestige(float value){
     prestigePointsReward += value;
+}
+
+void prestigeKeepHero(float value){
+    heroKeepUpgrade += value;
+}
+void prestigeKeepHeroLevel(float value){
+    heroKeepLevel += value;
 }
 
 void printTree(){

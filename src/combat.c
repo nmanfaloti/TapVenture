@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
+#include <math.h>
 
 #include "../lib/combat.h"
 #include "../lib/aff.h"
@@ -68,15 +69,13 @@ int initLevel(monstreInfo monstre[]) {
 int attack(void * args[20]) {
     unsigned long long int * damage = args[0];
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
-    if (currentMonstre->mobHealth <= *damage){
+    if (currentMonstre->mobHealth <= *damage * damageModifier) {
         level.mobKilled += 1;
         addGold((currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1)));
         currentMonstre->mobHealth = currentMonstre->iniHealth;
         if (level.mobKilled >= level.mobToKill) {
             if (level.currentLvl < 50) {
                 level.currentLvl++;
-                if (level.currentLvl > level.maxLevel)
-                    level.maxLevel = level.currentLvl;
             }else doPrestige();
             level.mobKilled = 0;
             mobHandler();
@@ -86,12 +85,13 @@ int attack(void * args[20]) {
         refreshMobKilled();
     }
     else{
-        currentMonstre->mobHealth -=  *damage;
+        currentMonstre->mobHealth -= floor(*damage * damageModifier);
     }
     //Actualisation de la vie du monstre (A la fin pour eviter d'avoir la vie du monstre a 0 ou -)
     refreshMobHealth();
     return 1;
 }
+
 
 int initBoss(int difficultyTime) {
     level.mobToKill = 1;
@@ -102,6 +102,7 @@ int initBoss(int difficultyTime) {
 }
 
 int isBoss(int currentLvl) {
+    if (currentLvl == 0) return 0;
     return currentLvl % 5 == 0;
 }
 

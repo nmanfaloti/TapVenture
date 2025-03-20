@@ -173,8 +173,8 @@ int rmFile(char * nameFile){
 
 int loadSave(){
     loadSaveHeros("save/heros.json");
-    loadSavePlayer("save/player.json");
     loadSavePrestige("save/prestige.json");
+    loadSavePlayer("save/player.json");
     if (level.currentLvl!=0)
         mobHandler();
     refreshMobHealth();

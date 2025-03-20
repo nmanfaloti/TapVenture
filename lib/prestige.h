@@ -27,6 +27,9 @@ typedef struct prestigeTree_s{
 }prestigeTree_t;
 
 extern int prestigePoints;
+extern float goldModifier;
+extern float damageModifier;
+extern float prestigeModifier;
 
 void initPrestige();
 void addPrestigeItem(prestigeList *list, char *name, char *description, int cost, void (*effect)(float), float value);
@@ -39,6 +42,9 @@ void buyPrestigeItem(char *type, int index, int pay);
 void checkDisplayPrestigeItemText();
 void destroyPrestigeList();
 void refreshPrestigePage();
+
+void prestigeKeepHero(float value);
+void prestigeKeepHeroLevel(float value);
 
 void doPrestige();
 int canBuy(char *type, int index);

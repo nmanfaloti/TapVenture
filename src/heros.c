@@ -10,6 +10,7 @@
 #include "../lib/lang.h"
 #include "../lib/sdl.h"
 #include "../lib/chaine.h"
+#include "../lib/prestige.h"
 
 #define DEGATS_BASE 10
 #define PRIX_BASE 100
@@ -146,10 +147,10 @@ unsigned long long int getHeroPrice(int heroIndex){
 unsigned long long int herosDPS(int indiceHero){
     if (indiceHero < HEROS_COUNT && heros[indiceHero].level > 0){
         if( heros[indiceHero].cooldown > 1000){
-            return heros[indiceHero].degat / (heros[indiceHero].cooldown /1000 ); 
+            return heros[indiceHero].degat * damageModifier/ (heros[indiceHero].cooldown /1000 ); 
         }
         else{
-            return heros[indiceHero].degat;
+            return heros[indiceHero].degat * damageModifier;
         }
     }
     return 0;

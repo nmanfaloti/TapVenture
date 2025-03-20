@@ -5,7 +5,9 @@
 #include "../lib/aff.h"
 #include "../lib/chaine.h"
 #include "../lib/ui.h"
+#include "../lib/prestige.h"
 #include <time.h>
+#include <math.h>
 
 unsigned long long int gold = 0;
 unsigned long long int damage_click = 1;
@@ -28,11 +30,11 @@ void goldGainOffline(time_t lastSaveTime){
 }
 
 void addGold(unsigned long long int goldToAdd){
-    if(gold + goldToAdd >= LLD_MAX){
+    if(gold + goldToAdd * goldModifier>= LLD_MAX){
         gold = LLD_MAX;
     }
     else{
-        gold += goldToAdd;
+        gold += goldToAdd * goldModifier; // Application du multiplicateur de l'or (Prestige)
     }
     //Update l'affichage de l'or
     if (currentpage == &pageHolder.page[0]){
@@ -48,7 +50,12 @@ void addGold(unsigned long long int goldToAdd){
 
 void setPlayerDamage(unsigned long long int damage){
     damage_click = damage;
-    //Update l'affichage des dégats
+    // Update l'affichage des dégats
     uiTxt *txtToChange = getTxtFromLabel("playerDamage");
-    setUiText(txtToChange, formatChaine("%t: %w",DMG_MSG, damage_click));
+    printf("%lld * %f\n", damage_click, damageModifier);
+    if (damage_click * damageModifier >= LLD_MAX){
+        setUiText(txtToChange, formatChaine("%t: %w", DMG_MSG, LLD_MAX));
+        return;
+    }
+    setUiText(txtToChange, formatChaine("%t: %w", DMG_MSG, (unsigned long long int)(damage_click * damageModifier)));
 }
