@@ -26,6 +26,8 @@ typedef struct prestigeTree_s{
     prestigeList *Prestige;
 }prestigeTree_t;
 
+extern int prestigePoints;
+
 void initPrestige();
 void addPrestigeItem(prestigeList *list, char *name, char *description, int cost, void (*effect)(float), float value);
 int getMaxPrestigeItems(char * selectedTree);

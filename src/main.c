@@ -52,9 +52,9 @@ int main() {
     if(challenge.active){
         resetChallenge();
     }
+    makeSave();
     destroyPrestigeList();
     destroyAllPages();
-    makeSave();
     SDLExit();
     return 0;
 }

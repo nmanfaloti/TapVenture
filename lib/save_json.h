@@ -16,6 +16,8 @@ int loadSavePlayer(char * save);
 int makeSavePlayer(char * save);
 int loadSaveHeros(char * save);
 int makeSaveHeros(char * save);
+int loadSavePrestige(char * save);
+int makeSavePrestige(char * save);
 
 
 int initPlayer();

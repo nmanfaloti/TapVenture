@@ -13,6 +13,7 @@
 #include "../lib/button.h"
 #include "../lib/chaine.h"
 #include "../lib/challenge.h"
+#include "../lib/prestige.h"
 
 
 
@@ -173,6 +174,7 @@ int rmFile(char * nameFile){
 int loadSave(){
     loadSaveHeros("save/heros.json");
     loadSavePlayer("save/player.json");
+    loadSavePrestige("save/prestige.json");
     refreshMobHealth();
     refreshMobLabel();
     return 0;
@@ -184,6 +186,7 @@ int makeSave(){
     }
     makeSavePlayer("save/player.json");
     makeSaveHeros("save/heros.json");
+    makeSavePrestige("save/prestige.json");
     return 0;
 }
 
@@ -342,6 +345,82 @@ int makeSaveHeros(char * save){
         sprintf(value, "%d", heros[i].level);
         createValueForKey(key, value, save);
     }
+    return 0;
+}
+
+int loadSavePrestige(char * save){
+    if(!isHereFile(save)){
+        return 1;
+    }
+
+    char * value;
+    int maxIndex;
+
+    value = getValueForKey("POINTS", save);
+    if(value == NULL){
+        printf("Save : can't load  POINTS\n");
+    }
+    else{   
+        prestigePoints = atoi(value);
+        free(value);
+    }
+    value = getValueForKey("SKILL_TREE_GOLD", save);
+    if(value == NULL){
+        printf("Save : can't load  SKILL_TREE_GOLD\n");
+    }
+    else{   
+        maxIndex = atoi(value);
+        free(value);
+        for (int i=0;i<maxIndex;i++){
+            buyPrestigeItem("Gold", i, 0);
+        }
+    }
+    value = getValueForKey("SKILL_TREE_DAMAGE", save);
+    if(value == NULL){
+        printf("Save : can't load  SKILL_TREE_DAMAGE\n");
+    }
+    else{   
+        maxIndex = atoi(value);
+        free(value);
+        for (int i=0;i<maxIndex;i++){
+            buyPrestigeItem("Damage", i, 0);
+        }
+    }
+    value = getValueForKey("SKILL_TREE_PRESTIGE", save);
+    if(value == NULL){
+        printf("Save : can't load  SKILL_TREE_PRESTIGE\n");
+    }
+    else{   
+        maxIndex = atoi(value);
+        free(value);
+        for (int i=0;i<maxIndex;i++){
+            buyPrestigeItem("Prestige", i, 0);
+        }
+    }
+    refreshPrestigePage();
+    return 0;
+}
+
+int makeSavePrestige(char * save){
+    rmFile(save);
+    printf("Debut\n");
+    char value[30];
+
+    sprintf(value, "%d", prestigePoints);
+    createValueForKey("POINTS", value, save);
+    printf("Point\n");
+    int temp=getMaxPrestigeItems("Gold");
+    printf("temp %d\n",temp);
+    sprintf(value, "%d", temp);
+    printf("Gold2\n");
+    createValueForKey("SKILL_TREE_GOLD", value, save);
+    sprintf(value, "%d", getMaxPrestigeItems("Damage"));
+    printf("Damage\n");
+    createValueForKey("SKILL_TREE_DAMAGE", value, save);
+    sprintf(value, "%d", getMaxPrestigeItems("Prestige"));
+    printf("Prestige\n");
+    createValueForKey("SKILL_TREE_PRESTIGE", value, save);
+    printf("Fin\n");
     return 0;
 }
 
