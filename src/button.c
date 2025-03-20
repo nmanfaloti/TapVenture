@@ -462,6 +462,10 @@ void destroyAllButtonImgFromPage(ListeButtonImg *listeButtonImg) {
         listeButtonImg->buttons[i].imgTexture = NULL;
         SDL_DestroyTexture(listeButtonImg->buttons[i].backgroundTexture);
         listeButtonImg->buttons[i].backgroundTexture = NULL;
+        if (listeButtonImg->buttons[i].label) {
+            free(listeButtonImg->buttons[i].label);
+            listeButtonImg->buttons[i].label = NULL;
+        }
     }
     free(listeButtonImg->buttons);
     listeButtonImg->buttons = NULL;
