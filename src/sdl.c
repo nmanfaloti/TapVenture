@@ -6,6 +6,10 @@ SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 TTF_Font *font = NULL;
 TTF_Font *fontBig = NULL;
+SDL_Cursor *cursor = NULL;
+SDL_Cursor *classicCursor = NULL;
+SDL_Cursor *swordCursor = NULL;
+SDL_Cursor *handCursor = NULL;
 int init_SDL(){
     if (SDL_Init(SDL_INIT_VIDEO)){
         printf("Error SDL_Init\n");
@@ -52,6 +56,29 @@ int init_SDL(){
         SDL_Quit();
         return 1;
     }
+    //Intialisation des curseurs
+    SDL_Surface * classicCursorSurface = IMG_Load("assets/ui/cursor/cursor.png");
+    SDL_Surface * swordCursorSurface = IMG_Load("assets/ui/cursor/sword.png");
+    SDL_Surface * handCursorSurface = IMG_Load("assets/ui/cursor/hand.png");
+    if (!classicCursorSurface || !swordCursorSurface || !handCursorSurface) {
+        printf("Failed to load cursor images\n");
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        TTF_Quit();
+        IMG_Quit();
+        SDL_Quit();
+        return 1;
+    }
+    classicCursor = SDL_CreateColorCursor(classicCursorSurface, 0, 0);
+    swordCursor = SDL_CreateColorCursor(swordCursorSurface, 0, 0);
+    handCursor = SDL_CreateColorCursor(handCursorSurface, 0, 0);
+    SDL_FreeSurface(classicCursorSurface);
+    SDL_FreeSurface(swordCursorSurface);
+    SDL_FreeSurface(handCursorSurface);
+    // Selection du curseur par defaut
+    SDL_SetCursor(classicCursor);
+    
+    cursor = classicCursor;
     return 0;
 }
 
@@ -60,6 +87,9 @@ void SDLExit(){
         TTF_CloseFont(font);
         font = NULL;
     }
+    SDL_FreeCursor(classicCursor);
+    SDL_FreeCursor(swordCursor);
+    SDL_FreeCursor(handCursor);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     TTF_Quit();

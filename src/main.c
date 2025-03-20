@@ -33,9 +33,16 @@ int main() {
     SDL_Event event;
     loadSave();
     
-
+    const int FPS = 6000;
+    const int frameDelay = 1000 / FPS;
+    Uint32 frameStart;
+    int frameTime;
+    int frameCount = 0;
+    Uint32 lastTime = SDL_GetTicks();
 
     while (running){
+        frameStart = SDL_GetTicks();
+
         while (SDL_PollEvent(&event)){
             running = input_event(event);
         }
@@ -48,6 +55,21 @@ int main() {
         displayTimers();
 
         SDL_RenderPresent(renderer);
+
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if (frameDelay > frameTime) {
+            SDL_Delay(frameDelay - frameTime);
+        }
+
+        frameCount++;
+        if (SDL_GetTicks() - lastTime >= 1000) {
+            // system("clear");
+            // printf("TapVenture\n");
+            // printf("FPS: %d\n", frameCount);
+            frameCount = 0;
+            lastTime = SDL_GetTicks();
+        }
     }
     if(challenge.active){
         resetChallenge();
@@ -58,4 +80,3 @@ int main() {
     SDLExit();
     return 0;
 }
-

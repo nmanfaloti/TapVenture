@@ -171,31 +171,34 @@ static void loadPrestigeTree(){
             i+=NB_PRESTIGE_ITEMS_PER_PAGE*prestigePageIndex;
         }
         // Gold
-        char imgName[50];
+        char imgName[50],buttonLabel[15];
         sprintf(imgName, "assets/ui/icons/prestige/pcoin%d.svg", i+1);
+        sprintf(buttonLabel, "Gold %d", i+1);
         if (prestigeTree.Gold->items[i].owned){
-            createImgButton(&pageHolder.page[2], prestigeTree.Gold->items[i].pos, imgName, "assets/ui/buttons/yellow/button_square_gradient.svg", 0, 0, buyPrestigeButton, 2, "Gold", &prestigeTree.Gold->items[i]);
+            createImgButton(&pageHolder.page[2], prestigeTree.Gold->items[i].pos, imgName, "assets/ui/buttons/yellow/button_square_gradient.svg", 0, 0, buyPrestigeButton,buttonLabel, 2,"Gold", &prestigeTree.Gold->items[i]);
             if (i%NB_PRESTIGE_ITEMS_PER_PAGE != 0) createUIImg(&pageHolder.page[2], "assets/ui/icons/prestige/prestigelinegold.png", (SDL_Rect){prestigeTree.Gold->items[i].pos.x + prestigeTree.Gold->items[i].pos.w  / 4 , prestigeTree.Gold->items[i].pos.y + prestigeTree.Gold->items[i].pos.h , vw(5), vectorPrestige - prestigeTree.Gold->items[i].pos.h}, "prestigeLine");
         }else{
-            createImgButton(&pageHolder.page[2], prestigeTree.Gold->items[i].pos, imgName, "assets/ui/buttons/grey/button_square_gradient.svg", 0, 0, buyPrestigeButton, 2, "Gold", &prestigeTree.Gold->items[i]);
+            createImgButton(&pageHolder.page[2], prestigeTree.Gold->items[i].pos, imgName, "assets/ui/buttons/grey/button_square_gradient.svg", 0, 0, buyPrestigeButton, buttonLabel, 2, "Gold", &prestigeTree.Gold->items[i]);
             if (i%NB_PRESTIGE_ITEMS_PER_PAGE != 0) createUIImg(&pageHolder.page[2], "assets/ui/icons/prestige/prestigelinelocked.png", (SDL_Rect){prestigeTree.Gold->items[i].pos.x + prestigeTree.Gold->items[i].pos.w  / 4 , prestigeTree.Gold->items[i].pos.y + prestigeTree.Gold->items[i].pos.h , vw(5), vectorPrestige - prestigeTree.Gold->items[i].pos.h}, "prestigeLine");       
         }
         // Prestige
         sprintf(imgName, "assets/ui/icons/prestige/pprestige%d.svg", i+1);
+        sprintf(buttonLabel, "Prestige %d", i+1);
         if (prestigeTree.Prestige->items[i].owned){
-            createImgButton(&pageHolder.page[2], prestigeTree.Prestige->items[i].pos, imgName, "assets/ui/buttons/blue/button_square_gradient.svg", 0, 0, buyPrestigeButton, 2, "Prestige", &prestigeTree.Prestige->items[i]);
+            createImgButton(&pageHolder.page[2], prestigeTree.Prestige->items[i].pos, imgName, "assets/ui/buttons/blue/button_square_gradient.svg", 0, 0, buyPrestigeButton, buttonLabel, 2, "Prestige", &prestigeTree.Prestige->items[i]);
             if (i%NB_PRESTIGE_ITEMS_PER_PAGE != 0) createUIImg(&pageHolder.page[2], "assets/ui/icons/prestige/prestigeline.png", (SDL_Rect){prestigeTree.Prestige->items[i].pos.x + prestigeTree.Prestige->items[i].pos.w  / 4 , prestigeTree.Prestige->items[i].pos.y + prestigeTree.Prestige->items[i].pos.h , vw(5), vectorPrestige - prestigeTree.Prestige->items[i].pos.h}, "prestigeLine");
         }else{
-            createImgButton(&pageHolder.page[2], prestigeTree.Prestige->items[i].pos, imgName, "assets/ui/buttons/grey/button_square_gradient.svg", 0, 0, buyPrestigeButton, 2, "Prestige", &prestigeTree.Prestige->items[i]);
+            createImgButton(&pageHolder.page[2], prestigeTree.Prestige->items[i].pos, imgName, "assets/ui/buttons/grey/button_square_gradient.svg", 0, 0, buyPrestigeButton, buttonLabel, 2, "Prestige", &prestigeTree.Prestige->items[i]);
             if (i%NB_PRESTIGE_ITEMS_PER_PAGE != 0) createUIImg(&pageHolder.page[2], "assets/ui/icons/prestige/prestigelinelocked.png", (SDL_Rect){prestigeTree.Prestige->items[i].pos.x + prestigeTree.Prestige->items[i].pos.w  / 4 , prestigeTree.Prestige->items[i].pos.y + prestigeTree.Prestige->items[i].pos.h , vw(5), vectorPrestige - prestigeTree.Prestige->items[i].pos.h}, "prestigeLine");       
         }
         // Damage
         sprintf(imgName, "assets/ui/icons/prestige/pdamage%d.svg", i+1);
+        sprintf(buttonLabel, "Damage %d", i+1);
         if (prestigeTree.Damage->items[i].owned){
-            createImgButton(&pageHolder.page[2], prestigeTree.Damage->items[i].pos, imgName, "assets/ui/buttons/red/button_square_gradient.svg", 0, 0, buyPrestigeButton, 2, "Damage", &prestigeTree.Damage->items[i]);
+            createImgButton(&pageHolder.page[2], prestigeTree.Damage->items[i].pos, imgName, "assets/ui/buttons/red/button_square_gradient.svg", 0, 0, buyPrestigeButton, buttonLabel, 2, "Damage", &prestigeTree.Damage->items[i]);
             if (i%NB_PRESTIGE_ITEMS_PER_PAGE != 0) createUIImg(&pageHolder.page[2], "assets/ui/icons/prestige/prestigelinedamage.png", (SDL_Rect){prestigeTree.Damage->items[i].pos.x + prestigeTree.Damage->items[i].pos.w  / 4 , prestigeTree.Damage->items[i].pos.y + prestigeTree.Damage->items[i].pos.h , vw(5), vectorPrestige - prestigeTree.Damage->items[i].pos.h}, "prestigeLine");
         }else{
-            createImgButton(&pageHolder.page[2], prestigeTree.Damage->items[i].pos, imgName, "assets/ui/buttons/grey/button_square_gradient.svg", 0, 0, buyPrestigeButton, 2, "Damage", &prestigeTree.Damage->items[i]);
+            createImgButton(&pageHolder.page[2], prestigeTree.Damage->items[i].pos, imgName, "assets/ui/buttons/grey/button_square_gradient.svg", 0, 0, buyPrestigeButton, buttonLabel, 2, "Damage", &prestigeTree.Damage->items[i]);
             if (i%NB_PRESTIGE_ITEMS_PER_PAGE != 0) createUIImg(&pageHolder.page[2], "assets/ui/icons/prestige/prestigelinelocked.png", (SDL_Rect){prestigeTree.Damage->items[i].pos.x + prestigeTree.Damage->items[i].pos.w  / 4 , prestigeTree.Damage->items[i].pos.y + prestigeTree.Damage->items[i].pos.h , vw(5), vectorPrestige - prestigeTree.Damage->items[i].pos.h}, "prestigeLine");
         }
     }
@@ -233,10 +236,10 @@ static void initPrestigePage(){
     createUIText(&pageHolder.page[2], fontBig, formatChaine("%t", PRESTIGE_MSG), getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255}, "prestigeTitle");
     char * desc = formatChaine("POINTS: %d" , prestigePoints);
     createUIText(&pageHolder.page[2], font, desc, getSizeForText(font, desc, (SDL_Rect){vw(1), vh(1), vw(10), vh(5)}), (SDL_Color){255, 255, 255, 255}, "prestigePoints");
-    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
     
-    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(90), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, 1, 1);
-    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(96), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, 1, 2);
+    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(90), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow1", 1, 1);
+    createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(96), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow2",1, 2);
 }
 
 void refreshPrestigePage(){

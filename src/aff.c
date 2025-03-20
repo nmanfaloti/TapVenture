@@ -306,7 +306,6 @@ void createPage(uiPage * page){
 
 
 void destroyPage(uiPage *page) {
-    printf("Destroying page\n");
     if (page == NULL) {
         return;
     }
@@ -386,7 +385,7 @@ void initMainPage(){
     createUIImg(&pageHolder.page[0],"assets/ui/background/island1.png", getRectForCentenredCord(vw(50), vh(50), vw(60), vh(70)), "islandBackground");
 
     int baseY = vh(40); // Position du monstre en Hauteur
-    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, level.img[(level.currentLvl-1)/10], 0, 2, attack, 1, &damage_click);
+    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, level.img[(level.currentLvl-1)/10], 0, 2, attack, "mobImg",1, &damage_click);
     char *mobName = formatChaine("%s Lvl %d", level.label[(level.currentLvl-1)/10], level.currentLvl);
     createUIText(&pageHolder.page[0], font, mobName, getSizeForText(font, mobName, getRectForCentenredCord(vw(50), baseY + vh(8.5), vw(11), vh(6))), (SDL_Color){0, 0, 0, 255}, "mobName");
     createUIText(&pageHolder.page[0], font, formatChaine("%w %t", level.monstre[level.currentLvl].mobHealth, VIE_MSG), getRectForCentenredCord(vw(50), baseY + vh(11), vw(6), vh(4)), (SDL_Color){255, 0, 0, 255}, "mobHealth");
@@ -398,10 +397,10 @@ void initMainPage(){
     
     createButton(&pageHolder.page[0],getRectForCentenredCord(vw(15), vh(50), vw(25), vh(15)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, DMG_MSG, (int*)&(shop.nextPrice),0.5, upgradeButton, 0);
     
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(95), vh(92), vw(6), vh(10)), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, 1, &pageHolder.page[1]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(12), vh(92), vw(6), vh(10)), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, 1, &pageHolder.page[2]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(5), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, 1, &pageHolder.page[3]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(19), vh(92), vw(6), vh(10)), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, launchChallenge,0);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(95), vh(92), vw(6), vh(10)), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, "settingsButton",1, &pageHolder.page[1]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(12), vh(92), vw(6), vh(10)), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, "prestigeButton",1, &pageHolder.page[2]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(5), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage,"herosButton", 1, &pageHolder.page[3]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(19), vh(92), vw(6), vh(10)), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, launchChallenge,"challengeButton",0);
     refreshMobKilled();
 }
 
@@ -427,7 +426,7 @@ void initSettingsPage(){
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(20), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, EN_MSG, NULL, 1.05, SelectLanguage, 1, &en_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FULLSCREEN_MSG, NULL, 1.05, SelectScreen, 1, &full_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, WINDOWED_MSG, NULL, 1.05, SelectScreen, 1, &window_txt);
-    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
 }
 
 //pageHolder.page[0] = main page 

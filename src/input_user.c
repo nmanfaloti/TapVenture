@@ -30,6 +30,7 @@ int input_event(SDL_Event event){
                     if (checkBoutton(currentpage->buttonsList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
                         if (currentpage->buttonsList->buttons[i].callFunction) {
                             currentpage->buttonsList->buttons[i].callFunction(currentpage->buttonsList->buttons[i].args);
+                            break; //Pour ne pas cliquer sur plusieurs boutons en meme temps
                         }
                     }
                 }
@@ -37,6 +38,7 @@ int input_event(SDL_Event event){
                     if (checkBoutton(currentpage->buttonsImgList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
                         if (currentpage->buttonsImgList->buttons[i].callFunction) {
                             currentpage->buttonsImgList->buttons[i].callFunction(currentpage->buttonsImgList->buttons[i].args);
+                            break; //Pour ne pas cliquer sur plusieurs boutons en meme temps
                         }
                     }
                 }

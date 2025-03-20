@@ -190,7 +190,7 @@ void initHerosPage(){
     createUIText(&pageHolder.page[3],fontBig,formatChaine("%t: %w",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vw(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGoldHeroShop");
     createUIText(&pageHolder.page[3],fontBig,formatChaine("%t: %w",DPS_MSG, herosAllDPS()), getRectForCentenredCord(vw(50), vh(92), vw(22), vh(8)), (SDL_Color){255, 255, 255, 255}, "DPSHeroShop");
 
-    createImgButton(&pageHolder.page[3],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[3],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, "returnButton",1, &pageHolder.page[0]);
 
     loadHerosMactrice();
 }
@@ -204,9 +204,10 @@ void loadHerosMactrice(){
         for (int j = 0; j < NB_HEROS_PER_PAGE_W-1; j++){
             int heroIndex = i+j*NB_HEROS_PER_PAGE_W;
             if(heroIndex < HEROS_COUNT){
-                char imgHero[50];
+                char imgHero[50],heroLabel[15];
                 sprintf(imgHero, "assets/ui/heros/hero%d.png", heroIndex);
-                createImgButton(&pageHolder.page[3],getRectForCentenredCord((vw(15)+(i * vectorHerosW)), (vh(15)+(j * vectorHerosH)), vw(10), vh(15)), NULL, imgHero, 0, 0, upgradeHeroCB, 1, heroIndex);
+                sprintf(heroLabel, "hero%d", heroIndex);
+                createImgButton(&pageHolder.page[3],getRectForCentenredCord((vw(15)+(i * vectorHerosW)), (vh(15)+(j * vectorHerosH)), vw(10), vh(15)), NULL, imgHero, 0, 0, upgradeHeroCB, heroLabel,1, heroIndex);
                 char *degat = formatChaine("%t: %w",DMG_MSG, heros[heroIndex].degat);
                 char degatLabel[50];
                 sprintf(degatLabel, "heroDegat%d", heroIndex);

@@ -294,7 +294,7 @@ void refreshButtonLanguage(){
     }
 }
 
-void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...) {
+void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), char * label, int numArgs, ...) {
     if (page->buttonsImgList == NULL) {
         printf("Initialisation de listeButtonImg\n");
         initListButtonImg(page->buttonsImgList);
@@ -313,6 +313,8 @@ void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackg
     newButton.offsetLogoX = offsetLogoX;
     newButton.offsetLogoY = offsetLogoY;
     newButton.callFunction = callFunction;
+    newButton.label = malloc(strlen(label) + 1);
+    strcpy(newButton.label, label);
     newButton.args = malloc(numArgs * sizeof(void *));
     for (int i = 0; i < numArgs; i++) {
         newButton.args[i] = params[i];
@@ -356,9 +358,29 @@ void ButtonHandle() {
         printf("Initialisation de listeButtonImg\n");
         initListButtonImg(currentpage->buttonsImgList);
     }
+    int currentButtonIndex = -1;
     if (currentpage->buttonsImgList != NULL) {
-        for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) 
+        for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) {
             drawButtonImg(&currentpage->buttonsImgList->buttons[i]);
+            if (checkBoutton(currentpage->buttonsImgList->buttons[i].rect, mouseX, mouseY)) {
+                if (strcmp(currentpage->buttonsImgList->buttons[i].label, "mobImg") == 0) {
+                    if (cursor != swordCursor) {
+                        SDL_SetCursor(swordCursor);
+                        cursor = swordCursor;
+                    }
+                } else {
+                    if (cursor != handCursor) {
+                        SDL_SetCursor(handCursor);
+                        cursor = handCursor;
+                    }
+                }
+                currentButtonIndex = i;
+            }
+        }
+        if (currentButtonIndex == -1 && cursor != classicCursor) {
+            SDL_SetCursor(classicCursor);
+            cursor = classicCursor;
+        }
     } else {
         printf("Erreur: listeButtonImg est toujours NULL après initialisation\n");
     }

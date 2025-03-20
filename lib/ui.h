@@ -43,7 +43,7 @@ extern uiPage * currentpage;
 extern uiPageHolder pageHolder;
 
 void createButton(uiPage * page,SDL_Rect rect, char * pathImg, char *hoverPath,TTF_Font *Textfont,SDL_Color color, int txtInd, int * info,float growEffect, int (*callFunction)(void **), int numArgs, ...);
-void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), int numArgs, ...);
+void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), char * label, int numArgs, ...);
 void createUIText(uiPage * page,TTF_Font* font,char * chaine, SDL_Rect dest, SDL_Color color, char * label);
 void setButtonText(Button * button, const char * txt);
 uiTxt * getTxtFromLabel(char * label);

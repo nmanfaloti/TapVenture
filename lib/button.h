@@ -33,6 +33,7 @@ typedef struct {
     void **args; // Pointeur pour les arguments de la fonction
     SDL_Texture *imgTexture;  //Texture de l'image de fond du bouton
     SDL_Texture *backgroundTexture; //Texture de l'image de fond du bouton
+    char * label;
 } ButtonImg;
 
 typedef struct {

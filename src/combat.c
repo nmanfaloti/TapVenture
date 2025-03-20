@@ -67,7 +67,7 @@ int initLevel(monstreInfo monstre[]) {
 int attack(void * args[20]) {
     unsigned long long int * damage = args[0];
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
-    if (currentMonstre->mobHealth < *damage){
+    if (currentMonstre->mobHealth <= *damage){
         level.mobKilled += 1;
         addGold((currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1)));
         currentMonstre->mobHealth = currentMonstre->iniHealth;
@@ -126,7 +126,7 @@ void displayTimers() {
         char *timerStr=malloc(strlen(Traduction(TIMER_MSG)) + 10);
         sprintf(timerStr, "%s %d s",Traduction(TIMER_MSG), remaining);
         if (challengeUI == 0) {
-            createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "challengeTimer");
+            createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){0, 0, 0, 255}, "challengeTimer");
             challengeUI = 1;
         } else {
             if (currentpage == &pageHolder.page[0]) {
