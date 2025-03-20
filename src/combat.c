@@ -41,6 +41,7 @@ int initLevel(monstreInfo monstre[]) {
     level.mobKilled = 0;
     level.mobToKill = 10;
     level.currentLvl = 0;
+    level.maxLevel = 0;
     monstre[0].mobHealth = 100;
     monstre[0].iniHealth = 100;
     monstre[0].coinMin = 5;
@@ -74,6 +75,8 @@ int attack(void * args[20]) {
         if (level.mobKilled >= level.mobToKill) {
             if (level.currentLvl < 50) {
                 level.currentLvl++;
+                if (level.currentLvl > level.maxLevel)
+                    level.maxLevel = level.currentLvl;
             }else doPrestige();
             level.mobKilled = 0;
             mobHandler();
@@ -129,22 +132,24 @@ void displayTimers() {
             createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){0, 0, 0, 255}, "challengeTimer");
             challengeUI = 1;
         } else {
-            if (currentpage == &pageHolder.page[0]) {
+            if (currentpage == &pageHolder.page[0] && challenge.active) {
                 uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
-                setUiText(txtHolder, timerStr);
+                if (txtHolder != NULL)
+                    setUiText(txtHolder, timerStr);
             }
         }
     } else {
         // Si le challenge n'est plus actif, détruire l'UI texte s'il existe
         if (challengeUI == 1 ) {
             uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
-            destroyUITxt(txtHolder, &currentpage);
+            if (txtHolder != NULL)
+                destroyUITxt(txtHolder, &currentpage);
             challengeUI = 0;
         }
     }
 
     // Pour le Boss
-    if (isBoss(level.currentLvl) && level.timeToKill > 0) {
+    if (isBoss(level.currentLvl) && level.timeToKill > 0 && level.currentLvl != 0) {
         int elapsed = (SDL_GetTicks() - level.startTimer) / 1000;
         int remaining = level.timeToKill - elapsed;
         if (remaining <= 0) remaining = 0;
@@ -154,17 +159,39 @@ void displayTimers() {
             createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "bossTimer");
             bossUI = 1;
         } else {
-            if (currentpage == &pageHolder.page[0]) {
+            if (currentpage == &pageHolder.page[0] && isBoss(level.currentLvl)) {
                 uiTxt * txtHolder = getTxtFromLabel("bossTimer");
-                setUiText(txtHolder, timerStr);
+                if (txtHolder != NULL)
+                    setUiText(txtHolder, timerStr);
             }
         }
     } else {
         // Si le timer du boss n'est plus nécessaire, détruire l'UI texte correspondant
         if (bossUI == 1) {
             uiTxt * txtHolder = getTxtFromLabel("bossTimer");
-            destroyUITxt(txtHolder, &currentpage);
+            if (txtHolder != NULL)
+                destroyUITxt(txtHolder, &currentpage);
             bossUI = 0;
         }
     }
+}
+
+//si le wantedLevel est a 1 alors on monte de niveau sinon on descend
+int changeLevel(void * l[20]) {
+    if (l[0] == NULL){
+        printf("ChangePrestigePage Error: No args\n");
+        return 1;
+    }
+    int * wantedLevel = (int*) l;
+    if (*wantedLevel==1 && (level.currentLvl < level.maxLevel)) level.currentLvl++;
+    else if (*wantedLevel==2 && (level.currentLvl>0)) level.currentLvl--;
+    level.mobKilled = 0;
+    level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
+    if (level.currentLvl != 0) 
+        mobHandler();
+    refreshMobHealth();
+    refreshMobKilled();
+    refreshCurrentLvl();
+    refreshMobLabel();
+    return 1;
 }

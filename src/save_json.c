@@ -175,7 +175,10 @@ int loadSave(){
     loadSaveHeros("save/heros.json");
     loadSavePlayer("save/player.json");
     loadSavePrestige("save/prestige.json");
+    if (level.currentLvl!=0)
+        mobHandler();
     refreshMobHealth();
+    refreshMobKilled();
     refreshMobLabel();
     return 0;
 }
@@ -210,12 +213,13 @@ int loadSavePlayer(char * save){
     }
 
     //dataInt
-    value = getValueForKey("LEVEL", save);
+    value = getValueForKey("MAX_LEVEL", save);
     if(value == NULL){
-        printf("Save : can't load  LEVEL\n");
+        printf("Save : can't load  MAX_LEVEL\n");
     }
     else{
         level.currentLvl = atoi(value);
+        level.maxLevel = atoi(value);
         refreshCurrentLvl();
         free(value);
     }
@@ -288,8 +292,8 @@ int makeSavePlayer(char * save){
     createValueForKey("LANGUAGE", (char *)LanguageAct.Language, save);
     //dataInt
     char value[30];
-    sprintf(value, "%d", level.currentLvl);
-    createValueForKey("LEVEL", value, save);
+    sprintf(value, "%d", level.maxLevel);
+    createValueForKey("MAX_LEVEL", value, save);
     sprintf(value, "%d", level.mobKilled);
     createValueForKey("MOB_KILLED", value, save);
     sprintf(value, "%lld", gold);

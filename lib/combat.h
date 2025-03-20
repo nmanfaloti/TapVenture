@@ -15,6 +15,7 @@ typedef struct {
     int mobKilled;
     int mobToKill;
     int currentLvl;
+    int maxLevel;
     char * label[5];
     char * img[5];
 } levelInfo;
@@ -30,3 +31,4 @@ int writeBossTimer(SDL_Rect dest);
 int setLevel(levelInfo *level, int lvl);
 void mobHandler();
 void displayTimers();
+int changeLevel(void * l[20]);
