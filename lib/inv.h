@@ -6,7 +6,7 @@
 #define NB_PLASTRON 6
 #define NB_CASQUE 6
 #define NB_ARME 11
-#define DROP_ITEM 1.5 // en pourcentage par nv.monstre 
+#define DROP_ITEM 100 // en pourcentage par nv.monstre 
 #include "../lib/scroll.h"
 /**
  * @file inv.h
@@ -38,7 +38,8 @@
      CASQUE,         ///< Casque
      PLASTRON,       ///< Plastron
      BOTTE,          ///< Botte
-     ARME            ///< Arme
+     ARME ,           ///< Arme
+     NB_AMPLECEMENT
  } emplacement;
  
  /**
@@ -58,6 +59,8 @@
  typedef struct {
      char *nom;                         ///< Nom système
      char *label;                       ///< Nom affiché
+     char *nom_fichier ;
+     int pos_y ;
      emplacement piece_equipement;      ///< Emplacement de l'équipement
      stat_a_booster booste;             ///< Statistique à booster
      rarity rarity;                     ///< Rareté
@@ -346,8 +349,9 @@ extern void cleanup() ;
 extern void drop_item();
 
 
-extern void load_inv_ref(const char *nom_fichier, inv * inventaire ) ;
-extern void load_inv(const char *nom_fichier, inv * inventaire ) ;
+
+extern void load_inv(const char *nom_fichier) ;
+void init_inv_main() ;
 extern item_t * load_item_ref(FILE *f) ;
 extern item_t * load_item_joueur(FILE *f);
 #endif

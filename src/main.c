@@ -18,6 +18,8 @@
 #include "../lib/challenge.h"
 #include "../lib/chaine.h"
 #include "../lib/prestige.h"
+#include "../lib/inv.h"
+
 
 int main() {
     if (init_SDL()){
@@ -26,6 +28,7 @@ int main() {
 
     initLevel(level.monstre);
     initShop();
+    init_inv_main();
     initLang("English");
     initPage();
     
@@ -75,6 +78,7 @@ int main() {
         resetChallenge();
     }
     makeSave();
+    dest_all_inventaires() ;
     destroyPrestigeList();
     destroyAllPages();
     SDLExit();

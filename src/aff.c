@@ -16,6 +16,7 @@
 #include "../lib/chaine.h"
 #include "../lib/heros.h"
 #include "../lib/prestige.h"
+#include "../lib/inv.h"
 
 int widthscreen = 800;
 int heightscreen = 500;
@@ -401,6 +402,7 @@ void initMainPage(){
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(12), vh(92), vw(6), vh(10)), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, "prestigeButton",1, &pageHolder.page[2]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(5), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage,"herosButton", 1, &pageHolder.page[3]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(19), vh(92), vw(6), vh(10)), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, launchChallenge,"challengeButton",0);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"inv_botton0", 1, &pageHolder.page[4]);
     refreshMobKilled();
 }
 
@@ -428,16 +430,25 @@ void initSettingsPage(){
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, WINDOWED_MSG, NULL, 1.05, SelectScreen, 1, &window_txt);
     createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
 }
+void init_inv_page(){
+    createPage(&pageHolder.page[4]);
+
+    pageHolder.page[4].container->nbTxt = 0;
+    pageHolder.page[4].container->txt = NULL; 
+    aff_all_inventaires();
+    createImgButton(&pageHolder.page[4],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"inv_botton1", 1, &pageHolder.page[0]);
+}
 
 //pageHolder.page[0] = main page 
 ///pageHolder.page[1] = settings page
 void initPage(){
-    pageHolder.pageNb = 4;
+    pageHolder.pageNb = 5;
     pageHolder.page = malloc(sizeof(uiPage) * pageHolder.pageNb);
     initMainPage();
     initSettingsPage();
     initPrestige();
     initHerosPage();
+    init_inv_page();
 }
 
 void destroyPages(){

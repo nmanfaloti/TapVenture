@@ -54,9 +54,15 @@ extern void update_scroll(int * id_scroll){
             scroll_liste[i].rect_scroll.h = calculate_scrollbar_height(scroll_liste[i].zone_scroll.h, coef);
             scroll_liste[i].coef = coef ;
             scroll_liste[i].min_pos = scroll_liste[i].zone_scroll.y ;
-            scroll_liste[i].scrollbar_max_position = scroll_liste[i].total_content_height - scroll_liste[i].zone_scroll.h;
+            if (scroll_liste[i].total_content_height >  scroll_liste[i].zone_scroll.h){
+                scroll_liste[i].scrollbar_max_position = scroll_liste[i].total_content_height - scroll_liste[i].zone_scroll.h;
+            }
+            else {
+                scroll_liste[i].scrollbar_max_position = 10 ;
+                scroll_liste[i].speed = 0 ;
+            }
         }
-        printf("indice:%d,coef:%f,arrondis:%f,vrai:%f,rect_scroll.h:%d\n",i,scroll_liste[i].coef,round(scroll_liste[i].coef),scroll_liste[i].zone_scroll.h/scroll_liste[i].coef,scroll_liste[i].rect_scroll.h);
+        printf("\nindice:%d,coef:%f,arrondis:%f,vrai:%f,rect_scroll.h:%d\n",i,scroll_liste[i].coef,round(scroll_liste[i].coef),scroll_liste[i].zone_scroll.h/scroll_liste[i].coef,scroll_liste[i].rect_scroll.h);
 
     }
 }
@@ -68,12 +74,6 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
 
     for ( int i = 0 ; i < NOMBRE_MAX_SCROLL ; i++ ){
         if ( scroll_liste[i].empl_alloue == 0){
-            //possible de supr se test 
-            /*if (!est_dans_scroll(zone_interaction,(SDL_Rect){0,0,largeur,hauteur}) ){
-                printf("probleme position de la zone visible ( zone_interaction)en de or de la zone visible ( window ) \n");
-                exit(1);
-            }*/
-            //eviter celui la 
             if ( erreur_activer != NULL && !est_dans_scroll(&zone_scroll,zone_interaction) ){
                 printf("la zone de scroll  (%d) n'est pas dans la zone interaction(visible) = probleme ( bizarre) \n\t\t elem : %d , %d ,%d , %d \n\t\t zone : %d , %d ,%d , %d \n",i+1,zone_scroll.x,zone_scroll.y,zone_scroll.w,zone_scroll.h,zone_interaction.x,zone_interaction.y,zone_interaction.w,zone_interaction.h);
                 exit(2);
@@ -103,6 +103,7 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
         printf("probleme allocation nb de scroll max\n");
         exit(3);
     }
+    return 1 ;
 }
 
 void aff_scrollbar_simple(SDL_Color *color_scrollbar, SDL_Color *color_rect){
@@ -150,12 +151,15 @@ int select_quelle_scroll(int nb){
 }
 
 void apply_scroll_limits(int id_scroll) {
+    printf("scroll_liste[id_scroll].scroll_pos : %d , scroll_liste[id_scroll].min_pos : %d ,scroll_liste[id_scroll].scrollbar_max_position :%d ,speed :%d\n",scroll_liste[id_scroll].scroll_pos,scroll_liste[id_scroll].min_pos,scroll_liste[id_scroll].scrollbar_max_position,scroll_liste[id_scroll].speed);
     if (scroll_liste[id_scroll].scroll_pos < scroll_liste[id_scroll].min_pos) {
         scroll_liste[id_scroll].scroll_pos = scroll_liste[id_scroll].min_pos;
     } else if (scroll_liste[id_scroll].scroll_pos > scroll_liste[id_scroll].scrollbar_max_position) {
         scroll_liste[id_scroll].scroll_pos = scroll_liste[id_scroll].scrollbar_max_position;
     }
 }
+
+
 extern void handle_scroll_event(SDL_Event event) {
     static int scroll_interact = -1;  // Variable statique pour suivre la scrollbar sélectionnée
     int mouse_y = 0 ;
@@ -214,4 +218,5 @@ extern void handle_scroll_event(SDL_Event event) {
 
         apply_scroll_limits(scroll_interact);  // Applique les limites pour éviter de dépasser
     }
+
 }
