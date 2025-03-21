@@ -104,7 +104,6 @@ int SelectLanguage(void * l[20]) {
         printf("Language not found %s\n", *lang);
         LanguageAct = en;
     }
-    refreshButtonLanguage();
     refreshUI();
     return 0;
 }
@@ -117,6 +116,5 @@ void initLang(char * lang){
     } else {
         LanguageAct = en;
     }
-    refreshButtonLanguage();
     refreshUI();
 }

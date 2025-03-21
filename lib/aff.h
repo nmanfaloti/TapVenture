@@ -38,6 +38,7 @@ void initUItxt();
 void destroyUITxt();
 void refreshMobHealth();
 void refreshMobLabel();
+void refreshMobTexture();
 void refreshUI();
 void refreshMobKilled();
 void refreshCurrentLvl();

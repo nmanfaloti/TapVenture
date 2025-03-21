@@ -58,7 +58,7 @@ int main() {
         uiHandle();
         attackHeros();
         updateChallenge();
-        displayTimers();
+        // displayTimers();
 
         SDL_RenderPresent(renderer);
 

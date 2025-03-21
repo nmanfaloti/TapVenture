@@ -106,6 +106,15 @@ void refreshMobLabel(){
     char * mobName = formatChaine("%s Lvl %d",level.label[(level.currentLvl-1)/10], level.currentLvl);
     setUiText(txtHolder, mobName);
 }
+
+void refreshMobTexture(){
+    ButtonImg * button = getImgButtonFromLabel("mobImg");
+    if (button == NULL){
+        return;
+    }
+    setImgButtonTexture(button, NULL, level.img[(level.currentLvl-1)/10]);
+}
+
 void refreshCurrentLvl(){
     uiTxt * txtHolder = getTxtFromLabel("currentLvl");
     if (txtHolder == NULL){
@@ -286,6 +295,9 @@ void refreshUI(){
     }
     destroyPages();
     initPage();
+    char * txt = formatChaine("%t: %w", DMG_MSG, shop.nextPrice);
+    setButtonText(&pageHolder.page[0].buttonsList->buttons[0], txt);
+    free(txt);
 }
 
 
@@ -366,7 +378,8 @@ int SelectScreen(void * l[20]){
     char **lang = (char **)l[0];
     if (strcmp(*lang, "Window") == 0) {
         SDL_SetWindowFullscreen(window, 0);
-        SDL_GetWindowSize(window, &widthscreen, &heightscreen);
+        widthscreen = 800;
+        heightscreen = 500;
         refreshUI();
         return 1;
     } else if (strcmp(*lang, "Fullscreen") == 0) {
@@ -401,10 +414,9 @@ void initMainPage(){
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(12), vh(92), vw(6), vh(10)), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, "prestigeButton",1, &pageHolder.page[2]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(5), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage,"herosButton", 1, &pageHolder.page[3]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(19), vh(92), vw(6), vh(10)), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, launchChallenge,"challengeButton",0);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"inv_botton0", 1, &pageHolder.page[4]);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(40), 50, 50), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/blue/arrow_basic_n.svg", 0, 2, changeLevel,"nextLevel", 1, 1);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(60), 50, 50), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/blue/arrow_basic_s.svg", 0, 2, changeLevel,"previousLevel", 1, 2);
-    refreshMobKilled();
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(26), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 2, changePage,"inv_botton0", 1, &pageHolder.page[4]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(40), vw(6), vh(10)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/blue/arrow_basic_n.svg", 0, -2, changeLevel,"nextLevel", 1, 1);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/blue/arrow_basic_s.svg", 0, 2, changeLevel,"previousLevel", 1, 2);    refreshMobKilled();
 }
 
 

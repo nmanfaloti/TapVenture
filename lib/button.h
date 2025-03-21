@@ -50,7 +50,8 @@ void ButtonHandle();
 void initListButton(ListeButton *listeButton);
 void initListButtonImg(ListeButtonImg *listeButtonImg);
 void refreshButtonShop();
-void refreshButtonLanguage();
+ButtonImg * getImgButtonFromLabel(char * label);
+void setImgButtonTexture(ButtonImg * button ,char * pathImg, char * backgroundImg);
 
 void destroyAllButtonFromPage(ListeButton *listeButton);
 void destroyAllButtonImgFromPage(ListeButtonImg *listeButton);

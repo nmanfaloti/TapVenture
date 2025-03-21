@@ -23,10 +23,10 @@ levelInfo level = {
     .currentLvl = 0,
     .label = {
         "Limul",
-        "mob2",
-        "mob3",
-        "mob4",
-        "mob5"
+        "SmallFoot",
+        "Morvus",
+        "TasDeRok",
+        "Noeil"
     },
     .img = {
         "assets/ui/monsters/monster1.png",
@@ -81,6 +81,7 @@ int attack(void * args[20]) {
             mobHandler();
             refreshCurrentLvl();
             refreshMobLabel();
+            refreshMobTexture();
         }
         refreshMobKilled();
     }
@@ -194,5 +195,6 @@ int changeLevel(void * l[20]) {
     refreshMobKilled();
     refreshCurrentLvl();
     refreshMobLabel();
+    refreshMobTexture();
     return 1;
 }

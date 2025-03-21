@@ -37,6 +37,17 @@ static int setButtonTexture(SDL_Texture **texture, char *path) {
     return 1;
 }
 
+ButtonImg * getImgButtonFromLabel(char * label){
+    if (pageHolder.page == NULL || pageHolder.page[0].buttonsImgList == NULL){
+        return NULL;
+    }
+    for (int i = 0; i < pageHolder.page[0].buttonsImgList->nbButton; i++){
+        if (strcmp(pageHolder.page[0].buttonsImgList->buttons[i].label, label) == 0){
+            return &pageHolder.page[0].buttonsImgList->buttons[i];
+        }
+    }
+    return NULL;
+}
 
 void drawButton(Button *button) {
     if (!button) return;
@@ -258,6 +269,26 @@ void setButtonText(Button *button, const char *text){
         SDL_FreeSurface(textSurface);
         return;
     }
+
+    // Calcul de la position du texte pour le centrer
+    float scale = 1.0;
+    if (textSurface->w > button->rect.w) {
+        scale = (float)button->rect.w / (float)textSurface->w;
+    }
+    if (textSurface->h > button->rect.h) {
+        float scale_h = (float)button->rect.h / (float)textSurface->h;
+        if (scale_h < scale) {
+            scale = scale_h;
+        }
+    }
+    // -2 sur le y pour centrer le texte car il y a un effet 3d sur le bouton
+    button->textRect = (SDL_Rect) {
+        button->rect.x + button->rect.w / 2 - textSurface->w * scale / 2,
+        button->rect.y + button->rect.h / 2 - textSurface->h * scale / 2 - 2,
+        textSurface->w * scale,
+        textSurface->h * scale
+    };
+    button->textIniRect = button->textRect;
 }
 
 void refreshButtonShop(){
@@ -270,29 +301,6 @@ void refreshButtonShop(){
     free(txt);
 }
 
-void refreshButtonLanguage(){
-    if (pageHolder.page == NULL || pageHolder.page[0].buttonsList == NULL || pageHolder.page[1].buttonsList == NULL){
-        return;
-    }
-    for (int i = 0; i < pageHolder.page[0].buttonsList->nbButton; i++){
-        if (pageHolder.page[0].buttonsList->buttons[i].info != NULL){
-            char txt[50] = "";
-            sprintf(txt, "%s: %d", Traduction(pageHolder.page[0].buttonsList->buttons[i].text), *pageHolder.page[0].buttonsList->buttons[i].info);
-            setButtonText(&pageHolder.page[0].buttonsList->buttons[i], txt);
-        } else {
-            setButtonText(&pageHolder.page[0].buttonsList->buttons[i], Traduction(pageHolder.page[0].buttonsList->buttons[i].text));
-        }
-    }
-    for (int i=0; i<pageHolder.page[1].buttonsList->nbButton; i++){
-        if (pageHolder.page[1].buttonsList->buttons[i].info != NULL){
-            char txt[50] = "";
-            sprintf(txt, "%s: %d", Traduction(pageHolder.page[1].buttonsList->buttons[i].text), *pageHolder.page[1].buttonsList->buttons[i].info);
-            setButtonText(&pageHolder.page[1].buttonsList->buttons[i], txt);
-        } else {
-            setButtonText(&pageHolder.page[1].buttonsList->buttons[i], Traduction(pageHolder.page[1].buttonsList->buttons[i].text));
-        }
-    }
-}
 
 void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackground, int offsetLogoX, int offsetLogoY, int (*callFunction)(void **), char * label, int numArgs, ...) {
     if (page->buttonsImgList == NULL) {
@@ -346,6 +354,42 @@ void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackg
         free(newButton.args);
         SDL_DestroyTexture(newButton.imgTexture);
         SDL_DestroyTexture(newButton.backgroundTexture);
+    }
+}
+
+void setImgButtonTexture(ButtonImg * button ,char * pathImg, char * backgroundImg){
+    printf("setButtonImgTexture\n");
+
+    if (button == NULL) {
+        SDL_Log("Button : setButtonImgTexture : button is NULL");
+        return;
+    }
+    if (button->imgTexture != NULL && pathImg != NULL) {
+        SDL_DestroyTexture(button->imgTexture);
+        button->imgTexture = NULL;
+    }
+    if (button->backgroundTexture != NULL && backgroundImg != NULL) {
+        SDL_DestroyTexture(button->backgroundTexture);
+        button->backgroundTexture = NULL;
+    }
+    if (pathImg != NULL){
+        if (!setButtonTexture(&button->imgTexture, pathImg)){
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.imgTexture)->%s : %s\n",pathImg,IMG_GetError());
+            return;
+        }
+        if (backgroundImg != NULL){
+            if (!setButtonTexture(&button->backgroundTexture, backgroundImg)){
+                SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.backgroundTexture) ->%s : %s\n", backgroundImg,IMG_GetError());
+                return;
+            }
+        }
+    }else{
+        button->imgTexture = NULL;
+        button->backgroundTexture = IMG_LoadTexture(renderer, backgroundImg);
+        if (!button->backgroundTexture) {
+            SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to load image (newButton.imgTexture)->%s : %s\n",pathImg,IMG_GetError());
+            return;
+        }
     }
 }
 

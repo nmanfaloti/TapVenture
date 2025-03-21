@@ -179,6 +179,7 @@ int loadSave(){
     refreshMobHealth();
     refreshMobKilled();
     refreshMobLabel();
+    refreshMobTexture();
     return 0;
 }
 
