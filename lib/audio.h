@@ -6,7 +6,11 @@
 
 typedef enum {
     MUSIC_GAME,
-    MUSIC_BUZZ,
+    MUSIC_CLICK,
+    MUSIC_LEVEL_UP,
+    MUSIC_LEVEL_UP_BOSS,
+    MUSIC_COIN,
+    MUSIC_ATTACK,
     MUSIC_COUNT
 } musicIndex;
 

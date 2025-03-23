@@ -6,6 +6,7 @@
 #include "../lib/chaine.h"
 #include "../lib/ui.h"
 #include "../lib/prestige.h"
+#include "../lib/audio.h"
 #include <time.h>
 #include <math.h>
 
@@ -28,13 +29,16 @@ void goldGainOffline(time_t lastSaveTime){
         free(goldEarnedMsg);
     }
 }
-
-void addGold(unsigned long long int goldToAdd){
-    if(gold + goldToAdd * goldModifier>= LLD_MAX){
+    
+void addGold(long long int goldToAdd){
+    if(gold + goldToAdd * goldModifier>= LLD_MAX && goldToAdd != 0){
         gold = LLD_MAX;
     }
     else{
         gold += goldToAdd * goldModifier; // Application du multiplicateur de l'or (Prestige)
+    }
+    if(goldToAdd > 0){
+        playMusic(MUSIC_COIN, CANAL_EFFECT, 1);
     }
     //Update l'affichage de l'or
     if (currentpage == &pageHolder.page[0]){

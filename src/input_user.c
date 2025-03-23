@@ -52,7 +52,6 @@ int input_event(SDL_Event event){
                     break;
                 case 'E': 
                     // SelectLanguage("English");
-                    playMusic(MUSIC_BUZZ, CANAL_EFFECT, 1);
                     break;
                 case 'R':
                     // SelectLanguage("French");

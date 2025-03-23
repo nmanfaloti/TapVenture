@@ -12,7 +12,7 @@
 #include "../lib/ui.h"
 #include "../lib/challenge.h"
 #include "../lib/prestige.h"
-
+#include "../lib/audio.h"
 
 levelInfo level = {
     .monstre = {{0}},
@@ -68,13 +68,27 @@ int initLevel(monstreInfo monstre[]) {
 
 int attack(void * args[20]) {
     unsigned long long int * damage = args[0];
+    bool * joueur = args[1];
+    if(joueur != NULL && *joueur == true){
+         playMusic(MUSIC_ATTACK, CANAL_EFFECT, 1); 
+    }
+    if(level.currentLvl > level.maxLevel){
+        level.maxLevel = level.currentLvl;
+    }
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     if (currentMonstre->mobHealth <= *damage * damageModifier) {
         level.mobKilled += 1;
+        
         addGold((currentMonstre->coinMin + rand() % (currentMonstre->coinMax - currentMonstre->coinMin + 1)));
         currentMonstre->mobHealth = currentMonstre->iniHealth;
         if (level.mobKilled >= level.mobToKill) {
             if (level.currentLvl < 50) {
+                if (level.currentLvl % 5 == 0) {
+                    playMusic(MUSIC_LEVEL_UP_BOSS, CANAL_EFFECT, 1);
+                } 
+                else {
+                    playMusic(MUSIC_LEVEL_UP, CANAL_EFFECT, 1);
+                }
                 level.currentLvl++;
             }else doPrestige();
             level.mobKilled = 0;

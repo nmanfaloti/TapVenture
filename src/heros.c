@@ -50,6 +50,8 @@ int attackHeros(){
         if( heros[i].level > 0 && heros[i].lastAttack + heros[i].cooldown <= SDL_GetTicks() ){
             heros[i].lastAttack = SDL_GetTicks();
             args[0] = &heros[i].degat;
+            bool joueur = false;
+            args[1] = &joueur;
             attack(args); 
         }
     }

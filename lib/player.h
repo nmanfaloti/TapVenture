@@ -9,7 +9,7 @@ extern unsigned long long int gold;
 extern unsigned long long int damage_click;
 
 void goldGainOffline(time_t lastSaveTime);
-void addGold(unsigned long long int goldToAdd);
+void addGold(long long int goldToAdd);
 void setPlayerDamage(unsigned long long int damage);
 
 #endif // PLAYER_H
