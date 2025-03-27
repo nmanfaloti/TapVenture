@@ -197,10 +197,10 @@ void initHerosPage(){
 
     createImgButton(&pageHolder.page[3],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, "returnButton",1, &pageHolder.page[0]);
 
-    loadHerosMactrice();
+    loadHerosMatrice();
 }
 
-void loadHerosMactrice(){
+void loadHerosMatrice(){
     int vectorHerosW = vw(80) / NB_HEROS_PER_PAGE_W;
     int vectorHerosH = vh(90) / NB_HEROS_PER_PAGE_H;
     int textOffsetW = vh(9);
