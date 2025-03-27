@@ -4,6 +4,9 @@
 #include "/usr/include/CUnit/CUnit.h"
 #include "goldGainOffline.h"
 
+//On a fait tout les tests possibles pour cette fonction 
+
+
 /* Test lorsque aucun temps ne s'est écoulé : goldEarned doit être zéro */
 void test_goldGainOffline_noElapsed() {
     testGold = 0;
@@ -14,6 +17,7 @@ void test_goldGainOffline_noElapsed() {
 
     goldGainOffline(lastSaveTime);
 
+    //l'or gagné doit être 0 lorsque aucun temps ne s'est écoulé et il ne dois pas y avoir de notification
     CU_ASSERT_EQUAL(testGold, 0);
     CU_ASSERT_EQUAL(notifCalled, 0);
 }
@@ -30,6 +34,7 @@ void test_goldGainOffline_positiveElapsed() {
 
     goldGainOffline(lastSaveTime);
 
+    //l'or gagné doit être 10 * testGoldRate lorsque 100 secondes se sont écoulées et il doit y avoir une notification avec le même montant
     CU_ASSERT_EQUAL(testGold, 10 * testGoldRate);
     CU_ASSERT_EQUAL(notifCalled, 1);
     CU_ASSERT_EQUAL(notifGold, 10 * testGoldRate);
@@ -45,6 +50,7 @@ void test_goldGainOffline_negativeElapsed() {
 
     goldGainOffline(lastSaveTime);
 
+    //l'or gagné doit être 0 lorsque le temps est négatif et il ne dois pas y avoir de notification
     CU_ASSERT_EQUAL(testGold, 0);
     CU_ASSERT_EQUAL(notifCalled, 0);
 }
