@@ -23,6 +23,8 @@ typedef struct {
 
 extern levelInfo level;
 
+char * getCurrentMobLabel();
+char * getCurrentMobImgPath();
 int attack(void * args[20]);
 int initLevel(monstreInfo monstre[]);
 int InitBoss(int diffTime);
@@ -30,5 +32,7 @@ int isBoss(int currentLvl);
 int writeBossTimer(SDL_Rect dest);
 int setLevel(levelInfo *level, int lvl);
 void mobHandler();
+void mobAnimationHandler();
+
 void displayTimers();
 int changeLevel(void * l[20]);

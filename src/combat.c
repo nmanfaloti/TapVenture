@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_ttf.h>
 #include <math.h>
 
 #include "../lib/combat.h"
@@ -28,14 +26,59 @@ levelInfo level = {
         "TasDeRok",
         "Noeil"
     },
-    .img = {
-        "assets/ui/monsters/monster1.png",
-        "assets/ui/monsters/monster2.png",
-        "assets/ui/monsters/monster3.png",
-        "assets/ui/monsters/monster4.png",
-        "assets/ui/monsters/monster5.png"
-    }
 };
+Uint32 lastAttackAnimTime = 0;
+Uint32 attackAnimDuration = 250;
+
+char * getCurrentMobLabel(){
+    return level.label[(level.currentLvl-1)/10];
+}
+
+char *getCurrentMobImgPath() {
+    if (level.currentLvl < 0 || level.currentLvl > 50) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "getCurrentMobImgPath: Invalid level.currentLvl -> %d", level.currentLvl);
+        return NULL;
+    }
+
+    const char *label = level.label[(level.currentLvl - 1) / 10];
+    if (label == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "getCurrentMobImgPath: Invalid label for level -> %d", level.currentLvl);
+        return NULL;
+    }
+
+    size_t pathLen = strlen("assets/ui/monsters/") + strlen(label) + strlen(".png") + 1;
+    char *path = malloc(pathLen);
+    if (path == NULL) {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "getCurrentMobImgPath: Failed to allocate memory for path");
+        return NULL;
+    }
+
+    snprintf(path, pathLen, "assets/ui/monsters/%s.png", label);
+    return path;
+}
+
+static void playDamageAnimation() {
+    ButtonImg *button = getImgButtonFromLabel("mobImg");
+    if (button == NULL) {
+        return;
+    }
+
+    char *damagePath = malloc(strlen("assets/ui/monsters/") + strlen(getCurrentMobLabel()) + strlen("_damage.png") + 1);
+    sprintf(damagePath, "assets/ui/monsters/%s_damage.png", getCurrentMobLabel());
+
+    setImgButtonTexture(button, NULL, damagePath);
+    lastAttackAnimTime = SDL_GetTicks();
+
+    free(damagePath);
+}
+
+static void checkDamageAnimation(){
+    Uint32 currentTime = SDL_GetTicks();
+    if (currentTime - lastAttackAnimTime >= attackAnimDuration) {
+        refreshMobTexture();
+        lastAttackAnimTime = 0;
+    }
+}
 
 int initLevel(monstreInfo monstre[]) {
     level.timeToKill = -1.0;
@@ -71,6 +114,7 @@ int attack(void * args[20]) {
     bool * joueur = args[1];
     if(joueur != NULL && *joueur == true){
          playMusic(MUSIC_ATTACK, CANAL_EFFECT, 1); 
+         playDamageAnimation();
     }
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     if (currentMonstre->mobHealth <= *damage * damageModifier) {
@@ -92,7 +136,6 @@ int attack(void * args[20]) {
                 }
             }else doPrestige();
             level.mobKilled = 0;
-            mobHandler();
             refreshCurrentLvl();
             refreshMobLabel();
             refreshMobTexture();
@@ -121,8 +164,16 @@ int isBoss(int currentLvl) {
     return currentLvl % 5 == 0;
 }
 
+void mobAnimationHandler(){
+    if (lastAttackAnimTime == 0) {
+        return;
+    }
+    checkDamageAnimation();
+}
+
 void mobHandler() {
     initBoss(30);
+    checkDamageAnimation();
     if (isBoss(level.currentLvl)) {
         level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
         level.startTimer = SDL_GetTicks();
@@ -194,6 +245,8 @@ void displayTimers() {
 
 //si le wantedLevel est a 1 alors on monte de niveau sinon on descend
 int changeLevel(void * l[20]) {
+    if (challenge.active) return 0;
+
     if (l[0] == NULL){
         printf("ChangePrestigePage Error: No args\n");
         return 1;

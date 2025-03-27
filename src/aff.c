@@ -103,7 +103,7 @@ void refreshMobLabel(){
     if (txtHolder == NULL){
         return;
     }
-    char * mobName = formatChaine("%s Lvl %d",level.label[(level.currentLvl-1)/10], level.currentLvl);
+    char * mobName = formatChaine("%s Lvl %d",getCurrentMobLabel(), level.currentLvl);
     setUiText(txtHolder, mobName);
 }
 
@@ -112,7 +112,7 @@ void refreshMobTexture(){
     if (button == NULL){
         return;
     }
-    setImgButtonTexture(button, NULL, level.img[(level.currentLvl-1)/10]);
+    setImgButtonTexture(button, NULL, getCurrentMobImgPath());
 }
 
 void refreshCurrentLvl(){
@@ -399,8 +399,8 @@ void initMainPage(){
     createUIImg(&pageHolder.page[0],"assets/ui/background/island1.png", getRectForCentenredCord(vw(50), vh(50), vw(60), vh(70)), "islandBackground");
 
     int baseY = vh(40); // Position du monstre en Hauteur
-    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, level.img[(level.currentLvl-1)/10], 0, 2, attack, "mobImg",2, &damage_click, &joueurTrue);
-    char *mobName = formatChaine("%s Lvl %d", level.label[(level.currentLvl-1)/10], level.currentLvl);
+    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, getCurrentMobImgPath(), 0, 2, attack, "mobImg",2, &damage_click, &joueurTrue);
+    char *mobName = formatChaine("%s Lvl %d", getCurrentMobLabel(), level.currentLvl);
     createUIText(&pageHolder.page[0], font, mobName, getSizeForText(font, mobName, getRectForCentenredCord(vw(50), baseY + vh(8.5), vw(11), vh(6))), (SDL_Color){0, 0, 0, 255}, "mobName");
     createUIText(&pageHolder.page[0], font, formatChaine("%w %t", level.monstre[level.currentLvl].mobHealth, VIE_MSG), getRectForCentenredCord(vw(50), baseY + vh(11), vw(6), vh(4)), (SDL_Color){255, 0, 0, 255}, "mobHealth");
 

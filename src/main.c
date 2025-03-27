@@ -57,6 +57,7 @@ int main() {
         ButtonHandle();
         uiHandle();
         attackHeros();
+        mobAnimationHandler();
         updateChallenge();
         // displayTimers();
 

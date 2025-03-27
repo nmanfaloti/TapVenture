@@ -56,7 +56,7 @@ void setPlayerDamage(unsigned long long int damage){
     damage_click = damage;
     // Update l'affichage des dégats
     uiTxt *txtToChange = getTxtFromLabel("playerDamage");
-    printf("%lld * %f\n", damage_click, damageModifier);
+
     if (damage_click * damageModifier >= LLD_MAX){
         setUiText(txtToChange, formatChaine("%t: %w", DMG_MSG, LLD_MAX));
         return;

@@ -355,8 +355,6 @@ void createImgButton(uiPage * page,SDL_Rect rect, char *pathImg, char *pathBackg
 }
 
 void setImgButtonTexture(ButtonImg * button ,char * pathImg, char * backgroundImg){
-    printf("setButtonImgTexture\n");
-
     if (button == NULL) {
         SDL_Log("Button : setButtonImgTexture : button is NULL");
         return;
