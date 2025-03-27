@@ -6,3 +6,4 @@
 *.json
 main
 test_goldGainOffline
+test_strCatMalloc

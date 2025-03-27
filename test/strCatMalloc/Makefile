@@ -4,7 +4,7 @@ CFLAGS = -Wall -g
 LIBS = -lcunit
 
 # Nom de l'exécutable et fichiers sources
-TARGET = strCatMalloc
+TARGET = test_strCatMalloc
 SRC = test_strCatMalloc.c strCatMalloc.c
 
 # Cible par défaut : construire le binaire de test
