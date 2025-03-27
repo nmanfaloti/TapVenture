@@ -2,18 +2,18 @@
 #define LANG_H
 
 /**
- * \file lang.h
- * \brief Déclarations pour la gestion du système de langues dans TapVenture.
+ * @file lang.h
+ * @brief Déclarations pour la gestion du système de langues dans TapVenture.
  * 
  * Ce fichier contient les définitions et déclarations nécessaires pour la gestion des traductions 
  * dans le jeu TapVenture, incluant l'énumération des clés de messages, la structure Lang et les fonctions associées.
- * \author Noam MANFALOTI & Lucas DUPONT & Ibrahim SAPIEV
- * \date 6 décembre 2024
+ * @author Noam MANFALOTI & Lucas DUPONT & Ibrahim SAPIEV
+ * @date 6 décembre 2024
  */
 
 /**
- * \enum CleMsg
- * \brief Énumération des clés de messages pour la traduction.
+ * @enum CleMsg
+ * @brief Énumération des clés de messages pour la traduction.
  *
  * Cette énumération regroupe toutes les clés de messages utilisés dans TapVenture.
  */
@@ -58,8 +58,8 @@ typedef enum {
 } CleMsg;
 
 /**
- * \struct Lang
- * \brief Structure représentant une langue et ses messages associés.
+ * @struct Lang
+ * @brief Structure représentant une langue et ses messages associés.
  *
  * Cette structure contient le nom de la langue et un tableau de chaînes de caractères correspondant 
  * aux différents messages traduits utilisés dans le jeu.
@@ -70,40 +70,40 @@ typedef struct {
 } Lang;
 
 /**
- * \brief Langue active utilisée dans TapVenture.
+ * @brief Langue active utilisée dans TapVenture.
  */
 extern Lang LanguageAct;
 
 /**
- * \fn char* Traduction(CleMsg key)
- * \brief Récupère la traduction associée à une clé de message.
+ * @fn char* Traduction(CleMsg key)
+ * @brief Récupère la traduction associée à une clé de message.
  *
  * Cette fonction renvoie la chaîne de caractères correspondant à la clé de message passée en paramètre selon la langue active.
  *
- * \param key Clé de message pour laquelle la traduction est demandée.
- * \return Une chaîne de caractères contenant la traduction correspondante.
+ * @param key Clé de message pour laquelle la traduction est demandée.
+ * @return Une chaîne de caractères contenant la traduction correspondante.
  */
 char* Traduction(CleMsg key);
 
 /**
- * \fn int SelectLanguage(void * l[20])
- * \brief Sélectionne la langue à utiliser.
+ * @fn int SelectLanguage(void * l[20])
+ * @brief Sélectionne la langue à utiliser.
  *
  * Cette fonction permet de changer la langue active en fonction des paramètres fournis.
  * 
- * \param l Tableau de pointeurs utilisé pour passer les paramètres de sélection.
- * \return 0 en cas de succès, une valeur non nulle sinon.
+ * @param l Tableau de pointeurs utilisé pour passer les paramètres de sélection.
+ * @return 0 en cas de succès, une valeur non nulle sinon.
  */
 int SelectLanguage(void * l[20]);
 
 /**
- * \fn void initLang(char * lang)
- * \brief Initialise la langue utilisée par le jeu.
+ * @fn void initLang(char * lang)
+ * @brief Initialise la langue utilisée par le jeu.
  *
  * Cette fonction initialise la langue active en fonction du nom de la langue fourni.
  * Si la langue spécifiée n'est pas reconnue, la langue anglaise est sélectionnée par défaut.
  *
- * \param lang Nom de la langue à initialiser (par exemple, "French" ou "English").
+ * @param lang Nom de la langue à initialiser (par exemple, "French" ou "English").
  */
 void initLang(char * lang);
 
