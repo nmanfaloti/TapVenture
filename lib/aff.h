@@ -1,6 +1,8 @@
 #ifndef AFF_H
 #define AFF_H
-#include <SDL2/SDL_ttf.h>
+
+#include "SDL2/SDL.h"
+#include "SDL2/SDL_ttf.h"
 
 typedef struct uiTxt_s{
     char * chaine;

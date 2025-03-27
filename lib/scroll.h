@@ -3,7 +3,7 @@
 
 #define NOMBRE_MAX_SCROLL 10 
 
-#include <SDL2/SDL.h>
+#include "SDL2/SDL.h"
 
 typedef struct scroll_inf_s{
    //val fix ecrant

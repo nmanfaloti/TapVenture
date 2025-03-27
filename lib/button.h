@@ -1,7 +1,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H 
 
-#include <SDL2/SDL_ttf.h>
+#include "sdl.h"
 
 typedef struct {
     SDL_Rect rect;
