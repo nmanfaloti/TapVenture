@@ -72,9 +72,6 @@ int attack(void * args[20]) {
     if(joueur != NULL && *joueur == true){
          playMusic(MUSIC_ATTACK, CANAL_EFFECT, 1); 
     }
-    if(level.currentLvl > level.maxLevel){
-        level.maxLevel = level.currentLvl;
-    }
     monstreInfo * currentMonstre = &level.monstre[level.currentLvl];
     if (currentMonstre->mobHealth <= *damage * damageModifier) {
         level.mobKilled += 1;
@@ -90,6 +87,9 @@ int attack(void * args[20]) {
                     playMusic(MUSIC_LEVEL_UP, CANAL_EFFECT, 1);
                 }
                 level.currentLvl++;
+                if(level.currentLvl > level.maxLevel){
+                    level.maxLevel = level.currentLvl;
+                }
             }else doPrestige();
             level.mobKilled = 0;
             mobHandler();
