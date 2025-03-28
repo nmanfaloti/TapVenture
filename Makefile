@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGSMAIN=-L./lib/SDL2/lib -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lm
+CFLAGSMAIN=-L./lib/SDL2/lib -lSDL2 -lSDL2_ttf -lSDL2_image -lSDL2_mixer -lm -Wl,-rpath,./lib/SDL2/lib
 CFLAG=-W -Wall -I./lib/SDL2
 SRCDIR   = src
 LIBDIR   = lib
