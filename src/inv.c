@@ -619,7 +619,7 @@ void aff_item(item_t * it){
     printf("item piece_equipement : %d\n",it->piece_equipement);
     printf("item stat_a_booster : %d\n",it->boost);
     printf("item rareter : %d\n",it->rarity);
-    printf("item rareter : %d\n",it->stat);
+    printf("item stat : %d\n",it->stat);
 }
 
 void aff_stat_item(SDL_Event event) {

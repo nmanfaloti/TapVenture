@@ -341,7 +341,8 @@ extern item_t * load_item_joueur(FILE *f);
 
 extern int stat_item_degat ;
 extern int stat_item_temps ;
-int boost_gold();
+extern int boost_gold();
+extern void gestion_stat_heros(int index_heros);
 void save_inv(inv *inventaire, char *save) ;
 
 

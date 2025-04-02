@@ -7,6 +7,7 @@
 #include "../lib/ui.h"
 #include "../lib/prestige.h"
 #include "../lib/audio.h"
+#include "../lib/inv.h"
 #include <time.h>
 #include <math.h>
 
