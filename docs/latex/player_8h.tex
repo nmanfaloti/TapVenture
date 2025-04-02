@@ -1,0 +1,135 @@
+\doxysection{lib/player.h File Reference}
+\hypertarget{player_8h}{}\label{player_8h}\index{lib/player.h@{lib/player.h}}
+
+
+Déclarations pour la gestion du joueur dans Tap\+Venture.  
+
+
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for player.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{player_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{player_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{player_8h_aacc1cdcf1c0e5920725d4ef7c1f3cc15}\label{player_8h_aacc1cdcf1c0e5920725d4ef7c1f3cc15} 
+\#define {\bfseries LLD\+\_\+\+MAX}~802379605485813759
+\begin{DoxyCompactList}\small\item\em Valeur maximale limite pour les entiers non signés de type long long. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{player_8h_ac9c38acff1589b5749091a544779e99d}{gold\+Gain\+Offline}} (time\+\_\+t last\+Save\+Time)
+\begin{DoxyCompactList}\small\item\em Calcule et applique le gain d\textquotesingle{}or hors ligne. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player_8h_ad59620cc8b76ffdd9fcd525cfdfb14f3}{add\+Gold}} (long long int gold\+To\+Add)
+\begin{DoxyCompactList}\small\item\em Ajoute une quantité d\textquotesingle{}or au joueur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{player_8h_af88e0e9076186961b2e352658b005c82}{set\+Player\+Damage}} (unsigned long long int damage)
+\begin{DoxyCompactList}\small\item\em Met à jour les dégâts de base du joueur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{player_8h_a10bd0ec602f69d43da93504858c902e4}{quit\+Game}} (void \texorpdfstring{$\ast$}{*}args\mbox{[}20\mbox{]})
+\begin{DoxyCompactList}\small\item\em Permet de quitter le jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{player_8h_af361e15ead5772ae3159876364205774}\label{player_8h_af361e15ead5772ae3159876364205774} 
+unsigned long long int {\bfseries gold}
+\begin{DoxyCompactList}\small\item\em Or possédé par le joueur. \end{DoxyCompactList}\item 
+\Hypertarget{player_8h_ac0a65dbe0ee61a733a721045edbaf808}\label{player_8h_ac0a65dbe0ee61a733a721045edbaf808} 
+unsigned long long int {\bfseries damage\+\_\+click}
+\begin{DoxyCompactList}\small\item\em Dégâts effectués par le joueur sur un clic. \end{DoxyCompactList}\item 
+\Hypertarget{player_8h_a598dd5fa3a0b4b8a0ba97ba30bbcce61}\label{player_8h_a598dd5fa3a0b4b8a0ba97ba30bbcce61} 
+int {\bfseries quit\+Game\+Value}
+\begin{DoxyCompactList}\small\item\em Indicateur de vonlonté de quitter le jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour la gestion du joueur dans Tap\+Venture. 
+
+Ce fichier contient les définitions, déclarations et macros nécessaires pour la gestion des données du joueur, incluant le suivi de l\textquotesingle{}or et des dégâts infligés lors des interactions de jeu.
+
+\begin{DoxyAuthor}{Author}
+Noam MANFALOTI \& Lucas DUPONT \& Ibrahim SAPIEV 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+24 janvier 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{player_8h_ad59620cc8b76ffdd9fcd525cfdfb14f3}\label{player_8h_ad59620cc8b76ffdd9fcd525cfdfb14f3} 
+\index{player.h@{player.h}!addGold@{addGold}}
+\index{addGold@{addGold}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{addGold()}{addGold()}}
+{\footnotesize\ttfamily void add\+Gold (\begin{DoxyParamCaption}\item[{long long int}]{gold\+To\+Add }\end{DoxyParamCaption})}
+
+
+
+Ajoute une quantité d\textquotesingle{}or au joueur. 
+
+Cette fonction ajoute la valeur spécifiée à l\textquotesingle{}or du joueur en tenant compte du multiplicateur éventuel. Si l\textquotesingle{}ajout excède la capacité maximale, l\textquotesingle{}or est plafonné à LLD\+\_\+\+MAX.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gold\+To\+Add} & Quantité d\textquotesingle{}or à ajouter. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_ac9c38acff1589b5749091a544779e99d}\label{player_8h_ac9c38acff1589b5749091a544779e99d} 
+\index{player.h@{player.h}!goldGainOffline@{goldGainOffline}}
+\index{goldGainOffline@{goldGainOffline}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{goldGainOffline()}{goldGainOffline()}}
+{\footnotesize\ttfamily void gold\+Gain\+Offline (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{last\+Save\+Time }\end{DoxyParamCaption})}
+
+
+
+Calcule et applique le gain d\textquotesingle{}or hors ligne. 
+
+Cette fonction détermine la quantité d\textquotesingle{}or gagnée pendant l\textquotesingle{}absence du joueur, en fonction du temps écoulé depuis la dernière sauvegarde, et met à jour la valeur de l\textquotesingle{}or en conséquence et affiche une notification.
+
+
+\begin{DoxyParams}{Parameters}
+{\em last\+Save\+Time} & Timestamp de la dernière sauvegarde. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_a10bd0ec602f69d43da93504858c902e4}\label{player_8h_a10bd0ec602f69d43da93504858c902e4} 
+\index{player.h@{player.h}!quitGame@{quitGame}}
+\index{quitGame@{quitGame}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{quitGame()}{quitGame()}}
+{\footnotesize\ttfamily int quit\+Game (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{args\mbox{[}20\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Permet de quitter le jeu. 
+
+Cette fonction permet de quitter le jeu en modifiant l\textquotesingle{}indicateur de l\textquotesingle{}état du jeu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em args\mbox{[}20\mbox{]}} & Tableau d\textquotesingle{}arguments (non utilisé) présent pour la compatibilité avec la fonction de d\textquotesingle{}appel. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{player_8h_af88e0e9076186961b2e352658b005c82}\label{player_8h_af88e0e9076186961b2e352658b005c82} 
+\index{player.h@{player.h}!setPlayerDamage@{setPlayerDamage}}
+\index{setPlayerDamage@{setPlayerDamage}!player.h@{player.h}}
+\doxysubsubsection{\texorpdfstring{setPlayerDamage()}{setPlayerDamage()}}
+{\footnotesize\ttfamily void set\+Player\+Damage (\begin{DoxyParamCaption}\item[{unsigned long long int}]{damage }\end{DoxyParamCaption})}
+
+
+
+Met à jour les dégâts de base du joueur. 
+
+Cette fonction définit la valeur des dégâts effectués par le joueur lors d\textquotesingle{}une action de clic. Elle met également à jour l\textquotesingle{}affichage en conséquence.
+
+
+\begin{DoxyParams}{Parameters}
+{\em damage} & Nouvelle valeur de dégât à appliquer. \\
+\hline
+\end{DoxyParams}

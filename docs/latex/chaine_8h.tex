@@ -1,0 +1,161 @@
+\doxysection{lib/chaine.h File Reference}
+\hypertarget{chaine_8h}{}\label{chaine_8h}\index{lib/chaine.h@{lib/chaine.h}}
+
+
+Interface de gestion des chaînes de caractères dans Tap\+Venture.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{chaine_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{chaine_8h_a415401e9e962787b64eb4f92aae8a5ea}{str\+Cat\+Malloc}} (const char \texorpdfstring{$\ast$}{*}srt1, const char \texorpdfstring{$\ast$}{*}str2)
+\begin{DoxyCompactList}\small\item\em Alloue dynamiquement et renvoie une chaîne résultant de la concaténation de srt1 et str2. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{chaine_8h_afa51d426044234d1edbfa70a3d4bb5ab}{str\+Cat\+Malloc\+Free1}} (char \texorpdfstring{$\ast$}{*}str1, char \texorpdfstring{$\ast$}{*}str2)
+\begin{DoxyCompactList}\small\item\em Concatène une chaînes et un caractère et libère la première après la concaténation. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{chaine_8h_ae107d8391e6d11691a6f087c2e094dd2}{str\+Char\+Malloc}} (const char \texorpdfstring{$\ast$}{*}srt1, const char \texorpdfstring{$\ast$}{*}str2)
+\begin{DoxyCompactList}\small\item\em Alloue dynamiquement et renvoie une chaîne qui combine srt1 et str2 (fonctionnalité similaire à str\+Cat\+Malloc). \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{chaine_8h_aec447f8304b14921fca880180885e308}{str\+Char\+Malloc\+Free1}} (char \texorpdfstring{$\ast$}{*}str1, char \texorpdfstring{$\ast$}{*}str2)
+\begin{DoxyCompactList}\small\item\em Concatène une chaînes et un caractère et libère la première chaîne après la concaténation. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{chaine_8h_ad6d120a23c9b902b9db27a709320a590}{format\+Chaine}} (char \texorpdfstring{$\ast$}{*}chaine,...)
+\begin{DoxyCompactList}\small\item\em Formate une chaîne de caractères en utilisant des arguments variables. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{chaine_8h_a3d2070ab11dade21639797b969a48fbe}{format\+ULLI}} (unsigned long long int nombre)
+\begin{DoxyCompactList}\small\item\em Convertit un nombre unsigned long long int en une chaîne de caractères. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion des chaînes de caractères dans Tap\+Venture. 
+
+Ce fichier définit les constantes, types et fonctions pour l\textquotesingle{}initialisation et la gestion des chaînes de caractères utilisées dans Tap\+Venture, incluant la concaténation, le formatage et la conversion de nombres. \begin{DoxyAuthor}{Author}
+Lucas DUPONT 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6 mars 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{chaine_8h_ad6d120a23c9b902b9db27a709320a590}\label{chaine_8h_ad6d120a23c9b902b9db27a709320a590} 
+\index{chaine.h@{chaine.h}!formatChaine@{formatChaine}}
+\index{formatChaine@{formatChaine}!chaine.h@{chaine.h}}
+\doxysubsubsection{\texorpdfstring{formatChaine()}{formatChaine()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} format\+Chaine (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{chaine,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Formate une chaîne de caractères en utilisant des arguments variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em chaine} & Chaîne de caractères initiale. \\
+\hline
+{\em ...} & Liste d\textquotesingle{}arguments variables pour le formatage. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers la chaîne formatée. L\textquotesingle{}appelant doit libérer cette mémoire. 
+\end{DoxyReturn}
+\Hypertarget{chaine_8h_a3d2070ab11dade21639797b969a48fbe}\label{chaine_8h_a3d2070ab11dade21639797b969a48fbe} 
+\index{chaine.h@{chaine.h}!formatULLI@{formatULLI}}
+\index{formatULLI@{formatULLI}!chaine.h@{chaine.h}}
+\doxysubsubsection{\texorpdfstring{formatULLI()}{formatULLI()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} format\+ULLI (\begin{DoxyParamCaption}\item[{unsigned long long int}]{nombre }\end{DoxyParamCaption})}
+
+
+
+Convertit un nombre unsigned long long int en une chaîne de caractères. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre} & Nombre à convertir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers la chaîne représentant le nombre. L\textquotesingle{}appelant doit libérer cette mémoire. 
+\end{DoxyReturn}
+\Hypertarget{chaine_8h_a415401e9e962787b64eb4f92aae8a5ea}\label{chaine_8h_a415401e9e962787b64eb4f92aae8a5ea} 
+\index{chaine.h@{chaine.h}!strCatMalloc@{strCatMalloc}}
+\index{strCatMalloc@{strCatMalloc}!chaine.h@{chaine.h}}
+\doxysubsubsection{\texorpdfstring{strCatMalloc()}{strCatMalloc()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} str\+Cat\+Malloc (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{srt1,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str2 }\end{DoxyParamCaption})}
+
+
+
+Alloue dynamiquement et renvoie une chaîne résultant de la concaténation de srt1 et str2. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em srt1} & Chaîne de caractères source \#1. \\
+\hline
+{\em str2} & Chaîne de caractères source \#2. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers la nouvelle chaîne concaténée. L\textquotesingle{}appelant doit libérer cette mémoire. 
+\end{DoxyReturn}
+\Hypertarget{chaine_8h_afa51d426044234d1edbfa70a3d4bb5ab}\label{chaine_8h_afa51d426044234d1edbfa70a3d4bb5ab} 
+\index{chaine.h@{chaine.h}!strCatMallocFree1@{strCatMallocFree1}}
+\index{strCatMallocFree1@{strCatMallocFree1}!chaine.h@{chaine.h}}
+\doxysubsubsection{\texorpdfstring{strCatMallocFree1()}{strCatMallocFree1()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} str\+Cat\+Malloc\+Free1 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str1,  }\item[{char \texorpdfstring{$\ast$}{*}}]{str2 }\end{DoxyParamCaption})}
+
+
+
+Concatène une chaînes et un caractère et libère la première après la concaténation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str1} & Chaîne de caractères dont la mémoire sera libérée. \\
+\hline
+{\em str2} & Chaîne de caractères à concaténer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers la nouvelle chaîne concaténée. L\textquotesingle{}appelant doit libérer cette mémoire. 
+\end{DoxyReturn}
+\Hypertarget{chaine_8h_ae107d8391e6d11691a6f087c2e094dd2}\label{chaine_8h_ae107d8391e6d11691a6f087c2e094dd2} 
+\index{chaine.h@{chaine.h}!strCharMalloc@{strCharMalloc}}
+\index{strCharMalloc@{strCharMalloc}!chaine.h@{chaine.h}}
+\doxysubsubsection{\texorpdfstring{strCharMalloc()}{strCharMalloc()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} str\+Char\+Malloc (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{srt1,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{str2 }\end{DoxyParamCaption})}
+
+
+
+Alloue dynamiquement et renvoie une chaîne qui combine srt1 et str2 (fonctionnalité similaire à str\+Cat\+Malloc). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em srt1} & Chaîne de caractères source \#1. \\
+\hline
+{\em str2} & Un caractères source \#2. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers la nouvelle chaîne combinée. L\textquotesingle{}appelant doit libérer cette mémoire. 
+\end{DoxyReturn}
+\Hypertarget{chaine_8h_aec447f8304b14921fca880180885e308}\label{chaine_8h_aec447f8304b14921fca880180885e308} 
+\index{chaine.h@{chaine.h}!strCharMallocFree1@{strCharMallocFree1}}
+\index{strCharMallocFree1@{strCharMallocFree1}!chaine.h@{chaine.h}}
+\doxysubsubsection{\texorpdfstring{strCharMallocFree1()}{strCharMallocFree1()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} str\+Char\+Malloc\+Free1 (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{str1,  }\item[{char \texorpdfstring{$\ast$}{*}}]{str2 }\end{DoxyParamCaption})}
+
+
+
+Concatène une chaînes et un caractère et libère la première chaîne après la concaténation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str1} & Chaîne de caractères dont la mémoire sera libérée. \\
+\hline
+{\em str2} & Un caractères à concaténer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers la nouvelle chaîne résultante. L\textquotesingle{}appelant doit libérer cette mémoire. 
+\end{DoxyReturn}

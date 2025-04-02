@@ -1,0 +1,246 @@
+\doxysection{lib/combat.h File Reference}
+\hypertarget{combat_8h}{}\label{combat_8h}\index{lib/combat.h@{lib/combat.h}}
+
+
+Déclarations pour le système de combat du jeu Tap\+Venture.  
+
+
+{\ttfamily \#include \"{}SDL2/\+SDL.\+h\"{}}\newline
+Include dependency graph for combat.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{combat_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{combat_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structmonstreInfo}{monstre\+Info}}
+\begin{DoxyCompactList}\small\item\em Structure représentant les informations d\textquotesingle{}un monstre. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structlevelInfo}{level\+Info}}
+\begin{DoxyCompactList}\small\item\em Structure représentant le niveau de combat. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{combat_8h_abcaa07e43778ca9853cd45ccafae84cd}{get\+Current\+Mob\+Label}} ()
+\begin{DoxyCompactList}\small\item\em Récupère l\textquotesingle{}étiquette du monstre courant. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{combat_8h_a1f6cfd0e374e0f13351a69ec77a64820}{get\+Current\+Mob\+Img\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Récupère le chemin de l\textquotesingle{}image du monstre courant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{combat_8h_aa24e78a5bba9eb86f33996ecb01f98e6}{attack}} (void \texorpdfstring{$\ast$}{*}args\mbox{[}20\mbox{]})
+\begin{DoxyCompactList}\small\item\em Effectue une attaque sur le monstre courant. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{combat_8h_ab9d5ded61b0b886108d7daf415af0275}{init\+Level}} (\mbox{\hyperlink{structmonstreInfo}{monstre\+Info}} monstre\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Initialise le niveau de combat. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{combat_8h_a956e17a6b62d5957b73906149f1a9350}{Init\+Boss}} (int diff\+Time)
+\begin{DoxyCompactList}\small\item\em Initialise le boss en fonction d\textquotesingle{}un délai donné. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{combat_8h_a48e212676ddbd18c04db07265dbb7c92}{is\+Boss}} (int current\+Lvl)
+\begin{DoxyCompactList}\small\item\em Vérifie si le niveau courant correspond à un boss. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{combat_8h_a65faf4153e0030bdb07dc66f8d23bd63}{set\+Level}} (\mbox{\hyperlink{structlevelInfo}{level\+Info}} \texorpdfstring{$\ast$}{*}level, int lvl)
+\begin{DoxyCompactList}\small\item\em Met à jour le niveau de combat. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{combat_8h_a945e94aa67ddd960f40ce4f4fb30ffec}{mob\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Gère les comportements des monstres. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{combat_8h_a5d23a38f125fec87913ffe253aa257bc}{mob\+Animation\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Gère les animations des monstres. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{combat_8h_a2903523a7b43b97e6ab7c0ee6474ca01}{display\+Timers}} ()
+\begin{DoxyCompactList}\small\item\em Affiche les minuteries liées au combat. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{combat_8h_aec2997012f3facc193bf1b972d99aa64}{change\+Level}} (void \texorpdfstring{$\ast$}{*}l\mbox{[}20\mbox{]})
+\begin{DoxyCompactList}\small\item\em Change le niveau de combat. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{combat_8h_a68e08d15123313637b80d02730b3838b}\label{combat_8h_a68e08d15123313637b80d02730b3838b} 
+\mbox{\hyperlink{structlevelInfo}{level\+Info}} {\bfseries level}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour le système de combat du jeu Tap\+Venture. 
+
+Ce fichier contient les déclarations des fonctions et variables pour gérer le système de combat dans le jeu Tap\+Venture, incluant les structures, les niveaux, les monstres, les attaques et les animations. \begin{DoxyAuthor}{Author}
+Noam MANFALOTI \& Ibrahim SAPIEV 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+20 décembre 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{combat_8h_aa24e78a5bba9eb86f33996ecb01f98e6}\label{combat_8h_aa24e78a5bba9eb86f33996ecb01f98e6} 
+\index{combat.h@{combat.h}!attack@{attack}}
+\index{attack@{attack}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{attack()}{attack()}}
+{\footnotesize\ttfamily int attack (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{args\mbox{[}20\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Effectue une attaque sur le monstre courant. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Tableau d\textquotesingle{}arguments nécessaires pour réaliser l\textquotesingle{}attaque.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_aec2997012f3facc193bf1b972d99aa64}\label{combat_8h_aec2997012f3facc193bf1b972d99aa64} 
+\index{combat.h@{combat.h}!changeLevel@{changeLevel}}
+\index{changeLevel@{changeLevel}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{changeLevel()}{changeLevel()}}
+{\footnotesize\ttfamily int change\+Level (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{l\mbox{[}20\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Change le niveau de combat. 
+
+Modifie le niveau courant en fonction des arguments passés.
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & Tableau d\textquotesingle{}arguments nécessaires pour effectuer le changement de niveau.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_a2903523a7b43b97e6ab7c0ee6474ca01}\label{combat_8h_a2903523a7b43b97e6ab7c0ee6474ca01} 
+\index{combat.h@{combat.h}!displayTimers@{displayTimers}}
+\index{displayTimers@{displayTimers}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{displayTimers()}{displayTimers()}}
+{\footnotesize\ttfamily void display\+Timers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affiche les minuteries liées au combat. 
+
+Affiche notamment le timer du boss et autres minuteries relatives au niveau en cours. \Hypertarget{combat_8h_a1f6cfd0e374e0f13351a69ec77a64820}\label{combat_8h_a1f6cfd0e374e0f13351a69ec77a64820} 
+\index{combat.h@{combat.h}!getCurrentMobImgPath@{getCurrentMobImgPath}}
+\index{getCurrentMobImgPath@{getCurrentMobImgPath}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{getCurrentMobImgPath()}{getCurrentMobImgPath()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+Current\+Mob\+Img\+Path (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Récupère le chemin de l\textquotesingle{}image du monstre courant. 
+
+\begin{DoxyReturn}{Returns}
+Une chaîne de caractères contenant le chemin de l\textquotesingle{}image du monstre courant. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_abcaa07e43778ca9853cd45ccafae84cd}\label{combat_8h_abcaa07e43778ca9853cd45ccafae84cd} 
+\index{combat.h@{combat.h}!getCurrentMobLabel@{getCurrentMobLabel}}
+\index{getCurrentMobLabel@{getCurrentMobLabel}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{getCurrentMobLabel()}{getCurrentMobLabel()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+Current\+Mob\+Label (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Récupère l\textquotesingle{}étiquette du monstre courant. 
+
+\begin{DoxyReturn}{Returns}
+Une chaîne de caractères contenant l\textquotesingle{}étiquette du monstre courant. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_a956e17a6b62d5957b73906149f1a9350}\label{combat_8h_a956e17a6b62d5957b73906149f1a9350} 
+\index{combat.h@{combat.h}!InitBoss@{InitBoss}}
+\index{InitBoss@{InitBoss}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{InitBoss()}{InitBoss()}}
+{\footnotesize\ttfamily int Init\+Boss (\begin{DoxyParamCaption}\item[{int}]{diff\+Time }\end{DoxyParamCaption})}
+
+
+
+Initialise le boss en fonction d\textquotesingle{}un délai donné. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em diff\+Time} & Délai pour l\textquotesingle{}initialisation du boss.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_ab9d5ded61b0b886108d7daf415af0275}\label{combat_8h_ab9d5ded61b0b886108d7daf415af0275} 
+\index{combat.h@{combat.h}!initLevel@{initLevel}}
+\index{initLevel@{initLevel}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{initLevel()}{initLevel()}}
+{\footnotesize\ttfamily int init\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structmonstreInfo}{monstre\+Info}}}]{monstre\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Initialise le niveau de combat. 
+
+Configure et initialise les paramètres relatifs aux monstres et au niveau.
+
+
+\begin{DoxyParams}{Parameters}
+{\em monstre} & Tableau contenant les informations de chaque monstre.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_a48e212676ddbd18c04db07265dbb7c92}\label{combat_8h_a48e212676ddbd18c04db07265dbb7c92} 
+\index{combat.h@{combat.h}!isBoss@{isBoss}}
+\index{isBoss@{isBoss}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{isBoss()}{isBoss()}}
+{\footnotesize\ttfamily int is\+Boss (\begin{DoxyParamCaption}\item[{int}]{current\+Lvl }\end{DoxyParamCaption})}
+
+
+
+Vérifie si le niveau courant correspond à un boss. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Lvl} & Niveau de combat actuel.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le niveau correspond à un boss, 0 sinon. 
+\end{DoxyReturn}
+\Hypertarget{combat_8h_a5d23a38f125fec87913ffe253aa257bc}\label{combat_8h_a5d23a38f125fec87913ffe253aa257bc} 
+\index{combat.h@{combat.h}!mobAnimationHandler@{mobAnimationHandler}}
+\index{mobAnimationHandler@{mobAnimationHandler}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{mobAnimationHandler()}{mobAnimationHandler()}}
+{\footnotesize\ttfamily void mob\+Animation\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère les animations des monstres. 
+
+Actualise et gère les animations des monstres pendant le combat. \Hypertarget{combat_8h_a945e94aa67ddd960f40ce4f4fb30ffec}\label{combat_8h_a945e94aa67ddd960f40ce4f4fb30ffec} 
+\index{combat.h@{combat.h}!mobHandler@{mobHandler}}
+\index{mobHandler@{mobHandler}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{mobHandler()}{mobHandler()}}
+{\footnotesize\ttfamily void mob\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère les comportements des monstres. 
+
+Met à jour régulièrement l\textquotesingle{}état et le comportement des monstres pendant le combat. \Hypertarget{combat_8h_a65faf4153e0030bdb07dc66f8d23bd63}\label{combat_8h_a65faf4153e0030bdb07dc66f8d23bd63} 
+\index{combat.h@{combat.h}!setLevel@{setLevel}}
+\index{setLevel@{setLevel}!combat.h@{combat.h}}
+\doxysubsubsection{\texorpdfstring{setLevel()}{setLevel()}}
+{\footnotesize\ttfamily int set\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlevelInfo}{level\+Info}} \texorpdfstring{$\ast$}{*}}]{level,  }\item[{int}]{lvl }\end{DoxyParamCaption})}
+
+
+
+Met à jour le niveau de combat. 
+
+Change le niveau courant et actualise les paramètres associés.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Pointeur vers la structure \doxylink{structlevelInfo}{level\+Info}. \\
+\hline
+{\em lvl} & Nouveau niveau à définir.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}

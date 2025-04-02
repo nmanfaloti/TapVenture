@@ -1,0 +1,5 @@
+<map id="lib/audio.h" name="lib/audio.h">
+<area shape="rect" id="Node000001" title="Interface de gestion audio pour TapVenture." alt="" coords="5,5,96,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html" title="Point d&#39;entrée principal pour le jeu TapVenture." alt="" coords="6,79,95,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,44,53,79,48,79,48,44"/>
+</map>

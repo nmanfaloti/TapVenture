@@ -1,0 +1,65 @@
+\doxysection{aff.\+h}
+\hypertarget{aff_8h_source}{}\label{aff_8h_source}\index{lib/aff.h@{lib/aff.h}}
+\mbox{\hyperlink{aff_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \#ifndef\ AFF\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \#define\ AFF\_H}}
+\DoxyCodeLine{00015\ \ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \#include\ "{}SDL2/SDL.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \#include\ "{}SDL2/SDL\_ttf.h"{}}}
+\DoxyCodeLine{00018\ \ }
+\DoxyCodeLine{00026\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structuiTxt__s}{uiTxt\_s}}\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structuiTxt__s_aa9dfc6336c0372194570b831a9921ede}{chaine}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structuiTxt__s_a8de48f1feba5bd11d4154e1907ba1c0c}{label}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structuiTxt__s_aad2b9fa57133423d878e5bf398999bc1}{dest}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ SDL\_Color\ \mbox{\hyperlink{structuiTxt__s_a704ad607f7ecd86882d885b9459d04fc}{color}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structuiTxt__s_a38f0f89253185457727fa5021f87e658}{texture}};\ \ \ }
+\DoxyCodeLine{00032\ \ \}\ \mbox{\hyperlink{structuiTxt}{uiTxt}};}
+\DoxyCodeLine{00033\ \ }
+\DoxyCodeLine{00041\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structuiImg__s}{uiImg\_s}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structuiImg__s_af34783ffa0ddb2ef03519f6219bbd6e7}{label}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structuiImg__s_abc9d4013212132ee3564fdbf44f2c8db}{dest}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structuiImg__s_ad782bbf09480869d89e7824a2fbe8275}{texture}};\ \ \ }
+\DoxyCodeLine{00045\ \ \}\ \mbox{\hyperlink{structuiImg}{uiImg}};}
+\DoxyCodeLine{00046\ \ }
+\DoxyCodeLine{00053\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structuiContainer__s}{uiContainer\_s}}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structuiContainer__s_a266992c1a71f15222c4d4e1609f27c8f}{nbTxt}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \mbox{\hyperlink{structuiTxt__s}{uiTxt}}\ *\mbox{\hyperlink{structuiContainer__s_a2c7c698c0b700946e52d3658b49aa276}{txt}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structuiContainer__s_a6787fa4467dee0e532f96035bfb50d11}{nbImg}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \mbox{\hyperlink{structuiImg__s}{uiImg}}\ *\mbox{\hyperlink{structuiContainer__s_ab41f149d06ac384adde2f9cd99eda416}{img}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \}\ \mbox{\hyperlink{structuiContainer}{uiContainer}};}
+\DoxyCodeLine{00059\ \ }
+\DoxyCodeLine{00060\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{aff_8h_af7938f2fddb32cc5fda5cfb1b11a1f6a}{widthscreen}};\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{aff_8h_ac410034681234df57aadb25655697426}{heightscreen}};\ \ \ \ }
+\DoxyCodeLine{00072\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_af2ba7311c93da874884cb54586799f0a}{affiche\_txt}}(\mbox{\hyperlink{structuiTxt}{uiTxt}}\ *txt);}
+\DoxyCodeLine{00073\ \ }
+\DoxyCodeLine{00087\ \ SDL\_Rect\ \mbox{\hyperlink{aff_8h_a02a2a6ad949389fd440f3dfdb69d349d}{getSizeForText}}(TTF\_Font*\ font,\ \textcolor{keywordtype}{char}\ *txt,\ SDL\_Rect\ dest);}
+\DoxyCodeLine{00088\ \ }
+\DoxyCodeLine{00097\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{aff_8h_ae8fe7d31378c00422ab654ed779b5ce5}{vw}}(\textcolor{keywordtype}{float}\ percent);}
+\DoxyCodeLine{00098\ \ }
+\DoxyCodeLine{00107\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{aff_8h_a423a6a66abaaf13fdbc4a50d51b3d1a5}{vh}}(\textcolor{keywordtype}{float}\ percent);}
+\DoxyCodeLine{00108\ \ }
+\DoxyCodeLine{00115\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a550a043498121c28a5c124bd56ab9da3}{uiHandle}}();}
+\DoxyCodeLine{00116\ \ }
+\DoxyCodeLine{00123\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_ab4a35ef01d4d79c1c5b5ce0b6511ebe1}{uiImgHandle}}();}
+\DoxyCodeLine{00124\ \ }
+\DoxyCodeLine{00131\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a40afddedcef09330c37738bcc7937b20}{initUItxt}}();}
+\DoxyCodeLine{00132\ \ }
+\DoxyCodeLine{00137\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a3ab026ba319d1b430dd26d7d9a15f228}{refreshMobHealth}}();}
+\DoxyCodeLine{00138\ \ }
+\DoxyCodeLine{00143\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a981472e7598574a67b5fc5ec0537fae0}{refreshMobLabel}}();}
+\DoxyCodeLine{00144\ \ }
+\DoxyCodeLine{00149\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_ad10a79de60c4b7a401972ba513f05f2c}{refreshMobTexture}}();}
+\DoxyCodeLine{00150\ \ }
+\DoxyCodeLine{00157\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a357a515a30b1afde9e9d2bb588ea07cf}{refreshUI}}();}
+\DoxyCodeLine{00158\ \ }
+\DoxyCodeLine{00163\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_adbcbfb57ec187f052080425e7576341e}{refreshMobKilled}}();}
+\DoxyCodeLine{00164\ \ }
+\DoxyCodeLine{00169\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a6df0cc1e3173e3bca76f5a2904c13142}{refreshCurrentLvl}}();}
+\DoxyCodeLine{00170\ \ }
+\DoxyCodeLine{00180\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aff_8h_a7abdad91fa3cd61f256becfd8931d2e9}{setUiText}}(\mbox{\hyperlink{structuiTxt}{uiTxt}}\ *txt,\ \textcolor{keywordtype}{char}\ *text);}
+\DoxyCodeLine{00181\ \ }
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \#endif\ }\textcolor{comment}{//\ AFF\_H}}
+
+\end{DoxyCode}

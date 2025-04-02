@@ -1,0 +1,13 @@
+<map id="uiPage_s" name="uiPage_s">
+<area shape="rect" id="Node000001" title="Structure représentant une page de l&#39;interface utilisateur." alt="" coords="136,181,215,207"/>
+<area shape="rect" id="Node000002" href="$structuiContainer.html" title="Conteneur regroupant les textes et images de l&#39;interface utilisateur." alt="" coords="5,93,103,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,127,106,155,149,179,146,184,103,160,71,131"/>
+<area shape="rect" id="Node000003" href="$structListeButton.html" title="Structure représentant une liste de boutons." alt="" coords="127,93,223,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="178,133,178,181,173,181,173,133"/>
+<area shape="rect" id="Node000004" href="$structButton.html" title="Structure représentant un bouton dans l&#39;interface utilisateur." alt="" coords="143,5,208,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="178,45,178,93,173,93,173,45"/>
+<area shape="rect" id="Node000005" href="$structListeButtonImg.html" title="Structure représentant une liste de boutons avec des images." alt="" coords="248,93,369,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="292,131,259,160,211,184,209,179,257,155,288,127"/>
+<area shape="rect" id="Node000006" href="$structButtonImg.html" title="Structure représentant un bouton avec une image dans l&#39;interface utilisateur." alt="" coords="263,5,354,31"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="311,45,311,93,306,93,306,45"/>
+</map>

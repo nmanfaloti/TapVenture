@@ -1,3 +1,19 @@
+/**
+ * @file main.c
+ * @brief Point d'entrée principal pour le jeu TapVenture.
+ *
+ * Ce fichier contient la fonction principale qui initialise les ressources,
+ * gère la boucle principale du jeu et libère les ressources à la fin.
+ *
+ * @details
+ * - Initialise SDL et d'autres modules nécessaires.
+ * - Gère les événements utilisateur et les mises à jour de l'interface.
+ * - Maintient une boucle de rendu avec un contrôle de la fréquence d'images.
+ * - Sauvegarde les données et libère les ressources avant de quitter.
+ *
+ * @author Votre Nom
+ * @date 2025
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -6,13 +22,10 @@
 
 #include "../lib/lang.h"
 #include "../lib/save_json.h"
-#include "../lib/aff.h"
-#include "../lib/button.h"
 #include "../lib/combat.h"
 #include "../lib/boutique.h"
 #include "../lib/heros.h"
 #include "../lib/input_user.h"
-#include "../lib/sdl.h"
 #include "../lib/player.h"
 #include "../lib/ui.h"
 #include "../lib/challenge.h"

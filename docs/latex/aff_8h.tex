@@ -1,0 +1,253 @@
+\doxysection{lib/aff.h File Reference}
+\hypertarget{aff_8h}{}\label{aff_8h}\index{lib/aff.h@{lib/aff.h}}
+
+
+Interface de gestion de l\textquotesingle{}affichage des éléments UI dans Tap\+Venture.  
+
+
+{\ttfamily \#include \"{}SDL2/\+SDL.\+h\"{}}\newline
+{\ttfamily \#include \"{}SDL2/\+SDL\+\_\+ttf.\+h\"{}}\newline
+Include dependency graph for aff.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{aff_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{aff_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structuiTxt__s}{ui\+Txt\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structuiImg__s}{ui\+Img\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structuiContainer__s}{ui\+Container\+\_\+s}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{aff_8h_a45dac3f118391bc80d04d7c03ce5145d}\label{aff_8h_a45dac3f118391bc80d04d7c03ce5145d} 
+typedef struct \mbox{\hyperlink{structuiTxt__s}{ui\+Txt\+\_\+s}} {\bfseries ui\+Txt}
+\item 
+\Hypertarget{aff_8h_abf147b5375bc06821663c2ad04872b93}\label{aff_8h_abf147b5375bc06821663c2ad04872b93} 
+typedef struct \mbox{\hyperlink{structuiImg__s}{ui\+Img\+\_\+s}} {\bfseries ui\+Img}
+\item 
+\Hypertarget{aff_8h_a07492c060b33fcc46bf233def94caff1}\label{aff_8h_a07492c060b33fcc46bf233def94caff1} 
+typedef struct \mbox{\hyperlink{structuiContainer__s}{ui\+Container\+\_\+s}} {\bfseries ui\+Container}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{aff_8h_af2ba7311c93da874884cb54586799f0a}{affiche\+\_\+txt}} (\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*}txt)
+\begin{DoxyCompactList}\small\item\em Affiche un texte dans l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{aff_8h_a02a2a6ad949389fd440f3dfdb69d349d}{get\+Size\+For\+Text}} (TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*}font, char \texorpdfstring{$\ast$}{*}txt, SDL\+\_\+\+Rect dest)
+\begin{DoxyCompactList}\small\item\em Calcule la taille d\textquotesingle{}un texte en fonction de sa police et de son contenu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{aff_8h_ae8fe7d31378c00422ab654ed779b5ce5}{vw}} (float percent)
+\begin{DoxyCompactList}\small\item\em Calcule une largeur relative à l\textquotesingle{}écran en pourcentage. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{aff_8h_a423a6a66abaaf13fdbc4a50d51b3d1a5}{vh}} (float percent)
+\begin{DoxyCompactList}\small\item\em Calcule une hauteur relative à l\textquotesingle{}écran en pourcentage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{aff_8h_a550a043498121c28a5c124bd56ab9da3}{ui\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Gère l\textquotesingle{}affichage des éléments de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{aff_8h_ab4a35ef01d4d79c1c5b5ce0b6511ebe1}{ui\+Img\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Gère l\textquotesingle{}affichage des images de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{aff_8h_a40afddedcef09330c37738bcc7937b20}{init\+UItxt}} ()
+\begin{DoxyCompactList}\small\item\em Initialise les textes de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+\Hypertarget{aff_8h_a3ab026ba319d1b430dd26d7d9a15f228}\label{aff_8h_a3ab026ba319d1b430dd26d7d9a15f228} 
+void {\bfseries refresh\+Mob\+Health} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage de la vie du monstre. \end{DoxyCompactList}\item 
+\Hypertarget{aff_8h_a981472e7598574a67b5fc5ec0537fae0}\label{aff_8h_a981472e7598574a67b5fc5ec0537fae0} 
+void {\bfseries refresh\+Mob\+Label} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage du nom du monstre. \end{DoxyCompactList}\item 
+\Hypertarget{aff_8h_ad10a79de60c4b7a401972ba513f05f2c}\label{aff_8h_ad10a79de60c4b7a401972ba513f05f2c} 
+void {\bfseries refresh\+Mob\+Texture} ()
+\begin{DoxyCompactList}\small\item\em Met à jour la texture du monstre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{aff_8h_a357a515a30b1afde9e9d2bb588ea07cf}{refresh\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+\Hypertarget{aff_8h_adbcbfb57ec187f052080425e7576341e}\label{aff_8h_adbcbfb57ec187f052080425e7576341e} 
+void {\bfseries refresh\+Mob\+Killed} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage du nombre de mobs tués. \end{DoxyCompactList}\item 
+\Hypertarget{aff_8h_a6df0cc1e3173e3bca76f5a2904c13142}\label{aff_8h_a6df0cc1e3173e3bca76f5a2904c13142} 
+void {\bfseries refresh\+Current\+Lvl} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage du niveau actuel. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{aff_8h_a7abdad91fa3cd61f256becfd8931d2e9}{set\+Ui\+Text}} (\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*}txt, char \texorpdfstring{$\ast$}{*}text)
+\begin{DoxyCompactList}\small\item\em Définit le contenu d\textquotesingle{}un texte dans l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{aff_8h_af7938f2fddb32cc5fda5cfb1b11a1f6a}{widthscreen}}
+\item 
+int \mbox{\hyperlink{aff_8h_ac410034681234df57aadb25655697426}{heightscreen}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion de l\textquotesingle{}affichage des éléments UI dans Tap\+Venture. 
+
+Ce fichier définit les structures et fonctions nécessaires pour gérer l\textquotesingle{}affichage des textes et des images dans l\textquotesingle{}interface utilisateur, ainsi que leur mise à jour. Il inclut également des outils pour manipuler les dimensions relatives à l\textquotesingle{}écran. \begin{DoxyAuthor}{Author}
+Noam MANFALOTI
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2 avril 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{aff_8h_af2ba7311c93da874884cb54586799f0a}\label{aff_8h_af2ba7311c93da874884cb54586799f0a} 
+\index{aff.h@{aff.h}!affiche\_txt@{affiche\_txt}}
+\index{affiche\_txt@{affiche\_txt}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{affiche\_txt()}{affiche\_txt()}}
+{\footnotesize\ttfamily void affiche\+\_\+txt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*}}]{txt }\end{DoxyParamCaption})}
+
+
+
+Affiche un texte dans l\textquotesingle{}interface utilisateur. 
+
+Cette fonction utilise les informations contenues dans la structure {\ttfamily \doxylink{structuiTxt}{ui\+Txt}} pour afficher un texte à l\textquotesingle{}écran.
+
+
+\begin{DoxyParams}{Parameters}
+{\em txt} & Pointeur vers la structure {\ttfamily \doxylink{structuiTxt}{ui\+Txt}} contenant les informations du texte. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{aff_8h_a02a2a6ad949389fd440f3dfdb69d349d}\label{aff_8h_a02a2a6ad949389fd440f3dfdb69d349d} 
+\index{aff.h@{aff.h}!getSizeForText@{getSizeForText}}
+\index{getSizeForText@{getSizeForText}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{getSizeForText()}{getSizeForText()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect get\+Size\+For\+Text (\begin{DoxyParamCaption}\item[{TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*}}]{font,  }\item[{char \texorpdfstring{$\ast$}{*}}]{txt,  }\item[{SDL\+\_\+\+Rect}]{dest }\end{DoxyParamCaption})}
+
+
+
+Calcule la taille d\textquotesingle{}un texte en fonction de sa police et de son contenu. 
+
+Cette fonction retourne un rectangle SDL définissant la taille et la position du texte à afficher. Afin d\textquotesingle{}avoir un texte bien proportionné.
+
+
+\begin{DoxyParams}{Parameters}
+{\em font} & Pointeur vers la police TTF utilisée pour le texte. \\
+\hline
+{\em txt} & Chaîne de caractères représentant le texte. \\
+\hline
+{\em dest} & Rectangle de destination initial.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un rectangle SDL contenant les dimensions calculées. 
+\end{DoxyReturn}
+\Hypertarget{aff_8h_a40afddedcef09330c37738bcc7937b20}\label{aff_8h_a40afddedcef09330c37738bcc7937b20} 
+\index{aff.h@{aff.h}!initUItxt@{initUItxt}}
+\index{initUItxt@{initUItxt}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{initUItxt()}{initUItxt()}}
+{\footnotesize\ttfamily void init\+UItxt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise les textes de l\textquotesingle{}interface utilisateur. 
+
+Initialise les structures nécessaires pour gérer les textes dans l\textquotesingle{}interface utilisateur. \Hypertarget{aff_8h_a357a515a30b1afde9e9d2bb588ea07cf}\label{aff_8h_a357a515a30b1afde9e9d2bb588ea07cf} 
+\index{aff.h@{aff.h}!refreshUI@{refreshUI}}
+\index{refreshUI@{refreshUI}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{refreshUI()}{refreshUI()}}
+{\footnotesize\ttfamily void refresh\+UI (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}interface utilisateur. 
+
+Cette fonction rafraîchit tous les éléments de l\textquotesingle{}interface utilisateur. \Hypertarget{aff_8h_a7abdad91fa3cd61f256becfd8931d2e9}\label{aff_8h_a7abdad91fa3cd61f256becfd8931d2e9} 
+\index{aff.h@{aff.h}!setUiText@{setUiText}}
+\index{setUiText@{setUiText}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{setUiText()}{setUiText()}}
+{\footnotesize\ttfamily void set\+Ui\+Text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*}}]{txt,  }\item[{char \texorpdfstring{$\ast$}{*}}]{text }\end{DoxyParamCaption})}
+
+
+
+Définit le contenu d\textquotesingle{}un texte dans l\textquotesingle{}interface utilisateur. 
+
+Cette fonction met à jour le contenu d\textquotesingle{}un texte et recrée sa texture.
+
+
+\begin{DoxyParams}{Parameters}
+{\em txt} & Pointeur vers la structure {\ttfamily \doxylink{structuiTxt}{ui\+Txt}} à mettre à jour. \\
+\hline
+{\em text} & Chaîne de caractères représentant le nouveau contenu du texte. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{aff_8h_a550a043498121c28a5c124bd56ab9da3}\label{aff_8h_a550a043498121c28a5c124bd56ab9da3} 
+\index{aff.h@{aff.h}!uiHandle@{uiHandle}}
+\index{uiHandle@{uiHandle}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{uiHandle()}{uiHandle()}}
+{\footnotesize\ttfamily void ui\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère l\textquotesingle{}affichage des éléments de l\textquotesingle{}interface utilisateur. 
+
+Cette fonction met à jour et affiche tous les textes et appelle l\textquotesingle{}affichage des images de l\textquotesingle{}interface utilisateur. \Hypertarget{aff_8h_ab4a35ef01d4d79c1c5b5ce0b6511ebe1}\label{aff_8h_ab4a35ef01d4d79c1c5b5ce0b6511ebe1} 
+\index{aff.h@{aff.h}!uiImgHandle@{uiImgHandle}}
+\index{uiImgHandle@{uiImgHandle}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{uiImgHandle()}{uiImgHandle()}}
+{\footnotesize\ttfamily void ui\+Img\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère l\textquotesingle{}affichage des images de l\textquotesingle{}interface utilisateur. 
+
+Cette fonction met à jour et affiche toutes les images de l\textquotesingle{}interface utilisateur. \Hypertarget{aff_8h_a423a6a66abaaf13fdbc4a50d51b3d1a5}\label{aff_8h_a423a6a66abaaf13fdbc4a50d51b3d1a5} 
+\index{aff.h@{aff.h}!vh@{vh}}
+\index{vh@{vh}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{vh()}{vh()}}
+{\footnotesize\ttfamily int vh (\begin{DoxyParamCaption}\item[{float}]{percent }\end{DoxyParamCaption})}
+
+
+
+Calcule une hauteur relative à l\textquotesingle{}écran en pourcentage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percent} & Pourcentage de la hauteur de l\textquotesingle{}écran.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La hauteur calculée en pixels. 
+\end{DoxyReturn}
+\Hypertarget{aff_8h_ae8fe7d31378c00422ab654ed779b5ce5}\label{aff_8h_ae8fe7d31378c00422ab654ed779b5ce5} 
+\index{aff.h@{aff.h}!vw@{vw}}
+\index{vw@{vw}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{vw()}{vw()}}
+{\footnotesize\ttfamily int vw (\begin{DoxyParamCaption}\item[{float}]{percent }\end{DoxyParamCaption})}
+
+
+
+Calcule une largeur relative à l\textquotesingle{}écran en pourcentage. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em percent} & Pourcentage de la largeur de l\textquotesingle{}écran.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La largeur calculée en pixels. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{aff_8h_ac410034681234df57aadb25655697426}\label{aff_8h_ac410034681234df57aadb25655697426} 
+\index{aff.h@{aff.h}!heightscreen@{heightscreen}}
+\index{heightscreen@{heightscreen}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{heightscreen}{heightscreen}}
+{\footnotesize\ttfamily int heightscreen\hspace{0.3cm}{\ttfamily [extern]}}
+
+Hauteur de l\textquotesingle{}écran \Hypertarget{aff_8h_af7938f2fddb32cc5fda5cfb1b11a1f6a}\label{aff_8h_af7938f2fddb32cc5fda5cfb1b11a1f6a} 
+\index{aff.h@{aff.h}!widthscreen@{widthscreen}}
+\index{widthscreen@{widthscreen}!aff.h@{aff.h}}
+\doxysubsubsection{\texorpdfstring{widthscreen}{widthscreen}}
+{\footnotesize\ttfamily int widthscreen\hspace{0.3cm}{\ttfamily [extern]}}
+
+Largeur de l\textquotesingle{}écran 

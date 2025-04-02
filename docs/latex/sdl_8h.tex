@@ -1,0 +1,119 @@
+\doxysection{lib/sdl.h File Reference}
+\hypertarget{sdl_8h}{}\label{sdl_8h}\index{lib/sdl.h@{lib/sdl.h}}
+
+
+Déclarations pour l\textquotesingle{}initialisation, la gestion et la fermeture du sous-\/système SDL dans Tap\+Venture.  
+
+
+{\ttfamily \#include \"{}SDL2/\+SDL.\+h\"{}}\newline
+{\ttfamily \#include \"{}SDL2/\+SDL\+\_\+ttf.\+h\"{}}\newline
+{\ttfamily \#include \"{}SDL2/\+SDL\+\_\+image.\+h\"{}}\newline
+{\ttfamily \#include \"{}SDL2/\+SDL\+\_\+mixer.\+h\"{}}\newline
+Include dependency graph for sdl.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sdl_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{sdl_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sdl_8h_aad9b87c2050860c839f1a0bafc430eeb}\label{sdl_8h_aad9b87c2050860c839f1a0bafc430eeb} 
+\#define {\bfseries LINK\+\_\+\+FONT}~\"{}assets/fonts/Chakra\+Petch-\/Semi\+Bold.\+ttf\"{}
+\begin{DoxyCompactList}\small\item\em Chemin du fichier de police utilisé par défaut dans Tap\+Venture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sdl_8h_adeb93a35883e6dbfa3559d100e07eac0}{init\+\_\+\+SDL}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le sous-\/système SDL et ses modules associés. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sdl_8h_a429e9adddffe360a9e031ca6af011d9b}{SDLExit}} ()
+\begin{DoxyCompactList}\small\item\em Ferme SDL et libère toutes les ressources associées. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{sdl_8h_adec6bc7a523c3928fa16b2e304f8b891}{SDLScreen\+Handler}} ()
+\begin{DoxyCompactList}\small\item\em Gère le rafraîchissement de l\textquotesingle{}écran. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sdl_8h_aaa8e409e04dcf575ef63fd5fb3db06f9}\label{sdl_8h_aaa8e409e04dcf575ef63fd5fb3db06f9} 
+SDL\+\_\+\+Window \texorpdfstring{$\ast$}{*} {\bfseries window}
+\begin{DoxyCompactList}\small\item\em Pointeur vers la fenêtre principale SDL. \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_a966da7a60c4ea3ba301e26ccc5efe452}\label{sdl_8h_a966da7a60c4ea3ba301e26ccc5efe452} 
+SDL\+\_\+\+Renderer \texorpdfstring{$\ast$}{*} {\bfseries renderer}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le renderer SDL. \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_abf5bfa705e66ffc1ddaa6ce46c960873}\label{sdl_8h_abf5bfa705e66ffc1ddaa6ce46c960873} 
+TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*} {\bfseries font}
+\begin{DoxyCompactList}\small\item\em Pointeur vers la police de caractères de taille standard. \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_a5ba8d3d6e5d643b7874bba8948187d9c}\label{sdl_8h_a5ba8d3d6e5d643b7874bba8948187d9c} 
+TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*} {\bfseries font\+Big}
+\begin{DoxyCompactList}\small\item\em Pointeur vers la police de caractères de grande taille. \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_a06e8dd1f849973ccc456f8553601e8b9}\label{sdl_8h_a06e8dd1f849973ccc456f8553601e8b9} 
+SDL\+\_\+\+Cursor \texorpdfstring{$\ast$}{*} {\bfseries cursor}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le curseur actuellement utilisé dans le jeu. \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_ab8403ffc400186f0efae4ca1754a1981}\label{sdl_8h_ab8403ffc400186f0efae4ca1754a1981} 
+SDL\+\_\+\+Cursor \texorpdfstring{$\ast$}{*} {\bfseries classic\+Cursor}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le curseur classique (par défaut). \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_aad7a8bd0871222e7a556a433a95fa8ae}\label{sdl_8h_aad7a8bd0871222e7a556a433a95fa8ae} 
+SDL\+\_\+\+Cursor \texorpdfstring{$\ast$}{*} {\bfseries sword\+Cursor}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le curseur en forme d\textquotesingle{}épée. \end{DoxyCompactList}\item 
+\Hypertarget{sdl_8h_a363c8eacfc2793d1110d6905c193eb18}\label{sdl_8h_a363c8eacfc2793d1110d6905c193eb18} 
+SDL\+\_\+\+Cursor \texorpdfstring{$\ast$}{*} {\bfseries hand\+Cursor}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le curseur en forme de main. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour l\textquotesingle{}initialisation, la gestion et la fermeture du sous-\/système SDL dans Tap\+Venture. 
+
+Ce fichier contient les déclarations des fonctions d\textquotesingle{}initialisation de SDL, de gestion de la fenêtre et du renderer, ainsi que celles permettant de libérer les ressources associées (textures, polices et curseurs).
+
+\begin{DoxyAuthor}{Author}
+Noam MANFALOTI 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+25 janvier 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sdl_8h_adeb93a35883e6dbfa3559d100e07eac0}\label{sdl_8h_adeb93a35883e6dbfa3559d100e07eac0} 
+\index{sdl.h@{sdl.h}!init\_SDL@{init\_SDL}}
+\index{init\_SDL@{init\_SDL}!sdl.h@{sdl.h}}
+\doxysubsubsection{\texorpdfstring{init\_SDL()}{init\_SDL()}}
+{\footnotesize\ttfamily int init\+\_\+\+SDL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le sous-\/système SDL et ses modules associés. 
+
+Cette fonction initialise SDL, SDL\+\_\+ttf, SDL\+\_\+image et SDL\+\_\+mixer. Elle crée également la fenêtre et le renderer utilisés pour afficher le jeu.
+
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, un code d\textquotesingle{}erreur sinon. 
+\end{DoxyReturn}
+\Hypertarget{sdl_8h_a429e9adddffe360a9e031ca6af011d9b}\label{sdl_8h_a429e9adddffe360a9e031ca6af011d9b} 
+\index{sdl.h@{sdl.h}!SDLExit@{SDLExit}}
+\index{SDLExit@{SDLExit}!sdl.h@{sdl.h}}
+\doxysubsubsection{\texorpdfstring{SDLExit()}{SDLExit()}}
+{\footnotesize\ttfamily void SDLExit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Ferme SDL et libère toutes les ressources associées. 
+
+Cette fonction détruit la fenêtre, le renderer, les curseurs, libère les polices et appelle les fonctions de fermeture pour SDL\+\_\+mixer, SDL\+\_\+ttf et SDL\+\_\+image. \Hypertarget{sdl_8h_adec6bc7a523c3928fa16b2e304f8b891}\label{sdl_8h_adec6bc7a523c3928fa16b2e304f8b891} 
+\index{sdl.h@{sdl.h}!SDLScreenHandler@{SDLScreenHandler}}
+\index{SDLScreenHandler@{SDLScreenHandler}!sdl.h@{sdl.h}}
+\doxysubsubsection{\texorpdfstring{SDLScreenHandler()}{SDLScreenHandler()}}
+{\footnotesize\ttfamily void SDLScreen\+Handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère le rafraîchissement de l\textquotesingle{}écran. 
+
+Cette fonction efface le renderer, met à jour la scène et affiche le contenu rendu à l\textquotesingle{}écran. Elle est généralement appelée dans la boucle principale du jeu. 

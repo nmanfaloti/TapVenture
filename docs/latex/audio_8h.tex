@@ -1,0 +1,215 @@
+\doxysection{lib/audio.h File Reference}
+\hypertarget{audio_8h}{}\label{audio_8h}\index{lib/audio.h@{lib/audio.h}}
+
+
+Interface de gestion audio pour Tap\+Venture.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \"{}../lib/sdl.\+h\"{}}\newline
+Include dependency graph for audio.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{audio_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{audio_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{music\+Index}} \{ \newline
+\mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203faefec904a682f968a2f5ce373972b144d}{MUSIC\+\_\+\+GAME}}
+, \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203faa302b374b72b19c56a0772396e4aa6e6}{MUSIC\+\_\+\+CLICK}}
+, \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fafd285fd81301e6e4972d59da6b564969}{MUSIC\+\_\+\+LEVEL\+\_\+\+UP}}
+, \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fab89300cea9c996b329dacf39b5b25c25}{MUSIC\+\_\+\+LEVEL\+\_\+\+UP\+\_\+\+BOSS}}
+, \newline
+\mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fa1477a5d83c1dd128ff56ce67c369cdce}{MUSIC\+\_\+\+COIN}}
+, \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fa076f27112bc93ace59f8199d91cb8ae4}{MUSIC\+\_\+\+ATTACK}}
+, \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fa4579796568f086dac1f0ba1c5bc0ec74}{MUSIC\+\_\+\+COUNT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumération des indices pour les musiques et effets sonores. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canals\+Index}} \{ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa8eeb0f5e86f13e2ada662f57c9b6cd88}{CANAL\+\_\+\+MUSIC\+\_\+\+BACK}}
+, \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa783b06e3a3a570f13aec34d5187640c9}{CANAL\+\_\+\+EFFECT}}
+, \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa77e8f9c9fdb2ff9bbf5cc20b6f572d77}{CANAL\+\_\+\+COUNT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumération des indices pour les canaux audio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{audio_8h_a685b7788224588f22b3ef5231cc6df66}{init\+Music}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le système audio pour Tap\+Venture. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{audio_8h_a1f210756cc0132a16494e037b92853dc}{load\+Music}} (\mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{music\+Index}} \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{music\+Index}}, char \texorpdfstring{$\ast$}{*}path)
+\begin{DoxyCompactList}\small\item\em Charge un fichier audio à partir du chemin donné. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{audio_8h_a38938493356d74bff103b37ad3a61762}{play\+Music}} (int \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{music\+Index}}, \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canals\+Index}} \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canals\+Index}}, int nb\+Loops)
+\begin{DoxyCompactList}\small\item\em Joue une musique ou un effet sonore. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{audio_8h_a7f83a2688f5147f44f132c214661d34f}{stop\+All\+Music}} ()
+\begin{DoxyCompactList}\small\item\em Arrête la lecture de tous les audios. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{audio_8h_a005286939abe249869e4da5c08ba24bf}{free\+All\+Music}} ()
+\begin{DoxyCompactList}\small\item\em Libère les ressources audio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion audio pour Tap\+Venture. 
+
+Ce fichier définit les types et fonctions permettant la gestion de l\textquotesingle{}audio dans Tap\+Venture, incluant le chargement, la lecture et la libération des ressources audio pour les musiques et effets sonores. \begin{DoxyAuthor}{Author}
+Lucas DUPONT 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+23 mars 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}\label{audio_8h_aad0777a8498d8a7cced4281dae2aa61a} 
+\index{audio.h@{audio.h}!canalsIndex@{canalsIndex}}
+\index{canalsIndex@{canalsIndex}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{canalsIndex}{canalsIndex}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canals\+Index}}}
+
+
+
+Enumération des indices pour les canaux audio. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CANAL\_MUSIC\_BACK@{CANAL\_MUSIC\_BACK}!audio.h@{audio.h}}\index{audio.h@{audio.h}!CANAL\_MUSIC\_BACK@{CANAL\_MUSIC\_BACK}}}\Hypertarget{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa8eeb0f5e86f13e2ada662f57c9b6cd88}\label{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa8eeb0f5e86f13e2ada662f57c9b6cd88} 
+CANAL\+\_\+\+MUSIC\+\_\+\+BACK&Canal pour la musique de fond \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CANAL\_EFFECT@{CANAL\_EFFECT}!audio.h@{audio.h}}\index{audio.h@{audio.h}!CANAL\_EFFECT@{CANAL\_EFFECT}}}\Hypertarget{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa783b06e3a3a570f13aec34d5187640c9}\label{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa783b06e3a3a570f13aec34d5187640c9} 
+CANAL\+\_\+\+EFFECT&Canal pour les effets sonores \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CANAL\_COUNT@{CANAL\_COUNT}!audio.h@{audio.h}}\index{audio.h@{audio.h}!CANAL\_COUNT@{CANAL\_COUNT}}}\Hypertarget{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa77e8f9c9fdb2ff9bbf5cc20b6f572d77}\label{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa77e8f9c9fdb2ff9bbf5cc20b6f572d77} 
+CANAL\+\_\+\+COUNT&Nombre total de canaux \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203f}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203f} 
+\index{audio.h@{audio.h}!musicIndex@{musicIndex}}
+\index{musicIndex@{musicIndex}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{musicIndex}{musicIndex}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{music\+Index}}}
+
+
+
+Enumération des indices pour les musiques et effets sonores. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_GAME@{MUSIC\_GAME}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_GAME@{MUSIC\_GAME}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203faefec904a682f968a2f5ce373972b144d}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203faefec904a682f968a2f5ce373972b144d} 
+MUSIC\+\_\+\+GAME&Musique de jeu principale \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_CLICK@{MUSIC\_CLICK}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_CLICK@{MUSIC\_CLICK}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203faa302b374b72b19c56a0772396e4aa6e6}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203faa302b374b72b19c56a0772396e4aa6e6} 
+MUSIC\+\_\+\+CLICK&Effet sonore lors d\textquotesingle{}un clic \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_LEVEL\_UP@{MUSIC\_LEVEL\_UP}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_LEVEL\_UP@{MUSIC\_LEVEL\_UP}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203fafd285fd81301e6e4972d59da6b564969}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203fafd285fd81301e6e4972d59da6b564969} 
+MUSIC\+\_\+\+LEVEL\+\_\+\+UP&Effet sonore pour l\textquotesingle{}augmentation de niveau \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_LEVEL\_UP\_BOSS@{MUSIC\_LEVEL\_UP\_BOSS}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_LEVEL\_UP\_BOSS@{MUSIC\_LEVEL\_UP\_BOSS}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203fab89300cea9c996b329dacf39b5b25c25}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203fab89300cea9c996b329dacf39b5b25c25} 
+MUSIC\+\_\+\+LEVEL\+\_\+\+UP\+\_\+\+BOSS&Effet sonore pour l\textquotesingle{}augmentation de niveau face au boss \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_COIN@{MUSIC\_COIN}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_COIN@{MUSIC\_COIN}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203fa1477a5d83c1dd128ff56ce67c369cdce}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203fa1477a5d83c1dd128ff56ce67c369cdce} 
+MUSIC\+\_\+\+COIN&Effet sonore de collecte de pièce \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_ATTACK@{MUSIC\_ATTACK}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_ATTACK@{MUSIC\_ATTACK}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203fa076f27112bc93ace59f8199d91cb8ae4}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203fa076f27112bc93ace59f8199d91cb8ae4} 
+MUSIC\+\_\+\+ATTACK&Effet sonore d\textquotesingle{}attaque \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MUSIC\_COUNT@{MUSIC\_COUNT}!audio.h@{audio.h}}\index{audio.h@{audio.h}!MUSIC\_COUNT@{MUSIC\_COUNT}}}\Hypertarget{audio_8h_add952c7e0bfe8c09e443f0374e36203fa4579796568f086dac1f0ba1c5bc0ec74}\label{audio_8h_add952c7e0bfe8c09e443f0374e36203fa4579796568f086dac1f0ba1c5bc0ec74} 
+MUSIC\+\_\+\+COUNT&Nombre total d\textquotesingle{}éléments \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{audio_8h_a005286939abe249869e4da5c08ba24bf}\label{audio_8h_a005286939abe249869e4da5c08ba24bf} 
+\index{audio.h@{audio.h}!freeAllMusic@{freeAllMusic}}
+\index{freeAllMusic@{freeAllMusic}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{freeAllMusic()}{freeAllMusic()}}
+{\footnotesize\ttfamily void free\+All\+Music (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Libère les ressources audio. 
+
+Libère toutes les ressources allouées pour la gestion audio. \Hypertarget{audio_8h_a685b7788224588f22b3ef5231cc6df66}\label{audio_8h_a685b7788224588f22b3ef5231cc6df66} 
+\index{audio.h@{audio.h}!initMusic@{initMusic}}
+\index{initMusic@{initMusic}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{initMusic()}{initMusic()}}
+{\footnotesize\ttfamily int init\+Music (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le système audio pour Tap\+Venture. 
+
+Configure et initialise les ressources nécessaires à la gestion audio pour le jeu.
+
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur différente en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{audio_8h_a1f210756cc0132a16494e037b92853dc}\label{audio_8h_a1f210756cc0132a16494e037b92853dc} 
+\index{audio.h@{audio.h}!loadMusic@{loadMusic}}
+\index{loadMusic@{loadMusic}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{loadMusic()}{loadMusic()}}
+{\footnotesize\ttfamily bool load\+Music (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{music\+Index}}}]{music\+Index,  }\item[{char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+
+
+Charge un fichier audio à partir du chemin donné. 
+
+Charge la musique ou l\textquotesingle{}effet sonore associé à l\textquotesingle{}indice spécifié.
+
+
+\begin{DoxyParams}{Parameters}
+{\em music\+Index} & Indice correspondant à la musique ou l\textquotesingle{}effet sonore à charger. \\
+\hline
+{\em path} & Chemin vers le fichier audio. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si le chargement est réussi, false sinon. 
+\end{DoxyReturn}
+\Hypertarget{audio_8h_a38938493356d74bff103b37ad3a61762}\label{audio_8h_a38938493356d74bff103b37ad3a61762} 
+\index{audio.h@{audio.h}!playMusic@{playMusic}}
+\index{playMusic@{playMusic}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{playMusic()}{playMusic()}}
+{\footnotesize\ttfamily void play\+Music (\begin{DoxyParamCaption}\item[{int}]{music\+Index,  }\item[{\mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canals\+Index}}}]{canals\+Index,  }\item[{int}]{nb\+Loops }\end{DoxyParamCaption})}
+
+
+
+Joue une musique ou un effet sonore. 
+
+Lance la lecture de l\textquotesingle{}audio spécifié sur le canal choisi.
+
+
+\begin{DoxyParams}{Parameters}
+{\em music\+Index} & Indice de la musique ou de l\textquotesingle{}effet sonore à jouer. \\
+\hline
+{\em canals\+Index} & Indice du canal sur lequel jouer l\textquotesingle{}audio. \\
+\hline
+{\em nb\+Loops} & Nombre de fois que l\textquotesingle{}audio doit être reproduit (0 pour boucle infinie). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{audio_8h_a7f83a2688f5147f44f132c214661d34f}\label{audio_8h_a7f83a2688f5147f44f132c214661d34f} 
+\index{audio.h@{audio.h}!stopAllMusic@{stopAllMusic}}
+\index{stopAllMusic@{stopAllMusic}!audio.h@{audio.h}}
+\doxysubsubsection{\texorpdfstring{stopAllMusic()}{stopAllMusic()}}
+{\footnotesize\ttfamily void stop\+All\+Music (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Arrête la lecture de tous les audios. 
+
+Stoppe la lecture de toutes les musiques et effets sonores en cours. 

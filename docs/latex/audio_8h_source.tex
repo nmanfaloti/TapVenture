@@ -1,0 +1,39 @@
+\doxysection{audio.\+h}
+\hypertarget{audio_8h_source}{}\label{audio_8h_source}\index{lib/audio.h@{lib/audio.h}}
+\mbox{\hyperlink{audio_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ AUDIO\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ AUDIO\_H\ }}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}../lib/sdl.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203faefec904a682f968a2f5ce373972b144d}{MUSIC\_GAME}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203faa302b374b72b19c56a0772396e4aa6e6}{MUSIC\_CLICK}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fafd285fd81301e6e4972d59da6b564969}{MUSIC\_LEVEL\_UP}},\ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fab89300cea9c996b329dacf39b5b25c25}{MUSIC\_LEVEL\_UP\_BOSS}},\ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fa1477a5d83c1dd128ff56ce67c369cdce}{MUSIC\_COIN}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fa076f27112bc93ace59f8199d91cb8ae4}{MUSIC\_ATTACK}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203fa4579796568f086dac1f0ba1c5bc0ec74}{MUSIC\_COUNT}}\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \}\ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{musicIndex}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa8eeb0f5e86f13e2ada662f57c9b6cd88}{CANAL\_MUSIC\_BACK}},\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa783b06e3a3a570f13aec34d5187640c9}{CANAL\_EFFECT}},\ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61aa77e8f9c9fdb2ff9bbf5cc20b6f572d77}{CANAL\_COUNT}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \}\ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canalsIndex}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{audio_8h_a685b7788224588f22b3ef5231cc6df66}{initMusic}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00063\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{audio_8h_a1f210756cc0132a16494e037b92853dc}{loadMusic}}(\mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{musicIndex}}\ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{musicIndex}},\ \textcolor{keywordtype}{char}\ *\ path);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{audio_8h_a38938493356d74bff103b37ad3a61762}{playMusic}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{audio_8h_add952c7e0bfe8c09e443f0374e36203f}{musicIndex}},\ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canalsIndex}}\ \mbox{\hyperlink{audio_8h_aad0777a8498d8a7cced4281dae2aa61a}{canalsIndex}},\ \textcolor{keywordtype}{int}\ nbLoops);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{audio_8h_a7f83a2688f5147f44f132c214661d34f}{stopAllMusic}}();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{audio_8h_a005286939abe249869e4da5c08ba24bf}{freeAllMusic}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ AUDIO\_H}}
+
+\end{DoxyCode}

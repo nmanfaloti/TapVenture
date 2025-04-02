@@ -1,0 +1,115 @@
+\doxysection{Button\+Img Struct Reference}
+\hypertarget{structButtonImg}{}\label{structButtonImg}\index{ButtonImg@{ButtonImg}}
+
+
+Structure représentant un bouton avec une image dans l\textquotesingle{}interface utilisateur.  
+
+
+
+
+{\ttfamily \#include $<$button.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{structButtonImg_adbdc1fc2099f2998b6a3be790c6497d1}{rect}}
+\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{structButtonImg_a1e870b0d2603a963160c762409676d22}{ini\+Rect}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_a430fff158eeace61fab0ecd244887e3e}{path\+Img}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_a26b0d9fa9e48cf546271fcb73e1ad898}{path\+Background}}
+\item 
+int \mbox{\hyperlink{structButtonImg_a4932800e47164d0d6771e6d1e49a3c0e}{offset\+LogoX}}
+\item 
+int \mbox{\hyperlink{structButtonImg_a5d2439cdb2d284f465b8a97a8c761d25}{offset\+LogoY}}
+\item 
+int(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_abde305f1cf062ebaded5d8bdedd27c4f}{call\+Function}} )(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})
+\item 
+void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_a941a21b801b46e5ff4dabd0fa3716eb3}{args}}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_a9983c51c94196ce636e0cf7ab933c441}{img\+Texture}}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_a7a987d7780996495b0b160831cc310f9}{background\+Texture}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structButtonImg_ab88cc76467305d35e7a0a36599b04010}{label}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure représentant un bouton avec une image dans l\textquotesingle{}interface utilisateur. 
+
+Cette structure contient les informations nécessaires pour afficher et gérer un bouton avec une image, y compris ses dimensions, ses textures, et les fonctions associées. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structButtonImg_a941a21b801b46e5ff4dabd0fa3716eb3}\label{structButtonImg_a941a21b801b46e5ff4dabd0fa3716eb3} 
+\index{ButtonImg@{ButtonImg}!args@{args}}
+\index{args@{args}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{args}{args}}
+{\footnotesize\ttfamily void\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} Button\+Img\+::args}
+
+Arguments passés à la fonction associée \Hypertarget{structButtonImg_a7a987d7780996495b0b160831cc310f9}\label{structButtonImg_a7a987d7780996495b0b160831cc310f9} 
+\index{ButtonImg@{ButtonImg}!backgroundTexture@{backgroundTexture}}
+\index{backgroundTexture@{backgroundTexture}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{backgroundTexture}{backgroundTexture}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} Button\+Img\+::background\+Texture}
+
+Texture de l\textquotesingle{}image de fond du bouton \Hypertarget{structButtonImg_abde305f1cf062ebaded5d8bdedd27c4f}\label{structButtonImg_abde305f1cf062ebaded5d8bdedd27c4f} 
+\index{ButtonImg@{ButtonImg}!callFunction@{callFunction}}
+\index{callFunction@{callFunction}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{callFunction}{callFunction}}
+{\footnotesize\ttfamily int(\texorpdfstring{$\ast$}{*} Button\+Img\+::call\+Function) (void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})}
+
+Pointeur sur la fonction exécutée lors du clic \Hypertarget{structButtonImg_a9983c51c94196ce636e0cf7ab933c441}\label{structButtonImg_a9983c51c94196ce636e0cf7ab933c441} 
+\index{ButtonImg@{ButtonImg}!imgTexture@{imgTexture}}
+\index{imgTexture@{imgTexture}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{imgTexture}{imgTexture}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} Button\+Img\+::img\+Texture}
+
+Texture de l\textquotesingle{}image principale du bouton \Hypertarget{structButtonImg_a1e870b0d2603a963160c762409676d22}\label{structButtonImg_a1e870b0d2603a963160c762409676d22} 
+\index{ButtonImg@{ButtonImg}!iniRect@{iniRect}}
+\index{iniRect@{iniRect}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{iniRect}{iniRect}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect Button\+Img\+::ini\+Rect}
+
+Rectangle initial du bouton \Hypertarget{structButtonImg_ab88cc76467305d35e7a0a36599b04010}\label{structButtonImg_ab88cc76467305d35e7a0a36599b04010} 
+\index{ButtonImg@{ButtonImg}!label@{label}}
+\index{label@{label}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} Button\+Img\+::label}
+
+Étiquette associée au bouton \Hypertarget{structButtonImg_a4932800e47164d0d6771e6d1e49a3c0e}\label{structButtonImg_a4932800e47164d0d6771e6d1e49a3c0e} 
+\index{ButtonImg@{ButtonImg}!offsetLogoX@{offsetLogoX}}
+\index{offsetLogoX@{offsetLogoX}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{offsetLogoX}{offsetLogoX}}
+{\footnotesize\ttfamily int Button\+Img\+::offset\+LogoX}
+
+Décalage horizontal de l\textquotesingle{}image \Hypertarget{structButtonImg_a5d2439cdb2d284f465b8a97a8c761d25}\label{structButtonImg_a5d2439cdb2d284f465b8a97a8c761d25} 
+\index{ButtonImg@{ButtonImg}!offsetLogoY@{offsetLogoY}}
+\index{offsetLogoY@{offsetLogoY}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{offsetLogoY}{offsetLogoY}}
+{\footnotesize\ttfamily int Button\+Img\+::offset\+LogoY}
+
+Décalage vertical de l\textquotesingle{}image \Hypertarget{structButtonImg_a26b0d9fa9e48cf546271fcb73e1ad898}\label{structButtonImg_a26b0d9fa9e48cf546271fcb73e1ad898} 
+\index{ButtonImg@{ButtonImg}!pathBackground@{pathBackground}}
+\index{pathBackground@{pathBackground}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{pathBackground}{pathBackground}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} Button\+Img\+::path\+Background}
+
+Chemin vers l\textquotesingle{}image de fond du bouton \Hypertarget{structButtonImg_a430fff158eeace61fab0ecd244887e3e}\label{structButtonImg_a430fff158eeace61fab0ecd244887e3e} 
+\index{ButtonImg@{ButtonImg}!pathImg@{pathImg}}
+\index{pathImg@{pathImg}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{pathImg}{pathImg}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} Button\+Img\+::path\+Img}
+
+Chemin vers l\textquotesingle{}image principale du bouton \Hypertarget{structButtonImg_adbdc1fc2099f2998b6a3be790c6497d1}\label{structButtonImg_adbdc1fc2099f2998b6a3be790c6497d1} 
+\index{ButtonImg@{ButtonImg}!rect@{rect}}
+\index{rect@{rect}!ButtonImg@{ButtonImg}}
+\doxysubsubsection{\texorpdfstring{rect}{rect}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect Button\+Img\+::rect}
+
+Rectangle définissant la position et la taille du bouton 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{button_8h}{button.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,722 @@
+\doxysection{lib/inv.h File Reference}
+\hypertarget{inv_8h}{}\label{inv_8h}\index{lib/inv.h@{lib/inv.h}}
+
+
+Déclarations et définitions pour la gestion de l\textquotesingle{}inventaire.  
+
+
+{\ttfamily \#include \"{}../lib/scroll.\+h\"{}}\newline
+Include dependency graph for inv.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=156pt]{inv_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{inv_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structitem__t}{item\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un item. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structaff__inv__inf__s}{aff\+\_\+inv\+\_\+inf\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structinv}{inv}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un inventaire. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structliste__inventaires}{liste\+\_\+inventaires}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{inv_8h_a4e9ef6369e150f95709a98ff059645b3}\label{inv_8h_a4e9ef6369e150f95709a98ff059645b3} 
+\#define {\bfseries MAX\+\_\+\+LIGNE}~1000
+\item 
+\Hypertarget{inv_8h_a02f8477f8a7f74372dbb7c50d2c40ee3}\label{inv_8h_a02f8477f8a7f74372dbb7c50d2c40ee3} 
+\#define {\bfseries NB\+\_\+\+BOTTES}~6
+\item 
+\Hypertarget{inv_8h_a09d2ccfc1698dea5dd5c576043d63e3c}\label{inv_8h_a09d2ccfc1698dea5dd5c576043d63e3c} 
+\#define {\bfseries NB\+\_\+\+PLASTRON}~6
+\item 
+\Hypertarget{inv_8h_adf15b8ad7ef450452da83f369d1945a4}\label{inv_8h_adf15b8ad7ef450452da83f369d1945a4} 
+\#define {\bfseries NB\+\_\+\+CASQUE}~6
+\item 
+\Hypertarget{inv_8h_ac35193359435c51766f1d341e22c827c}\label{inv_8h_ac35193359435c51766f1d341e22c827c} 
+\#define {\bfseries NB\+\_\+\+ARME}~11
+\item 
+\Hypertarget{inv_8h_a1f2a2d00e626fac66d9d9b8e7e4f09d9}\label{inv_8h_a1f2a2d00e626fac66d9d9b8e7e4f09d9} 
+\#define {\bfseries DROP\+\_\+\+ITEM}~100
+\item 
+\Hypertarget{inv_8h_ae3a5d9bf50ea3e1c3118f249c6acca0a}\label{inv_8h_ae3a5d9bf50ea3e1c3118f249c6acca0a} 
+\#define {\bfseries NB\+\_\+\+EQU}~40
+\item 
+\Hypertarget{inv_8h_aa39d260fdd14dd92552ed389324c398b}\label{inv_8h_aa39d260fdd14dd92552ed389324c398b} 
+\#define {\bfseries EQU\+\_\+\+HEROS}~5
+\item 
+\Hypertarget{inv_8h_a834bbf2bd61bb921637a595f53a647e6}\label{inv_8h_a834bbf2bd61bb921637a595f53a647e6} 
+\#define {\bfseries POS\+\_\+\+HEROS\+\_\+X}~46
+\item 
+\Hypertarget{inv_8h_a07e0cc1a1bf2bbb7d01cf33ba02ae3af}\label{inv_8h_a07e0cc1a1bf2bbb7d01cf33ba02ae3af} 
+\#define {\bfseries BORDURE}~64
+\item 
+\Hypertarget{inv_8h_ac8924399e717893eb9a2d275b58c5956}\label{inv_8h_ac8924399e717893eb9a2d275b58c5956} 
+\#define {\bfseries DECALAGE}~10
+\item 
+\Hypertarget{inv_8h_ae34d2d29c8b2a3ae751d0b1d0f01ca88}\label{inv_8h_ae34d2d29c8b2a3ae751d0b1d0f01ca88} 
+\#define {\bfseries TAILLE\+\_\+\+ITEM}~64
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{inv_8h_a939b6d4ede549cfa069f41ba6b843137}\label{inv_8h_a939b6d4ede549cfa069f41ba6b843137} 
+typedef struct \mbox{\hyperlink{structaff__inv__inf__s}{aff\+\_\+inv\+\_\+inf\+\_\+s}} {\bfseries aff\+\_\+inv\+\_\+inf}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959}{stat\+\_\+a\+\_\+booster}} \{ \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959a03e725c8dd07724161e6279c6f25ec23}{DEGAT}}
+, \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959af05376ceaaf87def66982de3df392c8d}{VITESSE\+\_\+\+ATTAQUE}}
+, \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959a96727447c0ad447987df1c6415aef074}{OR}}
+ \}
+\begin{DoxyCompactList}\small\item\em Inventaire, place \+: inf, equipable \+: variable lim 10 max, drop \+: selon stat boss Stat booster \+: tous float variable selon rarity, stat \+: variable int represent pourcentage Rarity \+: variable (selon fusion), emplacement \+: CASQUE, PLASTRON, JAMBIERE, BOTTE, ARME. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29}{emplacement}} \{ \newline
+\mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29ae8fac2c9a0f0be516511648841f02b9b}{CASQUE}}
+, \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29aedbb23f610ae9780910d40b6d55d64f9}{PLASTRON}}
+, \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29a091e5d782a5d773ae567929725251169}{BOTTE}}
+, \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29a67c496eee7e7349709db95f918460093}{ARME}}
+, \newline
+{\bfseries NB\+\_\+\+AMPLECEMENT}
+ \}
+\begin{DoxyCompactList}\small\item\em Énumération des emplacements d\textquotesingle{}équipement. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873}{rarity}} \{ \newline
+\mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a806c2d875eb1f4cb657f2d8ab2340cac}{COMMUN}}
+, \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a9def75f6ad1758d0bb3e8bbb697449aa}{UNCOMMUN}}
+, \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a6f2ddf4b4018193871276f6461d8e9b7}{RARE}}
+, \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873afa0cca437f608cbc9268dc63ad3100f5}{EPIC}}
+, \newline
+\mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a09ecdef6d98abe36a97de72518c9806c}{LEGENDARY}}
+ \}
+\begin{DoxyCompactList}\small\item\em Énumération des niveaux de rareté. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{inv_8h_adaf44a36ef675aa8571c1211b292c805}{init\+\_\+inv}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a4ef3f326c61db3cf2484f7706d4dfa3c}{dest\+\_\+item}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Détruit un item et libère la mémoire allouée. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_abd472475149db380b29e27bf9bcb9b17}{liberer\+\_\+item}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em destruction des info stocker par l\textquotesingle{}item pour le reutiliser. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8h_a591942b8b1f2458525575cb1a5bfd856}\label{inv_8h_a591942b8b1f2458525575cb1a5bfd856} 
+void {\bfseries gestion\+\_\+inv} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}inventaire, int NB\+\_\+items, int scroll\+\_\+id, SDL\+\_\+\+Rect SDL\+\_\+\+Rect, int nb\+\_\+collone, int nb\+\_\+ligne, int arrondis, int decalage\+\_\+bas, int decalage\+\_\+cote, int id\+\_\+back\+\_\+item)
+\item 
+void \mbox{\hyperlink{inv_8h_a0539356cfaad795a5997fa5929f5bd44}{dest\+\_\+inv}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}inventaire)
+\begin{DoxyCompactList}\small\item\em Détruit un inventaire et libère la mémoire allouée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_a1efd18ab74c9d51e41bbf07fb282772f}{prem\+\_\+vide}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
+\begin{DoxyCompactList}\small\item\em Trouve le premier emplacement vide dans l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_a22af693b5f02e4630a01dc72cee4d421}{est\+\_\+vide}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item)
+\begin{DoxyCompactList}\small\item\em Vérifie si un item est vide. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_ae6229776e3fc981c2f1295d008e94963}{droit\+\_\+fusion}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item1, \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item2)
+\begin{DoxyCompactList}\small\item\em Vérifie si deux items peuvent être fusionnés. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_ac6178f19d4f45ce6c33b01927a4f5af2}{generate\+\_\+stat\+\_\+nb}} (int x, int type, int stat\+\_\+ameliorer, int rarete, int nb\+\_\+max\+\_\+nv)
+\begin{DoxyCompactList}\small\item\em Génère un nombre de statistique influencé par un niveau. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a9fdb529559d32a1007edfa2b949e208b}{deb\+\_\+fusion}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item1, \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item2)
+\begin{DoxyCompactList}\small\item\em Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_abbc013647564cd9a409be37f0536b209}{cercle\+\_\+graf}} (int x, int y, int rayon)
+\begin{DoxyCompactList}\small\item\em Dessine un cercle. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a5e2e19773d4b7e54d4ac98b6db160ca7}{rectangle\+\_\+arrondis}} (SDL\+\_\+\+Rect SDL\+\_\+\+Rect, int radius, int r, int g, int b)
+\begin{DoxyCompactList}\small\item\em Dessine un rectangle avec des coins arrondis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a9d6e1d9329536054b04a4cc689cabafb}{aff\+\_\+inv\+\_\+graf}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
+\begin{DoxyCompactList}\small\item\em Affiche plusieurs rectangles arrondis en grille. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a237d808972225afe414c21dfbc578a30}{draw\+\_\+scrollbar}} (int scrollbar\+\_\+x, int scrollbar\+\_\+y, int scrollbar\+\_\+height, int scrollbar\+\_\+wheight)
+\begin{DoxyCompactList}\small\item\em Dessine une barre de défilement verticale. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_abcc67224413c5cc47d3871744a8b8b40}{calculate\+\_\+total\+\_\+content\+\_\+height}} (int nb\+\_\+ligne, int taille, int decalage)
+\begin{DoxyCompactList}\small\item\em Calcule la hauteur totale du contenu. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{inv_8h_a7a4d94aa0621e4f02da13c20407f1ca6}{cof\+\_\+scrollbar\+\_\+window}} (int visible\+\_\+area\+\_\+height, int total\+\_\+content\+\_\+height)
+\begin{DoxyCompactList}\small\item\em Calcule le coefficient de vitesse de défilement de la barre de défilement. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_ab5cc7c64ef75e000ab468d498f660b86}{calculate\+\_\+scrollbar\+\_\+max\+\_\+position}} (int screen\+\_\+height, int scrollbar\+\_\+heigt, float cof)
+\begin{DoxyCompactList}\small\item\em Calcule la position maximale de la barre de défilement. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a1aea9793363cbba5a9062f8c7c2e5bb7}{handle\+\_\+inv\+\_\+event}} (SDL\+\_\+\+Event event)
+\begin{DoxyCompactList}\small\item\em Gère les événements de défilement. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_a5e5efe3d27dafa946fe605e316e5a63b}{coordonner\+\_\+realiste}} (int x\+\_\+deb, int y\+\_\+deb, int x\+\_\+fin, int y\+\_\+fin)
+\begin{DoxyCompactList}\small\item\em Vérifie si les coordonnées de la souris sont dans les limites d\textquotesingle{}un carré. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8h_a171a6f0f4f4d27f2527e88b9a6a4c1b8}{calculate\+\_\+zone\+\_\+content}} (int \texorpdfstring{$\ast$}{*}x\+\_\+larg, int \texorpdfstring{$\ast$}{*}y\+\_\+haut, int nb\+\_\+ligne, int nb\+\_\+colonne, int largeur, int hauteur, int decalage)
+\begin{DoxyCompactList}\small\item\em Calcule les dimensions de la zone de contenu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8h_a3d4a2f6177d528e86bb9ef8b757beba5}{calcule\+\_\+pos\+\_\+inv}} ()
+\begin{DoxyCompactList}\small\item\em Calcule le numéro de case en fonction des coordonnées de la souris. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8h_ad6854581078399bf475b14d2163de464}\label{inv_8h_ad6854581078399bf475b14d2163de464} 
+void {\bfseries dest\+\_\+all\+\_\+inventaires} ()
+\item 
+\Hypertarget{inv_8h_abe5203fd0a196bcb624e0c58f2ecec1b}\label{inv_8h_abe5203fd0a196bcb624e0c58f2ecec1b} 
+void {\bfseries aff\+\_\+all\+\_\+inventaires} ()
+\item 
+\Hypertarget{inv_8h_a78f61ac2dd03bcba8e09ca20cd7d68e3}\label{inv_8h_a78f61ac2dd03bcba8e09ca20cd7d68e3} 
+void {\bfseries load} ()
+\item 
+\Hypertarget{inv_8h_a4b66d5e31b5dc18b314c8a68163263bd}\label{inv_8h_a4b66d5e31b5dc18b314c8a68163263bd} 
+void {\bfseries cleanup} ()
+\item 
+\Hypertarget{inv_8h_ae69f7d4289895ec184f8e0e91da01184}\label{inv_8h_ae69f7d4289895ec184f8e0e91da01184} 
+void {\bfseries drop\+\_\+item} ()
+\item 
+\Hypertarget{inv_8h_a6c9868e5656ddd1e1504586bb77fa6a4}\label{inv_8h_a6c9868e5656ddd1e1504586bb77fa6a4} 
+void {\bfseries load\+\_\+inv} (const char \texorpdfstring{$\ast$}{*}nom\+\_\+fichier)
+\item 
+\Hypertarget{inv_8h_a8b24d6b1de53ea509efd9299876444f1}\label{inv_8h_a8b24d6b1de53ea509efd9299876444f1} 
+void {\bfseries init\+\_\+inv\+\_\+main} ()
+\item 
+\Hypertarget{inv_8h_af3cc40ebc52d1400446e843d833ba71b}\label{inv_8h_af3cc40ebc52d1400446e843d833ba71b} 
+\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries load\+\_\+item\+\_\+ref} (FILE \texorpdfstring{$\ast$}{*}f)
+\item 
+\Hypertarget{inv_8h_a6a82e82b7a27064258ce6d9b88af1e6c}\label{inv_8h_a6a82e82b7a27064258ce6d9b88af1e6c} 
+\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries load\+\_\+item\+\_\+joueur} (FILE \texorpdfstring{$\ast$}{*}f)
+\item 
+\Hypertarget{inv_8h_a146fd1e52d8051a948ce373dd7274ae7}\label{inv_8h_a146fd1e52d8051a948ce373dd7274ae7} 
+int {\bfseries boost\+\_\+gold} ()
+\item 
+\Hypertarget{inv_8h_add628839759e405b20263980ee5fd3da}\label{inv_8h_add628839759e405b20263980ee5fd3da} 
+void {\bfseries gestion\+\_\+stat\+\_\+heros} (int index\+\_\+heros)
+\item 
+\Hypertarget{inv_8h_a66927071e676d5ff59384db3af61624b}\label{inv_8h_a66927071e676d5ff59384db3af61624b} 
+void {\bfseries save\+\_\+inv} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire, char \texorpdfstring{$\ast$}{*}save)
+\item 
+\Hypertarget{inv_8h_a6485a7f435a20095cd7b4119557459bf}\label{inv_8h_a6485a7f435a20095cd7b4119557459bf} 
+void {\bfseries draw\+\_\+rect\+\_\+inv} ()
+\item 
+\Hypertarget{inv_8h_a955f832f72a60a8338fad249b6863504}\label{inv_8h_a955f832f72a60a8338fad249b6863504} 
+void {\bfseries racourcis\+\_\+create\+UI} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}it, int x, int y, int id\+\_\+tuille)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{inv_8h_a4ab5380be52bad9605ad2c3f22fe8ac9}\label{inv_8h_a4ab5380be52bad9605ad2c3f22fe8ac9} 
+\mbox{\hyperlink{structliste__inventaires}{liste\+\_\+inventaires}} \texorpdfstring{$\ast$}{*} {\bfseries list\+\_\+inv}
+\item 
+\Hypertarget{inv_8h_a2e9d7a95de79011bd010dcc3f9367501}\label{inv_8h_a2e9d7a95de79011bd010dcc3f9367501} 
+int {\bfseries stat\+\_\+item\+\_\+degat}
+\item 
+\Hypertarget{inv_8h_a22ec1b6e890d3cb651793842bf318821}\label{inv_8h_a22ec1b6e890d3cb651793842bf318821} 
+int {\bfseries stat\+\_\+item\+\_\+temps}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations et définitions pour la gestion de l\textquotesingle{}inventaire. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{inv_8h_a00dd3b8bed713de724b5aee121928d29}\label{inv_8h_a00dd3b8bed713de724b5aee121928d29} 
+\index{inv.h@{inv.h}!emplacement@{emplacement}}
+\index{emplacement@{emplacement}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{emplacement}{emplacement}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29}{emplacement}}}
+
+
+
+Énumération des emplacements d\textquotesingle{}équipement. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CASQUE@{CASQUE}!inv.h@{inv.h}}\index{inv.h@{inv.h}!CASQUE@{CASQUE}}}\Hypertarget{inv_8h_a00dd3b8bed713de724b5aee121928d29ae8fac2c9a0f0be516511648841f02b9b}\label{inv_8h_a00dd3b8bed713de724b5aee121928d29ae8fac2c9a0f0be516511648841f02b9b} 
+CASQUE&Casque. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PLASTRON@{PLASTRON}!inv.h@{inv.h}}\index{inv.h@{inv.h}!PLASTRON@{PLASTRON}}}\Hypertarget{inv_8h_a00dd3b8bed713de724b5aee121928d29aedbb23f610ae9780910d40b6d55d64f9}\label{inv_8h_a00dd3b8bed713de724b5aee121928d29aedbb23f610ae9780910d40b6d55d64f9} 
+PLASTRON&Plastron. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BOTTE@{BOTTE}!inv.h@{inv.h}}\index{inv.h@{inv.h}!BOTTE@{BOTTE}}}\Hypertarget{inv_8h_a00dd3b8bed713de724b5aee121928d29a091e5d782a5d773ae567929725251169}\label{inv_8h_a00dd3b8bed713de724b5aee121928d29a091e5d782a5d773ae567929725251169} 
+BOTTE&Botte. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARME@{ARME}!inv.h@{inv.h}}\index{inv.h@{inv.h}!ARME@{ARME}}}\Hypertarget{inv_8h_a00dd3b8bed713de724b5aee121928d29a67c496eee7e7349709db95f918460093}\label{inv_8h_a00dd3b8bed713de724b5aee121928d29a67c496eee7e7349709db95f918460093} 
+ARME&Arme. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873}\label{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873} 
+\index{inv.h@{inv.h}!rarity@{rarity}}
+\index{rarity@{rarity}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{rarity}{rarity}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873}{rarity}}}
+
+
+
+Énumération des niveaux de rareté. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMMUN@{COMMUN}!inv.h@{inv.h}}\index{inv.h@{inv.h}!COMMUN@{COMMUN}}}\Hypertarget{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a806c2d875eb1f4cb657f2d8ab2340cac}\label{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a806c2d875eb1f4cb657f2d8ab2340cac} 
+COMMUN&Commun. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNCOMMUN@{UNCOMMUN}!inv.h@{inv.h}}\index{inv.h@{inv.h}!UNCOMMUN@{UNCOMMUN}}}\Hypertarget{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a9def75f6ad1758d0bb3e8bbb697449aa}\label{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a9def75f6ad1758d0bb3e8bbb697449aa} 
+UNCOMMUN&Peu commun. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RARE@{RARE}!inv.h@{inv.h}}\index{inv.h@{inv.h}!RARE@{RARE}}}\Hypertarget{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a6f2ddf4b4018193871276f6461d8e9b7}\label{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a6f2ddf4b4018193871276f6461d8e9b7} 
+RARE&Rare. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EPIC@{EPIC}!inv.h@{inv.h}}\index{inv.h@{inv.h}!EPIC@{EPIC}}}\Hypertarget{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873afa0cca437f608cbc9268dc63ad3100f5}\label{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873afa0cca437f608cbc9268dc63ad3100f5} 
+EPIC&Épique. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEGENDARY@{LEGENDARY}!inv.h@{inv.h}}\index{inv.h@{inv.h}!LEGENDARY@{LEGENDARY}}}\Hypertarget{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a09ecdef6d98abe36a97de72518c9806c}\label{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a09ecdef6d98abe36a97de72518c9806c} 
+LEGENDARY&Légendaire. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{inv_8h_a36c201eb589717e0370478d4ca9c2959}\label{inv_8h_a36c201eb589717e0370478d4ca9c2959} 
+\index{inv.h@{inv.h}!stat\_a\_booster@{stat\_a\_booster}}
+\index{stat\_a\_booster@{stat\_a\_booster}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{stat\_a\_booster}{stat\_a\_booster}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959}{stat\+\_\+a\+\_\+booster}}}
+
+
+
+Inventaire, place \+: inf, equipable \+: variable lim 10 max, drop \+: selon stat boss Stat booster \+: tous float variable selon rarity, stat \+: variable int represent pourcentage Rarity \+: variable (selon fusion), emplacement \+: CASQUE, PLASTRON, JAMBIERE, BOTTE, ARME. 
+
+Énumération des statistiques à booster. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DEGAT@{DEGAT}!inv.h@{inv.h}}\index{inv.h@{inv.h}!DEGAT@{DEGAT}}}\Hypertarget{inv_8h_a36c201eb589717e0370478d4ca9c2959a03e725c8dd07724161e6279c6f25ec23}\label{inv_8h_a36c201eb589717e0370478d4ca9c2959a03e725c8dd07724161e6279c6f25ec23} 
+DEGAT&Dégâts. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VITESSE\_ATTAQUE@{VITESSE\_ATTAQUE}!inv.h@{inv.h}}\index{inv.h@{inv.h}!VITESSE\_ATTAQUE@{VITESSE\_ATTAQUE}}}\Hypertarget{inv_8h_a36c201eb589717e0370478d4ca9c2959af05376ceaaf87def66982de3df392c8d}\label{inv_8h_a36c201eb589717e0370478d4ca9c2959af05376ceaaf87def66982de3df392c8d} 
+VITESSE\+\_\+\+ATTAQUE&Vitesse d\textquotesingle{}attaque. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OR@{OR}!inv.h@{inv.h}}\index{inv.h@{inv.h}!OR@{OR}}}\Hypertarget{inv_8h_a36c201eb589717e0370478d4ca9c2959a96727447c0ad447987df1c6415aef074}\label{inv_8h_a36c201eb589717e0370478d4ca9c2959a96727447c0ad447987df1c6415aef074} 
+OR&Or. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{inv_8h_a9d6e1d9329536054b04a4cc689cabafb}\label{inv_8h_a9d6e1d9329536054b04a4cc689cabafb} 
+\index{inv.h@{inv.h}!aff\_inv\_graf@{aff\_inv\_graf}}
+\index{aff\_inv\_graf@{aff\_inv\_graf}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{aff\_inv\_graf()}{aff\_inv\_graf()}}
+{\footnotesize\ttfamily void aff\+\_\+inv\+\_\+graf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}}]{inventaire }\end{DoxyParamCaption})}
+
+
+
+Affiche plusieurs rectangles arrondis en grille. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Renderer} & Le renderer SDL sur lequel dessiner. \\
+\hline
+{\em scrool\+\_\+pos} & La position de défilement. \\
+\hline
+{\em cof\+\_\+scrollbar\+\_\+window} & Le coefficient de vitesse de défilement. \\
+\hline
+{\em nb\+\_\+collone} & Le nombre de colonnes. \\
+\hline
+{\em nb\+\_\+ligne} & Le nombre de lignes. \\
+\hline
+{\em taille} & La taille de chaque rectangle. \\
+\hline
+{\em decalage} & L\textquotesingle{}espace entre les rectangles. \\
+\hline
+{\em arrondis} & Le rayon des coins arrondis. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_ab5cc7c64ef75e000ab468d498f660b86}\label{inv_8h_ab5cc7c64ef75e000ab468d498f660b86} 
+\index{inv.h@{inv.h}!calculate\_scrollbar\_max\_position@{calculate\_scrollbar\_max\_position}}
+\index{calculate\_scrollbar\_max\_position@{calculate\_scrollbar\_max\_position}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{calculate\_scrollbar\_max\_position()}{calculate\_scrollbar\_max\_position()}}
+{\footnotesize\ttfamily int calculate\+\_\+scrollbar\+\_\+max\+\_\+position (\begin{DoxyParamCaption}\item[{int}]{screen\+\_\+height,  }\item[{int}]{scrollbar\+\_\+heigt,  }\item[{float}]{cof }\end{DoxyParamCaption})}
+
+
+
+Calcule la position maximale de la barre de défilement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em screen\+\_\+height} & La hauteur de l\textquotesingle{}écran. \\
+\hline
+{\em scrollbar\+\_\+heigt} & La hauteur de la barre de défilement. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La position maximale de la barre de défilement. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_abcc67224413c5cc47d3871744a8b8b40}\label{inv_8h_abcc67224413c5cc47d3871744a8b8b40} 
+\index{inv.h@{inv.h}!calculate\_total\_content\_height@{calculate\_total\_content\_height}}
+\index{calculate\_total\_content\_height@{calculate\_total\_content\_height}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{calculate\_total\_content\_height()}{calculate\_total\_content\_height()}}
+{\footnotesize\ttfamily int calculate\+\_\+total\+\_\+content\+\_\+height (\begin{DoxyParamCaption}\item[{int}]{nb\+\_\+ligne,  }\item[{int}]{taille,  }\item[{int}]{decalage }\end{DoxyParamCaption})}
+
+
+
+Calcule la hauteur totale du contenu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb\+\_\+ligne} & Le nombre de lignes. \\
+\hline
+{\em taille} & La taille de chaque rectangle. \\
+\hline
+{\em decalage} & L\textquotesingle{}espace entre les rectangles. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La hauteur totale du contenu. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_a171a6f0f4f4d27f2527e88b9a6a4c1b8}\label{inv_8h_a171a6f0f4f4d27f2527e88b9a6a4c1b8} 
+\index{inv.h@{inv.h}!calculate\_zone\_content@{calculate\_zone\_content}}
+\index{calculate\_zone\_content@{calculate\_zone\_content}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{calculate\_zone\_content()}{calculate\_zone\_content()}}
+{\footnotesize\ttfamily void calculate\+\_\+zone\+\_\+content (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{x\+\_\+larg,  }\item[{int \texorpdfstring{$\ast$}{*}}]{y\+\_\+haut,  }\item[{int}]{nb\+\_\+ligne,  }\item[{int}]{nb\+\_\+colonne,  }\item[{int}]{largeur,  }\item[{int}]{hauteur,  }\item[{int}]{decalage }\end{DoxyParamCaption})}
+
+
+
+Calcule les dimensions de la zone de contenu. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+larg} & Pointeur vers la largeur calculée. \\
+\hline
+{\em y\+\_\+haut} & Pointeur vers la hauteur calculée. \\
+\hline
+{\em nb\+\_\+ligne} & Le nombre de lignes. \\
+\hline
+{\em nb\+\_\+colonne} & Le nombre de colonnes. \\
+\hline
+{\em largeur} & La largeur de chaque élément. \\
+\hline
+{\em hauteur} & La hauteur de chaque élément. \\
+\hline
+{\em decalage} & L\textquotesingle{}espace entre les éléments. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_a3d4a2f6177d528e86bb9ef8b757beba5}\label{inv_8h_a3d4a2f6177d528e86bb9ef8b757beba5} 
+\index{inv.h@{inv.h}!calcule\_pos\_inv@{calcule\_pos\_inv}}
+\index{calcule\_pos\_inv@{calcule\_pos\_inv}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{calcule\_pos\_inv()}{calcule\_pos\_inv()}}
+{\footnotesize\ttfamily int calcule\+\_\+pos\+\_\+inv (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calcule le numéro de case en fonction des coordonnées de la souris. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & La coordonnée x de départ. \\
+\hline
+{\em y} & La coordonnée y de départ. \\
+\hline
+{\em nb\+\_\+collone} & Le nombre de colonnes. \\
+\hline
+{\em nb\+\_\+ligne} & Le nombre de lignes. \\
+\hline
+{\em taille\+\_\+largeur} & La largeur de chaque élément. \\
+\hline
+{\em taille\+\_\+longeur} & La longueur de chaque élément. \\
+\hline
+{\em decalage} & L\textquotesingle{}espace entre les éléments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le numéro de case en fonction des coordonnées de la souris, ou -\/1 si aucune case n\textquotesingle{}est trouvée. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_abbc013647564cd9a409be37f0536b209}\label{inv_8h_abbc013647564cd9a409be37f0536b209} 
+\index{inv.h@{inv.h}!cercle\_graf@{cercle\_graf}}
+\index{cercle\_graf@{cercle\_graf}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{cercle\_graf()}{cercle\_graf()}}
+{\footnotesize\ttfamily void cercle\+\_\+graf (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{rayon }\end{DoxyParamCaption})}
+
+
+
+Dessine un cercle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & Le renderer SDL sur lequel dessiner. \\
+\hline
+{\em x} & La coordonnée x du centre du cercle. \\
+\hline
+{\em y} & La coordonnée y du centre du cercle. \\
+\hline
+{\em rayon} & Le rayon du cercle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_a7a4d94aa0621e4f02da13c20407f1ca6}\label{inv_8h_a7a4d94aa0621e4f02da13c20407f1ca6} 
+\index{inv.h@{inv.h}!cof\_scrollbar\_window@{cof\_scrollbar\_window}}
+\index{cof\_scrollbar\_window@{cof\_scrollbar\_window}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{cof\_scrollbar\_window()}{cof\_scrollbar\_window()}}
+{\footnotesize\ttfamily float cof\+\_\+scrollbar\+\_\+window (\begin{DoxyParamCaption}\item[{int}]{visible\+\_\+area\+\_\+height,  }\item[{int}]{total\+\_\+content\+\_\+height }\end{DoxyParamCaption})}
+
+
+
+Calcule le coefficient de vitesse de défilement de la barre de défilement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible\+\_\+area\+\_\+height} & La hauteur de la zone visible. \\
+\hline
+{\em total\+\_\+content\+\_\+height} & La hauteur totale du contenu. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le coefficient de vitesse de défilement de la barre de défilement. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_a5e5efe3d27dafa946fe605e316e5a63b}\label{inv_8h_a5e5efe3d27dafa946fe605e316e5a63b} 
+\index{inv.h@{inv.h}!coordonner\_realiste@{coordonner\_realiste}}
+\index{coordonner\_realiste@{coordonner\_realiste}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{coordonner\_realiste()}{coordonner\_realiste()}}
+{\footnotesize\ttfamily int coordonner\+\_\+realiste (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+deb,  }\item[{int}]{y\+\_\+deb,  }\item[{int}]{x\+\_\+fin,  }\item[{int}]{y\+\_\+fin }\end{DoxyParamCaption})}
+
+
+
+Vérifie si les coordonnées de la souris sont dans les limites d\textquotesingle{}un carré. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+deb} & La coordonnée x de départ du carré. \\
+\hline
+{\em y\+\_\+deb} & La coordonnée y de départ du carré. \\
+\hline
+{\em x\+\_\+fin} & La coordonnée x de fin du carré. \\
+\hline
+{\em y\+\_\+fin} & La coordonnée y de fin du carré. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si les coordonnées de la souris sont dans les limites du carré, 0 sinon. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_a9fdb529559d32a1007edfa2b949e208b}\label{inv_8h_a9fdb529559d32a1007edfa2b949e208b} 
+\index{inv.h@{inv.h}!deb\_fusion@{deb\_fusion}}
+\index{deb\_fusion@{deb\_fusion}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{deb\_fusion()}{deb\_fusion()}}
+{\footnotesize\ttfamily void deb\+\_\+fusion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{item1,  }\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{item2 }\end{DoxyParamCaption})}
+
+
+
+Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item1} & Premier item à fusionner. \\
+\hline
+{\em item2} & Deuxième item à fusionner. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_a0539356cfaad795a5997fa5929f5bd44}\label{inv_8h_a0539356cfaad795a5997fa5929f5bd44} 
+\index{inv.h@{inv.h}!dest\_inv@{dest\_inv}}
+\index{dest\_inv@{dest\_inv}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{dest\_inv()}{dest\_inv()}}
+{\footnotesize\ttfamily void dest\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{inventaire }\end{DoxyParamCaption})}
+
+
+
+Détruit un inventaire et libère la mémoire allouée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventaire} & Pointeur vers le pointeur de l\textquotesingle{}inventaire à détruire. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_a4ef3f326c61db3cf2484f7706d4dfa3c}\label{inv_8h_a4ef3f326c61db3cf2484f7706d4dfa3c} 
+\index{inv.h@{inv.h}!dest\_item@{dest\_item}}
+\index{dest\_item@{dest\_item}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{dest\_item()}{dest\_item()}}
+{\footnotesize\ttfamily void dest\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})}
+
+
+
+Détruit un item et libère la mémoire allouée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointeur vers le pointeur de l\textquotesingle{}item à détruire. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_a237d808972225afe414c21dfbc578a30}\label{inv_8h_a237d808972225afe414c21dfbc578a30} 
+\index{inv.h@{inv.h}!draw\_scrollbar@{draw\_scrollbar}}
+\index{draw\_scrollbar@{draw\_scrollbar}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{draw\_scrollbar()}{draw\_scrollbar()}}
+{\footnotesize\ttfamily void draw\+\_\+scrollbar (\begin{DoxyParamCaption}\item[{int}]{scrollbar\+\_\+x,  }\item[{int}]{scrollbar\+\_\+y,  }\item[{int}]{scrollbar\+\_\+height,  }\item[{int}]{scrollbar\+\_\+wheight }\end{DoxyParamCaption})}
+
+
+
+Dessine une barre de défilement verticale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & Le renderer SDL sur lequel dessiner. \\
+\hline
+{\em scrollbar\+\_\+position} & La position y du sommet de la barre de défilement. \\
+\hline
+{\em scrollbar\+\_\+height} & La hauteur de la barre de défilement. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_ae6229776e3fc981c2f1295d008e94963}\label{inv_8h_ae6229776e3fc981c2f1295d008e94963} 
+\index{inv.h@{inv.h}!droit\_fusion@{droit\_fusion}}
+\index{droit\_fusion@{droit\_fusion}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{droit\_fusion()}{droit\_fusion()}}
+{\footnotesize\ttfamily int droit\+\_\+fusion (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{item1,  }\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{item2 }\end{DoxyParamCaption})}
+
+
+
+Vérifie si deux items peuvent être fusionnés. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item1} & Pointeur vers le premier item. \\
+\hline
+{\em item2} & Pointeur vers le second item. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Code de retour indiquant si la fusion est possible. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_a22af693b5f02e4630a01dc72cee4d421}\label{inv_8h_a22af693b5f02e4630a01dc72cee4d421} 
+\index{inv.h@{inv.h}!est\_vide@{est\_vide}}
+\index{est\_vide@{est\_vide}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{est\_vide()}{est\_vide()}}
+{\footnotesize\ttfamily int est\+\_\+vide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})}
+
+
+
+Vérifie si un item est vide. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointeur vers l\textquotesingle{}item à vérifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 1 si l\textquotesingle{}item est vide, 0 sinon. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_ac6178f19d4f45ce6c33b01927a4f5af2}\label{inv_8h_ac6178f19d4f45ce6c33b01927a4f5af2} 
+\index{inv.h@{inv.h}!generate\_stat\_nb@{generate\_stat\_nb}}
+\index{generate\_stat\_nb@{generate\_stat\_nb}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{generate\_stat\_nb()}{generate\_stat\_nb()}}
+{\footnotesize\ttfamily int generate\+\_\+stat\+\_\+nb (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{type,  }\item[{int}]{stat\+\_\+ameliorer,  }\item[{int}]{rarete,  }\item[{int}]{nb\+\_\+max\+\_\+nv }\end{DoxyParamCaption})}
+
+
+
+Génère un nombre de statistique influencé par un niveau. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Niveau actuel. \\
+\hline
+{\em type} & Type de statistique (0 = or, 1 = degat, 2 = vit\+\_\+att). \\
+\hline
+{\em stat\+\_\+ameliorer} & Statistique à améliorer. \\
+\hline
+{\em rarete} & Rareté de l\textquotesingle{}item. \\
+\hline
+{\em nb\+\_\+max\+\_\+nv} & Niveau maximal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Nouvelle valeur de la statistique. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_a1aea9793363cbba5a9062f8c7c2e5bb7}\label{inv_8h_a1aea9793363cbba5a9062f8c7c2e5bb7} 
+\index{inv.h@{inv.h}!handle\_inv\_event@{handle\_inv\_event}}
+\index{handle\_inv\_event@{handle\_inv\_event}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{handle\_inv\_event()}{handle\_inv\_event()}}
+{\footnotesize\ttfamily void handle\+\_\+inv\+\_\+event (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{event }\end{DoxyParamCaption})}
+
+
+
+Gère les événements de défilement. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & L\textquotesingle{}événement SDL à gérer. \\
+\hline
+{\em scrollbar\+\_\+position} & La position de la barre de défilement. \\
+\hline
+{\em scrollbar\+\_\+speed} & La vitesse de déplacement de la barre de défilement. \\
+\hline
+{\em scrollbar\+\_\+max\+\_\+position} & La position maximale de la barre de défilement. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_adaf44a36ef675aa8571c1211b292c805}\label{inv_8h_adaf44a36ef675aa8571c1211b292c805} 
+\index{inv.h@{inv.h}!init\_inv@{init\_inv}}
+\index{init\_inv@{init\_inv}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{init\_inv()}{init\_inv()}}
+{\footnotesize\ttfamily void init\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}}]{inventaire }\end{DoxyParamCaption})}
+
+
+
+Initialise l\textquotesingle{}inventaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire à initialiser. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_abd472475149db380b29e27bf9bcb9b17}\label{inv_8h_abd472475149db380b29e27bf9bcb9b17} 
+\index{inv.h@{inv.h}!liberer\_item@{liberer\_item}}
+\index{liberer\_item@{liberer\_item}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{liberer\_item()}{liberer\_item()}}
+{\footnotesize\ttfamily void liberer\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{item }\end{DoxyParamCaption})}
+
+
+
+destruction des info stocker par l\textquotesingle{}item pour le reutiliser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item} & Pointeur sur item à libérer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8h_a1efd18ab74c9d51e41bbf07fb282772f}\label{inv_8h_a1efd18ab74c9d51e41bbf07fb282772f} 
+\index{inv.h@{inv.h}!prem\_vide@{prem\_vide}}
+\index{prem\_vide@{prem\_vide}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{prem\_vide()}{prem\_vide()}}
+{\footnotesize\ttfamily int prem\+\_\+vide (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}}]{inventaire }\end{DoxyParamCaption})}
+
+
+
+Trouve le premier emplacement vide dans l\textquotesingle{}inventaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire à vérifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int L\textquotesingle{}indice du premier emplacement vide, ou -\/1 si l\textquotesingle{}inventaire est plein. 
+\end{DoxyReturn}
+\Hypertarget{inv_8h_a5e2e19773d4b7e54d4ac98b6db160ca7}\label{inv_8h_a5e2e19773d4b7e54d4ac98b6db160ca7} 
+\index{inv.h@{inv.h}!rectangle\_arrondis@{rectangle\_arrondis}}
+\index{rectangle\_arrondis@{rectangle\_arrondis}!inv.h@{inv.h}}
+\doxysubsubsection{\texorpdfstring{rectangle\_arrondis()}{rectangle\_arrondis()}}
+{\footnotesize\ttfamily void rectangle\+\_\+arrondis (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Rect}]{SDL\+\_\+\+Rect,  }\item[{int}]{radius,  }\item[{int}]{r,  }\item[{int}]{g,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+
+
+Dessine un rectangle avec des coins arrondis. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em renderer} & Le renderer SDL sur lequel dessiner. \\
+\hline
+{\em x} & La coordonnée x du coin supérieur gauche du rectangle. \\
+\hline
+{\em y} & La coordonnée y du coin supérieur gauche du rectangle. \\
+\hline
+{\em w} & La largeur du rectangle. \\
+\hline
+{\em h} & La hauteur du rectangle. \\
+\hline
+{\em radius} & Le rayon des coins arrondis. \\
+\hline
+{\em r} & La composante rouge de la couleur du rectangle. \\
+\hline
+{\em g} & La composante verte de la couleur du rectangle. \\
+\hline
+{\em b} & La composante bleue de la couleur du rectangle. \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,59 @@
+\doxysection{src/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{src/main.c@{src/main.c}}
+
+
+Point d\textquotesingle{}entrée principal pour le jeu Tap\+Venture.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include \"{}../lib/lang.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/save\+\_\+json.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/combat.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/boutique.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/heros.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/input\+\_\+user.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/player.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/ui.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/challenge.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/chaine.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/prestige.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/inv.\+h\"{}}\newline
+{\ttfamily \#include \"{}../lib/audio.\+h\"{}}\newline
+Include dependency graph for main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int {\bfseries main} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Point d\textquotesingle{}entrée principal pour le jeu Tap\+Venture. 
+
+Ce fichier contient la fonction principale qui initialise les ressources, gère la boucle principale du jeu et libère les ressources à la fin.
+
+
+\begin{DoxyItemize}
+\item Initialise SDL et d\textquotesingle{}autres modules nécessaires.
+\item Gère les événements utilisateur et les mises à jour de l\textquotesingle{}interface.
+\item Maintient une boucle de rendu avec un contrôle de la fréquence d\textquotesingle{}images.
+\item Sauvegarde les données et libère les ressources avant de quitter.
+\end{DoxyItemize}
+
+\begin{DoxyAuthor}{Author}
+Votre Nom 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2025 
+\end{DoxyDate}

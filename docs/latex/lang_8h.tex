@@ -1,0 +1,346 @@
+\doxysection{lib/lang.h File Reference}
+\hypertarget{lang_8h}{}\label{lang_8h}\index{lib/lang.h@{lib/lang.h}}
+
+
+Déclarations pour la gestion du système de langues dans Tap\+Venture.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{lang_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structLang}{Lang}}
+\begin{DoxyCompactList}\small\item\em Structure représentant une langue et ses messages associés. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05}{Cle\+Msg}} \{ \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a4eaac3b3e86d4c11635039791df2968a}{BIENVENUE\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a12cdb552d50c045ff676490d1d977242}{AUREVOIR\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a5c6ae0702b4809d24815dc24305f9a31}{CLICK\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a7edb4a59007cd46700897bdc4e9c4c82}{VIE\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae29093d4b52eedff49b218b337d7c38e}{OR\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05acbfeaeca12cded01ba38199926fcce8a}{DMG\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a3e81350c9dcce7b8cc56621c3bd8dfdf}{UPG\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a53a174afb2b380af78a732bb6141a44c}{MOB\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a22f0ed635dfe4e643769fe807b979601}{LVL\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ac718d5329a94a716700d30f827c3e2b1}{SETTING\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae4ba15ece8fb2f9c6026607a9edc551d}{FR\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a70c1499a05e907f847f67bb5dbe0aa7d}{EN\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a721d58980e5093c50798bb8d6f5f2a57}{WELCOME\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae3d29d3c871719738e2231006eadd85e}{WELCOME\+\_\+\+DESC\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a8a5cb4c8d84924d5f9795e75f9bf6fa3}{GOLD\+\_\+\+OFFLINE\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ad48a9329d8b233ff95f92fb49fc171c4}{GOLD\+\_\+\+OFFLINE\+\_\+\+DESC\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05af52db6e5b75e5637b3a7408abf31ce54}{FULLSCREEN\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a2933a089b996bbcffe6e5efb717cd604}{WINDOWED\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a3d5e45473756d0c414eef9cc01355848}{CHALLENGE\+\_\+\+MSG\+\_\+\+WIN}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05afdf1a9833cc3c1991d90668a421ac843}{CHALLENGE\+\_\+\+MSG\+\_\+\+LOSE}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a0c7099f70ac874ab3c0847e478541a27}{CHALLENGE\+\_\+\+MSG\+\_\+\+COOLDOWN}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a79e5ba49ca713f8c0326465e7c679512}{TIMER\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ad9ddc85aaa9cbbcacb3e883459412e03}{NOTIF\+\_\+\+TITLE}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a4dcf2cf19e29e672c39647d54f2cb02f}{PRESTIGE\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a19f88534e9bcc9ba9b32cf725c8931c5}{PRESTIGE\+\_\+\+COST}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a3bb5cba0da4eeb914273c20cade3f568}{PRESTIGE\+\_\+\+GOLD\+\_\+\+DESC}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ad1f9a45a0f2427d8cf77d87cee367549}{PRESTIGE\+\_\+\+DAMAGE\+\_\+\+DESC}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a29c7480b03766c9e102c18853bcb8ca1}{PRESTIGE\+\_\+\+PRESTIGE\+\_\+\+DESC}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a8f274b355923d93eb88e94d6e6037a5f}{PRESTIGE\+\_\+\+HERO\+\_\+\+DESC}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05aa9b9837898f818e1bd24ea075a752ba0}{PRESTIGE\+\_\+\+HEROLVL\+\_\+\+DESC}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a42f8f0ef29818b611ec76d8c4a0753be}{PRESTIGE\+\_\+\+CONGRATS}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05aa44488f423c3cfc45019d52bb3aadd3e}{HERO\+\_\+\+SHOP\+\_\+\+TITLE\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05af63408b59b06f750d480bb85d19b50b6}{PRICE\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a1285e55115d24cc803e1f01b99a762e3}{HERO\+\_\+\+SHOP\+\_\+\+MULTIPLICATOR\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05af6671ec495c72c70c51d81775d4c164f}{DPS\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae58b4d1d64ccb97399b4f9a1a1418373}{MAX\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae67a4a2eb246154ae742b7ce89678086}{CREDITS\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a9469d8efb3cfa122de5e7323ae4a78cf}{CREDITS\+\_\+\+ESTEBAN\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a20c94529b70554d5b4d4dbfea9ddde12}{CREDITS\+\_\+\+DEV\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a276467cb44cb2c2d0dd61bd353acbe37}{CREDITS\+\_\+\+ASSETS\+\_\+\+MSG}}
+, \newline
+\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a2b0575181552e3b0f7f20b2ca1905606}{QUIT\+\_\+\+MSG}}
+, \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a7539ca04e939e35d89addfb190a247aa}{NB\+\_\+\+MSG}}
+ \}
+\begin{DoxyCompactList}\small\item\em Énumération des clés de messages pour la traduction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{lang_8h_afe1482792246fe428c7881d3d71607a6}{Traduction}} (\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05}{Cle\+Msg}} key)
+\begin{DoxyCompactList}\small\item\em Récupère la traduction associée à une clé de message. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{lang_8h_ad39899d79497edeff2e6bb6fc2f7d899}{Select\+Language}} (void \texorpdfstring{$\ast$}{*}l\mbox{[}20\mbox{]})
+\begin{DoxyCompactList}\small\item\em Sélectionne la langue à utiliser. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{lang_8h_aaad519717e47c7c83fc22fd869d1882f}{init\+Lang}} (char \texorpdfstring{$\ast$}{*}lang)
+\begin{DoxyCompactList}\small\item\em Initialise la langue utilisée par le jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{lang_8h_a887b8b3b903aadd41047b37807c55e56}\label{lang_8h_a887b8b3b903aadd41047b37807c55e56} 
+\mbox{\hyperlink{structLang}{Lang}} {\bfseries Language\+Act}
+\begin{DoxyCompactList}\small\item\em Langue active utilisée dans Tap\+Venture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour la gestion du système de langues dans Tap\+Venture. 
+
+Ce fichier contient les définitions et déclarations nécessaires pour la gestion des traductions dans le jeu Tap\+Venture, incluant l\textquotesingle{}énumération des clés de messages, la structure \doxylink{structLang}{Lang} et les fonctions associées. \begin{DoxyAuthor}{Author}
+Noam MANFALOTI \& Lucas DUPONT \& Ibrahim SAPIEV 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+6 décembre 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05} 
+\index{lang.h@{lang.h}!CleMsg@{CleMsg}}
+\index{CleMsg@{CleMsg}!lang.h@{lang.h}}
+\doxysubsubsection{\texorpdfstring{CleMsg}{CleMsg}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05}{Cle\+Msg}}}
+
+
+
+Énumération des clés de messages pour la traduction. 
+
+Cette énumération regroupe toutes les clés de messages utilisés dans Tap\+Venture. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BIENVENUE\_MSG@{BIENVENUE\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!BIENVENUE\_MSG@{BIENVENUE\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a4eaac3b3e86d4c11635039791df2968a}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a4eaac3b3e86d4c11635039791df2968a} 
+BIENVENUE\+\_\+\+MSG&Message de bienvenue. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AUREVOIR\_MSG@{AUREVOIR\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!AUREVOIR\_MSG@{AUREVOIR\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a12cdb552d50c045ff676490d1d977242}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a12cdb552d50c045ff676490d1d977242} 
+AUREVOIR\+\_\+\+MSG&Message d\textquotesingle{}au revoir. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CLICK\_MSG@{CLICK\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CLICK\_MSG@{CLICK\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a5c6ae0702b4809d24815dc24305f9a31}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a5c6ae0702b4809d24815dc24305f9a31} 
+CLICK\+\_\+\+MSG&Message d\textquotesingle{}action de clic. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VIE\_MSG@{VIE\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!VIE\_MSG@{VIE\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a7edb4a59007cd46700897bdc4e9c4c82}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a7edb4a59007cd46700897bdc4e9c4c82} 
+VIE\+\_\+\+MSG&Message relatif aux points de vie. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OR\_MSG@{OR\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!OR\_MSG@{OR\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ae29093d4b52eedff49b218b337d7c38e}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ae29093d4b52eedff49b218b337d7c38e} 
+OR\+\_\+\+MSG&Message relatif à l\textquotesingle{}or. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DMG\_MSG@{DMG\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!DMG\_MSG@{DMG\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05acbfeaeca12cded01ba38199926fcce8a}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05acbfeaeca12cded01ba38199926fcce8a} 
+DMG\+\_\+\+MSG&Message relatif aux dégâts. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UPG\_MSG@{UPG\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!UPG\_MSG@{UPG\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a3e81350c9dcce7b8cc56621c3bd8dfdf}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a3e81350c9dcce7b8cc56621c3bd8dfdf} 
+UPG\+\_\+\+MSG&Message pour l\textquotesingle{}amélioration des dégâts. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOB\_MSG@{MOB\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!MOB\_MSG@{MOB\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a53a174afb2b380af78a732bb6141a44c}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a53a174afb2b380af78a732bb6141a44c} 
+MOB\+\_\+\+MSG&Message relatif aux monstres. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LVL\_MSG@{LVL\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!LVL\_MSG@{LVL\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a22f0ed635dfe4e643769fe807b979601}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a22f0ed635dfe4e643769fe807b979601} 
+LVL\+\_\+\+MSG&Message relatif aux niveaux. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SETTING\_MSG@{SETTING\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!SETTING\_MSG@{SETTING\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ac718d5329a94a716700d30f827c3e2b1}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ac718d5329a94a716700d30f827c3e2b1} 
+SETTING\+\_\+\+MSG&Message relatif aux paramètres de configuration. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FR\_MSG@{FR\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!FR\_MSG@{FR\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ae4ba15ece8fb2f9c6026607a9edc551d}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ae4ba15ece8fb2f9c6026607a9edc551d} 
+FR\+\_\+\+MSG&Libellé pour la langue française. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EN\_MSG@{EN\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!EN\_MSG@{EN\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a70c1499a05e907f847f67bb5dbe0aa7d}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a70c1499a05e907f847f67bb5dbe0aa7d} 
+EN\+\_\+\+MSG&Libellé pour la langue anglaise. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WELCOME\_MSG@{WELCOME\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!WELCOME\_MSG@{WELCOME\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a721d58980e5093c50798bb8d6f5f2a57}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a721d58980e5093c50798bb8d6f5f2a57} 
+WELCOME\+\_\+\+MSG&Message de bienvenue en anglais. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WELCOME\_DESC\_MSG@{WELCOME\_DESC\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!WELCOME\_DESC\_MSG@{WELCOME\_DESC\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ae3d29d3c871719738e2231006eadd85e}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ae3d29d3c871719738e2231006eadd85e} 
+WELCOME\+\_\+\+DESC\+\_\+\+MSG&Description de bienvenue. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GOLD\_OFFLINE\_MSG@{GOLD\_OFFLINE\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!GOLD\_OFFLINE\_MSG@{GOLD\_OFFLINE\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a8a5cb4c8d84924d5f9795e75f9bf6fa3}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a8a5cb4c8d84924d5f9795e75f9bf6fa3} 
+GOLD\+\_\+\+OFFLINE\+\_\+\+MSG&Message indiquant l\textquotesingle{}or gagné hors ligne. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GOLD\_OFFLINE\_DESC\_MSG@{GOLD\_OFFLINE\_DESC\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!GOLD\_OFFLINE\_DESC\_MSG@{GOLD\_OFFLINE\_DESC\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ad48a9329d8b233ff95f92fb49fc171c4}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ad48a9329d8b233ff95f92fb49fc171c4} 
+GOLD\+\_\+\+OFFLINE\+\_\+\+DESC\+\_\+\+MSG&Description de l\textquotesingle{}or gagné hors ligne. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FULLSCREEN\_MSG@{FULLSCREEN\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!FULLSCREEN\_MSG@{FULLSCREEN\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05af52db6e5b75e5637b3a7408abf31ce54}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05af52db6e5b75e5637b3a7408abf31ce54} 
+FULLSCREEN\+\_\+\+MSG&Message pour activer le mode plein écran. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WINDOWED\_MSG@{WINDOWED\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!WINDOWED\_MSG@{WINDOWED\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a2933a089b996bbcffe6e5efb717cd604}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a2933a089b996bbcffe6e5efb717cd604} 
+WINDOWED\+\_\+\+MSG&Message pour passer en mode fenêtré. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHALLENGE\_MSG\_WIN@{CHALLENGE\_MSG\_WIN}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CHALLENGE\_MSG\_WIN@{CHALLENGE\_MSG\_WIN}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a3d5e45473756d0c414eef9cc01355848}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a3d5e45473756d0c414eef9cc01355848} 
+CHALLENGE\+\_\+\+MSG\+\_\+\+WIN&Message affiché lors de la réussite d\textquotesingle{}un challenge. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHALLENGE\_MSG\_LOSE@{CHALLENGE\_MSG\_LOSE}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CHALLENGE\_MSG\_LOSE@{CHALLENGE\_MSG\_LOSE}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05afdf1a9833cc3c1991d90668a421ac843}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05afdf1a9833cc3c1991d90668a421ac843} 
+CHALLENGE\+\_\+\+MSG\+\_\+\+LOSE&Message affiché lors de l\textquotesingle{}échec d\textquotesingle{}un challenge. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CHALLENGE\_MSG\_COOLDOWN@{CHALLENGE\_MSG\_COOLDOWN}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CHALLENGE\_MSG\_COOLDOWN@{CHALLENGE\_MSG\_COOLDOWN}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a0c7099f70ac874ab3c0847e478541a27}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a0c7099f70ac874ab3c0847e478541a27} 
+CHALLENGE\+\_\+\+MSG\+\_\+\+COOLDOWN&Message indiquant le temps de recharge d\textquotesingle{}un challenge. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TIMER\_MSG@{TIMER\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!TIMER\_MSG@{TIMER\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a79e5ba49ca713f8c0326465e7c679512}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a79e5ba49ca713f8c0326465e7c679512} 
+TIMER\+\_\+\+MSG&Message relatif à l\textquotesingle{}affichage du timer. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NOTIF\_TITLE@{NOTIF\_TITLE}!lang.h@{lang.h}}\index{lang.h@{lang.h}!NOTIF\_TITLE@{NOTIF\_TITLE}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ad9ddc85aaa9cbbcacb3e883459412e03}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ad9ddc85aaa9cbbcacb3e883459412e03} 
+NOTIF\+\_\+\+TITLE&Titre utilisé pour les notifications. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_MSG@{PRESTIGE\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_MSG@{PRESTIGE\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a4dcf2cf19e29e672c39647d54f2cb02f}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a4dcf2cf19e29e672c39647d54f2cb02f} 
+PRESTIGE\+\_\+\+MSG&Message relatif au prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_COST@{PRESTIGE\_COST}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_COST@{PRESTIGE\_COST}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a19f88534e9bcc9ba9b32cf725c8931c5}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a19f88534e9bcc9ba9b32cf725c8931c5} 
+PRESTIGE\+\_\+\+COST&Message indiquant le coût du prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_GOLD\_DESC@{PRESTIGE\_GOLD\_DESC}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_GOLD\_DESC@{PRESTIGE\_GOLD\_DESC}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a3bb5cba0da4eeb914273c20cade3f568}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a3bb5cba0da4eeb914273c20cade3f568} 
+PRESTIGE\+\_\+\+GOLD\+\_\+\+DESC&Description de l\textquotesingle{}augmentation d\textquotesingle{}or via le prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_DAMAGE\_DESC@{PRESTIGE\_DAMAGE\_DESC}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_DAMAGE\_DESC@{PRESTIGE\_DAMAGE\_DESC}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ad1f9a45a0f2427d8cf77d87cee367549}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ad1f9a45a0f2427d8cf77d87cee367549} 
+PRESTIGE\+\_\+\+DAMAGE\+\_\+\+DESC&Description de l\textquotesingle{}augmentation des dégâts via le prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_PRESTIGE\_DESC@{PRESTIGE\_PRESTIGE\_DESC}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_PRESTIGE\_DESC@{PRESTIGE\_PRESTIGE\_DESC}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a29c7480b03766c9e102c18853bcb8ca1}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a29c7480b03766c9e102c18853bcb8ca1} 
+PRESTIGE\+\_\+\+PRESTIGE\+\_\+\+DESC&Description de l\textquotesingle{}augmentation des points de prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_HERO\_DESC@{PRESTIGE\_HERO\_DESC}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_HERO\_DESC@{PRESTIGE\_HERO\_DESC}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a8f274b355923d93eb88e94d6e6037a5f}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a8f274b355923d93eb88e94d6e6037a5f} 
+PRESTIGE\+\_\+\+HERO\+\_\+\+DESC&Description concernant le maintien du héros lors du prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_HEROLVL\_DESC@{PRESTIGE\_HEROLVL\_DESC}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_HEROLVL\_DESC@{PRESTIGE\_HEROLVL\_DESC}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05aa9b9837898f818e1bd24ea075a752ba0}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05aa9b9837898f818e1bd24ea075a752ba0} 
+PRESTIGE\+\_\+\+HEROLVL\+\_\+\+DESC&Description concernant le maintien du niveau du héros lors du prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRESTIGE\_CONGRATS@{PRESTIGE\_CONGRATS}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRESTIGE\_CONGRATS@{PRESTIGE\_CONGRATS}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a42f8f0ef29818b611ec76d8c4a0753be}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a42f8f0ef29818b611ec76d8c4a0753be} 
+PRESTIGE\+\_\+\+CONGRATS&Message de félicitations après un prestige. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HERO\_SHOP\_TITLE\_MSG@{HERO\_SHOP\_TITLE\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!HERO\_SHOP\_TITLE\_MSG@{HERO\_SHOP\_TITLE\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05aa44488f423c3cfc45019d52bb3aadd3e}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05aa44488f423c3cfc45019d52bb3aadd3e} 
+HERO\+\_\+\+SHOP\+\_\+\+TITLE\+\_\+\+MSG&Titre de la boutique des héros. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PRICE\_MSG@{PRICE\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!PRICE\_MSG@{PRICE\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05af63408b59b06f750d480bb85d19b50b6}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05af63408b59b06f750d480bb85d19b50b6} 
+PRICE\+\_\+\+MSG&Message pour l\textquotesingle{}affichage du prix. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HERO\_SHOP\_MULTIPLICATOR\_MSG@{HERO\_SHOP\_MULTIPLICATOR\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!HERO\_SHOP\_MULTIPLICATOR\_MSG@{HERO\_SHOP\_MULTIPLICATOR\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a1285e55115d24cc803e1f01b99a762e3}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a1285e55115d24cc803e1f01b99a762e3} 
+HERO\+\_\+\+SHOP\+\_\+\+MULTIPLICATOR\+\_\+\+MSG&Message relatif au multiplicateur dans la boutique des héros. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DPS\_MSG@{DPS\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!DPS\_MSG@{DPS\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05af6671ec495c72c70c51d81775d4c164f}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05af6671ec495c72c70c51d81775d4c164f} 
+DPS\+\_\+\+MSG&Message pour l\textquotesingle{}affichage des dégâts par seconde. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MAX\_MSG@{MAX\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!MAX\_MSG@{MAX\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ae58b4d1d64ccb97399b4f9a1a1418373}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ae58b4d1d64ccb97399b4f9a1a1418373} 
+MAX\+\_\+\+MSG&Message indiquant la valeur maximale. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CREDITS\_MSG@{CREDITS\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CREDITS\_MSG@{CREDITS\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05ae67a4a2eb246154ae742b7ce89678086}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05ae67a4a2eb246154ae742b7ce89678086} 
+CREDITS\+\_\+\+MSG&Message pour les crédits. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CREDITS\_ESTEBAN\_MSG@{CREDITS\_ESTEBAN\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CREDITS\_ESTEBAN\_MSG@{CREDITS\_ESTEBAN\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a9469d8efb3cfa122de5e7323ae4a78cf}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a9469d8efb3cfa122de5e7323ae4a78cf} 
+CREDITS\+\_\+\+ESTEBAN\+\_\+\+MSG&Description des crédits pour Esteban (musique du jeux) \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CREDITS\_DEV\_MSG@{CREDITS\_DEV\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CREDITS\_DEV\_MSG@{CREDITS\_DEV\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a20c94529b70554d5b4d4dbfea9ddde12}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a20c94529b70554d5b4d4dbfea9ddde12} 
+CREDITS\+\_\+\+DEV\+\_\+\+MSG&Description des crédits pour les developpeurs \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CREDITS\_ASSETS\_MSG@{CREDITS\_ASSETS\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!CREDITS\_ASSETS\_MSG@{CREDITS\_ASSETS\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a276467cb44cb2c2d0dd61bd353acbe37}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a276467cb44cb2c2d0dd61bd353acbe37} 
+CREDITS\+\_\+\+ASSETS\+\_\+\+MSG&Description des crédits pour les assets \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{QUIT\_MSG@{QUIT\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!QUIT\_MSG@{QUIT\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a2b0575181552e3b0f7f20b2ca1905606}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a2b0575181552e3b0f7f20b2ca1905606} 
+QUIT\+\_\+\+MSG&Message pour quitter le jeu. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NB\_MSG@{NB\_MSG}!lang.h@{lang.h}}\index{lang.h@{lang.h}!NB\_MSG@{NB\_MSG}}}\Hypertarget{lang_8h_a2330daae4e89530d4585df3c66a40c05a7539ca04e939e35d89addfb190a247aa}\label{lang_8h_a2330daae4e89530d4585df3c66a40c05a7539ca04e939e35d89addfb190a247aa} 
+NB\+\_\+\+MSG&Nombre total de messages. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{lang_8h_aaad519717e47c7c83fc22fd869d1882f}\label{lang_8h_aaad519717e47c7c83fc22fd869d1882f} 
+\index{lang.h@{lang.h}!initLang@{initLang}}
+\index{initLang@{initLang}!lang.h@{lang.h}}
+\doxysubsubsection{\texorpdfstring{initLang()}{initLang()}}
+{\footnotesize\ttfamily void init\+Lang (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{lang }\end{DoxyParamCaption})}
+
+
+
+Initialise la langue utilisée par le jeu. 
+
+Cette fonction initialise la langue active en fonction du nom de la langue fourni. Si la langue spécifiée n\textquotesingle{}est pas reconnue, la langue anglaise est sélectionnée par défaut.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lang} & Nom de la langue à initialiser (par exemple, \"{}\+French\"{} ou \"{}\+English\"{}). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{lang_8h_ad39899d79497edeff2e6bb6fc2f7d899}\label{lang_8h_ad39899d79497edeff2e6bb6fc2f7d899} 
+\index{lang.h@{lang.h}!SelectLanguage@{SelectLanguage}}
+\index{SelectLanguage@{SelectLanguage}!lang.h@{lang.h}}
+\doxysubsubsection{\texorpdfstring{SelectLanguage()}{SelectLanguage()}}
+{\footnotesize\ttfamily int Select\+Language (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{l\mbox{[}20\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Sélectionne la langue à utiliser. 
+
+Cette fonction permet de changer la langue active en fonction des paramètres fournis.
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & Tableau de pointeurs utilisé pour passer les paramètres de sélection. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{lang_8h_afe1482792246fe428c7881d3d71607a6}\label{lang_8h_afe1482792246fe428c7881d3d71607a6} 
+\index{lang.h@{lang.h}!Traduction@{Traduction}}
+\index{Traduction@{Traduction}!lang.h@{lang.h}}
+\doxysubsubsection{\texorpdfstring{Traduction()}{Traduction()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} Traduction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05}{Cle\+Msg}}}]{key }\end{DoxyParamCaption})}
+
+
+
+Récupère la traduction associée à une clé de message. 
+
+Cette fonction renvoie la chaîne de caractères correspondant à la clé de message passée en paramètre selon la langue active.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & Clé de message pour laquelle la traduction est demandée. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une chaîne de caractères contenant la traduction correspondante. 
+\end{DoxyReturn}

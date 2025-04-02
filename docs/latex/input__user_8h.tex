@@ -1,0 +1,72 @@
+\doxysection{lib/input\+\_\+user.h File Reference}
+\hypertarget{input__user_8h}{}\label{input__user_8h}\index{lib/input\_user.h@{lib/input\_user.h}}
+
+
+Déclarations pour la gestion des entrées utilisateur dans Tap\+Venture.  
+
+
+{\ttfamily \#include \"{}SDL2/\+SDL.\+h\"{}}\newline
+Include dependency graph for input\+\_\+user.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{input__user_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{input__user_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{input__user_8h_a24bf9d7c673f3ad2da51738d3527a2f4}{input\+\_\+event}} (SDL\+\_\+\+Event event)
+\begin{DoxyCompactList}\small\item\em Traite un événement SDL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{input__user_8h_a85ea1b63086b31a15d3ed2579c5715a6}\label{input__user_8h_a85ea1b63086b31a15d3ed2579c5715a6} 
+int {\bfseries mouseX}
+\begin{DoxyCompactList}\small\item\em Coordonnée X actuelle de la souris. \end{DoxyCompactList}\item 
+\Hypertarget{input__user_8h_a3637abebcaa9d04aa18b1610d0921e16}\label{input__user_8h_a3637abebcaa9d04aa18b1610d0921e16} 
+int {\bfseries mouseY}
+\begin{DoxyCompactList}\small\item\em Coordonnée Y actuelle de la souris. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour la gestion des entrées utilisateur dans Tap\+Venture. 
+
+Ce fichier contient la déclaration de la fonction de traitement des événements SDL ainsi que la déclaration des variables globales pour stocker les coordonnées de la souris.
+
+\begin{DoxyAuthor}{Author}
+Noam MANFALOTI \& Lucas DUPONT \& Ibrahim SAPIEV 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+24 janvier 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{input__user_8h_a24bf9d7c673f3ad2da51738d3527a2f4}\label{input__user_8h_a24bf9d7c673f3ad2da51738d3527a2f4} 
+\index{input\_user.h@{input\_user.h}!input\_event@{input\_event}}
+\index{input\_event@{input\_event}!input\_user.h@{input\_user.h}}
+\doxysubsubsection{\texorpdfstring{input\_event()}{input\_event()}}
+{\footnotesize\ttfamily int input\+\_\+event (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{event }\end{DoxyParamCaption})}
+
+
+
+Traite un événement SDL. 
+
+Cette fonction gère un événement SDL (par exemple, un clic ou un mouvement de souris) et met à jour les états correspondants dans le jeu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & L\textquotesingle{}événement SDL à traiter. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si l\textquotesingle{}événement a été traité avec succès, 0 si l\textquotesingle{}événement demande la fermeture de l\textquotesingle{}application. 
+\end{DoxyReturn}

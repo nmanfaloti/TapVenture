@@ -1,0 +1,68 @@
+\doxysection{lang.\+h}
+\hypertarget{lang_8h_source}{}\label{lang_8h_source}\index{lib/lang.h@{lib/lang.h}}
+\mbox{\hyperlink{lang_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LANG\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LANG\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a4eaac3b3e86d4c11635039791df2968a}{BIENVENUE\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a12cdb552d50c045ff676490d1d977242}{AUREVOIR\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a5c6ae0702b4809d24815dc24305f9a31}{CLICK\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a7edb4a59007cd46700897bdc4e9c4c82}{VIE\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae29093d4b52eedff49b218b337d7c38e}{OR\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05acbfeaeca12cded01ba38199926fcce8a}{DMG\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a3e81350c9dcce7b8cc56621c3bd8dfdf}{UPG\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a53a174afb2b380af78a732bb6141a44c}{MOB\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a22f0ed635dfe4e643769fe807b979601}{LVL\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ac718d5329a94a716700d30f827c3e2b1}{SETTING\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae4ba15ece8fb2f9c6026607a9edc551d}{FR\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a70c1499a05e907f847f67bb5dbe0aa7d}{EN\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a721d58980e5093c50798bb8d6f5f2a57}{WELCOME\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae3d29d3c871719738e2231006eadd85e}{WELCOME\_DESC\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a8a5cb4c8d84924d5f9795e75f9bf6fa3}{GOLD\_OFFLINE\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ad48a9329d8b233ff95f92fb49fc171c4}{GOLD\_OFFLINE\_DESC\_MSG}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05af52db6e5b75e5637b3a7408abf31ce54}{FULLSCREEN\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a2933a089b996bbcffe6e5efb717cd604}{WINDOWED\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a3d5e45473756d0c414eef9cc01355848}{CHALLENGE\_MSG\_WIN}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05afdf1a9833cc3c1991d90668a421ac843}{CHALLENGE\_MSG\_LOSE}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a0c7099f70ac874ab3c0847e478541a27}{CHALLENGE\_MSG\_COOLDOWN}},\ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a79e5ba49ca713f8c0326465e7c679512}{TIMER\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ad9ddc85aaa9cbbcacb3e883459412e03}{NOTIF\_TITLE}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a4dcf2cf19e29e672c39647d54f2cb02f}{PRESTIGE\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a19f88534e9bcc9ba9b32cf725c8931c5}{PRESTIGE\_COST}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a3bb5cba0da4eeb914273c20cade3f568}{PRESTIGE\_GOLD\_DESC}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ad1f9a45a0f2427d8cf77d87cee367549}{PRESTIGE\_DAMAGE\_DESC}},\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a29c7480b03766c9e102c18853bcb8ca1}{PRESTIGE\_PRESTIGE\_DESC}},\ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a8f274b355923d93eb88e94d6e6037a5f}{PRESTIGE\_HERO\_DESC}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05aa9b9837898f818e1bd24ea075a752ba0}{PRESTIGE\_HEROLVL\_DESC}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a42f8f0ef29818b611ec76d8c4a0753be}{PRESTIGE\_CONGRATS}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05aa44488f423c3cfc45019d52bb3aadd3e}{HERO\_SHOP\_TITLE\_MSG}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05af63408b59b06f750d480bb85d19b50b6}{PRICE\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a1285e55115d24cc803e1f01b99a762e3}{HERO\_SHOP\_MULTIPLICATOR\_MSG}},\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05af6671ec495c72c70c51d81775d4c164f}{DPS\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae58b4d1d64ccb97399b4f9a1a1418373}{MAX\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05ae67a4a2eb246154ae742b7ce89678086}{CREDITS\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a9469d8efb3cfa122de5e7323ae4a78cf}{CREDITS\_ESTEBAN\_MSG}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a20c94529b70554d5b4d4dbfea9ddde12}{CREDITS\_DEV\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a276467cb44cb2c2d0dd61bd353acbe37}{CREDITS\_ASSETS\_MSG}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a2b0575181552e3b0f7f20b2ca1905606}{QUIT\_MSG}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a7539ca04e939e35d89addfb190a247aa}{NB\_MSG}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \}\ \mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05}{CleMsg}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structLang_ad2cce1cdad82996a75169811218aa905}{Language}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *messages[\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05a7539ca04e939e35d89addfb190a247aa}{NB\_MSG}}];\ }
+\DoxyCodeLine{00075\ \}\ \mbox{\hyperlink{structLang}{Lang}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structLang}{Lang}}\ \mbox{\hyperlink{lang_8h_a887b8b3b903aadd41047b37807c55e56}{LanguageAct}};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00091\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{lang_8h_afe1482792246fe428c7881d3d71607a6}{Traduction}}(\mbox{\hyperlink{lang_8h_a2330daae4e89530d4585df3c66a40c05}{CleMsg}}\ key);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00102\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{lang_8h_ad39899d79497edeff2e6bb6fc2f7d899}{SelectLanguage}}(\textcolor{keywordtype}{void}\ *\ l[20]);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{lang_8h_aaad519717e47c7c83fc22fd869d1882f}{initLang}}(\textcolor{keywordtype}{char}\ *\ lang);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LANG\_H}}
+
+\end{DoxyCode}

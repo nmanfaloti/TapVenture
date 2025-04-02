@@ -1,0 +1,5 @@
+<map id="levelInfo" name="levelInfo">
+<area shape="rect" id="Node000001" title="Structure représentant le niveau de combat." alt="" coords="17,93,95,119"/>
+<area shape="rect" id="Node000002" href="$structmonstreInfo.html" title="Structure représentant les informations d&#39;un monstre." alt="" coords="5,5,107,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,45,59,93,53,93,53,45"/>
+</map>

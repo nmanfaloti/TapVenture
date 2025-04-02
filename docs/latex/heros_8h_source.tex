@@ -1,0 +1,72 @@
+\doxysection{heros.\+h}
+\hypertarget{heros_8h_source}{}\label{heros_8h_source}\index{lib/heros.h@{lib/heros.h}}
+\mbox{\hyperlink{heros_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ HEROS\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ HEROS\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ NB\_HEROS\_PER\_PAGE\_H\ 3}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ NB\_HEROS\_PER\_PAGE\_W\ 4}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ HERO0,}
+\DoxyCodeLine{00036\ \ \ \ \ HERO1,}
+\DoxyCodeLine{00037\ \ \ \ \ HERO2,}
+\DoxyCodeLine{00038\ \ \ \ \ HERO3,}
+\DoxyCodeLine{00039\ \ \ \ \ HERO4,}
+\DoxyCodeLine{00040\ \ \ \ \ HERO5,}
+\DoxyCodeLine{00041\ \ \ \ \ HERO6,}
+\DoxyCodeLine{00042\ \ \ \ \ HERO7,}
+\DoxyCodeLine{00043\ \ \ \ \ HERO8,}
+\DoxyCodeLine{00044\ \ \ \ \ HERO9,}
+\DoxyCodeLine{00045\ \ \ \ \ HERO10,}
+\DoxyCodeLine{00046\ \ \ \ \ HERO11,}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a}{HEROS\_COUNT}}\ }
+\DoxyCodeLine{00048\ \}\ \mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbeb}{herosIndex}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhero_a9fc8e349e1d7fa8a76ed0d242f55dbda}{degat}};\ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhero_a3465aef31d05c24398c08c9d6b8b79f8}{prix}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhero_aa9a665789aac77b82816bbb380b6aa0e}{level}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhero_a3bd0a1bf3afe8d642a1b4509c130ee3f}{cooldown}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structhero_a82587de15c83910f5ba441b11bc5c9f3}{lastAttack}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \}\ \mbox{\hyperlink{structhero}{hero}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00073\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a50f33cb27e232bfd3d40d62725a762e0}{initHeros}}();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a3f826d62499008259e21961088fb3189}{attackHeros}}();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a9f20be36595a0f2f1c2825d05fb3e495}{upgradeHero}}(\textcolor{keywordtype}{int}\ HeroIndex,\ \textcolor{keywordtype}{bool}\ pay);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_ac28ea4f98ee5df015cd3200cfb78d842}{upgradeHeroCB}}(\textcolor{keywordtype}{void}\ *\ args[20]);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00118\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a0b1f64dc5fea26af3438f96f878c5c89}{makeHeroAtLevel}}(\textcolor{keywordtype}{int}\ heroIndex,\ \textcolor{keywordtype}{int}\ level);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00129\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_ae6f0c4c6f7f16a29d14478616b8735d8}{getHeroPriceByMultiplicator}}(\textcolor{keywordtype}{int}\ heroIndex);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00140\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_af45948855a446d422f67285162d74bde}{getHeroPrice}}(\textcolor{keywordtype}{int}\ heroIndex);}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00151\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a8a3b1b122c36db44f264eeb5b2038edd}{herosDPS}}(\textcolor{keywordtype}{int}\ indiceHero);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00161\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_ae2fc0750bb25660a9dd9a01a126719ec}{herosAllDPS}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a99a118844f6f00fbee0dcf9ea9a67dd7}{herosGoldGenBySec}}();}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00179\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{heros_8h_a37dc09ec1fa356a542005c1d6e7d39cb}{initHerosPage}}();}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00187\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{heros_8h_af1ca1ce5c50ec9ae0668ff0e05f0b471}{loadHerosMatrice}}();}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00195\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{heros_8h_a1e2c1df0785fa9837e487367df544e92}{updateHeroShopPage}}();}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{heros_8h_a349998adc9e723581fcea3ea3aaf7341}{updateHeroIInShopPage}}(\textcolor{keywordtype}{int}\ heroIndex);}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00215\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{heros_8h_a09c0b12d3dad8a4140550a6c0a873987}{changeMultiplicator}}();}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00220\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structhero}{hero}}\ \mbox{\hyperlink{heros_8h_a50fc48d750e56f362c1360e50a372097}{heros}}[\mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a}{HEROS\_COUNT}}];}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ HEROS\_H}}
+
+\end{DoxyCode}

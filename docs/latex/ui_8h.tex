@@ -1,0 +1,455 @@
+\doxysection{lib/ui.h File Reference}
+\hypertarget{ui_8h}{}\label{ui_8h}\index{lib/ui.h@{lib/ui.h}}
+
+
+Interface de gestion de l\textquotesingle{}interface utilisateur (UI) dans Tap\+Venture.  
+
+
+{\ttfamily \#include \"{}aff.\+h\"{}}\newline
+{\ttfamily \#include \"{}button.\+h\"{}}\newline
+Include dependency graph for ui.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ui_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{ui_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structuiPage__s}{ui\+Page\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Structure représentant une page de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structuiPageHolder__s}{ui\+Page\+Holder\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Structure contenant les pages de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structuiNotif__s}{ui\+Notif\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Structure représentant une notification dans l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structuiNotifList__s}{ui\+Notif\+List\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Structure contenant une liste de notifications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ui_8h_a69fe7d18e7926bb169f7923a45adef71}{MAX\+\_\+\+NOTIF}}~10
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{ui_8h_a81dc0b0474a3c2f37e69c00b94af75a3}\label{ui_8h_a81dc0b0474a3c2f37e69c00b94af75a3} 
+typedef struct \mbox{\hyperlink{structuiPage__s}{ui\+Page\+\_\+s}} {\bfseries ui\+Page}
+\item 
+\Hypertarget{ui_8h_a7e6808d765e59e4aeac404f038a8e66f}\label{ui_8h_a7e6808d765e59e4aeac404f038a8e66f} 
+typedef struct \mbox{\hyperlink{structuiPageHolder__s}{ui\+Page\+Holder\+\_\+s}} {\bfseries ui\+Page\+Holder}
+\item 
+\Hypertarget{ui_8h_ae9953e9325ee898978fcda9150846a00}\label{ui_8h_ae9953e9325ee898978fcda9150846a00} 
+typedef struct \mbox{\hyperlink{structuiNotif__s}{ui\+Notif\+\_\+s}} {\bfseries Notif}
+\item 
+\Hypertarget{ui_8h_a077409bcba8036574516b88ac4c366e1}\label{ui_8h_a077409bcba8036574516b88ac4c366e1} 
+typedef struct \mbox{\hyperlink{structuiNotifList__s}{ui\+Notif\+List\+\_\+s}} {\bfseries Notif\+List}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ui_8h_a8b9b420bd34b6c86845c7ae039652139}{create\+Button}} (\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page, SDL\+\_\+\+Rect rect, char \texorpdfstring{$\ast$}{*}path\+Img, char \texorpdfstring{$\ast$}{*}hover\+Path, TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*}Textfont, SDL\+\_\+\+Color color, int txt\+Ind, int \texorpdfstring{$\ast$}{*}info, float grow\+Effect, int(\texorpdfstring{$\ast$}{*}call\+Function)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}), int num\+Args,...)
+\begin{DoxyCompactList}\small\item\em Crée un bouton dans une page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_a25c44c8f69c3d2dab4343c2cc198a071}{create\+Img\+Button}} (\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page, SDL\+\_\+\+Rect rect, char \texorpdfstring{$\ast$}{*}path\+Img, char \texorpdfstring{$\ast$}{*}path\+Background, int offset\+LogoX, int offset\+LogoY, int(\texorpdfstring{$\ast$}{*}call\+Function)(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}), char \texorpdfstring{$\ast$}{*}label, int num\+Args,...)
+\begin{DoxyCompactList}\small\item\em Crée un bouton d\textquotesingle{}image dans une page. Si path\+Img (icon) est NULL le path\+Background (fond) utilise un PNG au lieu d\textquotesingle{}un SVG. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_a9d799d4fb70929c15dda75681475c4df}{create\+UIText}} (\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page, TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*}font, char \texorpdfstring{$\ast$}{*}chaine, SDL\+\_\+\+Rect dest, SDL\+\_\+\+Color color, char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Crée un texte dans une page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_a34e17c26ecffc6d44eea3fbde1738e2c}{set\+Button\+Text}} (\mbox{\hyperlink{structButton}{Button}} \texorpdfstring{$\ast$}{*}button, const char \texorpdfstring{$\ast$}{*}txt)
+\begin{DoxyCompactList}\small\item\em Définit le texte d\textquotesingle{}un bouton. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ui_8h_a2236cf1b2412f2629c385540048d996d}{get\+Txt\+From\+Label}} (char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Récupère un texte à partir de son étiquette. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_aa9787a000e5465904f88cea1ea894d61}{create\+UIImg}} (\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page, char \texorpdfstring{$\ast$}{*}path, SDL\+\_\+\+Rect dest, char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Crée une image dans une page. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structuiImg}{ui\+Img}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ui_8h_af8df3d18e6cab749b32c92c8545c43ec}{get\+Img\+From\+Label}} (char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Récupère une image à partir de son étiquette. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_adce466d67fe330b9f1f6eccaa9d1ba8b}{create\+Page}} (\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page)
+\begin{DoxyCompactList}\small\item\em Crée une page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_ac96341acbe1eac32109342c9d059b276}{destroy\+Page}} (\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page)
+\begin{DoxyCompactList}\small\item\em Détruit une page. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ui_8h_ad8f503e10002023219b2f39df21cf986}{change\+Page}} (void \texorpdfstring{$\ast$}{*}args\mbox{[}20\mbox{]})
+\begin{DoxyCompactList}\small\item\em Change la page affichée. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_a7e2877113922a831f5c97c5a02e17b1a}\label{ui_8h_a7e2877113922a831f5c97c5a02e17b1a} 
+void {\bfseries init\+Main\+Page} ()
+\begin{DoxyCompactList}\small\item\em Initialise la page principale. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_ac3d79ff9d0bc58394d914ec4224f69da}\label{ui_8h_ac3d79ff9d0bc58394d914ec4224f69da} 
+void {\bfseries init\+Settings\+Page} ()
+\begin{DoxyCompactList}\small\item\em Initialise la page des paramètres. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_a232210fda14e3af18e22faaa5cd43cf0}{init\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Initialise une page. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_a721b73ea03676b50deae6301dc798574}\label{ui_8h_a721b73ea03676b50deae6301dc798574} 
+void {\bfseries destroy\+Pages} ()
+\begin{DoxyCompactList}\small\item\em Détruit toutes les pages. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_a75770e19795b3ca1de984856604b5e1c}\label{ui_8h_a75770e19795b3ca1de984856604b5e1c} 
+void {\bfseries destroy\+All\+Pages} ()
+\begin{DoxyCompactList}\small\item\em Détruit toutes les pages et leurs contenus. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_ae8a16aac3a1a9197c07127504f85ced9}{destroy\+UIImg}} (\mbox{\hyperlink{structuiImg}{ui\+Img}} \texorpdfstring{$\ast$}{*}img, \mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page)
+\begin{DoxyCompactList}\small\item\em Détruit une image de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_a70f520ffd37c08603dcf5023f440ac33}{destroy\+UITxt}} (\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*}txt, \mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}page)
+\begin{DoxyCompactList}\small\item\em Détruit un texte de l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_af5959f9ab6b0ecb58859e1b79d89395c}{create\+Notif}} (char \texorpdfstring{$\ast$}{*}title, int title\+YOffset, float title\+Size, char \texorpdfstring{$\ast$}{*}img\+Background, int duration, SDL\+\_\+\+Rect dest, int mess\+YOffset, float mess\+Size, char \texorpdfstring{$\ast$}{*}notif\+Mess)
+\begin{DoxyCompactList}\small\item\em Crée une notification. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{ui_8h_acd0ca4351e2e9e11f41d0a41f23f1e37}{show\+Notif}} (\mbox{\hyperlink{structuiNotif__s}{Notif}} \texorpdfstring{$\ast$}{*}notif)
+\begin{DoxyCompactList}\small\item\em Affiche une notification. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_a652c1be031a29743259978c12d3fb590}\label{ui_8h_a652c1be031a29743259978c12d3fb590} 
+void {\bfseries init\+Notif\+List} ()
+\begin{DoxyCompactList}\small\item\em Initialise la liste des notifications. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_ab80e1ff0a0d2de011145e2ed30797a78}\label{ui_8h_ab80e1ff0a0d2de011145e2ed30797a78} 
+void {\bfseries ui\+Notif\+Handle} ()
+\begin{DoxyCompactList}\small\item\em Gère l\textquotesingle{}affichage des notifications. \end{DoxyCompactList}\item 
+\Hypertarget{ui_8h_ace6d91206157c2c6222fa4498a62406b}\label{ui_8h_ace6d91206157c2c6222fa4498a62406b} 
+void {\bfseries destroy\+Notif\+List} ()
+\begin{DoxyCompactList}\small\item\em Détruit la liste des notifications. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ui_8h_a02013bd8e68c3111494486b4278001bd}{currentpage}}
+\item 
+\mbox{\hyperlink{structuiPageHolder__s}{ui\+Page\+Holder}} \mbox{\hyperlink{ui_8h_ac25bb0a641dbcb4fe82fae3611073ff3}{page\+Holder}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion de l\textquotesingle{}interface utilisateur (UI) dans Tap\+Venture. 
+
+Ce fichier contient les déclarations des structures et fonctions nécessaires pour gérer les pages, les boutons, les textes, les images et les notifications dans l\textquotesingle{}interface utilisateur du jeu. Il contient toutes les elements/fonctions de l\textquotesingle{}interface utilisateur qui ont besoin d\textquotesingle{}éléments de bouton et d\textquotesingle{}aff. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ui_8h_a69fe7d18e7926bb169f7923a45adef71}\label{ui_8h_a69fe7d18e7926bb169f7923a45adef71} 
+\index{ui.h@{ui.h}!MAX\_NOTIF@{MAX\_NOTIF}}
+\index{MAX\_NOTIF@{MAX\_NOTIF}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NOTIF}{MAX\_NOTIF}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+NOTIF~10}
+
+Nombre maximum de notifications affichables. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ui_8h_ad8f503e10002023219b2f39df21cf986}\label{ui_8h_ad8f503e10002023219b2f39df21cf986} 
+\index{ui.h@{ui.h}!changePage@{changePage}}
+\index{changePage@{changePage}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{changePage()}{changePage()}}
+{\footnotesize\ttfamily int change\+Page (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{args\mbox{[}20\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Change la page affichée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Arguments nécessaires pour le changement de page. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Code de retour. 
+\end{DoxyReturn}
+\Hypertarget{ui_8h_a8b9b420bd34b6c86845c7ae039652139}\label{ui_8h_a8b9b420bd34b6c86845c7ae039652139} 
+\index{ui.h@{ui.h}!createButton@{createButton}}
+\index{createButton@{createButton}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{createButton()}{createButton()}}
+{\footnotesize\ttfamily void create\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page,  }\item[{SDL\+\_\+\+Rect}]{rect,  }\item[{char \texorpdfstring{$\ast$}{*}}]{path\+Img,  }\item[{char \texorpdfstring{$\ast$}{*}}]{hover\+Path,  }\item[{TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*}}]{Textfont,  }\item[{SDL\+\_\+\+Color}]{color,  }\item[{int}]{txt\+Ind,  }\item[{int \texorpdfstring{$\ast$}{*}}]{info,  }\item[{float}]{grow\+Effect,  }\item[{int(\texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})}]{call\+Function,  }\item[{int}]{num\+Args,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Crée un bouton dans une page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & La page où ajouter le bouton. \\
+\hline
+{\em rect} & Rectangle définissant la position et la taille du bouton. \\
+\hline
+{\em path\+Img} & Chemin de l\textquotesingle{}image du bouton. (SVG) \\
+\hline
+{\em hover\+Path} & Chemin de l\textquotesingle{}image du bouton en survol. \\
+\hline
+{\em Textfont} & Police utilisée pour le texte du bouton. \\
+\hline
+{\em color} & Couleur du texte. \\
+\hline
+{\em txt\+Ind} & Indice du texte. \\
+\hline
+{\em info} & Informations supplémentaires. \\
+\hline
+{\em grow\+Effect} & Effet de grossissement au survol. \\
+\hline
+{\em call\+Function} & Fonction appelée lors du clic sur le bouton. \\
+\hline
+{\em num\+Args} & Nombre d\textquotesingle{}arguments passés à la fonction. \\
+\hline
+{\em ...} & Arguments supplémentaires. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_a25c44c8f69c3d2dab4343c2cc198a071}\label{ui_8h_a25c44c8f69c3d2dab4343c2cc198a071} 
+\index{ui.h@{ui.h}!createImgButton@{createImgButton}}
+\index{createImgButton@{createImgButton}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{createImgButton()}{createImgButton()}}
+{\footnotesize\ttfamily void create\+Img\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page,  }\item[{SDL\+\_\+\+Rect}]{rect,  }\item[{char \texorpdfstring{$\ast$}{*}}]{path\+Img,  }\item[{char \texorpdfstring{$\ast$}{*}}]{path\+Background,  }\item[{int}]{offset\+LogoX,  }\item[{int}]{offset\+LogoY,  }\item[{int(\texorpdfstring{$\ast$}{*})(void \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})}]{call\+Function,  }\item[{char \texorpdfstring{$\ast$}{*}}]{label,  }\item[{int}]{num\+Args,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+
+
+Crée un bouton d\textquotesingle{}image dans une page. Si path\+Img (icon) est NULL le path\+Background (fond) utilise un PNG au lieu d\textquotesingle{}un SVG. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & La page où ajouter le bouton. \\
+\hline
+{\em rect} & Rectangle définissant la position et la taille du bouton. \\
+\hline
+{\em path\+Img} & Chemin de l\textquotesingle{}image du bouton. (SVG ou NULL) \\
+\hline
+{\em path\+Background} & Chemin de l\textquotesingle{}image de fond. (SVG/\+PNG) \\
+\hline
+{\em offset\+LogoX} & Décalage horizontal du logo. \\
+\hline
+{\em offset\+LogoY} & Décalage vertical du logo. \\
+\hline
+{\em call\+Function} & Fonction appelée lors du clic sur le bouton. \\
+\hline
+{\em label} & Étiquette du bouton. \\
+\hline
+{\em num\+Args} & Nombre d\textquotesingle{}arguments passés à la fonction. \\
+\hline
+{\em ...} & Arguments supplémentaires. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_af5959f9ab6b0ecb58859e1b79d89395c}\label{ui_8h_af5959f9ab6b0ecb58859e1b79d89395c} 
+\index{ui.h@{ui.h}!createNotif@{createNotif}}
+\index{createNotif@{createNotif}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{createNotif()}{createNotif()}}
+{\footnotesize\ttfamily void create\+Notif (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{title,  }\item[{int}]{title\+YOffset,  }\item[{float}]{title\+Size,  }\item[{char \texorpdfstring{$\ast$}{*}}]{img\+Background,  }\item[{int}]{duration,  }\item[{SDL\+\_\+\+Rect}]{dest,  }\item[{int}]{mess\+YOffset,  }\item[{float}]{mess\+Size,  }\item[{char \texorpdfstring{$\ast$}{*}}]{notif\+Mess }\end{DoxyParamCaption})}
+
+
+
+Crée une notification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Titre de la notification. \\
+\hline
+{\em title\+YOffset} & Décalage vertical du titre. \\
+\hline
+{\em title\+Size} & Taille du titre. \\
+\hline
+{\em img\+Background} & Chemin de l\textquotesingle{}image de fond. (PNG) \\
+\hline
+{\em duration} & Durée d\textquotesingle{}affichage de la notification. \\
+\hline
+{\em dest} & Rectangle définissant la position et la taille de la notification. \\
+\hline
+{\em mess\+YOffset} & Décalage vertical du message. \\
+\hline
+{\em mess\+Size} & Taille du message. \\
+\hline
+{\em notif\+Mess} & Contenu du message. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_adce466d67fe330b9f1f6eccaa9d1ba8b}\label{ui_8h_adce466d67fe330b9f1f6eccaa9d1ba8b} 
+\index{ui.h@{ui.h}!createPage@{createPage}}
+\index{createPage@{createPage}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{createPage()}{createPage()}}
+{\footnotesize\ttfamily void create\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page }\end{DoxyParamCaption})}
+
+
+
+Crée une page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & La page à créer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_aa9787a000e5465904f88cea1ea894d61}\label{ui_8h_aa9787a000e5465904f88cea1ea894d61} 
+\index{ui.h@{ui.h}!createUIImg@{createUIImg}}
+\index{createUIImg@{createUIImg}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{createUIImg()}{createUIImg()}}
+{\footnotesize\ttfamily void create\+UIImg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page,  }\item[{char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{SDL\+\_\+\+Rect}]{dest,  }\item[{char \texorpdfstring{$\ast$}{*}}]{label }\end{DoxyParamCaption})}
+
+
+
+Crée une image dans une page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & La page où ajouter l\textquotesingle{}image. (PNG) \\
+\hline
+{\em path} & Chemin de l\textquotesingle{}image. \\
+\hline
+{\em dest} & Rectangle définissant la position et la taille de l\textquotesingle{}image. \\
+\hline
+{\em label} & Étiquette de l\textquotesingle{}image. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_a9d799d4fb70929c15dda75681475c4df}\label{ui_8h_a9d799d4fb70929c15dda75681475c4df} 
+\index{ui.h@{ui.h}!createUIText@{createUIText}}
+\index{createUIText@{createUIText}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{createUIText()}{createUIText()}}
+{\footnotesize\ttfamily void create\+UIText (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page,  }\item[{TTF\+\_\+\+Font \texorpdfstring{$\ast$}{*}}]{font,  }\item[{char \texorpdfstring{$\ast$}{*}}]{chaine,  }\item[{SDL\+\_\+\+Rect}]{dest,  }\item[{SDL\+\_\+\+Color}]{color,  }\item[{char \texorpdfstring{$\ast$}{*}}]{label }\end{DoxyParamCaption})}
+
+
+
+Crée un texte dans une page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & La page où ajouter le texte. \\
+\hline
+{\em font} & Police utilisée pour le texte. \\
+\hline
+{\em chaine} & Contenu du texte. \\
+\hline
+{\em dest} & Rectangle définissant la position et la taille du texte. \\
+\hline
+{\em color} & Couleur du texte. \\
+\hline
+{\em label} & Étiquette du texte. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_ac96341acbe1eac32109342c9d059b276}\label{ui_8h_ac96341acbe1eac32109342c9d059b276} 
+\index{ui.h@{ui.h}!destroyPage@{destroyPage}}
+\index{destroyPage@{destroyPage}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{destroyPage()}{destroyPage()}}
+{\footnotesize\ttfamily void destroy\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page }\end{DoxyParamCaption})}
+
+
+
+Détruit une page. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em page} & La page à détruire. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_ae8a16aac3a1a9197c07127504f85ced9}\label{ui_8h_ae8a16aac3a1a9197c07127504f85ced9} 
+\index{ui.h@{ui.h}!destroyUIImg@{destroyUIImg}}
+\index{destroyUIImg@{destroyUIImg}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{destroyUIImg()}{destroyUIImg()}}
+{\footnotesize\ttfamily void destroy\+UIImg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiImg}{ui\+Img}} \texorpdfstring{$\ast$}{*}}]{img,  }\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page }\end{DoxyParamCaption})}
+
+
+
+Détruit une image de l\textquotesingle{}interface utilisateur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & L\textquotesingle{}image à détruire. \\
+\hline
+{\em page} & La page contenant l\textquotesingle{}image. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_a70f520ffd37c08603dcf5023f440ac33}\label{ui_8h_a70f520ffd37c08603dcf5023f440ac33} 
+\index{ui.h@{ui.h}!destroyUITxt@{destroyUITxt}}
+\index{destroyUITxt@{destroyUITxt}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{destroyUITxt()}{destroyUITxt()}}
+{\footnotesize\ttfamily void destroy\+UITxt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*}}]{txt,  }\item[{\mbox{\hyperlink{structuiPage__s}{ui\+Page}} \texorpdfstring{$\ast$}{*}}]{page }\end{DoxyParamCaption})}
+
+
+
+Détruit un texte de l\textquotesingle{}interface utilisateur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em txt} & Le texte à détruire. \\
+\hline
+{\em page} & La page contenant le texte. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_af8df3d18e6cab749b32c92c8545c43ec}\label{ui_8h_af8df3d18e6cab749b32c92c8545c43ec} 
+\index{ui.h@{ui.h}!getImgFromLabel@{getImgFromLabel}}
+\index{getImgFromLabel@{getImgFromLabel}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{getImgFromLabel()}{getImgFromLabel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structuiImg}{ui\+Img}} \texorpdfstring{$\ast$}{*} get\+Img\+From\+Label (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{label }\end{DoxyParamCaption})}
+
+
+
+Récupère une image à partir de son étiquette. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & L\textquotesingle{}étiquette de l\textquotesingle{}image. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers l\textquotesingle{}image correspondante. 
+\end{DoxyReturn}
+\Hypertarget{ui_8h_a2236cf1b2412f2629c385540048d996d}\label{ui_8h_a2236cf1b2412f2629c385540048d996d} 
+\index{ui.h@{ui.h}!getTxtFromLabel@{getTxtFromLabel}}
+\index{getTxtFromLabel@{getTxtFromLabel}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{getTxtFromLabel()}{getTxtFromLabel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structuiTxt}{ui\+Txt}} \texorpdfstring{$\ast$}{*} get\+Txt\+From\+Label (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{label }\end{DoxyParamCaption})}
+
+
+
+Récupère un texte à partir de son étiquette. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & L\textquotesingle{}étiquette du texte. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers le texte correspondant. 
+\end{DoxyReturn}
+\Hypertarget{ui_8h_a232210fda14e3af18e22faaa5cd43cf0}\label{ui_8h_a232210fda14e3af18e22faaa5cd43cf0} 
+\index{ui.h@{ui.h}!initPage@{initPage}}
+\index{initPage@{initPage}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{initPage()}{initPage()}}
+{\footnotesize\ttfamily void init\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise une page. 
+
+Initialise une page. \Hypertarget{ui_8h_a34e17c26ecffc6d44eea3fbde1738e2c}\label{ui_8h_a34e17c26ecffc6d44eea3fbde1738e2c} 
+\index{ui.h@{ui.h}!setButtonText@{setButtonText}}
+\index{setButtonText@{setButtonText}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{setButtonText()}{setButtonText()}}
+{\footnotesize\ttfamily void set\+Button\+Text (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structButton}{Button}} \texorpdfstring{$\ast$}{*}}]{button,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{txt }\end{DoxyParamCaption})}
+
+
+
+Définit le texte d\textquotesingle{}un bouton. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & Le bouton à modifier. \\
+\hline
+{\em txt} & Le texte à définir. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{ui_8h_acd0ca4351e2e9e11f41d0a41f23f1e37}\label{ui_8h_acd0ca4351e2e9e11f41d0a41f23f1e37} 
+\index{ui.h@{ui.h}!showNotif@{showNotif}}
+\index{showNotif@{showNotif}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{showNotif()}{showNotif()}}
+{\footnotesize\ttfamily void show\+Notif (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuiNotif__s}{Notif}} \texorpdfstring{$\ast$}{*}}]{notif }\end{DoxyParamCaption})}
+
+
+
+Affiche une notification. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notif} & La notification à afficher. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{ui_8h_a02013bd8e68c3111494486b4278001bd}\label{ui_8h_a02013bd8e68c3111494486b4278001bd} 
+\index{ui.h@{ui.h}!currentpage@{currentpage}}
+\index{currentpage@{currentpage}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{currentpage}{currentpage}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structuiPage__s}{ui\+Page}}\texorpdfstring{$\ast$}{*} currentpage\hspace{0.3cm}{\ttfamily [extern]}}
+
+Pointeur vers la page actuellement affichée. \Hypertarget{ui_8h_ac25bb0a641dbcb4fe82fae3611073ff3}\label{ui_8h_ac25bb0a641dbcb4fe82fae3611073ff3} 
+\index{ui.h@{ui.h}!pageHolder@{pageHolder}}
+\index{pageHolder@{pageHolder}!ui.h@{ui.h}}
+\doxysubsubsection{\texorpdfstring{pageHolder}{pageHolder}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structuiPageHolder__s}{ui\+Page\+Holder}} page\+Holder\hspace{0.3cm}{\ttfamily [extern]}}
+
+Gestionnaire des pages de l\textquotesingle{}interface utilisateur. 

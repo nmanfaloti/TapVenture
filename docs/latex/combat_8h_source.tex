@@ -1,0 +1,55 @@
+\doxysection{combat.\+h}
+\hypertarget{combat_8h_source}{}\label{combat_8h_source}\index{lib/combat.h@{lib/combat.h}}
+\mbox{\hyperlink{combat_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COMBAT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COMBAT\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SDL2/SDL.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmonstreInfo_a26aaff8c321f5db06bab9238cabdf006}{mobHealth}};\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmonstreInfo_a9653cdd52bfdb0d0f15899ee6e49a4e9}{iniHealth}};\ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmonstreInfo_a87a854d81cb80441d9f7d995e2e23a06}{coinMax}};\ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structmonstreInfo_a723817be3e0292ce4f93e5e70ca82af7}{coinMin}};\ \ \ \ \ }
+\DoxyCodeLine{00028\ \}\ \mbox{\hyperlink{structmonstreInfo}{monstreInfo}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{structmonstreInfo}{monstreInfo}}\ monstre[51];\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlevelInfo_a52e78d9d8d7d9aef3b905e0a6bea1067}{timeToKill}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlevelInfo_ae794572d72a85c6eac2c3b9f56d41979}{startTimer}};\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlevelInfo_ab90a0ddfe62d33bb06ced17b903d314f}{mobKilled}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlevelInfo_ab416975722fc3c88fd6957ec1b5843e8}{mobToKill}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlevelInfo_aa3374d45136fd223868ee2f4ae2531e3}{currentLvl}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structlevelInfo_a6202fe800dc1daeec0b0e3529d465766}{maxLevel}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ label[5];\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{char}\ *\ img[5];\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \}\ \mbox{\hyperlink{structlevelInfo}{levelInfo}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structlevelInfo}{levelInfo}}\ level;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{combat_8h_abcaa07e43778ca9853cd45ccafae84cd}{getCurrentMobLabel}}();}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00065\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{combat_8h_a1f6cfd0e374e0f13351a69ec77a64820}{getCurrentMobImgPath}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{combat_8h_aa24e78a5bba9eb86f33996ecb01f98e6}{attack}}(\textcolor{keywordtype}{void}\ *\ args[20]);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{combat_8h_ab9d5ded61b0b886108d7daf415af0275}{initLevel}}(\mbox{\hyperlink{structmonstreInfo}{monstreInfo}}\ monstre[]);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00097\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{combat_8h_a956e17a6b62d5957b73906149f1a9350}{InitBoss}}(\textcolor{keywordtype}{int}\ diffTime);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00107\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{combat_8h_a48e212676ddbd18c04db07265dbb7c92}{isBoss}}(\textcolor{keywordtype}{int}\ currentLvl);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00120\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{combat_8h_a65faf4153e0030bdb07dc66f8d23bd63}{setLevel}}(\mbox{\hyperlink{structlevelInfo}{levelInfo}}\ *level,\ \textcolor{keywordtype}{int}\ lvl);}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00128\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{combat_8h_a945e94aa67ddd960f40ce4f4fb30ffec}{mobHandler}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00136\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{combat_8h_a5d23a38f125fec87913ffe253aa257bc}{mobAnimationHandler}}();}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00144\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{combat_8h_a2903523a7b43b97e6ab7c0ee6474ca01}{displayTimers}}();}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00156\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{combat_8h_aec2997012f3facc193bf1b972d99aa64}{changeLevel}}(\textcolor{keywordtype}{void}\ *\ l[20]);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COMBAT\_H}}
+
+\end{DoxyCode}

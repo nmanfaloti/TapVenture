@@ -1,0 +1,131 @@
+\doxysection{ui\+Notif\+\_\+s Struct Reference}
+\hypertarget{structuiNotif__s}{}\label{structuiNotif__s}\index{uiNotif\_s@{uiNotif\_s}}
+
+
+Structure représentant une notification dans l\textquotesingle{}interface utilisateur.  
+
+
+
+
+{\ttfamily \#include $<$ui.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structuiNotif__s_a79eecc7552769b50bba2d06e6ea6caa1}{desc}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structuiNotif__s_a407df6cca6954d73ff3b1fca92c8c280}{img\+Background}}
+\item 
+int \mbox{\hyperlink{structuiNotif__s_a50d892776fbbf6033394b8c6172f1e59}{duration}}
+\item 
+int \mbox{\hyperlink{structuiNotif__s_a9e8d3ef2365b11f320f235950981ab58}{mess\+YOffset}}
+\item 
+int \mbox{\hyperlink{structuiNotif__s_ae45f9fac7689a7a988d9081d24558c60}{title\+YOffset}}
+\item 
+float \mbox{\hyperlink{structuiNotif__s_a21598d6d807ffa824e470c21fca88359}{mess\+Size}}
+\item 
+float \mbox{\hyperlink{structuiNotif__s_a9d8ab9852b54deb6158dffdc4c59bf1b}{title\+Size}}
+\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{structuiNotif__s_a2941f0e4b5c50d16580f6f52c7994872}{dest}}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structuiNotif__s_a955c668cf7f697d61b81689bcfa418f9}{desc\+Texture}}
+\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{structuiNotif__s_ac663dc7910ee03665cbd8fee0357ce26}{desc\+Rect}}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structuiNotif__s_ab86d6663a5ed8e47b092e20c1be3ba6c}{title\+Texture}}
+\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{structuiNotif__s_a01f3972aa3e581452379d2de0d7f0bec}{title\+Rect}}
+\item 
+SDL\+\_\+\+Texture \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structuiNotif__s_a775d9d2bb015f90d359c298cc6d04456}{img\+Texture}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure représentant une notification dans l\textquotesingle{}interface utilisateur. 
+
+Cette structure contient les informations nécessaires pour afficher une notification, telles que le texte, l\textquotesingle{}image de fond, la durée et les positions. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structuiNotif__s_a79eecc7552769b50bba2d06e6ea6caa1}\label{structuiNotif__s_a79eecc7552769b50bba2d06e6ea6caa1} 
+\index{uiNotif\_s@{uiNotif\_s}!desc@{desc}}
+\index{desc@{desc}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{desc}{desc}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} ui\+Notif\+\_\+s\+::desc}
+
+Description de la notification. \Hypertarget{structuiNotif__s_ac663dc7910ee03665cbd8fee0357ce26}\label{structuiNotif__s_ac663dc7910ee03665cbd8fee0357ce26} 
+\index{uiNotif\_s@{uiNotif\_s}!descRect@{descRect}}
+\index{descRect@{descRect}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{descRect}{descRect}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect ui\+Notif\+\_\+s\+::desc\+Rect}
+
+Rectangle du message. \Hypertarget{structuiNotif__s_a955c668cf7f697d61b81689bcfa418f9}\label{structuiNotif__s_a955c668cf7f697d61b81689bcfa418f9} 
+\index{uiNotif\_s@{uiNotif\_s}!descTexture@{descTexture}}
+\index{descTexture@{descTexture}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{descTexture}{descTexture}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} ui\+Notif\+\_\+s\+::desc\+Texture}
+
+Texture du message. \Hypertarget{structuiNotif__s_a2941f0e4b5c50d16580f6f52c7994872}\label{structuiNotif__s_a2941f0e4b5c50d16580f6f52c7994872} 
+\index{uiNotif\_s@{uiNotif\_s}!dest@{dest}}
+\index{dest@{dest}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{dest}{dest}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect ui\+Notif\+\_\+s\+::dest}
+
+Position et taille de la notification. \Hypertarget{structuiNotif__s_a50d892776fbbf6033394b8c6172f1e59}\label{structuiNotif__s_a50d892776fbbf6033394b8c6172f1e59} 
+\index{uiNotif\_s@{uiNotif\_s}!duration@{duration}}
+\index{duration@{duration}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily int ui\+Notif\+\_\+s\+::duration}
+
+Durée d\textquotesingle{}affichage de la notification (en secondes). \Hypertarget{structuiNotif__s_a407df6cca6954d73ff3b1fca92c8c280}\label{structuiNotif__s_a407df6cca6954d73ff3b1fca92c8c280} 
+\index{uiNotif\_s@{uiNotif\_s}!imgBackground@{imgBackground}}
+\index{imgBackground@{imgBackground}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{imgBackground}{imgBackground}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} ui\+Notif\+\_\+s\+::img\+Background}
+
+Chemin de l\textquotesingle{}image de fond. \Hypertarget{structuiNotif__s_a775d9d2bb015f90d359c298cc6d04456}\label{structuiNotif__s_a775d9d2bb015f90d359c298cc6d04456} 
+\index{uiNotif\_s@{uiNotif\_s}!imgTexture@{imgTexture}}
+\index{imgTexture@{imgTexture}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{imgTexture}{imgTexture}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} ui\+Notif\+\_\+s\+::img\+Texture}
+
+Texture de l\textquotesingle{}image de fond. \Hypertarget{structuiNotif__s_a21598d6d807ffa824e470c21fca88359}\label{structuiNotif__s_a21598d6d807ffa824e470c21fca88359} 
+\index{uiNotif\_s@{uiNotif\_s}!messSize@{messSize}}
+\index{messSize@{messSize}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{messSize}{messSize}}
+{\footnotesize\ttfamily float ui\+Notif\+\_\+s\+::mess\+Size}
+
+Taille du texte du message. \Hypertarget{structuiNotif__s_a9e8d3ef2365b11f320f235950981ab58}\label{structuiNotif__s_a9e8d3ef2365b11f320f235950981ab58} 
+\index{uiNotif\_s@{uiNotif\_s}!messYOffset@{messYOffset}}
+\index{messYOffset@{messYOffset}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{messYOffset}{messYOffset}}
+{\footnotesize\ttfamily int ui\+Notif\+\_\+s\+::mess\+YOffset}
+
+Décalage vertical du message. \Hypertarget{structuiNotif__s_a01f3972aa3e581452379d2de0d7f0bec}\label{structuiNotif__s_a01f3972aa3e581452379d2de0d7f0bec} 
+\index{uiNotif\_s@{uiNotif\_s}!titleRect@{titleRect}}
+\index{titleRect@{titleRect}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{titleRect}{titleRect}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect ui\+Notif\+\_\+s\+::title\+Rect}
+
+Rectangle du titre. \Hypertarget{structuiNotif__s_a9d8ab9852b54deb6158dffdc4c59bf1b}\label{structuiNotif__s_a9d8ab9852b54deb6158dffdc4c59bf1b} 
+\index{uiNotif\_s@{uiNotif\_s}!titleSize@{titleSize}}
+\index{titleSize@{titleSize}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{titleSize}{titleSize}}
+{\footnotesize\ttfamily float ui\+Notif\+\_\+s\+::title\+Size}
+
+Taille du texte du titre. \Hypertarget{structuiNotif__s_ab86d6663a5ed8e47b092e20c1be3ba6c}\label{structuiNotif__s_ab86d6663a5ed8e47b092e20c1be3ba6c} 
+\index{uiNotif\_s@{uiNotif\_s}!titleTexture@{titleTexture}}
+\index{titleTexture@{titleTexture}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{titleTexture}{titleTexture}}
+{\footnotesize\ttfamily SDL\+\_\+\+Texture\texorpdfstring{$\ast$}{*} ui\+Notif\+\_\+s\+::title\+Texture}
+
+Texture du titre. \Hypertarget{structuiNotif__s_ae45f9fac7689a7a988d9081d24558c60}\label{structuiNotif__s_ae45f9fac7689a7a988d9081d24558c60} 
+\index{uiNotif\_s@{uiNotif\_s}!titleYOffset@{titleYOffset}}
+\index{titleYOffset@{titleYOffset}!uiNotif\_s@{uiNotif\_s}}
+\doxysubsubsection{\texorpdfstring{titleYOffset}{titleYOffset}}
+{\footnotesize\ttfamily int ui\+Notif\+\_\+s\+::title\+YOffset}
+
+Décalage vertical du titre. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{ui_8h}{ui.\+h}}\end{DoxyCompactItemize}

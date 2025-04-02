@@ -1,0 +1,9 @@
+<map id="lib/aff.h" name="lib/aff.h">
+<area shape="rect" id="Node000001" title="Interface de gestion de l&#39;affichage des éléments UI dans TapVenture." alt="" coords="61,5,131,31"/>
+<area shape="rect" id="Node000002" href="$ui_8h.html" title="Interface de gestion de l&#39;interface utilisateur (UI) dans TapVenture." alt="" coords="63,79,129,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,44,99,79,93,79,93,44"/>
+<area shape="rect" id="Node000003" href="$inv_8c.html" title="Implémentation des fonctions de gestion de l&#39;inventaire." alt="" coords="5,152,80,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="81,117,53,153,49,150,77,113"/>
+<area shape="rect" id="Node000004" href="$main_8c.html" title="Point d&#39;entrée principal pour le jeu TapVenture." alt="" coords="105,152,194,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="115,113,143,150,139,153,111,117"/>
+</map>

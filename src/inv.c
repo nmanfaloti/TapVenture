@@ -16,13 +16,11 @@
 #include <time.h>
 #include <math.h>
 #include "../lib/inv.h"
-#include "../lib/sdl.h"
 #include "../lib/input_user.h"
 #include "../lib/heros.h"
 #include "../lib/combat.h"
 #include "../lib/player.h"
 #include "../lib/ui.h"
-#include "../lib/aff.h"
 #include "../lib/lang.h"
 #include "../lib/chaine.h"
 

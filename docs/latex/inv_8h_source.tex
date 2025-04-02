@@ -1,0 +1,160 @@
+\doxysection{inv.\+h}
+\hypertarget{inv_8h_source}{}\label{inv_8h_source}\index{lib/inv.h@{lib/inv.h}}
+\mbox{\hyperlink{inv_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ INV\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ INV\_H}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MAX\_LIGNE\ 1000}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ NB\_BOTTES\ 6}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ NB\_PLASTRON\ 6}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ NB\_CASQUE\ 6}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ NB\_ARME\ 11}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ DROP\_ITEM\ 100\ }\textcolor{comment}{//\ en\ pourcentage\ par\ nv.monstre\ }}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}../lib/scroll.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \#define\ NB\_EQU\ 40}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \#define\ EQU\_HEROS\ 5}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \#define\ POS\_HEROS\_X\ 46\ }\textcolor{comment}{//\ 46/100}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \#define\ BORDURE\ 64}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \#define\ DECALAGE\ 10}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \#define\ TAILLE\_ITEM\ 64}}
+\DoxyCodeLine{00025\ \ }
+\DoxyCodeLine{00035\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959a03e725c8dd07724161e6279c6f25ec23}{DEGAT}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959af05376ceaaf87def66982de3df392c8d}{VITESSE\_ATTAQUE}},}
+\DoxyCodeLine{00038\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959a96727447c0ad447987df1c6415aef074}{OR}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \}\ \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959}{stat\_a\_booster}};}
+\DoxyCodeLine{00040\ \ }
+\DoxyCodeLine{00044\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29ae8fac2c9a0f0be516511648841f02b9b}{CASQUE}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29aedbb23f610ae9780910d40b6d55d64f9}{PLASTRON}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29a091e5d782a5d773ae567929725251169}{BOTTE}},\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29a67c496eee7e7349709db95f918460093}{ARME}}\ ,\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ NB\_AMPLECEMENT}
+\DoxyCodeLine{00050\ \ \}\ \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29}{emplacement}};}
+\DoxyCodeLine{00051\ \ }
+\DoxyCodeLine{00055\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a806c2d875eb1f4cb657f2d8ab2340cac}{COMMUN}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a9def75f6ad1758d0bb3e8bbb697449aa}{UNCOMMUN}},\ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a6f2ddf4b4018193871276f6461d8e9b7}{RARE}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873afa0cca437f608cbc9268dc63ad3100f5}{EPIC}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873a09ecdef6d98abe36a97de72518c9806c}{LEGENDARY}}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \}\ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873}{rarity}};}
+\DoxyCodeLine{00062\ \ }
+\DoxyCodeLine{00066\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structitem__t_a0d24ef7091de970a180d6a8b4d128a0e}{nom}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structitem__t_a12470869715bf6625cfaa1ee515714cd}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *nom\_fichier\ ;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \textcolor{keywordtype}{int}\ pos\_y\ ;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a00dd3b8bed713de724b5aee121928d29}{emplacement}}\ \mbox{\hyperlink{structitem__t_a800e82263251bef244fee30b85194e3d}{piece\_equipement}};\ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_a36c201eb589717e0370478d4ca9c2959}{stat\_a\_booster}}\ \mbox{\hyperlink{structitem__t_ab217bda16218787e7fc671e08416cd88}{boost}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \mbox{\hyperlink{inv_8h_abe508ea58fbd7a7e7d75f7bc1781f873}{rarity}}\ \mbox{\hyperlink{structitem__t_aa2a00ce5aaceee342c2b7c1e1a2baf6e}{rarity}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structitem__t_a44d19e2398ee1fade69b6692360dbf5d}{stat}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \}\ \mbox{\hyperlink{structitem__t}{item\_t}};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structaff__inv__inf__s}{aff\_inv\_inf\_s}}\{}
+\DoxyCodeLine{00078\ \ \ \ \ SDL\_Rect\ SDL\_Rect\ ;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{int}\ nb\_collone\ ;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{int}\ nb\_ligne\ ;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{int}\ nb\_element\ ;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{int}\ arrondis\ ;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{int}\ decalage\_bas\ ;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{int}\ decalage\_cote\ ;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \}\ \mbox{\hyperlink{structaff__inv__inf__s}{aff\_inv\_inf}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00092\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ id\_scroll;}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{structaff__inv__inf__s}{aff\_inv\_inf}}\ info\_inv;}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{structitem__t}{item\_t}}\ **\mbox{\hyperlink{structinv_a9fefe03c7c649fadb170ed0a605f0f35}{liste}};\ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinv_a34f419e4322770396c9742d27e702244}{nb\_items}};\ \ \ \ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ id\_tuile;}
+\DoxyCodeLine{00098\ \}\ \mbox{\hyperlink{structinv}{inv}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{structinv}{inv}}\ **inventaires;\ \ \textcolor{comment}{//\ Tableau\ de\ pointeurs\ vers\ les\ inventaires}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{int}\ nb\_inventaires;\ \textcolor{comment}{//\ Nombre\ d'inventaires\ dans\ la\ liste}}
+\DoxyCodeLine{00103\ \}\ \mbox{\hyperlink{structliste__inventaires}{liste\_inventaires}};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structliste__inventaires}{liste\_inventaires}}\ *\ list\_inv\ ;\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//0\ item\ joueur\ \ /\ essamble\ des\ 1\ model\ items}}
+\DoxyCodeLine{00107\ \ \textcolor{comment}{//\ premier\ /\ (2\ pour\ l'instant\ les\ item\_init\ sont\ pas\ charger\ )\ sont\ allouer\ aux\ item\ et\ le\ reste\ aux\ heros}}
+\DoxyCodeLine{00108\ \ }
+\DoxyCodeLine{00115\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_adaf44a36ef675aa8571c1211b292c805}{init\_inv}}(\mbox{\hyperlink{structinv}{inv}}\ *inventaire);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a4ef3f326c61db3cf2484f7706d4dfa3c}{dest\_item}}(\mbox{\hyperlink{structitem__t}{item\_t}}\ **\ item);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00132\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_abd472475149db380b29e27bf9bcb9b17}{liberer\_item}}(\mbox{\hyperlink{structitem__t}{item\_t}}\ *\ item);}
+\DoxyCodeLine{00133\ \ }
+\DoxyCodeLine{00140\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ gestion\_inv(\mbox{\hyperlink{structinv}{inv}}\ **\ inventaire,\ \textcolor{keywordtype}{int}\ NB\_items,\textcolor{keywordtype}{int}\ scroll\_id,SDL\_Rect\ SDL\_Rect\ ,\textcolor{keywordtype}{int}\ nb\_collone\ ,\textcolor{keywordtype}{int}\ nb\_ligne\ \ ,}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{int}\ arrondis\ ,\textcolor{keywordtype}{int}\ decalage\_bas\ ,\textcolor{keywordtype}{int}\ decalage\_cote,\ \textcolor{keywordtype}{int}\ id\_back\_item);}
+\DoxyCodeLine{00142\ \ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a0539356cfaad795a5997fa5929f5bd44}{dest\_inv}}(\mbox{\hyperlink{structinv}{inv}}\ **\ inventaire);}
+\DoxyCodeLine{00151\ \ }
+\DoxyCodeLine{00159\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_a1efd18ab74c9d51e41bbf07fb282772f}{prem\_vide}}(\mbox{\hyperlink{structinv}{inv}}\ *inventaire);}
+\DoxyCodeLine{00160\ \ }
+\DoxyCodeLine{00168\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_a22af693b5f02e4630a01dc72cee4d421}{est\_vide}}(\mbox{\hyperlink{structitem__t}{item\_t}}\ *item);}
+\DoxyCodeLine{00169\ \ }
+\DoxyCodeLine{00178\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_ae6229776e3fc981c2f1295d008e94963}{droit\_fusion}}(\mbox{\hyperlink{structitem__t}{item\_t}}\ *item1,\ \mbox{\hyperlink{structitem__t}{item\_t}}\ *item2);}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00192\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_ac6178f19d4f45ce6c33b01927a4f5af2}{generate\_stat\_nb}}(\textcolor{keywordtype}{int}\ x,\textcolor{keywordtype}{int}\ type,\textcolor{keywordtype}{int}\ stat\_ameliorer\ ,\textcolor{keywordtype}{int}\ rarete,\textcolor{keywordtype}{int}\ nb\_max\_nv);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a9fdb529559d32a1007edfa2b949e208b}{deb\_fusion}}(\mbox{\hyperlink{structitem__t}{item\_t}}\ *\ item1,\ \mbox{\hyperlink{structitem__t}{item\_t}}\ *\ item2);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00211\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_abbc013647564cd9a409be37f0536b209}{cercle\_graf}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ rayon);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00226\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a5e2e19773d4b7e54d4ac98b6db160ca7}{rectangle\_arrondis}}(SDL\_Rect\ SDL\_Rect,\ \textcolor{keywordtype}{int}\ radius,\ \textcolor{keywordtype}{int}\ r,\ \textcolor{keywordtype}{int}\ g,\ \textcolor{keywordtype}{int}\ b);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00240\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a9d6e1d9329536054b04a4cc689cabafb}{aff\_inv\_graf}}(\mbox{\hyperlink{structinv}{inv}}\ *\ inventaire);}
+\DoxyCodeLine{00248\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a237d808972225afe414c21dfbc578a30}{draw\_scrollbar}}(\textcolor{keywordtype}{int}\ scrollbar\_x,\textcolor{keywordtype}{int}\ scrollbar\_y,\ \textcolor{keywordtype}{int}\ scrollbar\_height\ ,\ \textcolor{keywordtype}{int}\ scrollbar\_wheight\ )\ ;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00258\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_abcc67224413c5cc47d3871744a8b8b40}{calculate\_total\_content\_height}}(\textcolor{keywordtype}{int}\ nb\_ligne,\ \textcolor{keywordtype}{int}\ taille,\ \textcolor{keywordtype}{int}\ decalage);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00268\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{inv_8h_a7a4d94aa0621e4f02da13c20407f1ca6}{cof\_scrollbar\_window}}(\textcolor{keywordtype}{int}\ visible\_area\_height,\ \textcolor{keywordtype}{int}\ total\_content\_height);}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00277\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_ab5cc7c64ef75e000ab468d498f660b86}{calculate\_scrollbar\_max\_position}}(\textcolor{keywordtype}{int}\ screen\_height,\ \textcolor{keywordtype}{int}\ scrollbar\_heigt\ ,\ \textcolor{keywordtype}{float}\ cof);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00287\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a1aea9793363cbba5a9062f8c7c2e5bb7}{handle\_inv\_event}}(SDL\_Event\ event);}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00299\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_a5e5efe3d27dafa946fe605e316e5a63b}{coordonner\_realiste}}(\textcolor{keywordtype}{int}\ x\_deb,\ \textcolor{keywordtype}{int}\ y\_deb,\ \textcolor{keywordtype}{int}\ x\_fin,\ \textcolor{keywordtype}{int}\ y\_fin);}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00312\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a171a6f0f4f4d27f2527e88b9a6a4c1b8}{calculate\_zone\_content}}(\textcolor{keywordtype}{int}*\ x\_larg,\ \textcolor{keywordtype}{int}*\ y\_haut,\ \textcolor{keywordtype}{int}\ nb\_ligne,\ \textcolor{keywordtype}{int}\ nb\_colonne,\ \textcolor{keywordtype}{int}\ largeur,\ \textcolor{keywordtype}{int}\ hauteur,\ \textcolor{keywordtype}{int}\ decalage);}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00326\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{inv_8h_a3d4a2f6177d528e86bb9ef8b757beba5}{calcule\_pos\_inv}}();}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ dest\_all\_inventaires();}
+\DoxyCodeLine{00329\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ aff\_all\_inventaires()\ ;}
+\DoxyCodeLine{00330\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ load()\ ;}
+\DoxyCodeLine{00331\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ cleanup()\ ;}
+\DoxyCodeLine{00332\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ drop\_item();}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ load\_inv(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *nom\_fichier)\ ;}
+\DoxyCodeLine{00337\ \textcolor{keywordtype}{void}\ init\_inv\_main()\ ;}
+\DoxyCodeLine{00338\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structitem__t}{item\_t}}\ *\ load\_item\_ref(FILE\ *f)\ ;}
+\DoxyCodeLine{00339\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structitem__t}{item\_t}}\ *\ load\_item\_joueur(FILE\ *f);}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ stat\_item\_degat\ ;}
+\DoxyCodeLine{00343\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ stat\_item\_temps\ ;}
+\DoxyCodeLine{00344\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ boost\_gold();}
+\DoxyCodeLine{00345\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ gestion\_stat\_heros(\textcolor{keywordtype}{int}\ index\_heros);}
+\DoxyCodeLine{00346\ \textcolor{keywordtype}{void}\ save\_inv(\mbox{\hyperlink{structinv}{inv}}\ *inventaire,\ \textcolor{keywordtype}{char}\ *save)\ ;}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ draw\_rect\_inv()\ ;}
+\DoxyCodeLine{00351\ \textcolor{keywordtype}{void}\ racourcis\_createUI(\mbox{\hyperlink{structitem__t}{item\_t}}\ *\ it,\textcolor{keywordtype}{int}\ x,\textcolor{keywordtype}{int}\ y,\textcolor{keywordtype}{int}\ id\_tuille);}
+\DoxyCodeLine{00352\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{inv_8h_a1aea9793363cbba5a9062f8c7c2e5bb7}{handle\_inv\_event}}(SDL\_Event\ event)\ ;}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

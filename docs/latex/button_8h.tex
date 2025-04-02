@@ -1,0 +1,283 @@
+\doxysection{lib/button.h File Reference}
+\hypertarget{button_8h}{}\label{button_8h}\index{lib/button.h@{lib/button.h}}
+
+
+Interface de gestion des boutons dans Tap\+Venture.  
+
+
+{\ttfamily \#include \"{}sdl.\+h\"{}}\newline
+Include dependency graph for button.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{button_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{button_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structButton}{Button}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un bouton dans l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structButtonImg}{Button\+Img}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un bouton avec une image dans l\textquotesingle{}interface utilisateur. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structListeButton}{Liste\+Button}}
+\begin{DoxyCompactList}\small\item\em Structure représentant une liste de boutons. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structListeButtonImg}{Liste\+Button\+Img}}
+\begin{DoxyCompactList}\small\item\em Structure représentant une liste de boutons avec des images. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{button_8h_a5cb861d83899ac480edaa66fb8654a66}{Button\+Handle}} ()
+\begin{DoxyCompactList}\small\item\em Gère l\textquotesingle{}affichage et les interactions des boutons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_adaca45f5402605715d04425bf9340a09}{init\+List\+Button}} (\mbox{\hyperlink{structListeButton}{Liste\+Button}} \texorpdfstring{$\ast$}{*}liste\+Button)
+\begin{DoxyCompactList}\small\item\em Initialise une liste de boutons. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_a63ce1d8bbe91a3db19395e01493e3a7a}{init\+List\+Button\+Img}} (\mbox{\hyperlink{structListeButtonImg}{Liste\+Button\+Img}} \texorpdfstring{$\ast$}{*}liste\+Button\+Img)
+\begin{DoxyCompactList}\small\item\em Initialise une liste de boutons avec des images. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_a779032db34f43d33867d73f1f9288504}{refresh\+Button\+Shop}} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage des boutons de la boutique. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structButtonImg}{Button\+Img}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{button_8h_a96478044388101a3757d414e196a2bbf}{get\+Img\+Button\+From\+Label}} (char \texorpdfstring{$\ast$}{*}label)
+\begin{DoxyCompactList}\small\item\em Récupère un bouton avec une image à partir de son étiquette. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_aa88b0dbcfc73f402b5786e8765b6eebb}{set\+Img\+Button\+Texture}} (\mbox{\hyperlink{structButtonImg}{Button\+Img}} \texorpdfstring{$\ast$}{*}button, char \texorpdfstring{$\ast$}{*}path\+Img, char \texorpdfstring{$\ast$}{*}background\+Img)
+\begin{DoxyCompactList}\small\item\em Définit les textures d\textquotesingle{}un bouton avec une image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_a4acb440ebf49861acbec1cde19bea400}{destroy\+All\+Button\+From\+Page}} (\mbox{\hyperlink{structListeButton}{Liste\+Button}} \texorpdfstring{$\ast$}{*}liste\+Button)
+\begin{DoxyCompactList}\small\item\em Détruit tous les boutons d\textquotesingle{}une page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_afe468db096a60593384bcd8ef30b583d}{destroy\+All\+Button\+Img\+From\+Page}} (\mbox{\hyperlink{structListeButtonImg}{Liste\+Button\+Img}} \texorpdfstring{$\ast$}{*}liste\+Button\+Img)
+\begin{DoxyCompactList}\small\item\em Détruit tous les boutons avec des images d\textquotesingle{}une page. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_ade880d1633125473ee0059f78bc60df7}{draw\+Button}} (\mbox{\hyperlink{structButton}{Button}} \texorpdfstring{$\ast$}{*}button)
+\begin{DoxyCompactList}\small\item\em Dessine un bouton à l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{button_8h_ae9f8c4e78f4f90f4a8e045b2d44e331c}{check\+Boutton}} (SDL\+\_\+\+Rect rect, int mouse\+\_\+x, int mouse\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Vérifie si un clic de souris se trouve dans un bouton. \end{DoxyCompactList}\item 
+SDL\+\_\+\+Rect \mbox{\hyperlink{button_8h_a9c57ddb75061a5f3344932663bd07193}{get\+Rect\+For\+Centenred\+Cord}} (int x, int y, int w, int h)
+\begin{DoxyCompactList}\small\item\em Calcule un rectangle centré à partir de coordonnées. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{button_8h_a74e7a441d4d450576beee9e9445df159}{draw\+Button\+Img}} (\mbox{\hyperlink{structButtonImg}{Button\+Img}} \texorpdfstring{$\ast$}{*}button)
+\begin{DoxyCompactList}\small\item\em Dessine un bouton avec une image à l\textquotesingle{}écran. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion des boutons dans Tap\+Venture. 
+
+Ce fichier définit les structures et fonctions nécessaires pour créer, afficher, et gérer les boutons dans l\textquotesingle{}interface utilisateur. Il inclut également des outils pour manipuler les textures, les événements de clic, et les états des boutons. \begin{DoxyAuthor}{Author}
+Noam MANFALOTI 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2 avril 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{button_8h_a5cb861d83899ac480edaa66fb8654a66}\label{button_8h_a5cb861d83899ac480edaa66fb8654a66} 
+\index{button.h@{button.h}!ButtonHandle@{ButtonHandle}}
+\index{ButtonHandle@{ButtonHandle}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{ButtonHandle()}{ButtonHandle()}}
+{\footnotesize\ttfamily void Button\+Handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère l\textquotesingle{}affichage et les interactions des boutons. 
+
+Cette fonction met à jour l\textquotesingle{}état des boutons, gère les événements de clic, et applique les effets visuels associés. \Hypertarget{button_8h_ae9f8c4e78f4f90f4a8e045b2d44e331c}\label{button_8h_ae9f8c4e78f4f90f4a8e045b2d44e331c} 
+\index{button.h@{button.h}!checkBoutton@{checkBoutton}}
+\index{checkBoutton@{checkBoutton}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{checkBoutton()}{checkBoutton()}}
+{\footnotesize\ttfamily int check\+Boutton (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Rect}]{rect,  }\item[{int}]{mouse\+\_\+x,  }\item[{int}]{mouse\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Vérifie si un clic de souris se trouve dans un bouton. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rect} & Rectangle définissant la position et la taille du bouton. \\
+\hline
+{\em mouse\+\_\+x} & Position X de la souris. \\
+\hline
+{\em mouse\+\_\+y} & Position Y de la souris. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le clic est dans le bouton, 0 sinon. 
+\end{DoxyReturn}
+\Hypertarget{button_8h_a4acb440ebf49861acbec1cde19bea400}\label{button_8h_a4acb440ebf49861acbec1cde19bea400} 
+\index{button.h@{button.h}!destroyAllButtonFromPage@{destroyAllButtonFromPage}}
+\index{destroyAllButtonFromPage@{destroyAllButtonFromPage}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{destroyAllButtonFromPage()}{destroyAllButtonFromPage()}}
+{\footnotesize\ttfamily void destroy\+All\+Button\+From\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListeButton}{Liste\+Button}} \texorpdfstring{$\ast$}{*}}]{liste\+Button }\end{DoxyParamCaption})}
+
+
+
+Détruit tous les boutons d\textquotesingle{}une page. 
+
+Libère les ressources associées à tous les boutons d\textquotesingle{}une liste.
+
+
+\begin{DoxyParams}{Parameters}
+{\em liste\+Button} & Pointeur vers la liste de boutons à détruire. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8h_afe468db096a60593384bcd8ef30b583d}\label{button_8h_afe468db096a60593384bcd8ef30b583d} 
+\index{button.h@{button.h}!destroyAllButtonImgFromPage@{destroyAllButtonImgFromPage}}
+\index{destroyAllButtonImgFromPage@{destroyAllButtonImgFromPage}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{destroyAllButtonImgFromPage()}{destroyAllButtonImgFromPage()}}
+{\footnotesize\ttfamily void destroy\+All\+Button\+Img\+From\+Page (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListeButtonImg}{Liste\+Button\+Img}} \texorpdfstring{$\ast$}{*}}]{liste\+Button\+Img }\end{DoxyParamCaption})}
+
+
+
+Détruit tous les boutons avec des images d\textquotesingle{}une page. 
+
+Libère les ressources associées à tous les boutons avec des images d\textquotesingle{}une liste.
+
+
+\begin{DoxyParams}{Parameters}
+{\em liste\+Button\+Img} & Pointeur vers la liste de boutons avec des images à détruire. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8h_ade880d1633125473ee0059f78bc60df7}\label{button_8h_ade880d1633125473ee0059f78bc60df7} 
+\index{button.h@{button.h}!drawButton@{drawButton}}
+\index{drawButton@{drawButton}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{drawButton()}{drawButton()}}
+{\footnotesize\ttfamily void draw\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structButton}{Button}} \texorpdfstring{$\ast$}{*}}]{button }\end{DoxyParamCaption})}
+
+
+
+Dessine un bouton à l\textquotesingle{}écran. 
+
+Affiche le bouton en utilisant ses textures et ses dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & Pointeur vers le bouton à dessiner. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8h_a74e7a441d4d450576beee9e9445df159}\label{button_8h_a74e7a441d4d450576beee9e9445df159} 
+\index{button.h@{button.h}!drawButtonImg@{drawButtonImg}}
+\index{drawButtonImg@{drawButtonImg}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{drawButtonImg()}{drawButtonImg()}}
+{\footnotesize\ttfamily void draw\+Button\+Img (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structButtonImg}{Button\+Img}} \texorpdfstring{$\ast$}{*}}]{button }\end{DoxyParamCaption})}
+
+
+
+Dessine un bouton avec une image à l\textquotesingle{}écran. 
+
+Affiche le bouton avec ses textures et ses dimensions.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & Pointeur vers le bouton avec une image à dessiner. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8h_a96478044388101a3757d414e196a2bbf}\label{button_8h_a96478044388101a3757d414e196a2bbf} 
+\index{button.h@{button.h}!getImgButtonFromLabel@{getImgButtonFromLabel}}
+\index{getImgButtonFromLabel@{getImgButtonFromLabel}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{getImgButtonFromLabel()}{getImgButtonFromLabel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structButtonImg}{Button\+Img}} \texorpdfstring{$\ast$}{*} get\+Img\+Button\+From\+Label (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{label }\end{DoxyParamCaption})}
+
+
+
+Récupère un bouton avec une image à partir de son étiquette. 
+
+Parcourt la liste des boutons avec des images pour trouver celui correspondant à l\textquotesingle{}étiquette spécifiée.
+
+
+\begin{DoxyParams}{Parameters}
+{\em label} & Étiquette du bouton recherché. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointeur vers le bouton correspondant, ou {\ttfamily NULL} si aucun bouton ne correspond. 
+\end{DoxyReturn}
+\Hypertarget{button_8h_a9c57ddb75061a5f3344932663bd07193}\label{button_8h_a9c57ddb75061a5f3344932663bd07193} 
+\index{button.h@{button.h}!getRectForCentenredCord@{getRectForCentenredCord}}
+\index{getRectForCentenredCord@{getRectForCentenredCord}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{getRectForCentenredCord()}{getRectForCentenredCord()}}
+{\footnotesize\ttfamily SDL\+\_\+\+Rect get\+Rect\+For\+Centenred\+Cord (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{w,  }\item[{int}]{h }\end{DoxyParamCaption})}
+
+
+
+Calcule un rectangle centré à partir de coordonnées. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Coordonnée X du centre. \\
+\hline
+{\em y} & Coordonnée Y du centre. \\
+\hline
+{\em w} & Largeur du rectangle. \\
+\hline
+{\em h} & Hauteur du rectangle. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Rectangle SDL centré. 
+\end{DoxyReturn}
+\Hypertarget{button_8h_adaca45f5402605715d04425bf9340a09}\label{button_8h_adaca45f5402605715d04425bf9340a09} 
+\index{button.h@{button.h}!initListButton@{initListButton}}
+\index{initListButton@{initListButton}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{initListButton()}{initListButton()}}
+{\footnotesize\ttfamily void init\+List\+Button (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListeButton}{Liste\+Button}} \texorpdfstring{$\ast$}{*}}]{liste\+Button }\end{DoxyParamCaption})}
+
+
+
+Initialise une liste de boutons. 
+
+Alloue la mémoire nécessaire pour gérer une liste de boutons et initialise ses valeurs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em liste\+Button} & Pointeur vers la liste de boutons à initialiser. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8h_a63ce1d8bbe91a3db19395e01493e3a7a}\label{button_8h_a63ce1d8bbe91a3db19395e01493e3a7a} 
+\index{button.h@{button.h}!initListButtonImg@{initListButtonImg}}
+\index{initListButtonImg@{initListButtonImg}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{initListButtonImg()}{initListButtonImg()}}
+{\footnotesize\ttfamily void init\+List\+Button\+Img (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structListeButtonImg}{Liste\+Button\+Img}} \texorpdfstring{$\ast$}{*}}]{liste\+Button\+Img }\end{DoxyParamCaption})}
+
+
+
+Initialise une liste de boutons avec des images. 
+
+Alloue la mémoire nécessaire pour gérer une liste de boutons avec des images et initialise ses valeurs.
+
+
+\begin{DoxyParams}{Parameters}
+{\em liste\+Button\+Img} & Pointeur vers la liste de boutons avec des images à initialiser. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{button_8h_a779032db34f43d33867d73f1f9288504}\label{button_8h_a779032db34f43d33867d73f1f9288504} 
+\index{button.h@{button.h}!refreshButtonShop@{refreshButtonShop}}
+\index{refreshButtonShop@{refreshButtonShop}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{refreshButtonShop()}{refreshButtonShop()}}
+{\footnotesize\ttfamily void refresh\+Button\+Shop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}affichage des boutons de la boutique. 
+
+Cette fonction met à jour les textes et les états des boutons de la boutique en fonction des données actuelles. \Hypertarget{button_8h_aa88b0dbcfc73f402b5786e8765b6eebb}\label{button_8h_aa88b0dbcfc73f402b5786e8765b6eebb} 
+\index{button.h@{button.h}!setImgButtonTexture@{setImgButtonTexture}}
+\index{setImgButtonTexture@{setImgButtonTexture}!button.h@{button.h}}
+\doxysubsubsection{\texorpdfstring{setImgButtonTexture()}{setImgButtonTexture()}}
+{\footnotesize\ttfamily void set\+Img\+Button\+Texture (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structButtonImg}{Button\+Img}} \texorpdfstring{$\ast$}{*}}]{button,  }\item[{char \texorpdfstring{$\ast$}{*}}]{path\+Img,  }\item[{char \texorpdfstring{$\ast$}{*}}]{background\+Img }\end{DoxyParamCaption})}
+
+
+
+Définit les textures d\textquotesingle{}un bouton avec une image. 
+
+Charge et applique les textures principale et de fond pour un bouton avec une image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & Pointeur vers le bouton à modifier. \\
+\hline
+{\em path\+Img} & Chemin vers l\textquotesingle{}image principale. \\
+\hline
+{\em background\+Img} & Chemin vers l\textquotesingle{}image de fond. \\
+\hline
+\end{DoxyParams}

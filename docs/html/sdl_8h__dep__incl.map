@@ -1,0 +1,14 @@
+<map id="lib/sdl.h" name="lib/sdl.h">
+<area shape="rect" id="Node000001" title="Déclarations pour l&#39;initialisation, la gestion et la fermeture du sous&#45;système SDL dans TapVenture." alt="" coords="65,5,138,31"/>
+<area shape="rect" id="Node000002" href="$audio_8h.html" title="Interface de gestion audio pour TapVenture." alt="" coords="5,152,96,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,45,57,153,52,151,90,43"/>
+<area shape="rect" id="Node000004" href="$button_8h.html" title="Interface de gestion des boutons dans TapVenture." alt="" coords="100,79,196,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="119,41,143,77,138,80,114,44"/>
+<area shape="rect" id="Node000003" href="$main_8c.html" title="Point d&#39;entrée principal pour le jeu TapVenture." alt="" coords="6,225,95,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="53,191,53,225,48,225,48,191"/>
+<area shape="rect" id="Node000005" href="$ui_8h.html" title="Interface de gestion de l&#39;interface utilisateur (UI) dans TapVenture." alt="" coords="120,152,187,177"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="153,118,155,152,150,152,147,118"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="127,187,69,227,66,223,124,183"/>
+<area shape="rect" id="Node000006" href="$inv_8c.html" title="Implémentation des fonctions de gestion de l&#39;inventaire." alt="" coords="120,225,195,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="157,191,159,225,154,225,152,191"/>
+</map>

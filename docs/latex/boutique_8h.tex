@@ -1,0 +1,139 @@
+\doxysection{lib/boutique.h File Reference}
+\hypertarget{boutique_8h}{}\label{boutique_8h}\index{lib/boutique.h@{lib/boutique.h}}
+
+
+Interface de gestion de la boutique de mise à niveau des dégâts dans Tap\+Venture.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=163pt]{boutique_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdamageShop}{damage\+Shop}}
+\begin{DoxyCompactList}\small\item\em Structure représentant le système de mise à niveau des dégâts dans la boutique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{boutique_8h_a2753b7feb98db8c035328cc9fcfa7236}{init\+Shop}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la boutique de mise à niveau des dégâts. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{boutique_8h_a09322ceac8bea7ec5cf33e573e84738e}{upgrade\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Gère le processus de mise à niveau lors de l\textquotesingle{}appui sur le bouton d\textquotesingle{}upgrade. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{boutique_8h_a21ce24c1012aa7599ed65695b4290b60}{get\+Damage\+From\+Level}} (int level)
+\begin{DoxyCompactList}\small\item\em Calcule les dégâts en fonction d\textquotesingle{}un niveau donné. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{boutique_8h_aca7163d46f3d0d1a6e8566b4e0631e9f}{get\+Price\+For\+Levels}} (int levels)
+\begin{DoxyCompactList}\small\item\em Calcule le prix de mise à niveau pour un nombre spécifié de niveaux. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{boutique_8h_a9e8bb9de5a29472c8f59b45872a9a23c}{get\+Price\+Know\+Level}} (double previous\+Price, int level)
+\begin{DoxyCompactList}\small\item\em Calcule le prix de la mise à niveau suivante en fonction du prix précédent et du niveau. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{boutique_8h_a8ab30fc0f7b579673951d553e5041cd4}\label{boutique_8h_a8ab30fc0f7b579673951d553e5041cd4} 
+\mbox{\hyperlink{structdamageShop}{damage\+Shop}} {\bfseries shop}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion de la boutique de mise à niveau des dégâts dans Tap\+Venture. 
+
+Ce fichier définit les constantes, structures et fonctions pour l\textquotesingle{}initialisation et la gestion de la boutique de mise à niveau, incluant l\textquotesingle{}augmentation des niveaux de dégâts et le calcul des prix. \begin{DoxyAuthor}{Author}
+Noam MANFALOTI 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+20 décembre 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{boutique_8h_a21ce24c1012aa7599ed65695b4290b60}\label{boutique_8h_a21ce24c1012aa7599ed65695b4290b60} 
+\index{boutique.h@{boutique.h}!getDamageFromLevel@{getDamageFromLevel}}
+\index{getDamageFromLevel@{getDamageFromLevel}!boutique.h@{boutique.h}}
+\doxysubsubsection{\texorpdfstring{getDamageFromLevel()}{getDamageFromLevel()}}
+{\footnotesize\ttfamily int get\+Damage\+From\+Level (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Calcule les dégâts en fonction d\textquotesingle{}un niveau donné. 
+
+Applique une formule fixe pour multiplier les dégâts de base selon le niveau spécifié.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Le niveau actuel de la mise à niveau.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+La valeur des dégâts calculés. 
+\end{DoxyReturn}
+\Hypertarget{boutique_8h_aca7163d46f3d0d1a6e8566b4e0631e9f}\label{boutique_8h_aca7163d46f3d0d1a6e8566b4e0631e9f} 
+\index{boutique.h@{boutique.h}!getPriceForLevels@{getPriceForLevels}}
+\index{getPriceForLevels@{getPriceForLevels}!boutique.h@{boutique.h}}
+\doxysubsubsection{\texorpdfstring{getPriceForLevels()}{getPriceForLevels()}}
+{\footnotesize\ttfamily double get\+Price\+For\+Levels (\begin{DoxyParamCaption}\item[{int}]{levels }\end{DoxyParamCaption})}
+
+
+
+Calcule le prix de mise à niveau pour un nombre spécifié de niveaux. 
+
+Parcourt de manière itérative en partant d\textquotesingle{}une valeur de base, en appliquant un multiplicateur et en ajustant incrémentalement le prix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em levels} & Le nombre de niveaux pour lesquels le prix doit être calculé.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le prix calculé sous forme de double. 
+\end{DoxyReturn}
+\Hypertarget{boutique_8h_a9e8bb9de5a29472c8f59b45872a9a23c}\label{boutique_8h_a9e8bb9de5a29472c8f59b45872a9a23c} 
+\index{boutique.h@{boutique.h}!getPriceKnowLevel@{getPriceKnowLevel}}
+\index{getPriceKnowLevel@{getPriceKnowLevel}!boutique.h@{boutique.h}}
+\doxysubsubsection{\texorpdfstring{getPriceKnowLevel()}{getPriceKnowLevel()}}
+{\footnotesize\ttfamily double get\+Price\+Know\+Level (\begin{DoxyParamCaption}\item[{double}]{previous\+Price,  }\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Calcule le prix de la mise à niveau suivante en fonction du prix précédent et du niveau. 
+
+Utilise le prix précédent et intègre le niveau à venir dans le calcul d\textquotesingle{}un nouveau prix en appliquant un multiplicateur et un ajustement epsilon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em previous\+Price} & Le prix de la mise à niveau précédente. \\
+\hline
+{\em level} & Le niveau à venir pour la mise à niveau.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le nouveau prix de mise à niveau calculé. 
+\end{DoxyReturn}
+\Hypertarget{boutique_8h_a2753b7feb98db8c035328cc9fcfa7236}\label{boutique_8h_a2753b7feb98db8c035328cc9fcfa7236} 
+\index{boutique.h@{boutique.h}!initShop@{initShop}}
+\index{initShop@{initShop}!boutique.h@{boutique.h}}
+\doxysubsubsection{\texorpdfstring{initShop()}{initShop()}}
+{\footnotesize\ttfamily void init\+Shop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise la boutique de mise à niveau des dégâts. 
+
+Configure la boutique en initialisant le niveau de dégâts et en calculant le prix initial des mises à niveau. \Hypertarget{boutique_8h_a09322ceac8bea7ec5cf33e573e84738e}\label{boutique_8h_a09322ceac8bea7ec5cf33e573e84738e} 
+\index{boutique.h@{boutique.h}!upgradeButton@{upgradeButton}}
+\index{upgradeButton@{upgradeButton}!boutique.h@{boutique.h}}
+\doxysubsubsection{\texorpdfstring{upgradeButton()}{upgradeButton()}}
+{\footnotesize\ttfamily int upgrade\+Button (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gère le processus de mise à niveau lors de l\textquotesingle{}appui sur le bouton d\textquotesingle{}upgrade. 
+
+Effectue la mise à niveau en déduisant le prix correspondant, en incrémentant le niveau de mise à niveau, et en mettant à jour les prix de la boutique.
+
+\begin{DoxyReturn}{Returns}
+0 si la mise à niveau est effectuée avec succès, une valeur non nulle sinon. 
+\end{DoxyReturn}

@@ -1,0 +1,320 @@
+\doxysection{lib/save\+\_\+json.h File Reference}
+\hypertarget{save__json_8h}{}\label{save__json_8h}\index{lib/save\_json.h@{lib/save\_json.h}}
+
+
+Déclarations pour la sauvegarde et le chargement des données de Tap\+Venture.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{save__json_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{save__json_8h_ab0bc46ce37247e663d21c36dbd4a0721}{get\+Value\+For\+Key}} (char \texorpdfstring{$\ast$}{*}key, char \texorpdfstring{$\ast$}{*}nom\+\_\+ficher)
+\begin{DoxyCompactList}\small\item\em Récupère la valeur associée à une clé dans un fichier de sauvegarde. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a40992eafa1cbbb3efdb221cdcaa76691}{Change\+Value\+For\+Key}} (char \texorpdfstring{$\ast$}{*}key, char \texorpdfstring{$\ast$}{*}value, char \texorpdfstring{$\ast$}{*}nom\+\_\+ficher)
+\begin{DoxyCompactList}\small\item\em Modifie la valeur associée à une clé dans un fichier de sauvegarde. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a6009a23c76bcde854d58cd7048097972}{create\+Value\+For\+Key}} (char \texorpdfstring{$\ast$}{*}key, char \texorpdfstring{$\ast$}{*}value, char \texorpdfstring{$\ast$}{*}nom\+\_\+ficher)
+\begin{DoxyCompactList}\small\item\em Crée une nouvelle paire clé/valeur dans un fichier de sauvegarde. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a9d209b01ac4b04a50acb236c7e71f12b}{is\+Here\+File}} (char \texorpdfstring{$\ast$}{*}name\+File)
+\begin{DoxyCompactList}\small\item\em Vérifie l\textquotesingle{}existence d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a3b584fafea9d97f194d1479545c78738}{rm\+File}} (char \texorpdfstring{$\ast$}{*}name\+File)
+\begin{DoxyCompactList}\small\item\em Supprime un fichier. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a8d241a7e9911315df156d3548c5ac97c}{make\+Save}} ()
+\begin{DoxyCompactList}\small\item\em Crée une sauvegarde globale des données du jeu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_aaddf13d5a4254f4662b0715db551203b}{load\+Save}} ()
+\begin{DoxyCompactList}\small\item\em Charge la sauvegarde globale des données du jeu. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_ad274738f15c540527a6c3ef8ceb781a7}{load\+Save\+Player}} (char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Charge la sauvegarde des données du joueur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a1bf346d9aec6aa3ce69cd6cd95d281e4}{make\+Save\+Player}} (char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Crée la sauvegarde des données du joueur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a48e5c9f03771c10876d933810bb40c4d}{load\+Save\+Heros}} (char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Charge la sauvegarde des héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_ae3abbd77f2a0b8ff1b11374603dd93b6}{make\+Save\+Heros}} (char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Crée la sauvegarde des données des héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_ae4f079c597db7d02916eb732fa406306}{load\+Save\+Prestige}} (char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Charge la sauvegarde des données de prestige. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_a0aeab8b619e73a78d7034eb65cc57e37}{make\+Save\+Prestige}} (char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Crée la sauvegarde des données de prestige. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{save__json_8h_aee0404d230858404d34ca4628733ce37}{init\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Initialise les données par défaut du joueur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour la sauvegarde et le chargement des données de Tap\+Venture. 
+
+Ce fichier contient les déclarations des fonctions permettant de lire, écrire et modifier les sauvegardes au format JSON pour le jeu Tap\+Venture, incluant la gestion des sauvegardes du joueur, des héros et du prestige.
+
+\begin{DoxyAuthor}{Author}
+Lucas DUPONT \& Ibrahim SAPIEV \& Noam MANFALOTI 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+7 décembre 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{save__json_8h_a40992eafa1cbbb3efdb221cdcaa76691}\label{save__json_8h_a40992eafa1cbbb3efdb221cdcaa76691} 
+\index{save\_json.h@{save\_json.h}!ChangeValueForKey@{ChangeValueForKey}}
+\index{ChangeValueForKey@{ChangeValueForKey}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{ChangeValueForKey()}{ChangeValueForKey()}}
+{\footnotesize\ttfamily int Change\+Value\+For\+Key (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{key,  }\item[{char \texorpdfstring{$\ast$}{*}}]{value,  }\item[{char \texorpdfstring{$\ast$}{*}}]{nom\+\_\+ficher }\end{DoxyParamCaption})}
+
+
+
+Modifie la valeur associée à une clé dans un fichier de sauvegarde. 
+
+Cette fonction modifie la valeur existante pour la clé spécifiée dans le fichier de sauvegarde.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & La clé dont la valeur doit être modifiée. \\
+\hline
+{\em value} & La nouvelle valeur à associer à la clé. \\
+\hline
+{\em nom\+\_\+ficher} & Le chemin du fichier de sauvegarde. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a6009a23c76bcde854d58cd7048097972}\label{save__json_8h_a6009a23c76bcde854d58cd7048097972} 
+\index{save\_json.h@{save\_json.h}!createValueForKey@{createValueForKey}}
+\index{createValueForKey@{createValueForKey}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{createValueForKey()}{createValueForKey()}}
+{\footnotesize\ttfamily int create\+Value\+For\+Key (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{key,  }\item[{char \texorpdfstring{$\ast$}{*}}]{value,  }\item[{char \texorpdfstring{$\ast$}{*}}]{nom\+\_\+ficher }\end{DoxyParamCaption})}
+
+
+
+Crée une nouvelle paire clé/valeur dans un fichier de sauvegarde. 
+
+Cette fonction ajoute une nouvelle entrée sous forme de paire clé/valeur dans le fichier de sauvegarde.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & La clé à créer. \\
+\hline
+{\em value} & La valeur à associer. \\
+\hline
+{\em nom\+\_\+ficher} & Le chemin du fichier de sauvegarde. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_ab0bc46ce37247e663d21c36dbd4a0721}\label{save__json_8h_ab0bc46ce37247e663d21c36dbd4a0721} 
+\index{save\_json.h@{save\_json.h}!getValueForKey@{getValueForKey}}
+\index{getValueForKey@{getValueForKey}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{getValueForKey()}{getValueForKey()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} get\+Value\+For\+Key (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{key,  }\item[{char \texorpdfstring{$\ast$}{*}}]{nom\+\_\+ficher }\end{DoxyParamCaption})}
+
+
+
+Récupère la valeur associée à une clé dans un fichier de sauvegarde. 
+
+Cette fonction parcourt le fichier de sauvegarde à la recherche de la clé spécifiée et renvoie la valeur qui lui est associée. La chaîne renvoyée est allouée dynamiquement et doit être libérée par l\textquotesingle{}appelant.
+
+
+\begin{DoxyParams}{Parameters}
+{\em key} & La clé pour laquelle récupérer la valeur. \\
+\hline
+{\em nom\+\_\+ficher} & Le chemin du fichier de sauvegarde. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Une chaîne de caractères contenant la valeur associée à la clé, ou NULL en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_aee0404d230858404d34ca4628733ce37}\label{save__json_8h_aee0404d230858404d34ca4628733ce37} 
+\index{save\_json.h@{save\_json.h}!initPlayer@{initPlayer}}
+\index{initPlayer@{initPlayer}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{initPlayer()}{initPlayer()}}
+{\footnotesize\ttfamily int init\+Player (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise les données par défaut du joueur. 
+
+Cette fonction initialise les paramètres de base du joueur, notamment la langue, le niveau, l\textquotesingle{}or et les dégâts pour un clic, afin de démarrer ou réinitialiser une partie.
+
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a9d209b01ac4b04a50acb236c7e71f12b}\label{save__json_8h_a9d209b01ac4b04a50acb236c7e71f12b} 
+\index{save\_json.h@{save\_json.h}!isHereFile@{isHereFile}}
+\index{isHereFile@{isHereFile}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{isHereFile()}{isHereFile()}}
+{\footnotesize\ttfamily int is\+Here\+File (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{name\+File }\end{DoxyParamCaption})}
+
+
+
+Vérifie l\textquotesingle{}existence d\textquotesingle{}un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+File} & Le nom du fichier à vérifier. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si le fichier existe, 0 sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_aaddf13d5a4254f4662b0715db551203b}\label{save__json_8h_aaddf13d5a4254f4662b0715db551203b} 
+\index{save\_json.h@{save\_json.h}!loadSave@{loadSave}}
+\index{loadSave@{loadSave}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{loadSave()}{loadSave()}}
+{\footnotesize\ttfamily int load\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Charge la sauvegarde globale des données du jeu. 
+
+Cette fonction lit et restaure les sauvegardes pour le joueur, les héros et le prestige.
+
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a48e5c9f03771c10876d933810bb40c4d}\label{save__json_8h_a48e5c9f03771c10876d933810bb40c4d} 
+\index{save\_json.h@{save\_json.h}!loadSaveHeros@{loadSaveHeros}}
+\index{loadSaveHeros@{loadSaveHeros}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{loadSaveHeros()}{loadSaveHeros()}}
+{\footnotesize\ttfamily int load\+Save\+Heros (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Charge la sauvegarde des héros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em save} & Le chemin du fichier de sauvegarde des héros. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_ad274738f15c540527a6c3ef8ceb781a7}\label{save__json_8h_ad274738f15c540527a6c3ef8ceb781a7} 
+\index{save\_json.h@{save\_json.h}!loadSavePlayer@{loadSavePlayer}}
+\index{loadSavePlayer@{loadSavePlayer}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{loadSavePlayer()}{loadSavePlayer()}}
+{\footnotesize\ttfamily int load\+Save\+Player (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Charge la sauvegarde des données du joueur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em save} & Le chemin du fichier de sauvegarde du joueur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_ae4f079c597db7d02916eb732fa406306}\label{save__json_8h_ae4f079c597db7d02916eb732fa406306} 
+\index{save\_json.h@{save\_json.h}!loadSavePrestige@{loadSavePrestige}}
+\index{loadSavePrestige@{loadSavePrestige}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{loadSavePrestige()}{loadSavePrestige()}}
+{\footnotesize\ttfamily int load\+Save\+Prestige (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Charge la sauvegarde des données de prestige. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em save} & Le chemin du fichier de sauvegarde du prestige. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a8d241a7e9911315df156d3548c5ac97c}\label{save__json_8h_a8d241a7e9911315df156d3548c5ac97c} 
+\index{save\_json.h@{save\_json.h}!makeSave@{makeSave}}
+\index{makeSave@{makeSave}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{makeSave()}{makeSave()}}
+{\footnotesize\ttfamily int make\+Save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Crée une sauvegarde globale des données du jeu. 
+
+Cette fonction génère et enregistre les sauvegardes pour le joueur, les héros et le prestige.
+
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_ae3abbd77f2a0b8ff1b11374603dd93b6}\label{save__json_8h_ae3abbd77f2a0b8ff1b11374603dd93b6} 
+\index{save\_json.h@{save\_json.h}!makeSaveHeros@{makeSaveHeros}}
+\index{makeSaveHeros@{makeSaveHeros}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{makeSaveHeros()}{makeSaveHeros()}}
+{\footnotesize\ttfamily int make\+Save\+Heros (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Crée la sauvegarde des données des héros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em save} & Le chemin du fichier de sauvegarde des héros. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a1bf346d9aec6aa3ce69cd6cd95d281e4}\label{save__json_8h_a1bf346d9aec6aa3ce69cd6cd95d281e4} 
+\index{save\_json.h@{save\_json.h}!makeSavePlayer@{makeSavePlayer}}
+\index{makeSavePlayer@{makeSavePlayer}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{makeSavePlayer()}{makeSavePlayer()}}
+{\footnotesize\ttfamily int make\+Save\+Player (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Crée la sauvegarde des données du joueur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em save} & Le chemin du fichier de sauvegarde du joueur. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a0aeab8b619e73a78d7034eb65cc57e37}\label{save__json_8h_a0aeab8b619e73a78d7034eb65cc57e37} 
+\index{save\_json.h@{save\_json.h}!makeSavePrestige@{makeSavePrestige}}
+\index{makeSavePrestige@{makeSavePrestige}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{makeSavePrestige()}{makeSavePrestige()}}
+{\footnotesize\ttfamily int make\+Save\+Prestige (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Crée la sauvegarde des données de prestige. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em save} & Le chemin du fichier de sauvegarde du prestige. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}
+\Hypertarget{save__json_8h_a3b584fafea9d97f194d1479545c78738}\label{save__json_8h_a3b584fafea9d97f194d1479545c78738} 
+\index{save\_json.h@{save\_json.h}!rmFile@{rmFile}}
+\index{rmFile@{rmFile}!save\_json.h@{save\_json.h}}
+\doxysubsubsection{\texorpdfstring{rmFile()}{rmFile()}}
+{\footnotesize\ttfamily int rm\+File (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{name\+File }\end{DoxyParamCaption})}
+
+
+
+Supprime un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+File} & Le nom du fichier à supprimer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, une valeur non nulle sinon. 
+\end{DoxyReturn}

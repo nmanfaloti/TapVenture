@@ -1,0 +1,27 @@
+var prestige_8h =
+[
+    [ "prestigeItem_s", "structprestigeItem__s.html", "structprestigeItem__s" ],
+    [ "prestigeList_s", "structprestigeList__s.html", "structprestigeList__s" ],
+    [ "prestigeTree_s", "structprestigeTree__s.html", "structprestigeTree__s" ],
+    [ "MAX_PRESTIGE_ITEMS", "prestige_8h.html#a965ac81929b6bd5b515ac185d9efeb1b", null ],
+    [ "NB_PRESTIGE_ITEMS_PER_PAGE", "prestige_8h.html#a148ed41dec8870d9ac31b0542b60cd88", null ],
+    [ "addPrestigeItem", "prestige_8h.html#a9766b9a5fb0bb9dca8567b51805d3932", null ],
+    [ "buyPrestigeItem", "prestige_8h.html#afbea4b25d5f48c4ed3ceadad7135b91f", null ],
+    [ "canBuy", "prestige_8h.html#ab80d02e8b48bab23aaf990cf4afff6c5", null ],
+    [ "checkDisplayPrestigeItemText", "prestige_8h.html#a7cf95e3760525241b0c73af83d8e9352", null ],
+    [ "damagePrestige", "prestige_8h.html#a1337741065fcb487ece1f9c56858dfd0", null ],
+    [ "destroyPrestigeList", "prestige_8h.html#a8d96ba4edc6110bca9fae0e4c7d8e414", null ],
+    [ "doPrestige", "prestige_8h.html#acedc79c0af2c62da04da0394172811a3", null ],
+    [ "getMaxPrestigeItems", "prestige_8h.html#a6afc84d6d80c580dd349ffab47f3ef99", null ],
+    [ "goldPrestige", "prestige_8h.html#ac644b75757e22b825b54a64cf340043d", null ],
+    [ "initPrestige", "prestige_8h.html#aefea6ee7cafdc842394a6bb70a59bde5", null ],
+    [ "prestigeKeepHero", "prestige_8h.html#ae1d930d5001b9218ef988df5aa998687", null ],
+    [ "prestigeKeepHeroLevel", "prestige_8h.html#a0d157817b64c36b47185af70430101d3", null ],
+    [ "prestigePrestige", "prestige_8h.html#a28e1bcd4bedbba98021c37a3b647ae4f", null ],
+    [ "printTree", "prestige_8h.html#a98f256e9b26c397f4eff9bb3d6f454cf", null ],
+    [ "refreshPrestigePage", "prestige_8h.html#a42f41334b7f748c754c113b11e4324b4", null ],
+    [ "damageModifier", "prestige_8h.html#a301def911c3c0f257407ba57504a96a3", null ],
+    [ "goldModifier", "prestige_8h.html#aec781e190d7f47fc7d9f63e71689cd38", null ],
+    [ "prestigeModifier", "prestige_8h.html#aa14fab60d49c048a096a6bfdfad9b68a", null ],
+    [ "prestigePoints", "prestige_8h.html#ada86e19ca51948b3fc4855c6bf5174d0", null ]
+];

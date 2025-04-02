@@ -1,0 +1,90 @@
+\doxysection{lib/challenge.h File Reference}
+\hypertarget{challenge_8h}{}\label{challenge_8h}\index{lib/challenge.h@{lib/challenge.h}}
+
+
+Déclarations pour le système de challenge du jeu Tap\+Venture.  
+
+
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for challenge.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{challenge_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{challenge_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structChallenge__t}{Challenge\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un challenge dans le jeu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{challenge_8h_a9168b3268a5cb7b5f845ec30970a139f}{launch\+Challenge}} ()
+\begin{DoxyCompactList}\small\item\em Lance un nouveau challenge. Cette fonction initialise un nouveau challenge si aucun challenge n\textquotesingle{}est en cours. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{challenge_8h_a71531185fd1afe5827f1c1aaaa951356}{reset\+Challenge}} ()
+\begin{DoxyCompactList}\small\item\em Réinitialise l\textquotesingle{}état du challenge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{challenge_8h_a3ce4ac1008cea9021a398cf92d6a410d}{update\+Challenge}} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}état du challenge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{challenge_8h_acd1d6f73dfe0fd6a4439864e009bcb7b}\label{challenge_8h_acd1d6f73dfe0fd6a4439864e009bcb7b} 
+\mbox{\hyperlink{structChallenge__t}{Challenge\+\_\+t}} {\bfseries challenge}
+\begin{DoxyCompactList}\small\item\em Variable globale représentant le challenge. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclarations pour le système de challenge du jeu Tap\+Venture. 
+
+Ce fichier contient les déclarations des fonctions et variables pour gérer le système de challenge dans le jeu Tap\+Venture, incluant la structure, le lancement, la réinitialisation et la mise à jour des challenges. \begin{DoxyAuthor}{Author}
+Ibrahim SAPIEV 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+20 fevrier 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{challenge_8h_a9168b3268a5cb7b5f845ec30970a139f}\label{challenge_8h_a9168b3268a5cb7b5f845ec30970a139f} 
+\index{challenge.h@{challenge.h}!launchChallenge@{launchChallenge}}
+\index{launchChallenge@{launchChallenge}!challenge.h@{challenge.h}}
+\doxysubsubsection{\texorpdfstring{launchChallenge()}{launchChallenge()}}
+{\footnotesize\ttfamily int launch\+Challenge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lance un nouveau challenge. Cette fonction initialise un nouveau challenge si aucun challenge n\textquotesingle{}est en cours. 
+
+\begin{DoxyReturn}{Returns}
+int Retourne 0 en cas de succès, ou une valeur non nulle en cas d\textquotesingle{}erreur. 
+\end{DoxyReturn}
+\Hypertarget{challenge_8h_a71531185fd1afe5827f1c1aaaa951356}\label{challenge_8h_a71531185fd1afe5827f1c1aaaa951356} 
+\index{challenge.h@{challenge.h}!resetChallenge@{resetChallenge}}
+\index{resetChallenge@{resetChallenge}!challenge.h@{challenge.h}}
+\doxysubsubsection{\texorpdfstring{resetChallenge()}{resetChallenge()}}
+{\footnotesize\ttfamily void reset\+Challenge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Réinitialise l\textquotesingle{}état du challenge. 
+
+Permet de remettre à zéro le challenge en cours, notamment en réinitialisant le nombre de monstres tués et en rétablissant le nombre de monstres à tuer par défaut. \Hypertarget{challenge_8h_a3ce4ac1008cea9021a398cf92d6a410d}\label{challenge_8h_a3ce4ac1008cea9021a398cf92d6a410d} 
+\index{challenge.h@{challenge.h}!updateChallenge@{updateChallenge}}
+\index{updateChallenge@{updateChallenge}!challenge.h@{challenge.h}}
+\doxysubsubsection{\texorpdfstring{updateChallenge()}{updateChallenge()}}
+{\footnotesize\ttfamily void update\+Challenge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}état du challenge. 
+
+Cette fonction est appelée régulièrement pour vérifier l\textquotesingle{}avancée du challenge (temps écoulé, progression, etc.) et déclencher la fin du challenge en cas d\textquotesingle{}échec ou de succès. 

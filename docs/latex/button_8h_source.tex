@@ -1,0 +1,80 @@
+\doxysection{button.\+h}
+\hypertarget{button_8h_source}{}\label{button_8h_source}\index{lib/button.h@{lib/button.h}}
+\mbox{\hyperlink{button_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \#ifndef\ BUTTON\_H}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \#define\ BUTTON\_H\ }}
+\DoxyCodeLine{00014\ \ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \#include\ "{}\mbox{\hyperlink{sdl_8h}{sdl.h}}"{}}}
+\DoxyCodeLine{00016\ \ }
+\DoxyCodeLine{00024\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00025\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structButton_a6fcfa8e3d62cf1b78f5c4d5c9384b30d}{rect}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structButton_a29bd54a37c00f02b2339557433983a7a}{iniRect}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structButton_af09d8abcbd147fa570f33eaba1e2fa4b}{pathImg}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structButton_a6c900414f2b3b387dd69c1e0526619c2}{growEffect}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \textcolor{keywordtype}{int}\ *\mbox{\hyperlink{structButton_a2a0f55810748b6c00d4c5f283f229e6d}{info}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structButton_a3dfc0c06c3459f7850d8bb4d3c9c3261}{text}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ int\ (*callFunction)(\textcolor{keywordtype}{void}\ **);\ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \textcolor{keywordtype}{void}\ **\mbox{\hyperlink{structButton_a95519bd143f54a1d92afa8aac02d39c0}{args}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structButton_a0b4be5300889197f3e57e7b6530a8acc}{texture}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structButton_a9501a11ea4bf0ecd333c44408afe715e}{initialTexture}};\ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structButton_a2ff48776616e5baa53524c9ffd99916a}{selectedTexture}};\ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structButton_a7c393b63851f6641fa4b5eb33d86bc54}{textTexture}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structButton_a31b42e45fec1098ac39047981f69c04e}{textRect}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structButton_a7b94d558655685a68e27fae845b4d6ad}{textIniRect}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00039\ \ \ \ \ \ SDL\_Color\ \mbox{\hyperlink{structButton_a6b7bf8749bc9ed008ffdbb9aa02b94ff}{textColor}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00040\ \ \ \ \ \ TTF\_Font\ *\mbox{\hyperlink{structButton_aa5571a7ee87f4a2d6038ca8cfae90ea6}{font}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \}\ \mbox{\hyperlink{structButton}{Button}};}
+\DoxyCodeLine{00042\ \ }
+\DoxyCodeLine{00050\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00051\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structButtonImg_adbdc1fc2099f2998b6a3be790c6497d1}{rect}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structButtonImg_a1e870b0d2603a963160c762409676d22}{iniRect}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structButtonImg_a430fff158eeace61fab0ecd244887e3e}{pathImg}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structButtonImg_a26b0d9fa9e48cf546271fcb73e1ad898}{pathBackground}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structButtonImg_a4932800e47164d0d6771e6d1e49a3c0e}{offsetLogoX}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structButtonImg_a5d2439cdb2d284f465b8a97a8c761d25}{offsetLogoY}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ int\ (*callFunction)(\textcolor{keywordtype}{void}\ **);\ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \textcolor{keywordtype}{void}\ **\mbox{\hyperlink{structButtonImg_a941a21b801b46e5ff4dabd0fa3716eb3}{args}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structButtonImg_a9983c51c94196ce636e0cf7ab933c441}{imgTexture}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \ SDL\_Texture\ *\mbox{\hyperlink{structButtonImg_a7a987d7780996495b0b160831cc310f9}{backgroundTexture}};\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structButtonImg_ab88cc76467305d35e7a0a36599b04010}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \}\ \mbox{\hyperlink{structButtonImg}{ButtonImg}};}
+\DoxyCodeLine{00063\ \ }
+\DoxyCodeLine{00070\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structListeButton_aecc9e21d30117f166458e81e3cd178af}{nbButton}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \mbox{\hyperlink{structButton}{Button}}\ *\mbox{\hyperlink{structListeButton_a3efd90144b290a9ca4c835f84f985f40}{buttons}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \}\ \mbox{\hyperlink{structListeButton}{ListeButton}};}
+\DoxyCodeLine{00074\ \ }
+\DoxyCodeLine{00081\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structListeButtonImg_a25f16a18356af84c3e81c4b07751898c}{nbButton}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \mbox{\hyperlink{structButtonImg}{ButtonImg}}\ *\mbox{\hyperlink{structListeButtonImg_a359aae3fd99b2bb264f38ae222813930}{buttons}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \}\ \mbox{\hyperlink{structListeButtonImg}{ListeButtonImg}};}
+\DoxyCodeLine{00085\ \ }
+\DoxyCodeLine{00093\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_a5cb861d83899ac480edaa66fb8654a66}{ButtonHandle}}();}
+\DoxyCodeLine{00094\ \ }
+\DoxyCodeLine{00103\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_adaca45f5402605715d04425bf9340a09}{initListButton}}(\mbox{\hyperlink{structListeButton}{ListeButton}}\ *listeButton);}
+\DoxyCodeLine{00104\ \ }
+\DoxyCodeLine{00113\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_a63ce1d8bbe91a3db19395e01493e3a7a}{initListButtonImg}}(\mbox{\hyperlink{structListeButtonImg}{ListeButtonImg}}\ *listeButtonImg);}
+\DoxyCodeLine{00114\ \ }
+\DoxyCodeLine{00121\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_a779032db34f43d33867d73f1f9288504}{refreshButtonShop}}();}
+\DoxyCodeLine{00122\ \ }
+\DoxyCodeLine{00132\ \ \mbox{\hyperlink{structButtonImg}{ButtonImg}}\ *\mbox{\hyperlink{button_8h_a96478044388101a3757d414e196a2bbf}{getImgButtonFromLabel}}(\textcolor{keywordtype}{char}\ *label);}
+\DoxyCodeLine{00133\ \ }
+\DoxyCodeLine{00144\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_aa88b0dbcfc73f402b5786e8765b6eebb}{setImgButtonTexture}}(\mbox{\hyperlink{structButtonImg}{ButtonImg}}\ *button,\ \textcolor{keywordtype}{char}\ *pathImg,\ \textcolor{keywordtype}{char}\ *backgroundImg);}
+\DoxyCodeLine{00145\ \ }
+\DoxyCodeLine{00154\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_a4acb440ebf49861acbec1cde19bea400}{destroyAllButtonFromPage}}(\mbox{\hyperlink{structListeButton}{ListeButton}}\ *listeButton);}
+\DoxyCodeLine{00155\ \ }
+\DoxyCodeLine{00164\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_afe468db096a60593384bcd8ef30b583d}{destroyAllButtonImgFromPage}}(\mbox{\hyperlink{structListeButtonImg}{ListeButtonImg}}\ *listeButtonImg);}
+\DoxyCodeLine{00165\ \ }
+\DoxyCodeLine{00174\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_ade880d1633125473ee0059f78bc60df7}{drawButton}}(\mbox{\hyperlink{structButton}{Button}}\ *button);}
+\DoxyCodeLine{00175\ \ }
+\DoxyCodeLine{00185\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{button_8h_ae9f8c4e78f4f90f4a8e045b2d44e331c}{checkBoutton}}(SDL\_Rect\ rect,\ \textcolor{keywordtype}{int}\ mouse\_x,\ \textcolor{keywordtype}{int}\ mouse\_y);}
+\DoxyCodeLine{00186\ \ }
+\DoxyCodeLine{00197\ \ SDL\_Rect\ \mbox{\hyperlink{button_8h_a9c57ddb75061a5f3344932663bd07193}{getRectForCentenredCord}}(\textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y,\ \textcolor{keywordtype}{int}\ w,\ \textcolor{keywordtype}{int}\ h);}
+\DoxyCodeLine{00198\ \ }
+\DoxyCodeLine{00207\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{button_8h_a74e7a441d4d450576beee9e9445df159}{drawButtonImg}}(\mbox{\hyperlink{structButtonImg}{ButtonImg}}\ *button);}
+\DoxyCodeLine{00208\ \ }
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \#endif\ }\textcolor{comment}{//\ BUTTON\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,19 @@
+<map id="lib/ui.h" name="lib/ui.h">
+<area shape="rect" id="Node000001" title="Interface de gestion de l&#39;interface utilisateur (UI) dans TapVenture." alt="" coords="149,5,216,31"/>
+<area shape="rect" id="Node000002" href="$aff_8h.html" title="Interface de gestion de l&#39;affichage des éléments UI dans TapVenture." alt="" coords="120,152,171,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,32,154,139,149,138,177,30"/>
+<area shape="rect" id="Node000005" href="$button_8h.html" title="Interface de gestion des boutons dans TapVenture." alt="" coords="183,79,259,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="191,30,211,65,206,68,187,32"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,225,101,251"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="132,179,81,219,77,215,129,175"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="125,225,243,251"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="154,176,174,212,169,215,149,179"/>
+<area shape="rect" id="Node000006" href="$sdl_8h.html" title="Déclarations pour l&#39;initialisation, la gestion et la fermeture du sous&#45;système SDL dans TapVenture." alt="" coords="195,152,248,177"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="224,104,224,138,219,138,219,104"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="195,180,94,222,92,217,193,175"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="218,179,199,215,194,212,213,176"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="267,225,411,251"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="242,175,309,216,306,220,239,180"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="435,225,573,251"/>
+<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="249,170,446,219,445,225,248,175"/>
+</map>

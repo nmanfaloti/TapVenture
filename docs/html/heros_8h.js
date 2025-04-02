@@ -1,0 +1,37 @@
+var heros_8h =
+[
+    [ "hero", "structhero.html", "structhero" ],
+    [ "NB_HEROS_PER_PAGE_H", "heros_8h.html#ad3b043b4767f24c3bea001b144aa0520", null ],
+    [ "NB_HEROS_PER_PAGE_W", "heros_8h.html#aa031abe82fbe7c87081ffba88193e495", null ],
+    [ "herosIndex", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeb", [
+      [ "HERO0", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba87d60cf2a551920828fda337719af39d", null ],
+      [ "HERO1", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba59e5c224d0e1aaae34f9a08d471a45ab", null ],
+      [ "HERO2", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbebaa39017162475a105a7a61352416de89b", null ],
+      [ "HERO3", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba6ef708ea97e674b7048e3b6ece9d2c5f", null ],
+      [ "HERO4", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba8a2bc5323f375adee1b9589ac97e8f96", null ],
+      [ "HERO5", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbebad6d25156bf94c802b6e0e6e9fc2e6d0d", null ],
+      [ "HERO6", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba40be5d671f42efb33bb6d6679e116894", null ],
+      [ "HERO7", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba0f2ac9e8d445214023d6775dfa294e55", null ],
+      [ "HERO8", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbebad0ede6e0885a327e7fd02252d8f1931d", null ],
+      [ "HERO9", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba7098e10581a4f42e86b2bc58622cf2c0", null ],
+      [ "HERO10", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbeba7925c8667db6dd537c792d3e18a830e6", null ],
+      [ "HERO11", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbebad4d53cf5ae5ce18b19ae70704936b4ab", null ],
+      [ "HEROS_COUNT", "heros_8h.html#a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a", null ]
+    ] ],
+    [ "attackHeros", "heros_8h.html#a3f826d62499008259e21961088fb3189", null ],
+    [ "changeMultiplicator", "heros_8h.html#a09c0b12d3dad8a4140550a6c0a873987", null ],
+    [ "getHeroPrice", "heros_8h.html#af45948855a446d422f67285162d74bde", null ],
+    [ "getHeroPriceByMultiplicator", "heros_8h.html#ae6f0c4c6f7f16a29d14478616b8735d8", null ],
+    [ "herosAllDPS", "heros_8h.html#ae2fc0750bb25660a9dd9a01a126719ec", null ],
+    [ "herosDPS", "heros_8h.html#a8a3b1b122c36db44f264eeb5b2038edd", null ],
+    [ "herosGoldGenBySec", "heros_8h.html#a99a118844f6f00fbee0dcf9ea9a67dd7", null ],
+    [ "initHeros", "heros_8h.html#a50f33cb27e232bfd3d40d62725a762e0", null ],
+    [ "initHerosPage", "heros_8h.html#a37dc09ec1fa356a542005c1d6e7d39cb", null ],
+    [ "loadHerosMatrice", "heros_8h.html#af1ca1ce5c50ec9ae0668ff0e05f0b471", null ],
+    [ "makeHeroAtLevel", "heros_8h.html#a0b1f64dc5fea26af3438f96f878c5c89", null ],
+    [ "updateHeroIInShopPage", "heros_8h.html#a349998adc9e723581fcea3ea3aaf7341", null ],
+    [ "updateHeroShopPage", "heros_8h.html#a1e2c1df0785fa9837e487367df544e92", null ],
+    [ "upgradeHero", "heros_8h.html#a9f20be36595a0f2f1c2825d05fb3e495", null ],
+    [ "upgradeHeroCB", "heros_8h.html#ac28ea4f98ee5df015cd3200cfb78d842", null ],
+    [ "heros", "heros_8h.html#a50fc48d750e56f362c1360e50a372097", null ]
+];

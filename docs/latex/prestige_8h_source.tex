@@ -1,0 +1,71 @@
+\doxysection{prestige.\+h}
+\hypertarget{prestige_8h_source}{}\label{prestige_8h_source}\index{lib/prestige.h@{lib/prestige.h}}
+\mbox{\hyperlink{prestige_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \#ifndef\ PRESTIGE\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \#define\ PRESTIGE\_H}}
+\DoxyCodeLine{00015\ \ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{00017\ \ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \#define\ MAX\_PRESTIGE\_ITEMS\ 8\ }}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \#define\ NB\_PRESTIGE\_ITEMS\_PER\_PAGE\ 4\ }}
+\DoxyCodeLine{00028\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structprestigeItem__s}{prestigeItem\_s}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structprestigeItem__s_a2376d1e5612aaed07ca78238cb1dda3b}{name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structprestigeItem__s_ac956785fc4f964b4ac1cf98417b55700}{description}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structprestigeItem__s_ab21ba093587612036141d9e9127aecdf}{cost}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structprestigeItem__s_a99f8fe716a9008bc8e56fabe7d35c8d5}{owned}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structprestigeItem__s_a41309681bdb21075db97396dbaba8bde}{value}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \ \ \ void\ (*\mbox{\hyperlink{structprestigeItem__s_a9ce11b49b92ed557eb0002aa91772e54}{effect}})(float);\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structprestigeItem__s_aa150e1b21a08e7cea7a37c7f95587206}{index}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structprestigeItem__s_a6620dbf8f5f26bde40c7b535758af8c1}{pos}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \}\ \mbox{\hyperlink{structprestigeItem}{prestigeItem}};}
+\DoxyCodeLine{00038\ \ }
+\DoxyCodeLine{00045\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structprestigeList__s}{prestigeList\_s}}\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \mbox{\hyperlink{structprestigeItem__s}{prestigeItem}}\ *\mbox{\hyperlink{structprestigeList__s_ae18b874a99090b354efe649d50436c60}{items}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structprestigeList__s_a9e2bff664f8d8c2da568ce3394756744}{count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \}\ \mbox{\hyperlink{structprestigeList}{prestigeList}};}
+\DoxyCodeLine{00049\ \ }
+\DoxyCodeLine{00056\ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structprestigeTree__s}{prestigeTree\_s}}\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \mbox{\hyperlink{structprestigeList__s}{prestigeList}}\ *\mbox{\hyperlink{structprestigeTree__s_ace8b9467625f2ff3440d0e57c5c558e9}{Gold}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \mbox{\hyperlink{structprestigeList__s}{prestigeList}}\ *\mbox{\hyperlink{structprestigeTree__s_a56686cebc978a3349591af254ee7d961}{Damage}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \mbox{\hyperlink{structprestigeList__s}{prestigeList}}\ *\mbox{\hyperlink{structprestigeTree__s_a97e745ddc1aff6b392c6f6b478188c99}{Prestige}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \}\ \mbox{\hyperlink{structprestigeTree__s}{prestigeTree\_t}};}
+\DoxyCodeLine{00061\ \ }
+\DoxyCodeLine{00062\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{prestige_8h_ada86e19ca51948b3fc4855c6bf5174d0}{prestigePoints}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{prestige_8h_aec781e190d7f47fc7d9f63e71689cd38}{goldModifier}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{prestige_8h_a301def911c3c0f257407ba57504a96a3}{damageModifier}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{prestige_8h_aa14fab60d49c048a096a6bfdfad9b68a}{prestigeModifier}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_aefea6ee7cafdc842394a6bb70a59bde5}{initPrestige}}();}
+\DoxyCodeLine{00074\ \ }
+\DoxyCodeLine{00088\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a9766b9a5fb0bb9dca8567b51805d3932}{addPrestigeItem}}(\mbox{\hyperlink{structprestigeList}{prestigeList}}\ *list,\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keywordtype}{char}\ *description,\ \textcolor{keywordtype}{int}\ cost,\ \textcolor{keywordtype}{void}\ (*effect)(\textcolor{keywordtype}{float}),\ \textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00089\ \ }
+\DoxyCodeLine{00099\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{prestige_8h_a6afc84d6d80c580dd349ffab47f3ef99}{getMaxPrestigeItems}}(\textcolor{keywordtype}{char}\ *selectedTree);}
+\DoxyCodeLine{00100\ \ }
+\DoxyCodeLine{00107\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_ac644b75757e22b825b54a64cf340043d}{goldPrestige}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00108\ \ }
+\DoxyCodeLine{00115\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a1337741065fcb487ece1f9c56858dfd0}{damagePrestige}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00116\ \ }
+\DoxyCodeLine{00123\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a28e1bcd4bedbba98021c37a3b647ae4f}{prestigePrestige}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00124\ \ }
+\DoxyCodeLine{00132\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a98f256e9b26c397f4eff9bb3d6f454cf}{printTree}}();}
+\DoxyCodeLine{00133\ \ }
+\DoxyCodeLine{00144\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_afbea4b25d5f48c4ed3ceadad7135b91f}{buyPrestigeItem}}(\textcolor{keywordtype}{char}\ *type,\ \textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ pay);}
+\DoxyCodeLine{00145\ \ }
+\DoxyCodeLine{00153\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a7cf95e3760525241b0c73af83d8e9352}{checkDisplayPrestigeItemText}}();}
+\DoxyCodeLine{00154\ \ }
+\DoxyCodeLine{00161\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a8d96ba4edc6110bca9fae0e4c7d8e414}{destroyPrestigeList}}();}
+\DoxyCodeLine{00162\ \ }
+\DoxyCodeLine{00169\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a42f41334b7f748c754c113b11e4324b4}{refreshPrestigePage}}();}
+\DoxyCodeLine{00170\ \ }
+\DoxyCodeLine{00177\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_ae1d930d5001b9218ef988df5aa998687}{prestigeKeepHero}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00178\ \ }
+\DoxyCodeLine{00185\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_a0d157817b64c36b47185af70430101d3}{prestigeKeepHeroLevel}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00186\ \ }
+\DoxyCodeLine{00194\ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{prestige_8h_acedc79c0af2c62da04da0394172811a3}{doPrestige}}();}
+\DoxyCodeLine{00195\ \ }
+\DoxyCodeLine{00207\ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{prestige_8h_ab80d02e8b48bab23aaf990cf4afff6c5}{canBuy}}(\textcolor{keywordtype}{char}\ *type,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00208\ \ }
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \#endif\ }\textcolor{comment}{//\ PRESTIGE\_H}}
+
+\end{DoxyCode}

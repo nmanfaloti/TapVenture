@@ -1,0 +1,376 @@
+\doxysection{lib/heros.h File Reference}
+\hypertarget{heros_8h}{}\label{heros_8h}\index{lib/heros.h@{lib/heros.h}}
+
+
+Interface de gestion des héros dans Tap\+Venture.  
+
+
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for heros.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{heros_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{heros_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structhero}{hero}}
+\begin{DoxyCompactList}\small\item\em Structure représentant un héros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{heros_8h_ad3b043b4767f24c3bea001b144aa0520}\label{heros_8h_ad3b043b4767f24c3bea001b144aa0520} 
+\#define {\bfseries NB\+\_\+\+HEROS\+\_\+\+PER\+\_\+\+PAGE\+\_\+H}~3
+\begin{DoxyCompactList}\small\item\em Nombre de héros affichés par ligne dans la page des héros. \end{DoxyCompactList}\item 
+\Hypertarget{heros_8h_aa031abe82fbe7c87081ffba88193e495}\label{heros_8h_aa031abe82fbe7c87081ffba88193e495} 
+\#define {\bfseries NB\+\_\+\+HEROS\+\_\+\+PER\+\_\+\+PAGE\+\_\+W}~4
+\begin{DoxyCompactList}\small\item\em Nombre de héros affichés par colonne dans la page des héros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbeb}{heros\+Index}} \{ \newline
+{\bfseries HERO0}
+, {\bfseries HERO1}
+, {\bfseries HERO2}
+, {\bfseries HERO3}
+, \newline
+{\bfseries HERO4}
+, {\bfseries HERO5}
+, {\bfseries HERO6}
+, {\bfseries HERO7}
+, \newline
+{\bfseries HERO8}
+, {\bfseries HERO9}
+, {\bfseries HERO10}
+, {\bfseries HERO11}
+, \newline
+\mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a}{HEROS\+\_\+\+COUNT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Indice des héros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{heros_8h_a50f33cb27e232bfd3d40d62725a762e0}{init\+Heros}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la structure de tous les héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heros_8h_a3f826d62499008259e21961088fb3189}{attack\+Heros}} ()
+\begin{DoxyCompactList}\small\item\em Effectue une attaque avec les héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heros_8h_a9f20be36595a0f2f1c2825d05fb3e495}{upgrade\+Hero}} (int Hero\+Index, bool pay)
+\begin{DoxyCompactList}\small\item\em Améliore les caractéristiques d\textquotesingle{}un héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heros_8h_ac28ea4f98ee5df015cd3200cfb78d842}{upgrade\+Hero\+CB}} (void \texorpdfstring{$\ast$}{*}args\mbox{[}20\mbox{]})
+\begin{DoxyCompactList}\small\item\em Callback pour l\textquotesingle{}amélioration d\textquotesingle{}un héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heros_8h_a0b1f64dc5fea26af3438f96f878c5c89}{make\+Hero\+At\+Level}} (int hero\+Index, int level)
+\begin{DoxyCompactList}\small\item\em Définit le niveau initial d\textquotesingle{}un héros. \end{DoxyCompactList}\item 
+unsigned long long int \mbox{\hyperlink{heros_8h_ae6f0c4c6f7f16a29d14478616b8735d8}{get\+Hero\+Price\+By\+Multiplicator}} (int hero\+Index)
+\begin{DoxyCompactList}\small\item\em Calcule le prix d\textquotesingle{}achat du héros en fonction du multiplicateur choisi. \end{DoxyCompactList}\item 
+unsigned long long int \mbox{\hyperlink{heros_8h_af45948855a446d422f67285162d74bde}{get\+Hero\+Price}} (int hero\+Index)
+\begin{DoxyCompactList}\small\item\em Récupère le prix de base du héros. \end{DoxyCompactList}\item 
+unsigned long long int \mbox{\hyperlink{heros_8h_a8a3b1b122c36db44f264eeb5b2038edd}{heros\+DPS}} (int indice\+Hero)
+\begin{DoxyCompactList}\small\item\em Calcule les dégâts par seconde (DPS) d\textquotesingle{}un héros. \end{DoxyCompactList}\item 
+unsigned long long int \mbox{\hyperlink{heros_8h_ae2fc0750bb25660a9dd9a01a126719ec}{heros\+All\+DPS}} ()
+\begin{DoxyCompactList}\small\item\em Calcule le DPS total de tous les héros. \end{DoxyCompactList}\item 
+unsigned long long int \mbox{\hyperlink{heros_8h_a99a118844f6f00fbee0dcf9ea9a67dd7}{heros\+Gold\+Gen\+By\+Sec}} ()
+\begin{DoxyCompactList}\small\item\em Calcule la génération d\textquotesingle{}or par seconde des héros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{heros_8h_a37dc09ec1fa356a542005c1d6e7d39cb}{init\+Heros\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Initialise la page d\textquotesingle{}affichage des héros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{heros_8h_af1ca1ce5c50ec9ae0668ff0e05f0b471}{load\+Heros\+Matrice}} ()
+\begin{DoxyCompactList}\small\item\em Charge la matrice d\textquotesingle{}affichage des héros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{heros_8h_a1e2c1df0785fa9837e487367df544e92}{update\+Hero\+Shop\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Met à jour la page de la boutique des héros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{heros_8h_a349998adc9e723581fcea3ea3aaf7341}{update\+Hero\+IIn\+Shop\+Page}} (int hero\+Index)
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}affichage d\textquotesingle{}un héros dans la boutique. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{heros_8h_a09c0b12d3dad8a4140550a6c0a873987}{change\+Multiplicator}} ()
+\begin{DoxyCompactList}\small\item\em Change le multiplicateur d\textquotesingle{}achat. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{heros_8h_a50fc48d750e56f362c1360e50a372097}\label{heros_8h_a50fc48d750e56f362c1360e50a372097} 
+\mbox{\hyperlink{structhero}{hero}} {\bfseries heros} \mbox{[}\mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a}{HEROS\+\_\+\+COUNT}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Tableau global contenant tous les héros. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion des héros dans Tap\+Venture. 
+
+Ce fichier définit les constantes, types et fonctions pour l\textquotesingle{}initialisation et la gestion des héros, incluant le calcul des dégâts, l\textquotesingle{}évolution et l\textquotesingle{}affichage. \begin{DoxyAuthor}{Author}
+Lucas DUPONT 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+20 décembre 2024 
+\end{DoxyDate}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{heros_8h_a7504d578761f6dcf2e14e4b3d5defbeb}\label{heros_8h_a7504d578761f6dcf2e14e4b3d5defbeb} 
+\index{heros.h@{heros.h}!herosIndex@{herosIndex}}
+\index{herosIndex@{herosIndex}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{herosIndex}{herosIndex}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{heros_8h_a7504d578761f6dcf2e14e4b3d5defbeb}{heros\+Index}}}
+
+
+
+Indice des héros. 
+
+Enumération des indices des héros disponibles dans le jeu. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HEROS\_COUNT@{HEROS\_COUNT}!heros.h@{heros.h}}\index{heros.h@{heros.h}!HEROS\_COUNT@{HEROS\_COUNT}}}\Hypertarget{heros_8h_a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a}\label{heros_8h_a7504d578761f6dcf2e14e4b3d5defbebabc24fcd9dbac3e6b7e8cc8f334d9c06a} 
+HEROS\+\_\+\+COUNT&Nombre total de héros \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{heros_8h_a3f826d62499008259e21961088fb3189}\label{heros_8h_a3f826d62499008259e21961088fb3189} 
+\index{heros.h@{heros.h}!attackHeros@{attackHeros}}
+\index{attackHeros@{attackHeros}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{attackHeros()}{attackHeros()}}
+{\footnotesize\ttfamily int attack\+Heros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Effectue une attaque avec les héros. 
+
+Cette fonction gère la logique de l\textquotesingle{}attaque des héros sur la cible.
+
+\begin{DoxyReturn}{Returns}
+Un entier indiquant le résultat de l\textquotesingle{}attaque. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_a09c0b12d3dad8a4140550a6c0a873987}\label{heros_8h_a09c0b12d3dad8a4140550a6c0a873987} 
+\index{heros.h@{heros.h}!changeMultiplicator@{changeMultiplicator}}
+\index{changeMultiplicator@{changeMultiplicator}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{changeMultiplicator()}{changeMultiplicator()}}
+{\footnotesize\ttfamily int change\+Multiplicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Change le multiplicateur d\textquotesingle{}achat. 
+
+Permet de passer au multiplicateur suivant pour l\textquotesingle{}achat groupé dans la boutique des héros.
+
+\begin{DoxyReturn}{Returns}
+Le nouveau multiplicateur. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_af45948855a446d422f67285162d74bde}\label{heros_8h_af45948855a446d422f67285162d74bde} 
+\index{heros.h@{heros.h}!getHeroPrice@{getHeroPrice}}
+\index{getHeroPrice@{getHeroPrice}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{getHeroPrice()}{getHeroPrice()}}
+{\footnotesize\ttfamily unsigned long long int get\+Hero\+Price (\begin{DoxyParamCaption}\item[{int}]{hero\+Index }\end{DoxyParamCaption})}
+
+
+
+Récupère le prix de base du héros. 
+
+Retourne le prix courant du héros.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hero\+Index} & Indice du héros. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le prix du héros. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_ae6f0c4c6f7f16a29d14478616b8735d8}\label{heros_8h_ae6f0c4c6f7f16a29d14478616b8735d8} 
+\index{heros.h@{heros.h}!getHeroPriceByMultiplicator@{getHeroPriceByMultiplicator}}
+\index{getHeroPriceByMultiplicator@{getHeroPriceByMultiplicator}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{getHeroPriceByMultiplicator()}{getHeroPriceByMultiplicator()}}
+{\footnotesize\ttfamily unsigned long long int get\+Hero\+Price\+By\+Multiplicator (\begin{DoxyParamCaption}\item[{int}]{hero\+Index }\end{DoxyParamCaption})}
+
+
+
+Calcule le prix d\textquotesingle{}achat du héros en fonction du multiplicateur choisi. 
+
+Permet d\textquotesingle{}obtenir le prix actualisé selon le multiplicateur de l\textquotesingle{}achat.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hero\+Index} & Indice du héros. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le prix calculé. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_ae2fc0750bb25660a9dd9a01a126719ec}\label{heros_8h_ae2fc0750bb25660a9dd9a01a126719ec} 
+\index{heros.h@{heros.h}!herosAllDPS@{herosAllDPS}}
+\index{herosAllDPS@{herosAllDPS}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{herosAllDPS()}{herosAllDPS()}}
+{\footnotesize\ttfamily unsigned long long int heros\+All\+DPS (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calcule le DPS total de tous les héros. 
+
+Additionne le DPS de tous les héros actifs.
+
+\begin{DoxyReturn}{Returns}
+Le DPS cumulé de tous les héros. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_a8a3b1b122c36db44f264eeb5b2038edd}\label{heros_8h_a8a3b1b122c36db44f264eeb5b2038edd} 
+\index{heros.h@{heros.h}!herosDPS@{herosDPS}}
+\index{herosDPS@{herosDPS}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{herosDPS()}{herosDPS()}}
+{\footnotesize\ttfamily unsigned long long int heros\+DPS (\begin{DoxyParamCaption}\item[{int}]{indice\+Hero }\end{DoxyParamCaption})}
+
+
+
+Calcule les dégâts par seconde (DPS) d\textquotesingle{}un héros. 
+
+Cette fonction calcule la contribution du héros en terme de DPS en fonction de son niveau et de ses caractéristiques.
+
+
+\begin{DoxyParams}{Parameters}
+{\em indice\+Hero} & Indice du héros. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Les dégâts par seconde du héros. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_a99a118844f6f00fbee0dcf9ea9a67dd7}\label{heros_8h_a99a118844f6f00fbee0dcf9ea9a67dd7} 
+\index{heros.h@{heros.h}!herosGoldGenBySec@{herosGoldGenBySec}}
+\index{herosGoldGenBySec@{herosGoldGenBySec}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{herosGoldGenBySec()}{herosGoldGenBySec()}}
+{\footnotesize\ttfamily unsigned long long int heros\+Gold\+Gen\+By\+Sec (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calcule la génération d\textquotesingle{}or par seconde des héros. 
+
+Cette fonction sert à déterminer combien d\textquotesingle{}or est généré par les héros par seconde.
+
+\begin{DoxyReturn}{Returns}
+L\textquotesingle{}or généré par seconde. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_a50f33cb27e232bfd3d40d62725a762e0}\label{heros_8h_a50f33cb27e232bfd3d40d62725a762e0} 
+\index{heros.h@{heros.h}!initHeros@{initHeros}}
+\index{initHeros@{initHeros}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{initHeros()}{initHeros()}}
+{\footnotesize\ttfamily int init\+Heros (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise la structure de tous les héros. 
+
+Cette fonction initialise les valeurs par défaut de chaque héros.
+
+\begin{DoxyReturn}{Returns}
+0 en cas de succès, un code d\textquotesingle{}erreur sinon. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_a37dc09ec1fa356a542005c1d6e7d39cb}\label{heros_8h_a37dc09ec1fa356a542005c1d6e7d39cb} 
+\index{heros.h@{heros.h}!initHerosPage@{initHerosPage}}
+\index{initHerosPage@{initHerosPage}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{initHerosPage()}{initHerosPage()}}
+{\footnotesize\ttfamily void init\+Heros\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise la page d\textquotesingle{}affichage des héros. 
+
+Prépare la page dédiée à l\textquotesingle{}affichage des héros dans l\textquotesingle{}interface utilisateur. \Hypertarget{heros_8h_af1ca1ce5c50ec9ae0668ff0e05f0b471}\label{heros_8h_af1ca1ce5c50ec9ae0668ff0e05f0b471} 
+\index{heros.h@{heros.h}!loadHerosMatrice@{loadHerosMatrice}}
+\index{loadHerosMatrice@{loadHerosMatrice}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{loadHerosMatrice()}{loadHerosMatrice()}}
+{\footnotesize\ttfamily void load\+Heros\+Matrice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Charge la matrice d\textquotesingle{}affichage des héros. 
+
+Organise les héros dans une grille pour l\textquotesingle{}affichage dans l\textquotesingle{}interface utilisateur. \Hypertarget{heros_8h_a0b1f64dc5fea26af3438f96f878c5c89}\label{heros_8h_a0b1f64dc5fea26af3438f96f878c5c89} 
+\index{heros.h@{heros.h}!makeHeroAtLevel@{makeHeroAtLevel}}
+\index{makeHeroAtLevel@{makeHeroAtLevel}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{makeHeroAtLevel()}{makeHeroAtLevel()}}
+{\footnotesize\ttfamily int make\+Hero\+At\+Level (\begin{DoxyParamCaption}\item[{int}]{hero\+Index,  }\item[{int}]{levelH }\end{DoxyParamCaption})}
+
+
+
+Définit le niveau initial d\textquotesingle{}un héros. 
+
+Permet de configurer le niveau d\textquotesingle{}un héros selon son indice.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hero\+Index} & Indice du héros. \\
+\hline
+{\em level} & Niveau à attribuer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier indiquant le succès ou l\textquotesingle{}échec de l\textquotesingle{}opération. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_a349998adc9e723581fcea3ea3aaf7341}\label{heros_8h_a349998adc9e723581fcea3ea3aaf7341} 
+\index{heros.h@{heros.h}!updateHeroIInShopPage@{updateHeroIInShopPage}}
+\index{updateHeroIInShopPage@{updateHeroIInShopPage}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{updateHeroIInShopPage()}{updateHeroIInShopPage()}}
+{\footnotesize\ttfamily void update\+Hero\+IIn\+Shop\+Page (\begin{DoxyParamCaption}\item[{int}]{hero\+Index }\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}affichage d\textquotesingle{}un héros dans la boutique. 
+
+Rafraîchit l\textquotesingle{}affichage des informations d\textquotesingle{}un héros donné dans la boutique.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hero\+Index} & Indice du héros à mettre à jour. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{heros_8h_a1e2c1df0785fa9837e487367df544e92}\label{heros_8h_a1e2c1df0785fa9837e487367df544e92} 
+\index{heros.h@{heros.h}!updateHeroShopPage@{updateHeroShopPage}}
+\index{updateHeroShopPage@{updateHeroShopPage}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{updateHeroShopPage()}{updateHeroShopPage()}}
+{\footnotesize\ttfamily void update\+Hero\+Shop\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Met à jour la page de la boutique des héros. 
+
+Actualise l\textquotesingle{}affichage et les informations dans la boutique dédiée aux héros. \Hypertarget{heros_8h_a9f20be36595a0f2f1c2825d05fb3e495}\label{heros_8h_a9f20be36595a0f2f1c2825d05fb3e495} 
+\index{heros.h@{heros.h}!upgradeHero@{upgradeHero}}
+\index{upgradeHero@{upgradeHero}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{upgradeHero()}{upgradeHero()}}
+{\footnotesize\ttfamily int upgrade\+Hero (\begin{DoxyParamCaption}\item[{int}]{hero\+Index,  }\item[{bool}]{pay }\end{DoxyParamCaption})}
+
+
+
+Améliore les caractéristiques d\textquotesingle{}un héros. 
+
+Permet d\textquotesingle{}améliorer un héros en fonction de son indice et si le paiement est effectué.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Hero\+Index} & Indice du héros à améliorer. \\
+\hline
+{\em pay} & Booléen indiquant si le paiement est effectué. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier indiquant le succès ou l\textquotesingle{}échec de l\textquotesingle{}amélioration. 
+\end{DoxyReturn}
+\Hypertarget{heros_8h_ac28ea4f98ee5df015cd3200cfb78d842}\label{heros_8h_ac28ea4f98ee5df015cd3200cfb78d842} 
+\index{heros.h@{heros.h}!upgradeHeroCB@{upgradeHeroCB}}
+\index{upgradeHeroCB@{upgradeHeroCB}!heros.h@{heros.h}}
+\doxysubsubsection{\texorpdfstring{upgradeHeroCB()}{upgradeHeroCB()}}
+{\footnotesize\ttfamily int upgrade\+Hero\+CB (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{args\mbox{[}20\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Callback pour l\textquotesingle{}amélioration d\textquotesingle{}un héros. 
+
+Fonction callback utilisée lors de l\textquotesingle{}interaction avec l\textquotesingle{}interface graphique pour améliorer un héros.
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & Tableau de pointeurs d\textquotesingle{}arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Un entier indiquant le résultat de l\textquotesingle{}opération. 
+\end{DoxyReturn}

@@ -1,0 +1,13 @@
+<map id="lib/button.h" name="lib/button.h">
+<area shape="rect" id="Node000001" title="Interface de gestion des boutons dans TapVenture." alt="" coords="213,5,309,31"/>
+<area shape="rect" id="Node000002" href="$sdl_8h.html" title="Déclarations pour l&#39;initialisation, la gestion et la fermeture du sous&#45;système SDL dans TapVenture." alt="" coords="235,79,288,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,31,264,65,259,65,259,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,152,101,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,104,101,150,99,145,234,99"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="125,152,243,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="251,106,209,144,205,141,247,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="267,152,411,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="276,102,318,141,314,144,272,106"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="435,152,573,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="289,98,453,146,451,151,287,103"/>
+</map>

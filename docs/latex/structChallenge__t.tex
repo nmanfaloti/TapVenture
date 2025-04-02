@@ -1,0 +1,83 @@
+\doxysection{Challenge\+\_\+t Struct Reference}
+\hypertarget{structChallenge__t}{}\label{structChallenge__t}\index{Challenge\_t@{Challenge\_t}}
+
+
+Structure représentant un challenge dans le jeu.  
+
+
+
+
+{\ttfamily \#include $<$challenge.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structChallenge__t_a369d8deba2c7c89a7f3ed342791eefe1}{active}}
+\item 
+unsigned int \mbox{\hyperlink{structChallenge__t_adb256807e4e8a5bec8846424b0da99b9}{start\+Time}}
+\item 
+int \mbox{\hyperlink{structChallenge__t_a4f596ebcb7e0f2637183404e956fdc85}{duration}}
+\item 
+int \mbox{\hyperlink{structChallenge__t_a52ba6f8ea2535136df2bcbf3cc0a8c67}{target}}
+\item 
+int \mbox{\hyperlink{structChallenge__t_a7e58e32e7c90574f6945ad32eae8197c}{reward}}
+\item 
+int \mbox{\hyperlink{structChallenge__t_a4c729dded8e1efd87e1aee085d799008}{cooldown}}
+\item 
+time\+\_\+t \mbox{\hyperlink{structChallenge__t_a499daf54d5a1d26ac7a572ee0fbb1f17}{last\+Time}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure représentant un challenge dans le jeu. 
+
+Contient les informations essentielles pour gérer un challenge, notamment son état, le temps de démarrage, la durée, la cible à atteindre, la récompense octroyée, le cooldown ainsi que le timestamp de la dernière exécution. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structChallenge__t_a369d8deba2c7c89a7f3ed342791eefe1}\label{structChallenge__t_a369d8deba2c7c89a7f3ed342791eefe1} 
+\index{Challenge\_t@{Challenge\_t}!active@{active}}
+\index{active@{active}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{active}{active}}
+{\footnotesize\ttfamily int Challenge\+\_\+t\+::active}
+
+Indique si un challenge est en cours (1) ou non (0). \Hypertarget{structChallenge__t_a4c729dded8e1efd87e1aee085d799008}\label{structChallenge__t_a4c729dded8e1efd87e1aee085d799008} 
+\index{Challenge\_t@{Challenge\_t}!cooldown@{cooldown}}
+\index{cooldown@{cooldown}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{cooldown}{cooldown}}
+{\footnotesize\ttfamily int Challenge\+\_\+t\+::cooldown}
+
+Durée d\textquotesingle{}attente (en secondes) entre deux challenges. \Hypertarget{structChallenge__t_a4f596ebcb7e0f2637183404e956fdc85}\label{structChallenge__t_a4f596ebcb7e0f2637183404e956fdc85} 
+\index{Challenge\_t@{Challenge\_t}!duration@{duration}}
+\index{duration@{duration}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{duration}{duration}}
+{\footnotesize\ttfamily int Challenge\+\_\+t\+::duration}
+
+Durée du challenge en secondes. \Hypertarget{structChallenge__t_a499daf54d5a1d26ac7a572ee0fbb1f17}\label{structChallenge__t_a499daf54d5a1d26ac7a572ee0fbb1f17} 
+\index{Challenge\_t@{Challenge\_t}!lastTime@{lastTime}}
+\index{lastTime@{lastTime}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{lastTime}{lastTime}}
+{\footnotesize\ttfamily time\+\_\+t Challenge\+\_\+t\+::last\+Time}
+
+Timestamp de la fin du dernier challenge pour le cooldown. \Hypertarget{structChallenge__t_a7e58e32e7c90574f6945ad32eae8197c}\label{structChallenge__t_a7e58e32e7c90574f6945ad32eae8197c} 
+\index{Challenge\_t@{Challenge\_t}!reward@{reward}}
+\index{reward@{reward}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{reward}{reward}}
+{\footnotesize\ttfamily int Challenge\+\_\+t\+::reward}
+
+Récompense en or accordée en cas de succès. \Hypertarget{structChallenge__t_adb256807e4e8a5bec8846424b0da99b9}\label{structChallenge__t_adb256807e4e8a5bec8846424b0da99b9} 
+\index{Challenge\_t@{Challenge\_t}!startTime@{startTime}}
+\index{startTime@{startTime}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{startTime}{startTime}}
+{\footnotesize\ttfamily unsigned int Challenge\+\_\+t\+::start\+Time}
+
+Instant de lancement du challenge (en millisecondes pour SDL). \Hypertarget{structChallenge__t_a52ba6f8ea2535136df2bcbf3cc0a8c67}\label{structChallenge__t_a52ba6f8ea2535136df2bcbf3cc0a8c67} 
+\index{Challenge\_t@{Challenge\_t}!target@{target}}
+\index{target@{target}!Challenge\_t@{Challenge\_t}}
+\doxysubsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily int Challenge\+\_\+t\+::target}
+
+Nombre de monstres à tuer pour réussir le challenge. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{challenge_8h}{challenge.\+h}}\end{DoxyCompactItemize}

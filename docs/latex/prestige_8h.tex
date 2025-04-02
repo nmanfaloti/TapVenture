@@ -1,0 +1,375 @@
+\doxysection{lib/prestige.h File Reference}
+\hypertarget{prestige_8h}{}\label{prestige_8h}\index{lib/prestige.h@{lib/prestige.h}}
+
+
+Interface de gestion du système de prestige dans Tap\+Venture.  
+
+
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+Include dependency graph for prestige.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{prestige_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{prestige_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structprestigeItem__s}{prestige\+Item\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structprestigeList__s}{prestige\+List\+\_\+s}}
+\item 
+struct \mbox{\hyperlink{structprestigeTree__s}{prestige\+Tree\+\_\+s}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{prestige_8h_a965ac81929b6bd5b515ac185d9efeb1b}{MAX\+\_\+\+PRESTIGE\+\_\+\+ITEMS}}~8
+\item 
+\#define \mbox{\hyperlink{prestige_8h_a148ed41dec8870d9ac31b0542b60cd88}{NB\+\_\+\+PRESTIGE\+\_\+\+ITEMS\+\_\+\+PER\+\_\+\+PAGE}}~4
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{prestige_8h_a9b0e7a041e266a93ba3dc7fbe6ba50f8}\label{prestige_8h_a9b0e7a041e266a93ba3dc7fbe6ba50f8} 
+typedef struct \mbox{\hyperlink{structprestigeItem__s}{prestige\+Item\+\_\+s}} {\bfseries prestige\+Item}
+\item 
+\Hypertarget{prestige_8h_ace11e66c23f0683272e4a06a364c8399}\label{prestige_8h_ace11e66c23f0683272e4a06a364c8399} 
+typedef struct \mbox{\hyperlink{structprestigeList__s}{prestige\+List\+\_\+s}} {\bfseries prestige\+List}
+\item 
+\Hypertarget{prestige_8h_a3f405a5a9d82e70720e52bebca3671b9}\label{prestige_8h_a3f405a5a9d82e70720e52bebca3671b9} 
+typedef struct \mbox{\hyperlink{structprestigeTree__s}{prestige\+Tree\+\_\+s}} {\bfseries prestige\+Tree\+\_\+t}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{prestige_8h_aefea6ee7cafdc842394a6bb70a59bde5}{init\+Prestige}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le système de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a9766b9a5fb0bb9dca8567b51805d3932}{add\+Prestige\+Item}} (\mbox{\hyperlink{structprestigeList}{prestige\+List}} \texorpdfstring{$\ast$}{*}list, char \texorpdfstring{$\ast$}{*}name, char \texorpdfstring{$\ast$}{*}description, int cost, void(\texorpdfstring{$\ast$}{*}effect)(float), float value)
+\begin{DoxyCompactList}\small\item\em Ajoute un item à une liste de prestige. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prestige_8h_a6afc84d6d80c580dd349ffab47f3ef99}{get\+Max\+Prestige\+Items}} (char \texorpdfstring{$\ast$}{*}selected\+Tree)
+\begin{DoxyCompactList}\small\item\em Récupère le nombre maximum d\textquotesingle{}items achetés dans un arbre de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_ac644b75757e22b825b54a64cf340043d}{gold\+Prestige}} (float value)
+\begin{DoxyCompactList}\small\item\em Applique un effet de prestige augmentant les gains d\textquotesingle{}or. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a1337741065fcb487ece1f9c56858dfd0}{damage\+Prestige}} (float value)
+\begin{DoxyCompactList}\small\item\em Applique un effet de prestige augmentant les dégâts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a28e1bcd4bedbba98021c37a3b647ae4f}{prestige\+Prestige}} (float value)
+\begin{DoxyCompactList}\small\item\em Applique un effet de prestige augmentant les points de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a98f256e9b26c397f4eff9bb3d6f454cf}{print\+Tree}} ()
+\begin{DoxyCompactList}\small\item\em Affiche les informations des arbres de prestige dans la console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_afbea4b25d5f48c4ed3ceadad7135b91f}{buy\+Prestige\+Item}} (char \texorpdfstring{$\ast$}{*}type, int index, int pay)
+\begin{DoxyCompactList}\small\item\em Achète un item de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a7cf95e3760525241b0c73af83d8e9352}{check\+Display\+Prestige\+Item\+Text}} ()
+\begin{DoxyCompactList}\small\item\em Vérifie et met à jour l\textquotesingle{}affichage des textes des items de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a8d96ba4edc6110bca9fae0e4c7d8e414}{destroy\+Prestige\+List}} ()
+\begin{DoxyCompactList}\small\item\em Détruit les listes d\textquotesingle{}items de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a42f41334b7f748c754c113b11e4324b4}{refresh\+Prestige\+Page}} ()
+\begin{DoxyCompactList}\small\item\em Rafraîchit la page de prestige. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_ae1d930d5001b9218ef988df5aa998687}{prestige\+Keep\+Hero}} (float value)
+\begin{DoxyCompactList}\small\item\em Applique un effet de prestige permettant de conserver les héros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_a0d157817b64c36b47185af70430101d3}{prestige\+Keep\+Hero\+Level}} (float value)
+\begin{DoxyCompactList}\small\item\em Applique un effet de prestige permettant de conserver le niveau des héros. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{prestige_8h_acedc79c0af2c62da04da0394172811a3}{do\+Prestige}} ()
+\begin{DoxyCompactList}\small\item\em Effectue une action de prestige. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{prestige_8h_ab80d02e8b48bab23aaf990cf4afff6c5}{can\+Buy}} (char \texorpdfstring{$\ast$}{*}type, int index)
+\begin{DoxyCompactList}\small\item\em Vérifie si un item de prestige peut être acheté. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{prestige_8h_ada86e19ca51948b3fc4855c6bf5174d0}{prestige\+Points}}
+\item 
+float \mbox{\hyperlink{prestige_8h_aec781e190d7f47fc7d9f63e71689cd38}{gold\+Modifier}}
+\item 
+float \mbox{\hyperlink{prestige_8h_a301def911c3c0f257407ba57504a96a3}{damage\+Modifier}}
+\item 
+float \mbox{\hyperlink{prestige_8h_aa14fab60d49c048a096a6bfdfad9b68a}{prestige\+Modifier}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface de gestion du système de prestige dans Tap\+Venture. 
+
+Ce fichier définit les structures et fonctions nécessaires pour gérer le système de prestige, y compris les arbres de prestige, les items de prestige, et leurs effets sur le jeu. Il inclut également des outils pour l\textquotesingle{}achat d\textquotesingle{}items, la gestion des points de prestige, et les mises à jour des pages de prestige.
+
+\begin{DoxyDate}{Date}
+2 avril 2025 
+\end{DoxyDate}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{prestige_8h_a965ac81929b6bd5b515ac185d9efeb1b}\label{prestige_8h_a965ac81929b6bd5b515ac185d9efeb1b} 
+\index{prestige.h@{prestige.h}!MAX\_PRESTIGE\_ITEMS@{MAX\_PRESTIGE\_ITEMS}}
+\index{MAX\_PRESTIGE\_ITEMS@{MAX\_PRESTIGE\_ITEMS}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_PRESTIGE\_ITEMS}{MAX\_PRESTIGE\_ITEMS}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+PRESTIGE\+\_\+\+ITEMS~8}
+
+Nombre maximum d\textquotesingle{}items dans un arbre de prestige \Hypertarget{prestige_8h_a148ed41dec8870d9ac31b0542b60cd88}\label{prestige_8h_a148ed41dec8870d9ac31b0542b60cd88} 
+\index{prestige.h@{prestige.h}!NB\_PRESTIGE\_ITEMS\_PER\_PAGE@{NB\_PRESTIGE\_ITEMS\_PER\_PAGE}}
+\index{NB\_PRESTIGE\_ITEMS\_PER\_PAGE@{NB\_PRESTIGE\_ITEMS\_PER\_PAGE}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{NB\_PRESTIGE\_ITEMS\_PER\_PAGE}{NB\_PRESTIGE\_ITEMS\_PER\_PAGE}}
+{\footnotesize\ttfamily \#define NB\+\_\+\+PRESTIGE\+\_\+\+ITEMS\+\_\+\+PER\+\_\+\+PAGE~4}
+
+Nombre maximum d\textquotesingle{}items affichés par page 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{prestige_8h_a9766b9a5fb0bb9dca8567b51805d3932}\label{prestige_8h_a9766b9a5fb0bb9dca8567b51805d3932} 
+\index{prestige.h@{prestige.h}!addPrestigeItem@{addPrestigeItem}}
+\index{addPrestigeItem@{addPrestigeItem}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{addPrestigeItem()}{addPrestigeItem()}}
+{\footnotesize\ttfamily void add\+Prestige\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structprestigeList}{prestige\+List}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{char \texorpdfstring{$\ast$}{*}}]{description,  }\item[{int}]{cost,  }\item[{void(\texorpdfstring{$\ast$}{*})(float)}]{effect,  }\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Ajoute un item à une liste de prestige. 
+
+Cette fonction crée un nouvel item de prestige et l\textquotesingle{}ajoute à la liste spécifiée.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & Pointeur vers la liste de prestige où ajouter l\textquotesingle{}item. \\
+\hline
+{\em name} & Nom de l\textquotesingle{}item. \\
+\hline
+{\em description} & Description de l\textquotesingle{}item. \\
+\hline
+{\em cost} & Coût de l\textquotesingle{}item en points de prestige. \\
+\hline
+{\em effect} & Fonction appliquant l\textquotesingle{}effet de l\textquotesingle{}item. \\
+\hline
+{\em value} & Valeur associée à l\textquotesingle{}effet de l\textquotesingle{}item. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_afbea4b25d5f48c4ed3ceadad7135b91f}\label{prestige_8h_afbea4b25d5f48c4ed3ceadad7135b91f} 
+\index{prestige.h@{prestige.h}!buyPrestigeItem@{buyPrestigeItem}}
+\index{buyPrestigeItem@{buyPrestigeItem}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{buyPrestigeItem()}{buyPrestigeItem()}}
+{\footnotesize\ttfamily void buy\+Prestige\+Item (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{selected\+Tree,  }\item[{int}]{index,  }\item[{int}]{pay }\end{DoxyParamCaption})}
+
+
+
+Achète un item de prestige. 
+
+Cette fonction vérifie si un item peut être acheté, applique son effet, et met à jour son état.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Nom de l\textquotesingle{}arbre de prestige (\"{}\+Gold\"{}, \"{}\+Damage\"{}, ou \"{}\+Prestige\"{}). \\
+\hline
+{\em index} & Index de l\textquotesingle{}item dans l\textquotesingle{}arbre. \\
+\hline
+{\em pay} & Indique si le coût doit être déduit (1) ou non (0). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_ab80d02e8b48bab23aaf990cf4afff6c5}\label{prestige_8h_ab80d02e8b48bab23aaf990cf4afff6c5} 
+\index{prestige.h@{prestige.h}!canBuy@{canBuy}}
+\index{canBuy@{canBuy}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{canBuy()}{canBuy()}}
+{\footnotesize\ttfamily int can\+Buy (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{selected\+Tree,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Vérifie si un item de prestige peut être acheté. 
+
+Cette fonction vérifie si les conditions nécessaires pour acheter un item de prestige sont remplies (points de prestige suffisants, items précédents achetés, etc.).
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Nom de l\textquotesingle{}arbre de prestige (\"{}\+Gold\"{}, \"{}\+Damage\"{}, ou \"{}\+Prestige\"{}). \\
+\hline
+{\em index} & Index de l\textquotesingle{}item dans l\textquotesingle{}arbre. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 si l\textquotesingle{}item peut être acheté, 0 sinon. 
+\end{DoxyReturn}
+\Hypertarget{prestige_8h_a7cf95e3760525241b0c73af83d8e9352}\label{prestige_8h_a7cf95e3760525241b0c73af83d8e9352} 
+\index{prestige.h@{prestige.h}!checkDisplayPrestigeItemText@{checkDisplayPrestigeItemText}}
+\index{checkDisplayPrestigeItemText@{checkDisplayPrestigeItemText}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{checkDisplayPrestigeItemText()}{checkDisplayPrestigeItemText()}}
+{\footnotesize\ttfamily void check\+Display\+Prestige\+Item\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Vérifie et met à jour l\textquotesingle{}affichage des textes des items de prestige. 
+
+Cette fonction gère l\textquotesingle{}affichage des descriptions et coûts des items de prestige en fonction des interactions de l\textquotesingle{}utilisateur. \Hypertarget{prestige_8h_a1337741065fcb487ece1f9c56858dfd0}\label{prestige_8h_a1337741065fcb487ece1f9c56858dfd0} 
+\index{prestige.h@{prestige.h}!damagePrestige@{damagePrestige}}
+\index{damagePrestige@{damagePrestige}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{damagePrestige()}{damagePrestige()}}
+{\footnotesize\ttfamily void damage\+Prestige (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Applique un effet de prestige augmentant les dégâts. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur de l\textquotesingle{}effet à appliquer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_a8d96ba4edc6110bca9fae0e4c7d8e414}\label{prestige_8h_a8d96ba4edc6110bca9fae0e4c7d8e414} 
+\index{prestige.h@{prestige.h}!destroyPrestigeList@{destroyPrestigeList}}
+\index{destroyPrestigeList@{destroyPrestigeList}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{destroyPrestigeList()}{destroyPrestigeList()}}
+{\footnotesize\ttfamily void destroy\+Prestige\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Détruit les listes d\textquotesingle{}items de prestige. 
+
+Cette fonction libère les ressources associées aux arbres de prestige. \Hypertarget{prestige_8h_acedc79c0af2c62da04da0394172811a3}\label{prestige_8h_acedc79c0af2c62da04da0394172811a3} 
+\index{prestige.h@{prestige.h}!doPrestige@{doPrestige}}
+\index{doPrestige@{doPrestige}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{doPrestige()}{doPrestige()}}
+{\footnotesize\ttfamily void do\+Prestige (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Effectue une action de prestige. 
+
+Cette fonction applique les effets de prestige, met à jour les points de prestige, et rafraîchit la page de prestige. \Hypertarget{prestige_8h_a6afc84d6d80c580dd349ffab47f3ef99}\label{prestige_8h_a6afc84d6d80c580dd349ffab47f3ef99} 
+\index{prestige.h@{prestige.h}!getMaxPrestigeItems@{getMaxPrestigeItems}}
+\index{getMaxPrestigeItems@{getMaxPrestigeItems}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{getMaxPrestigeItems()}{getMaxPrestigeItems()}}
+{\footnotesize\ttfamily int get\+Max\+Prestige\+Items (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{selected\+Tree }\end{DoxyParamCaption})}
+
+
+
+Récupère le nombre maximum d\textquotesingle{}items achetés dans un arbre de prestige. 
+
+Cette fonction parcourt un arbre de prestige et retourne le nombre d\textquotesingle{}items achetés.
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+Tree} & Nom de l\textquotesingle{}arbre de prestige (\"{}\+Gold\"{}, \"{}\+Damage\"{}, ou \"{}\+Prestige\"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Le nombre d\textquotesingle{}items achetés dans l\textquotesingle{}arbre. 
+\end{DoxyReturn}
+\Hypertarget{prestige_8h_ac644b75757e22b825b54a64cf340043d}\label{prestige_8h_ac644b75757e22b825b54a64cf340043d} 
+\index{prestige.h@{prestige.h}!goldPrestige@{goldPrestige}}
+\index{goldPrestige@{goldPrestige}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{goldPrestige()}{goldPrestige()}}
+{\footnotesize\ttfamily void gold\+Prestige (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Applique un effet de prestige augmentant les gains d\textquotesingle{}or. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur de l\textquotesingle{}effet à appliquer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_aefea6ee7cafdc842394a6bb70a59bde5}\label{prestige_8h_aefea6ee7cafdc842394a6bb70a59bde5} 
+\index{prestige.h@{prestige.h}!initPrestige@{initPrestige}}
+\index{initPrestige@{initPrestige}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{initPrestige()}{initPrestige()}}
+{\footnotesize\ttfamily void init\+Prestige (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialise le système de prestige. 
+
+Cette fonction configure les arbres de prestige et prépare les items de prestige. \Hypertarget{prestige_8h_ae1d930d5001b9218ef988df5aa998687}\label{prestige_8h_ae1d930d5001b9218ef988df5aa998687} 
+\index{prestige.h@{prestige.h}!prestigeKeepHero@{prestigeKeepHero}}
+\index{prestigeKeepHero@{prestigeKeepHero}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{prestigeKeepHero()}{prestigeKeepHero()}}
+{\footnotesize\ttfamily void prestige\+Keep\+Hero (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Applique un effet de prestige permettant de conserver les héros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur de l\textquotesingle{}effet à appliquer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_a0d157817b64c36b47185af70430101d3}\label{prestige_8h_a0d157817b64c36b47185af70430101d3} 
+\index{prestige.h@{prestige.h}!prestigeKeepHeroLevel@{prestigeKeepHeroLevel}}
+\index{prestigeKeepHeroLevel@{prestigeKeepHeroLevel}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{prestigeKeepHeroLevel()}{prestigeKeepHeroLevel()}}
+{\footnotesize\ttfamily void prestige\+Keep\+Hero\+Level (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Applique un effet de prestige permettant de conserver le niveau des héros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur de l\textquotesingle{}effet à appliquer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_a28e1bcd4bedbba98021c37a3b647ae4f}\label{prestige_8h_a28e1bcd4bedbba98021c37a3b647ae4f} 
+\index{prestige.h@{prestige.h}!prestigePrestige@{prestigePrestige}}
+\index{prestigePrestige@{prestigePrestige}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{prestigePrestige()}{prestigePrestige()}}
+{\footnotesize\ttfamily void prestige\+Prestige (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Applique un effet de prestige augmentant les points de prestige. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur de l\textquotesingle{}effet à appliquer. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{prestige_8h_a98f256e9b26c397f4eff9bb3d6f454cf}\label{prestige_8h_a98f256e9b26c397f4eff9bb3d6f454cf} 
+\index{prestige.h@{prestige.h}!printTree@{printTree}}
+\index{printTree@{printTree}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{printTree()}{printTree()}}
+{\footnotesize\ttfamily void print\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Affiche les informations des arbres de prestige dans la console. 
+
+Cette fonction est utilisée pour le débogage et affiche les noms, descriptions, coûts et états des items dans les arbres de prestige. \Hypertarget{prestige_8h_a42f41334b7f748c754c113b11e4324b4}\label{prestige_8h_a42f41334b7f748c754c113b11e4324b4} 
+\index{prestige.h@{prestige.h}!refreshPrestigePage@{refreshPrestigePage}}
+\index{refreshPrestigePage@{refreshPrestigePage}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{refreshPrestigePage()}{refreshPrestigePage()}}
+{\footnotesize\ttfamily void refresh\+Prestige\+Page (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Rafraîchit la page de prestige. 
+
+Cette fonction détruit et recrée la page de prestige pour refléter les changements. 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{prestige_8h_a301def911c3c0f257407ba57504a96a3}\label{prestige_8h_a301def911c3c0f257407ba57504a96a3} 
+\index{prestige.h@{prestige.h}!damageModifier@{damageModifier}}
+\index{damageModifier@{damageModifier}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{damageModifier}{damageModifier}}
+{\footnotesize\ttfamily float damage\+Modifier\hspace{0.3cm}{\ttfamily [extern]}}
+
+Modificateur de dégâts lié au prestige \Hypertarget{prestige_8h_aec781e190d7f47fc7d9f63e71689cd38}\label{prestige_8h_aec781e190d7f47fc7d9f63e71689cd38} 
+\index{prestige.h@{prestige.h}!goldModifier@{goldModifier}}
+\index{goldModifier@{goldModifier}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{goldModifier}{goldModifier}}
+{\footnotesize\ttfamily float gold\+Modifier\hspace{0.3cm}{\ttfamily [extern]}}
+
+Modificateur de gain d\textquotesingle{}or lié au prestige \Hypertarget{prestige_8h_aa14fab60d49c048a096a6bfdfad9b68a}\label{prestige_8h_aa14fab60d49c048a096a6bfdfad9b68a} 
+\index{prestige.h@{prestige.h}!prestigeModifier@{prestigeModifier}}
+\index{prestigeModifier@{prestigeModifier}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{prestigeModifier}{prestigeModifier}}
+{\footnotesize\ttfamily float prestige\+Modifier\hspace{0.3cm}{\ttfamily [extern]}}
+
+Modificateur de points de prestige lié au prestige \Hypertarget{prestige_8h_ada86e19ca51948b3fc4855c6bf5174d0}\label{prestige_8h_ada86e19ca51948b3fc4855c6bf5174d0} 
+\index{prestige.h@{prestige.h}!prestigePoints@{prestigePoints}}
+\index{prestigePoints@{prestigePoints}!prestige.h@{prestige.h}}
+\doxysubsubsection{\texorpdfstring{prestigePoints}{prestigePoints}}
+{\footnotesize\ttfamily int prestige\+Points\hspace{0.3cm}{\ttfamily [extern]}}
+
+Nombre de points de prestige du joueur 

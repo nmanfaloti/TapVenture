@@ -1,0 +1,108 @@
+\doxysection{level\+Info Struct Reference}
+\hypertarget{structlevelInfo}{}\label{structlevelInfo}\index{levelInfo@{levelInfo}}
+
+
+Structure représentant le niveau de combat.  
+
+
+
+
+{\ttfamily \#include $<$combat.\+h$>$}
+
+
+
+Collaboration diagram for level\+Info\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{structlevelInfo__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structmonstreInfo}{monstre\+Info}} \mbox{\hyperlink{structlevelInfo_acffd1f075dc6aab72f6efb0480aeb403}{monstre}} \mbox{[}51\mbox{]}
+\item 
+int \mbox{\hyperlink{structlevelInfo_a52e78d9d8d7d9aef3b905e0a6bea1067}{time\+To\+Kill}}
+\item 
+unsigned int \mbox{\hyperlink{structlevelInfo_ae794572d72a85c6eac2c3b9f56d41979}{start\+Timer}}
+\item 
+int \mbox{\hyperlink{structlevelInfo_ab90a0ddfe62d33bb06ced17b903d314f}{mob\+Killed}}
+\item 
+int \mbox{\hyperlink{structlevelInfo_ab416975722fc3c88fd6957ec1b5843e8}{mob\+To\+Kill}}
+\item 
+int \mbox{\hyperlink{structlevelInfo_aa3374d45136fd223868ee2f4ae2531e3}{current\+Lvl}}
+\item 
+int \mbox{\hyperlink{structlevelInfo_a6202fe800dc1daeec0b0e3529d465766}{max\+Level}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structlevelInfo_a58de2b4e77ad880a468f64b972142e97}{label}} \mbox{[}5\mbox{]}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structlevelInfo_ac73bd2f8dc31d0ab4d7fba6a980e369b}{img}} \mbox{[}5\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure représentant le niveau de combat. 
+
+Contient la liste des monstres, les paramètres de temps, le nombre de monstres abattus, le niveau courant, le niveau maximal, ainsi que des étiquettes et images associées. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structlevelInfo_aa3374d45136fd223868ee2f4ae2531e3}\label{structlevelInfo_aa3374d45136fd223868ee2f4ae2531e3} 
+\index{levelInfo@{levelInfo}!currentLvl@{currentLvl}}
+\index{currentLvl@{currentLvl}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{currentLvl}{currentLvl}}
+{\footnotesize\ttfamily int level\+Info\+::current\+Lvl}
+
+Niveau de combat courant \Hypertarget{structlevelInfo_ac73bd2f8dc31d0ab4d7fba6a980e369b}\label{structlevelInfo_ac73bd2f8dc31d0ab4d7fba6a980e369b} 
+\index{levelInfo@{levelInfo}!img@{img}}
+\index{img@{img}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{img}{img}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} level\+Info\+::img\mbox{[}5\mbox{]}}
+
+Tableau des chemins vers les images correspondantes \Hypertarget{structlevelInfo_a58de2b4e77ad880a468f64b972142e97}\label{structlevelInfo_a58de2b4e77ad880a468f64b972142e97} 
+\index{levelInfo@{levelInfo}!label@{label}}
+\index{label@{label}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} level\+Info\+::label\mbox{[}5\mbox{]}}
+
+Tableau d\textquotesingle{}étiquettes pour le niveau ou les monstres \Hypertarget{structlevelInfo_a6202fe800dc1daeec0b0e3529d465766}\label{structlevelInfo_a6202fe800dc1daeec0b0e3529d465766} 
+\index{levelInfo@{levelInfo}!maxLevel@{maxLevel}}
+\index{maxLevel@{maxLevel}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{maxLevel}{maxLevel}}
+{\footnotesize\ttfamily int level\+Info\+::max\+Level}
+
+Niveau maximal de combat atteint \Hypertarget{structlevelInfo_ab90a0ddfe62d33bb06ced17b903d314f}\label{structlevelInfo_ab90a0ddfe62d33bb06ced17b903d314f} 
+\index{levelInfo@{levelInfo}!mobKilled@{mobKilled}}
+\index{mobKilled@{mobKilled}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{mobKilled}{mobKilled}}
+{\footnotesize\ttfamily int level\+Info\+::mob\+Killed}
+
+Nombre de monstres tués \Hypertarget{structlevelInfo_ab416975722fc3c88fd6957ec1b5843e8}\label{structlevelInfo_ab416975722fc3c88fd6957ec1b5843e8} 
+\index{levelInfo@{levelInfo}!mobToKill@{mobToKill}}
+\index{mobToKill@{mobToKill}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{mobToKill}{mobToKill}}
+{\footnotesize\ttfamily int level\+Info\+::mob\+To\+Kill}
+
+Nombre de monstres à tuer pour terminer le niveau \Hypertarget{structlevelInfo_acffd1f075dc6aab72f6efb0480aeb403}\label{structlevelInfo_acffd1f075dc6aab72f6efb0480aeb403} 
+\index{levelInfo@{levelInfo}!monstre@{monstre}}
+\index{monstre@{monstre}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{monstre}{monstre}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structmonstreInfo}{monstre\+Info}} level\+Info\+::monstre\mbox{[}51\mbox{]}}
+
+Tableau contenant les informations des monstres \Hypertarget{structlevelInfo_ae794572d72a85c6eac2c3b9f56d41979}\label{structlevelInfo_ae794572d72a85c6eac2c3b9f56d41979} 
+\index{levelInfo@{levelInfo}!startTimer@{startTimer}}
+\index{startTimer@{startTimer}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{startTimer}{startTimer}}
+{\footnotesize\ttfamily unsigned int level\+Info\+::start\+Timer}
+
+Timer de début du niveau \Hypertarget{structlevelInfo_a52e78d9d8d7d9aef3b905e0a6bea1067}\label{structlevelInfo_a52e78d9d8d7d9aef3b905e0a6bea1067} 
+\index{levelInfo@{levelInfo}!timeToKill@{timeToKill}}
+\index{timeToKill@{timeToKill}!levelInfo@{levelInfo}}
+\doxysubsubsection{\texorpdfstring{timeToKill}{timeToKill}}
+{\footnotesize\ttfamily int level\+Info\+::time\+To\+Kill}
+
+Temps nécessaire pour tuer le monstre courant 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\mbox{\hyperlink{combat_8h}{combat.\+h}}\end{DoxyCompactItemize}

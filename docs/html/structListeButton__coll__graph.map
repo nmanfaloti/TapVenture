@@ -1,0 +1,5 @@
+<map id="ListeButton" name="ListeButton">
+<area shape="rect" id="Node000001" title="Structure représentant une liste de boutons." alt="" coords="5,93,101,119"/>
+<area shape="rect" id="Node000002" href="$structButton.html" title="Structure représentant un bouton dans l&#39;interface utilisateur." alt="" coords="21,5,86,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,45,56,93,51,93,51,45"/>
+</map>

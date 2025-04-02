@@ -1,0 +1,5 @@
+<map id="uiNotifList_s" name="uiNotifList_s">
+<area shape="rect" id="Node000001" title="Structure contenant une liste de notifications." alt="" coords="5,93,108,119"/>
+<area shape="rect" id="Node000002" href="$structuiNotif__s.html" title="Structure représentant une notification dans l&#39;interface utilisateur." alt="" coords="17,5,97,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="59,45,59,93,54,93,54,45"/>
+</map>

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['save_5fjson_2eh_0',['save_json.h',['../save__json_8h.html',1,'']]],
+  ['scroll_5finf_5fs_1',['scroll_inf_s',['../structscroll__inf__s.html',1,'']]],
+  ['sdl_2eh_2',['sdl.h',['../sdl_8h.html',1,'']]],
+  ['sdlexit_3',['SDLExit',['../sdl_8h.html#a429e9adddffe360a9e031ca6af011d9b',1,'sdl.c']]],
+  ['sdlscreenhandler_4',['SDLScreenHandler',['../sdl_8h.html#adec6bc7a523c3928fa16b2e304f8b891',1,'sdl.c']]],
+  ['selectedtexture_5',['selectedTexture',['../structButton.html#a2ff48776616e5baa53524c9ffd99916a',1,'Button']]],
+  ['selectlanguage_6',['SelectLanguage',['../lang_8h.html#ad39899d79497edeff2e6bb6fc2f7d899',1,'lang.c']]],
+  ['setbuttontext_7',['setButtonText',['../ui_8h.html#a34e17c26ecffc6d44eea3fbde1738e2c',1,'button.c']]],
+  ['setimgbuttontexture_8',['setImgButtonTexture',['../button_8h.html#aa88b0dbcfc73f402b5786e8765b6eebb',1,'button.c']]],
+  ['setlevel_9',['setLevel',['../combat_8h.html#a65faf4153e0030bdb07dc66f8d23bd63',1,'combat.h']]],
+  ['setplayerdamage_10',['setPlayerDamage',['../player_8h.html#af88e0e9076186961b2e352658b005c82',1,'player.c']]],
+  ['setting_5fmsg_11',['SETTING_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05ac718d5329a94a716700d30f827c3e2b1',1,'lang.h']]],
+  ['setuitext_12',['setUiText',['../aff_8h.html#a7abdad91fa3cd61f256becfd8931d2e9',1,'aff.c']]],
+  ['shownotif_13',['showNotif',['../ui_8h.html#acd0ca4351e2e9e11f41d0a41f23f1e37',1,'aff.c']]],
+  ['starttime_14',['startTime',['../structChallenge__t.html#adb256807e4e8a5bec8846424b0da99b9',1,'Challenge_t']]],
+  ['starttimer_15',['startTimer',['../structlevelInfo.html#ae794572d72a85c6eac2c3b9f56d41979',1,'levelInfo']]],
+  ['stat_16',['stat',['../structitem__t.html#a44d19e2398ee1fade69b6692360dbf5d',1,'item_t']]],
+  ['stat_5fa_5fbooster_17',['stat_a_booster',['../inv_8h.html#a36c201eb589717e0370478d4ca9c2959',1,'inv.h']]],
+  ['stopallmusic_18',['stopAllMusic',['../audio_8h.html#a7f83a2688f5147f44f132c214661d34f',1,'audio.h']]],
+  ['strcatmalloc_19',['strCatMalloc',['../chaine_8h.html#a415401e9e962787b64eb4f92aae8a5ea',1,'chaine.c']]],
+  ['strcatmallocfree1_20',['strCatMallocFree1',['../chaine_8h.html#afa51d426044234d1edbfa70a3d4bb5ab',1,'chaine.c']]],
+  ['strcharmalloc_21',['strCharMalloc',['../chaine_8h.html#ae107d8391e6d11691a6f087c2e094dd2',1,'chaine.c']]],
+  ['strcharmallocfree1_22',['strCharMallocFree1',['../chaine_8h.html#aec447f8304b14921fca880180885e308',1,'chaine.c']]],
+  ['swordcursor_23',['swordCursor',['../sdl_8h.html#aad7a8bd0871222e7a556a433a95fa8ae',1,'sdl.c']]]
+];
