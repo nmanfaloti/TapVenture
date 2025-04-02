@@ -7,6 +7,7 @@
 #include "../lib/ui.h"
 #include "../lib/prestige.h"
 #include "../lib/audio.h"
+#include "../lib/inv.h"
 #include <time.h>
 #include <math.h>
 
@@ -32,7 +33,7 @@ void goldGainOffline(time_t lastSaveTime){
 }
     
 void addGold(long long int goldToAdd){
-    if(gold + goldToAdd * goldModifier>= LLD_MAX && goldToAdd != 0){
+    if(gold + goldToAdd * goldModifier * boost_gold()>= LLD_MAX && goldToAdd != 0){
         gold = LLD_MAX;
     }
     else{

@@ -77,7 +77,9 @@ int input_event(SDL_Event event){
         default:
             break;
     }
-
+    if ( &(pageHolder.page[4]) == currentpage) {
+        handle_inv_event(event);
+    }
     SDL_GetMouseState(&mouseX, &mouseY);
     return 1;
 }
