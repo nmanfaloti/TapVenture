@@ -7,12 +7,12 @@
 #include "../lib/ui.h"
 #include "../lib/prestige.h"
 #include "../lib/audio.h"
-#include "../lib/inv.h"
 #include <time.h>
 #include <math.h>
 
 unsigned long long int gold = 0;
 unsigned long long int damage_click = 1;
+int quitGameValue = 0;
 
 void goldGainOffline(time_t lastSaveTime){
     time_t currentTime = time(NULL);
@@ -32,7 +32,7 @@ void goldGainOffline(time_t lastSaveTime){
 }
     
 void addGold(long long int goldToAdd){
-    if(gold + goldToAdd * goldModifier * boost_gold() >= LLD_MAX && goldToAdd != 0){
+    if(gold + goldToAdd * goldModifier>= LLD_MAX && goldToAdd != 0){
         gold = LLD_MAX;
     }
     else{
@@ -63,4 +63,11 @@ void setPlayerDamage(unsigned long long int damage){
         return;
     }
     setUiText(txtToChange, formatChaine("%t: %w", DMG_MSG, (unsigned long long int)(damage_click * damageModifier)));
+}
+
+int quitGame(void * args[20]){
+    args[0] = NULL;
+    quitGameValue = 1;
+    printf("Game is quitting\n");
+    return 0;
 }

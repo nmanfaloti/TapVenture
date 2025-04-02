@@ -434,12 +434,20 @@ void initSettingsPage(){
     window_txt = malloc(strlen("Window") + 1);
     sprintf(window_txt, "Window");
 
-    createUIText(&pageHolder.page[1],font,formatChaine("%t",SETTING_MSG), getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255}, "settingsTitle");
+    createUIImg(&pageHolder.page[1], "assets/ui/background/settingsbg.jpg", (SDL_Rect){0, 0, vw(100), vh(100)}, "settingsBackground");
+
+    createUIText(&pageHolder.page[1],fontBig,formatChaine("%t",SETTING_MSG), getRectForCentenredCord(vw(50), vh(5), vh(40), vh(10)), (SDL_Color){255, 255, 255, 255}, "SETTING_MSG");
+    createUIText(&pageHolder.page[1],fontBig,formatChaine("%t:",CREDITS_MSG),       getRectForCentenredCord(vw(50),vh(50), vw(15), vh(15)), (SDL_Color){255, 255, 255, 255}, "CREDITS_MSG");
+    createUIText(&pageHolder.page[1],fontBig,formatChaine("%t",CREDITS_ESTEBAN_MSG),  getRectForCentenredCord(vw(50),vh(60), vw(50), vh(12)), (SDL_Color){255, 255, 255, 255}, "CREDITS_ESTEBAN_MSG");
+    createUIText(&pageHolder.page[1],fontBig,formatChaine("%t",CREDITS_ASSETS_MSG),   getRectForCentenredCord(vw(50),vh(70), vw(60), vh(12)), (SDL_Color){255, 255, 255, 255}, "CREDITS_ASSETS_MSG");
+    createUIText(&pageHolder.page[1],fontBig,formatChaine("%t",CREDITS_DEV_MSG),      getRectForCentenredCord(vw(50),vh(80), vw(90), vh(12)), (SDL_Color){255, 255, 255, 255}, "CREDITS_DEV_MSG");
+
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(20), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FR_MSG, NULL, 1.05, SelectLanguage, 1, &fr_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(20), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, EN_MSG, NULL, 1.05, SelectLanguage, 1, &en_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FULLSCREEN_MSG, NULL, 1.05, SelectScreen, 1, &full_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, WINDOWED_MSG, NULL, 1.05, SelectScreen, 1, &window_txt);
-    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(90), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
+    createButton(&pageHolder.page[1],getRectForCentenredCord(vw(10), vh(92), vw(12), vh(8)),"assets/ui/buttons/red/button_rectangle_depth_gloss.svg", "assets/ui/buttons/red/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, QUIT_MSG, NULL, 1.05, quitGame, 1, NULL);
+    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(92), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
 }
 void init_inv_page(){
     createPage(&pageHolder.page[4]);

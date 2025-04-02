@@ -54,6 +54,11 @@ typedef enum {
     HERO_SHOP_MULTIPLICATOR_MSG, /*!< Message relatif au multiplicateur dans la boutique des héros. */
     DPS_MSG,                   /*!< Message pour l'affichage des dégâts par seconde. */
     MAX_MSG,                   /*!< Message indiquant la valeur maximale. */
+    CREDITS_MSG,               /*!< Message pour les crédits. */
+    CREDITS_ESTEBAN_MSG,          /*!< Description des crédits pour Esteban (musique du jeux)*/
+    CREDITS_DEV_MSG,            /*!< Description des crédits pour les developpeurs */
+    CREDITS_ASSETS_MSG,           /*!< Description des crédits pour les assets */
+    QUIT_MSG,                     /*!< Message pour quitter le jeu. */
     NB_MSG                     /*!< Nombre total de messages. */
 } CleMsg;
 

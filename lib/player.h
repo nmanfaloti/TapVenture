@@ -31,6 +31,11 @@ extern unsigned long long int gold;
 extern unsigned long long int damage_click;
 
 /**
+ * @brief Indicateur de vonlonté de quitter le jeu.
+ */
+extern int quitGameValue;
+
+/**
  * @fn void goldGainOffline(time_t lastSaveTime)
  * @brief Calcule et applique le gain d'or hors ligne.
  *
@@ -62,5 +67,15 @@ void addGold(long long int goldToAdd);
  * @param damage Nouvelle valeur de dégât à appliquer.
  */
 void setPlayerDamage(unsigned long long int damage);
+
+/**
+ * @fn void quitGame(void * args[20])
+ * @brief Permet de quitter le jeu.
+ *
+ * Cette fonction permet de quitter le jeu en modifiant l'indicateur de l'état du jeu.
+ *
+ * @param args[20] Tableau d'arguments (non utilisé) présent pour la compatibilité avec la fonction de d'appel.
+ */
+int quitGame(void * args[20]);
 
 #endif // PLAYER_H

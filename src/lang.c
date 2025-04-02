@@ -42,7 +42,12 @@ Lang en = {
         [PRICE_MSG] = "Price",
         [HERO_SHOP_MULTIPLICATOR_MSG] = "Buy x",
         [DPS_MSG] = "Degats per second",
-        [MAX_MSG] = "Max"
+        [MAX_MSG] = "Max",
+        [CREDITS_MSG] = "Credits",
+        [CREDITS_ESTEBAN_MSG] = "Game music by Esteban Deleria",
+        [CREDITS_DEV_MSG] = "Game developers: Noam Manfaloti, Ibrahim Sapiev, Logan Evenisse, Lucas Dupont",
+        [CREDITS_ASSETS_MSG] = "Game assets: Kenney.nl, craftpix.net",
+        [QUIT_MSG] = "Quit"
     }
 };
 
@@ -84,7 +89,12 @@ Lang fr = {
         [PRICE_MSG] = "Prix",
         [HERO_SHOP_MULTIPLICATOR_MSG] = "Acheter x",
         [DPS_MSG] = "Degats par secondes",
-        [MAX_MSG] = "Max"
+        [MAX_MSG] = "Max",
+        [CREDITS_MSG] = "Credits",
+        [CREDITS_ESTEBAN_MSG] = "Musique du jeu par Esteban Deleria",
+        [CREDITS_DEV_MSG] = "Developpeurs du jeu : Noam Manfaloti, Ibrahim Sapiev, Logan Evenisse, Lucas Dupont",
+        [CREDITS_ASSETS_MSG] = "Assets du jeu : Kenney.nl, craftpix.net",
+        [QUIT_MSG] = "Quitter"
     }
 };
 

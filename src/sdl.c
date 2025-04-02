@@ -117,10 +117,6 @@ void SDLScreenHandler() {
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawLine(renderer, 0, 0, mouseX, mouseY);
-        SDL_RenderDrawLine(renderer, widthscreen, 0, mouseX, mouseY);
-        SDL_RenderDrawLine(renderer, 0, heightscreen, mouseX, mouseY);
-        SDL_RenderDrawLine(renderer, widthscreen, heightscreen, mouseX, mouseY);
 
         SDL_GetWindowSize(window, &widthscreen, &heightscreen);
 }
