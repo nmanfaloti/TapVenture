@@ -11,6 +11,7 @@
 #include "../lib/sdl.h"
 #include "../lib/chaine.h"
 #include "../lib/prestige.h"
+#include "../lib/inv.h"
 
 #define DEGATS_BASE 10
 #define PRIX_BASE 100
@@ -47,9 +48,14 @@ int initHeros(){
 int attackHeros(){
     void * args[20];
     for (int i = HERO0; i < HEROS_COUNT; i++){
-        if( heros[i].level > 0 && heros[i].lastAttack + heros[i].cooldown <= SDL_GetTicks() ){
+        gestion_stat_heros(i);
+        if( heros[i].level > 0 && heros[i].lastAttack + heros[i].cooldown/ stat_item_temps <= SDL_GetTicks()){
+            unsigned long long int degat_attaque_booster ;
             heros[i].lastAttack = SDL_GetTicks();
-            args[0] = &heros[i].degat;
+            if ( heros[i].degat * stat_item_degat < LLD_MAX)
+                degat_attaque_booster = heros[i].degat * (1+stat_item_degat/100);
+            else degat_attaque_booster = LLD_MAX ;
+            args[0] = &(degat_attaque_booster);
             bool joueur = false;
             args[1] = &joueur;
             attack(args); 

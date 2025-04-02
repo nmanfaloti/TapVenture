@@ -11,6 +11,7 @@
 #include "../lib/challenge.h"
 #include "../lib/prestige.h"
 #include "../lib/audio.h"
+#include "../lib/inv.h"
 
 levelInfo level = {
     .monstre = {{0}},
@@ -141,6 +142,7 @@ int attack(void * args[20]) {
             refreshMobTexture();
         }
         refreshMobKilled();
+        drop_item();
     }
     else{
         currentMonstre->mobHealth -= floor(*damage * damageModifier);

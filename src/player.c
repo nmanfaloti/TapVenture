@@ -31,7 +31,7 @@ void goldGainOffline(time_t lastSaveTime){
 }
     
 void addGold(long long int goldToAdd){
-    if(gold + goldToAdd * goldModifier>= LLD_MAX && goldToAdd != 0){
+    if(gold + goldToAdd * goldModifier * boost_gold() >= LLD_MAX && goldToAdd != 0){
         gold = LLD_MAX;
     }
     else{

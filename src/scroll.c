@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <math.h>
+#include <string.h>
 #include "../lib/scroll.h"
 #include "../lib/sdl.h"
 #include "../lib/input_user.h"
@@ -38,6 +39,19 @@ int calculate_scrollbar_height(int visible_area_height,float cof) {
     return round(visible_area_height/cof);
 }
 
+int chercher_id_scroll_par_label(const char *label_recherche) {
+    if (label_recherche == NULL) return -1; // Vérification pour éviter une erreur
+
+    for (int i = 0; i < NOMBRE_MAX_SCROLL; i++) {
+        if (scroll_liste[i].empl_alloue && scroll_liste[i].label != NULL) {
+            if (strcmp(scroll_liste[i].label, label_recherche) == 0) {
+                return i; // Retourne l'index du scroll correspondant au label
+            }
+        }
+    }
+    return -1; // Label non trouvé
+}
+
 extern void update_scroll(int * id_scroll){
     int i = 0;
     int deplacement = 1 ;
@@ -66,7 +80,7 @@ extern void update_scroll(int * id_scroll){
 }
 
 //remplisage de la structure a emplacement  non alloue 
-int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total_content_height , int speed , int * erreur_activer ){
+int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total_content_height , int speed , int * erreur_activer ,char **label ){
     int creation_succes = 0 ;
     //SDL_GetWindowSize(window, &largeur, &hauteur) ;
 
@@ -92,6 +106,10 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
             scroll_liste[i].total_content_height = total_content_height ;
             scroll_liste[i].scrollbar_max_position = total_content_height - zone_scroll.h;
             creation_succes = 1 ; 
+            if ( label != NULL){
+                strcpy(scroll_liste[i].label, *label);
+                scroll_liste[i].label[sizeof(scroll_liste[i].label) - 1] = '\0';
+            }
             return i ;
         }
     }
@@ -124,7 +142,6 @@ void aff_scrollbar_simple(SDL_Color *color_scrollbar, SDL_Color *color_rect){
 
             // Vérification de la mise à jour de la position
             SDL_Rect rect = scroll_liste[i].rect_scroll;
-
             rect.y = scroll_liste[i].zone_scroll.y + (scroll_liste[i].scroll_pos * (scroll_liste[i].zone_scroll.h - scroll_liste[i].rect_scroll.h)) / scroll_liste[i].scrollbar_max_position;
 
             // Appliquer un facteur de déplacement (coef) ou autre logique
@@ -147,7 +164,6 @@ int select_quelle_scroll(int nb){
 }
 
 void apply_scroll_limits(int id_scroll) {
-    printf("scroll_liste[id_scroll].scroll_pos : %d , scroll_liste[id_scroll].min_pos : %d ,scroll_liste[id_scroll].scrollbar_max_position :%d ,speed :%d\n",scroll_liste[id_scroll].scroll_pos,scroll_liste[id_scroll].min_pos,scroll_liste[id_scroll].scrollbar_max_position,scroll_liste[id_scroll].speed);
     if (scroll_liste[id_scroll].scroll_pos < scroll_liste[id_scroll].min_pos) {
         scroll_liste[id_scroll].scroll_pos = scroll_liste[id_scroll].min_pos;
     } else if (scroll_liste[id_scroll].scroll_pos > scroll_liste[id_scroll].scrollbar_max_position) {

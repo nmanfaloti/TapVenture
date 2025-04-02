@@ -2,6 +2,9 @@
 #ifndef INV_H
 #define INV_H
 
+
+#define MAX_LIGNE 1000
+
 #define NB_BOTTES 6
 #define NB_PLASTRON 6
 #define NB_CASQUE 6
@@ -15,6 +18,10 @@
 
  #define NB_EQU 40
  #define EQU_HEROS 5
+ #define POS_HEROS_X 46 // 46/100
+ #define BORDURE 64
+ #define DECALAGE 10
+ #define TAILLE_ITEM 64
  
  /**
   * @brief Inventaire, place : inf, equipable : variable lim 10 max, drop : selon stat boss
@@ -62,7 +69,7 @@
      char *nom_fichier ;
      int pos_y ;
      emplacement piece_equipement;      ///< Emplacement de l'équipement
-     stat_a_booster booste;             ///< Statistique à booster
+     stat_a_booster boost;             ///< Statistique à booster
      rarity rarity;                     ///< Rareté
      int stat;                          ///< Statistique (représente un pourcentage)
  } item_t;
@@ -87,6 +94,7 @@ typedef struct aff_inv_inf_s{
     aff_inv_inf info_inv;
     item_t **liste;  ///< Tableau dynamique de pointeurs sur items
     int nb_items;    ///< Nombre d’items réel
+    int id_tuile;
 } inv;
 
 typedef struct {
@@ -97,24 +105,6 @@ typedef struct {
 extern liste_inventaires * list_inv ; 
 //0 item joueur  / essamble des 1 model items
  // premier / (2 pour l'instant les item_init sont pas charger ) sont allouer aux item et le reste aux heros
-
-
-
- /**
-  * @brief Affiche l'inventaire.
-  *
-  * \fn void aff_inv(inv *inventaire)
-  * @param inventaire Pointeur vers l'inventaire à afficher.
-  */
- void aff_inv(inv *inventaire);
-
- /**
- * \brief Affiche un item.
- * \fn void aff_item(item_t * item)
- *
- * \param item Pointeur vers l'item à afficher.
- */
-void aff_item(item_t * item);
  
  /**
   * @brief Initialise l'inventaire.
@@ -148,15 +138,8 @@ void liberer_item(item_t * item);
   * @param inventaire Pointeur vers le pointeur de l'inventaire à gérer.
   */
  extern void gestion_inv(inv ** inventaire, int NB_items,int scroll_id,SDL_Rect SDL_Rect ,int nb_collone ,int nb_ligne  ,
-    int arrondis ,int decalage_bas ,int decalage_cote);
+    int arrondis ,int decalage_bas ,int decalage_cote, int id_back_item);
  
- /**
-  * @brief Affiche un item.
-  *
-  * \fn void aff_item(item_t *item)
-  * @param item Pointeur vers l'item à afficher.
-  */
- void aff_item(item_t *item);
 
  /**
  * \brief Détruit un inventaire et libère la mémoire allouée.
@@ -354,4 +337,16 @@ extern void load_inv(const char *nom_fichier) ;
 void init_inv_main() ;
 extern item_t * load_item_ref(FILE *f) ;
 extern item_t * load_item_joueur(FILE *f);
+
+
+extern int stat_item_degat ;
+extern int stat_item_temps ;
+int boost_gold();
+void save_inv(inv *inventaire, char *save) ;
+
+
+
+extern void draw_rect_inv() ;
+void racourcis_createUI(item_t * it,int x,int y,int id_tuille);
+extern void handle_inv_event(SDL_Event event) ;
 #endif

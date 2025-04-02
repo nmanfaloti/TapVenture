@@ -3,7 +3,7 @@
 
 #define NOMBRE_MAX_SCROLL 10 
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 
 typedef struct scroll_inf_s{
    //val fix ecrant
@@ -20,6 +20,7 @@ typedef struct scroll_inf_s{
    int total_content_height;
    int speed ;
    int min_pos ;
+   char label[100];
 }scroll_inf;
 
 extern scroll_inf scroll_liste[NOMBRE_MAX_SCROLL];
@@ -28,10 +29,11 @@ extern int est_dans_scroll(SDL_Rect * elem_pos,SDL_Rect zone_interaction);
 extern void init_scroll();
 float cof_scrollbar_window(int visible_area_height, int total_content_height);
 int calculate_scrollbar_height(int visible_area_height,float cof);
-extern int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total_content_height , int speed , int * erreur_activer );
+extern int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total_content_height , int speed , int * erreur_activer ,char **label);
 extern void aff_scrollbar_simple(SDL_Color *color_scrollbar, SDL_Color *color_rect);
 int first_pos_scroll();
 int select_quelle_scroll(int nb);
 extern void handle_scroll_event(SDL_Event event);
 extern void update_scroll(int * id_scroll);
+extern int chercher_id_scroll_par_label(const char *label_recherche);
 #endif // SCROLL_H
