@@ -36,11 +36,9 @@ void affiche_txt(uiTxt * txt){
 
 uiTxt * getTxtFromLabel(char * label){
     if (currentpage->container == NULL || currentpage->container->txt == NULL || currentpage->container->nbTxt == 0){
-        printf("No txt in page\n");
         return NULL;
     }
     if (label == NULL){
-        printf("No label\n");
         return NULL;
     }
     for (int i = 0; i < currentpage->container->nbTxt; i++){
@@ -56,7 +54,6 @@ uiTxt * getTxtFromLabel(char * label){
 
 uiImg * getImgFromLabel(char * label){
     if (currentpage->container == NULL || currentpage->container->img == NULL || currentpage->container->nbImg == 0){
-        printf("No img in page\n");
         return NULL;
     }
     for (int i = 0; i < currentpage->container->nbImg; i++){
@@ -364,8 +361,6 @@ int changePage(void * args[20]){
             updateHeroShopPage();
             addGold(0); //Pour mettre a jour l'affichage de l'or et des heros
         }
-    }else{
-        printf("Already on this page\n");
     }
     return 0;
 }
@@ -504,7 +499,7 @@ void initNotifList(){
     notifList.nbNotif = 0;
     notifList.notif = NULL;
 }
-void createNotif(char * title, int titleYOffset, float titleSize, char * imgBackground, int tapToClose, int duration, SDL_Rect dest, int messYOffset, float messSize, char *notifMess) {
+void createNotif(char * title, int titleYOffset, float titleSize, char * imgBackground, int duration, SDL_Rect dest, int messYOffset, float messSize, char *notifMess) {
     if (notifList.nbNotif >= MAX_NOTIF) {
         printf("createNotif: Max Notif reached\n");
         return;
@@ -520,7 +515,6 @@ void createNotif(char * title, int titleYOffset, float titleSize, char * imgBack
         return;
     }
 
-    notifList.notif[notifList.nbNotif].tapToClose = tapToClose;
     notifList.notif[notifList.nbNotif].duration = duration;
     notifList.notif[notifList.nbNotif].dest = dest;
     notifList.notif[notifList.nbNotif].messYOffset = messYOffset;

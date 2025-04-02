@@ -35,32 +35,20 @@ void doPrestige(){
     prestigePoints += prestigePointsReward;
     
     refreshPrestigePage();
-    createNotif(Traduction(PRESTIGE_MSG), 0, 1, "assets/ui/notif.png", 1, 5, getRectForCentenredCord(vw(50), vh(30), vw(30), vh(50)), 0, 1, Traduction(PRESTIGE_CONGRATS));
-    //A fair : reset le jeux (gold, heros, degat, level)
-    printf("Prestige \n");
+    createNotif(Traduction(PRESTIGE_MSG), 0, 1, "assets/ui/notif.png", 5, getRectForCentenredCord(vw(50), vh(30), vw(30), vh(50)), 0, 1, Traduction(PRESTIGE_CONGRATS));
     gold = 0;
-    printf("Gold reset\n");
     level.currentLvl = 0;
     level.maxLevel = 0;
-    printf("Level reset\n");
     level.mobKilled = 0;
-    printf("MobKilled reset\n");
     addGold(0);
-    printf("Gold reset\n");
     setPlayerDamage(10);
-    printf("Damage reset\n");
     initHeros();
     if (heroKeepUpgrade > 0){
-        printf("Heros keep upgrade\n");
         for (int i = 0; i < heroKeepUpgrade; i++){
             makeHeroAtLevel(i, heroKeepLevel ? heroKeepLevel : 1);
         }
-        printf("Heros keep upgrade\n");
     }
-    printf("Refresh current level\n");
     refreshCurrentLvl();
-    printf("Refresh mob label\n");
-    printf("Prestige done\n");
 }
 
 
@@ -484,48 +472,6 @@ void prestigeKeepHeroLevel(float value){
     heroKeepLevel += value;
 }
 
-void printTree(){
-    printf("--------------------------------\n");
-    printf("Prestige Tree:\n");
-    printf("Gold:\n");
-    for (int i = 0; i < prestigeTree.Gold->count; i++){
-        printf("Name: %s\n", prestigeTree.Gold->items[i].name);
-        printf("Description: %s\n", prestigeTree.Gold->items[i].description);
-        printf("Cost: %d\n", prestigeTree.Gold->items[i].cost);
-    }
-    printf("################################\n");
-    printf("Damage:\n");
-    for (int i = 0; i < prestigeTree.Damage->count; i++){
-        printf("Name: %s\n", prestigeTree.Damage->items[i].name);
-        printf("Description: %s\n", prestigeTree.Damage->items[i].description);
-        printf("Cost: %d\n", prestigeTree.Damage->items[i].cost);
-    }
-    printf("################################\n");
-    printf("Prestige:\n");
-    for (int i = 0; i < prestigeTree.Prestige->count; i++){
-        printf("Name: %s\n", prestigeTree.Prestige->items[i].name);
-        printf("Description: %s\n", prestigeTree.Prestige->items[i].description);
-        printf("Cost: %d\n", prestigeTree.Prestige->items[i].cost);
-    }
-    printf("--------------------------------\n");
-    printf("Owned:\n");
-    for (int i = 0; i < prestigeTree.Gold->count; i++){
-        if (prestigeTree.Gold->items[i].owned){
-            printf("Name: %s\n", prestigeTree.Gold->items[i].name);
-        }
-    }
-    for (int i = 0; i < prestigeTree.Damage->count; i++){
-        if (prestigeTree.Damage->items[i].owned){
-            printf("Name: %s\n", prestigeTree.Damage->items[i].name);
-        }
-    }
-    for (int i = 0; i < prestigeTree.Prestige->count; i++){
-        if (prestigeTree.Prestige->items[i].owned){
-            printf("Name: %s\n", prestigeTree.Prestige->items[i].name);
-        }
-    }
-    printf("--------------------------------\n");
-}
 int canBuy(char *selectedTree, int index){
     if (strcmp(selectedTree, "Gold") == 0){
         if (prestigeTree.Gold->items[index].owned) return 0;
@@ -533,7 +479,6 @@ int canBuy(char *selectedTree, int index){
         for (int i = 0; i < index; i++){
             // Vérifie si l'item précédent est acheté
             if (prestigeTree.Gold->items[i].owned == 0){ 
-                printf("Item not owned\n");
                 return 0;
             }
         }
@@ -544,7 +489,6 @@ int canBuy(char *selectedTree, int index){
         if (index == 0 && prestigeTree.Damage->items[index].cost <= prestigePoints) return 1;
         for (int i = 0; i < index; i++){
             if (prestigeTree.Damage->items[i].owned == 0){
-                printf("Item not owned\n");
                 return 0;
             }
         }
@@ -554,13 +498,11 @@ int canBuy(char *selectedTree, int index){
         if (index == 0 && prestigeTree.Prestige->items[index].cost <= prestigePoints) return 1;
         for (int i = 0; i < index; i++){
             if (prestigeTree.Prestige->items[i].owned == 0){
-                printf("Item not owned\n");
                 return 0;
             }
         }
         return prestigeTree.Prestige->items[index].cost <= prestigePoints;
     }
-    printf("Tree Not found -> %s \n", selectedTree);
     return 0;
 }
 
@@ -573,8 +515,6 @@ void buyPrestigeItem(char *selectedTree, int index, int pay){
             prestigeTree.Gold->items[index].effect(prestigeTree.Gold->items[index].value);
             prestigeTree.Gold->items[index].owned = 1;
             refreshPrestigePage();
-        }else{
-            printf("Can't buy this item \n");
         }
     }else if (strcmp(selectedTree, "Damage") == 0){
         if (!pay || canBuy(selectedTree, index)){
@@ -584,8 +524,6 @@ void buyPrestigeItem(char *selectedTree, int index, int pay){
             prestigeTree.Damage->items[index].effect(prestigeTree.Damage->items[index].value);
             prestigeTree.Damage->items[index].owned = 1;
             refreshPrestigePage();
-        }else{
-            printf("Can't buy this item\n");
         }
     }else if (strcmp(selectedTree, "Prestige") == 0){
         if (!pay || canBuy(selectedTree, index)){
@@ -595,8 +533,6 @@ void buyPrestigeItem(char *selectedTree, int index, int pay){
             prestigeTree.Prestige->items[index].effect(prestigeTree.Prestige->items[index].value);
             prestigeTree.Prestige->items[index].owned = 1;
             refreshPrestigePage();
-        }else{
-            printf("Can't buy this item\n");
         }
     }
 }

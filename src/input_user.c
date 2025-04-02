@@ -60,7 +60,6 @@ int input_event(SDL_Event event){
                     // SelectLanguage("French");
                     break;
                 case 'W':
-                    printf("Windowed\n");
                     SDL_SetWindowFullscreen(window, 0);
                     SDL_GetWindowSize(window, &widthscreen, &heightscreen);
                     break;
@@ -69,7 +68,7 @@ int input_event(SDL_Event event){
                     printf("Center Screen coord %d %d", widthscreen/2, heightscreen/2);
                     break;
                 default:
-                    printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
+                    // printf("Touche Inconnu: %s\n", SDL_GetKeyName(event.key.keysym.sym));
                     break;
                 case 'C':
                     launchChallenge(NULL);

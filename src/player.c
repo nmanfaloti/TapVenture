@@ -26,7 +26,7 @@ void goldGainOffline(time_t lastSaveTime){
     if (goldEarned != 0){
         char * goldEarnedMsg = formatChaine("%t %w",GOLD_OFFLINE_DESC_MSG, goldEarned/10);
         //sprintf(goldEarnedMsg, "%s %lld",Traduction(GOLD_OFFLINE_DESC_MSG), goldEarned/10);
-        createNotif(Traduction(GOLD_OFFLINE_MSG),0,1,"assets/ui/notif.png", 1, 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, goldEarnedMsg);
+        createNotif(Traduction(GOLD_OFFLINE_MSG),0,1,"assets/ui/notif.png", 3,getRectForCentenredCord(vw(50), vh(30), vw(40), vh(40)),0, 1, goldEarnedMsg);
         free(goldEarnedMsg);
     }
 }

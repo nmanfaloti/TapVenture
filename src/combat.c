@@ -213,7 +213,7 @@ void displayTimers() {
         if (challengeUI == 1 ) {
             uiTxt * txtHolder = getTxtFromLabel("challengeTimer");
             if (txtHolder != NULL)
-                destroyUITxt(txtHolder, &currentpage);
+                destroyUITxt(txtHolder, &pageHolder.page[0]);
             challengeUI = 0;
         }
     }
@@ -245,7 +245,7 @@ void displayTimers() {
         if (bossUI == 1) {
             uiTxt * txtHolder = getTxtFromLabel("bossTimer");
             if (txtHolder != NULL)
-                destroyUITxt(txtHolder, &currentpage);
+                destroyUITxt(txtHolder, &pageHolder.page[0]);
             bossUI = 0;
         }
     }
