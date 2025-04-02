@@ -112,7 +112,9 @@ void refreshMobTexture(){
     if (button == NULL){
         return;
     }
-    setImgButtonTexture(button, NULL, getCurrentMobImgPath());
+    char * path = getCurrentMobImgPath();
+    setImgButtonTexture(button, NULL, path);
+    free(path);
 }
 
 void refreshCurrentLvl(){
@@ -180,12 +182,18 @@ void createUIImg(uiPage * page, char * path, SDL_Rect dest, char * label){
 }
 void uiImgHandle(){
     for (int i=0;i< currentpage->container->nbImg; i++){
+        if (currentpage->container->img[i].texture == NULL || &currentpage->container->img[i].dest == NULL){
+            continue;
+        }
         SDL_RenderCopy(renderer, currentpage->container->img[i].texture, NULL, &currentpage->container->img[i].dest);
     }
 }
 
 void uiHandle(){
     for (int i = 0; i < currentpage->container->nbTxt; i++){
+        if (currentpage->container->txt[i].texture == NULL || &currentpage->container->txt[i].dest == NULL){
+            continue;
+        }
         affiche_txt(&currentpage->container->txt[i]);
     }
 
@@ -213,22 +221,6 @@ void destroyUITxt(uiTxt * txt, uiPage * page){
     if (txt->chaine) {
         free(txt->chaine);
         txt->chaine = NULL;
-    }
-    int txtIndex = -1;
-    for (int i = 0; i < page->container->nbTxt; i++) {
-        if (&page->container->txt[i] == txt) {
-            txtIndex = i;
-            break;
-        }
-    }
-    if (txtIndex != -1) {
-        // Décaler les éléments du tableau
-        for (int i = txtIndex; i < page->container->nbTxt - 1; i++) {
-            page->container->txt[i] = page->container->txt[i + 1];
-        }
-    }
-    if (page->container->nbTxt > 0) {
-        page->container->nbTxt--;
     }
 }
 
@@ -295,6 +287,9 @@ void refreshUI(){
     }
     destroyPages();
     initPage();
+    if (&pageHolder.page[0].buttonsList->buttons[0] == NULL){
+        return;
+    }
     char * txt = formatChaine("%t: %w", DMG_MSG, shop.nextPrice);
     setButtonText(&pageHolder.page[0].buttonsList->buttons[0], txt);
     free(txt);
@@ -399,7 +394,9 @@ void initMainPage(){
     createUIImg(&pageHolder.page[0],"assets/ui/background/island1.png", getRectForCentenredCord(vw(50), vh(50), vw(60), vh(70)), "islandBackground");
 
     int baseY = vh(40); // Position du monstre en Hauteur
-    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, getCurrentMobImgPath(), 0, 2, attack, "mobImg",2, &damage_click, &joueurTrue);
+    char * path = getCurrentMobImgPath();
+    createImgButton(&pageHolder.page[0], getRectForCentenredCord(vw(50), baseY, vw(10), vh(15)), NULL, path, 0, 2, attack, "mobImg",2, &damage_click, &joueurTrue);
+    free(path);
     char *mobName = formatChaine("%s Lvl %d", getCurrentMobLabel(), level.currentLvl);
     createUIText(&pageHolder.page[0], font, mobName, getSizeForText(font, mobName, getRectForCentenredCord(vw(50), baseY + vh(8.5), vw(11), vh(6))), (SDL_Color){0, 0, 0, 255}, "mobName");
     createUIText(&pageHolder.page[0], font, formatChaine("%w %t", level.monstre[level.currentLvl].mobHealth, VIE_MSG), getRectForCentenredCord(vw(50), baseY + vh(11), vw(6), vh(4)), (SDL_Color){255, 0, 0, 255}, "mobHealth");

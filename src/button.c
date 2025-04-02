@@ -238,8 +238,7 @@ void setButtonScale(Button *button, float scale) {
         };
     }
 }
-
-void setButtonText(Button *button, const char *text){
+void setButtonText(Button *button, const char *text) {
     if (!button) {
         SDL_Log("Button : setButtonText : button is NULL");
         return;
@@ -248,54 +247,70 @@ void setButtonText(Button *button, const char *text){
         SDL_Log("Button : setButtonText : text is NULL");
         return;
     }
-    //Détruit l'ancienne texture
+    if (!button->font) {
+        SDL_Log("Button : setButtonText : button->font is NULL");
+        return;
+    }
+
+    // Detruit l'ancienne texture du texte
     if (button->textTexture) {
         SDL_DestroyTexture(button->textTexture);
         button->textTexture = NULL;
     }
-    //Création de la nouvelle texture du texte
+
     SDL_Surface *textSurface = TTF_RenderText_Blended(button->font, text, button->textColor);
     if (!textSurface) {
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to render text: %s\n", TTF_GetError());
         return;
     }
+
+    // Création de la texture du texte
     button->textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-    SDL_FreeSurface(textSurface);
     if (!button->textTexture) {
+        SDL_FreeSurface(textSurface); // Free the surface after creating the texture
         SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Button : Failed to create texture: %s\n", SDL_GetError());
-        SDL_FreeSurface(textSurface);
         return;
     }
 
-    // Calcul de la position du texte pour le centrer
     float scale = 1.0;
-    if (textSurface->w > button->rect.w) {
-        scale = (float)button->rect.w / (float)textSurface->w;
+    int textWidth = textSurface->w;
+    int textHeight = textSurface->h;
+
+    // Change la taille du texte celon la taille du bouton
+    if (textWidth > button->rect.w) {
+        scale = (float)button->rect.w / (float)textWidth;
     }
-    if (textSurface->h > button->rect.h) {
-        float scale_h = (float)button->rect.h / (float)textSurface->h;
+    if (textHeight > button->rect.h) {
+        float scale_h = (float)button->rect.h / (float)textHeight;
         if (scale_h < scale) {
             scale = scale_h;
         }
     }
-    // -2 sur le y pour centrer le texte car il y a un effet 3d sur le bouton
-    button->textRect = (SDL_Rect) {
-        button->rect.x + button->rect.w / 2 - textSurface->w * scale / 2,
-        button->rect.y + button->rect.h / 2 - textSurface->h * scale / 2 - 2,
-        textSurface->w * scale,
-        textSurface->h * scale
+
+    //Centrer le texte avec un petit décalage pour l'effet 3D du bouton
+    button->textRect = (SDL_Rect){
+        button->rect.x + button->rect.w / 2 - textWidth * scale / 2,
+        button->rect.y + button->rect.h / 2 - textHeight * scale / 2 - 2,
+        textWidth * scale,
+        textHeight * scale
     };
     button->textIniRect = button->textRect;
+
+    SDL_FreeSurface(textSurface);
 }
 
-void refreshButtonShop(){
-    if (pageHolder.page == NULL ||  pageHolder.page[0].buttonsList == NULL){
+void refreshButtonShop() {
+    if (pageHolder.page == NULL || pageHolder.page[0].buttonsList == NULL) {
         return;
     }
-    //Update du bouton pour afficher le nouveau prix (0 est son indice dans la liste des boutons)
-    char * txt = formatChaine("%t: %w", pageHolder.page[0].buttonsList->buttons[0].text, shop.nextPrice);
-    setButtonText(&pageHolder.page[0].buttonsList->buttons[0], txt);
-    free(txt);
+    if (pageHolder.page[0].buttonsList->buttons[0].text == 0) {
+        return;
+    }
+    char *txt = formatChaine("%t: %w", pageHolder.page[0].buttonsList->buttons[0].text, shop.nextPrice);
+    if (txt) {
+        setButtonText(&pageHolder.page[0].buttonsList->buttons[0], txt);
+        free(txt); 
+    }
 }
 
 

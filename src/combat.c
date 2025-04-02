@@ -132,6 +132,7 @@ int attack(void * args[20]) {
                     playMusic(MUSIC_LEVEL_UP, CANAL_EFFECT, 1);
                 }
                 level.currentLvl++;
+                mobHandler();
                 if(level.currentLvl > level.maxLevel){
                     level.maxLevel = level.currentLvl;
                 }
@@ -221,11 +222,16 @@ void displayTimers() {
     if (isBoss(level.currentLvl) && level.timeToKill > 0 && level.currentLvl != 0) {
         int elapsed = (SDL_GetTicks() - level.startTimer) / 1000;
         int remaining = level.timeToKill - elapsed;
-        if (remaining <= 0) remaining = 0;
+        if (remaining <= 0){
+            remaining = 0;
+            level.monstre[level.currentLvl].mobHealth = level.monstre[level.currentLvl].iniHealth;
+            level.startTimer = SDL_GetTicks();
+            refreshMobHealth();
+        }
         char *timerStr=malloc(strlen(Traduction(TIMER_MSG)) + 10);
         sprintf(timerStr, "%s %d s", Traduction(TIMER_MSG),remaining);
         if (bossUI == 0) {
-            createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){255, 255, 255, 255}, "bossTimer");
+            createUIText(&pageHolder.page[0], font, timerStr, getRectForCentenredCord(vw(50), vh(20), vh(50), vh(8)), (SDL_Color){0, 0, 0, 255}, "bossTimer");
             bossUI = 1;
         } else {
             if (currentpage == &pageHolder.page[0] && isBoss(level.currentLvl)) {

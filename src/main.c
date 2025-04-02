@@ -59,7 +59,7 @@ int main() {
         attackHeros();
         mobAnimationHandler();
         updateChallenge();
-        // displayTimers();
+        displayTimers();
 
         SDL_RenderPresent(renderer);
 
