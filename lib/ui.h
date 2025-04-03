@@ -34,7 +34,7 @@
   * @struct uiPageHolder_s
   * @brief Structure contenant les pages de l'interface utilisateur.
   *
-  * Cette structure permet de gérer plusieurs pages et de suivre la page active.
+  * Cette structure permet de gérer plusieurs pages.
   */
  typedef struct uiPageHolder_s {
      uiPage *page; /**< Tableau de pages. */
@@ -48,7 +48,7 @@
   * Cette structure contient les informations nécessaires pour afficher une notification,
   * telles que le texte, l'image de fond, la durée et les positions.
   */
- typedef struct uiNotif_s {
+typedef struct uiNotif_s {
      char *desc; /**< Description de la notification. */
      char *imgBackground; /**< Chemin de l'image de fond. */
      int duration; /**< Durée d'affichage de la notification (en secondes). */
@@ -192,15 +192,10 @@
  void initSettingsPage();
  
  /**
-  * @brief Initialise une page.
+  * @brief Initialise toutes les pages.
   */
  void initPage();
- 
- /**
-  * @brief Détruit toutes les pages.
-  */
- void destroyPages();
- 
+
  /**
   * @brief Détruit toutes les pages et leurs contenus.
   */

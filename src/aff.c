@@ -26,6 +26,7 @@ uiPageHolder pageHolder;
 
 NotifList notifList;
 
+// Fonction pour afficher un texte
 void affiche_txt(uiTxt * txt){
     if (txt == NULL || txt->texture == NULL){
         return;
@@ -34,6 +35,7 @@ void affiche_txt(uiTxt * txt){
     SDL_RenderCopyEx(renderer, txt->texture, NULL, &txt->dest, 0, NULL, flip);
 }
 
+//Recupere un uiText a partir de son label
 uiTxt * getTxtFromLabel(char * label){
     if (currentpage->container == NULL || currentpage->container->txt == NULL || currentpage->container->nbTxt == 0){
         return NULL;
@@ -52,6 +54,7 @@ uiTxt * getTxtFromLabel(char * label){
     return NULL;
 }
 
+//Recupere un uiImg a partir de son label
 uiImg * getImgFromLabel(char * label){
     if (currentpage->container == NULL || currentpage->container->img == NULL || currentpage->container->nbImg == 0){
         return NULL;
@@ -64,6 +67,7 @@ uiImg * getImgFromLabel(char * label){
     return NULL;
 }
 
+//Renvoie un rectangle avec les bonnes dimensions pour avoir un texte bien proportionné
 SDL_Rect getSizeForText(TTF_Font* font, char * txt, SDL_Rect dest){
     int w, h;
     TTF_SizeText(font, txt, &w, &h);
@@ -86,6 +90,7 @@ int vw(float percent) {
 int vh(float percent) {
     return (int)(heightscreen * percent / 100.0);
 }
+
 
 void refreshMobHealth(){
     uiTxt * txtHolder = getTxtFromLabel("mobHealth");
@@ -179,16 +184,17 @@ void createUIImg(uiPage * page, char * path, SDL_Rect dest, char * label){
 }
 void uiImgHandle(){
     for (int i=0;i< currentpage->container->nbImg; i++){
-        if (currentpage->container->img[i].texture == NULL || &currentpage->container->img[i].dest == NULL){
+        if (currentpage->container->img[i].texture == NULL){
             continue;
         }
         SDL_RenderCopy(renderer, currentpage->container->img[i].texture, NULL, &currentpage->container->img[i].dest);
     }
 }
 
+// Affiche les textes de l'interface utilisateur
 void uiHandle(){
     for (int i = 0; i < currentpage->container->nbTxt; i++){
-        if (currentpage->container->txt[i].texture == NULL || &currentpage->container->txt[i].dest == NULL){
+        if (currentpage->container->txt[i].texture == NULL){
             continue;
         }
         affiche_txt(&currentpage->container->txt[i]);
@@ -200,11 +206,9 @@ void uiHandle(){
 
 void destroyUITxt(uiTxt * txt, uiPage * page){
     if (!txt) {
-        SDL_Log("destroyUITxt: txt is NULL");
         return;
     }
     if (!page) {
-        SDL_Log("destroyUITxt: page is NULL");
         return;
     }
     if (txt->texture) {
@@ -223,11 +227,9 @@ void destroyUITxt(uiTxt * txt, uiPage * page){
 
 void destroyUIImg(uiImg * img, uiPage * page){
     if (!img) {
-        SDL_Log("destroyUIImg: img is NULL");
         return;
     }
     if (!page) {
-        SDL_Log("destroyUIImg: page is NULL");
         return;
     }
     if (img->texture) {
@@ -243,6 +245,7 @@ void destroyUIImg(uiImg * img, uiPage * page){
     }
 }
 
+//Change le texte d'un uiTxt
 void setUiText(uiTxt *txt, char *text) {
     if (!txt) {
         SDL_Log("setUiText: txt is NULL");
@@ -278,11 +281,12 @@ void setUiText(uiTxt *txt, char *text) {
     }
 }
 
+//Refresh l'affichage de l'interface utilisateur
 void refreshUI(){
     if (pageHolder.page == NULL) {
         return;
     }
-    destroyPages();
+    destroyAllPages();
     initPage();
     if (&pageHolder.page[0].buttonsList->buttons[0] == NULL){
         return;
@@ -364,6 +368,7 @@ int changePage(void * args[20]){
     }
     return 0;
 }
+
 int SelectScreen(void * l[20]){
     char **lang = (char **)l[0];
     if (strcmp(*lang, "Window") == 0) {
@@ -380,6 +385,7 @@ int SelectScreen(void * l[20]){
     }
     return 0;
 }
+
 bool joueurTrue = true; 
 void initMainPage(){
     createPage(&pageHolder.page[0]);
@@ -463,20 +469,6 @@ void initPage(){
     initPrestige();
     initHerosPage();
     init_inv_page();
-}
-
-void destroyPages(){
-    for (int i = 0; i < pageHolder.pageNb; i++) {
-        if (pageHolder.page[i].container != NULL) {
-            destroyPage(&pageHolder.page[i]);
-        }
-    }
-    free(pageHolder.page);
-
-	free(fr_txt);
-    free(en_txt);
-    free(full_txt);
-    free(window_txt);
 }
 
 void destroyAllPages(){

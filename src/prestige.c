@@ -19,9 +19,6 @@ prestigeTree_t prestigeTree = {NULL, NULL, NULL};
 int prestigePoints=0;
 int prestigePageIndex=0;
 int prestigePointsReward=1;
-int heroKeepUpgrade=0;
-int heroKeepLevel=0;
-
 
 // Hauteur d'un élément de prestige en fonction du nombre total d'éléments par page
 int vectorPrestige;
@@ -30,7 +27,11 @@ int vectorPrestige;
 float goldModifier=1;
 float damageModifier=1;
 float prestigeModifier=1;
+// Améliorations de prestige lié aux héros
+int heroKeepUpgrade=0;
+int heroKeepLevel=0;
 
+// Prestige le joueur
 void doPrestige(){
     prestigePoints += prestigePointsReward;
     
@@ -50,7 +51,6 @@ void doPrestige(){
     }
     refreshCurrentLvl();
 }
-
 
 static void initPrestigeState(){
     if (prestigeTree.Gold != NULL || prestigeTree.Damage != NULL || prestigeTree.Prestige != NULL){
@@ -172,6 +172,7 @@ static void initPrestigeState(){
 
 }
 
+//Acheter un objet de prestige
 int buyPrestigeButton(void *args[20]){
     if (args[0] == NULL || args[1] == NULL){
         printf("buyPrestigeButton Error: No args\n");
@@ -186,6 +187,7 @@ int buyPrestigeButton(void *args[20]){
     return 0;
 }
 
+// Créer l'affichage de l'arbre de prestige
 static void loadPrestigeTree(){
     for (int j = 0; j < NB_PRESTIGE_ITEMS_PER_PAGE; j++){
         int i = j;
@@ -193,7 +195,7 @@ static void loadPrestigeTree(){
             i+=NB_PRESTIGE_ITEMS_PER_PAGE*prestigePageIndex;
         }
         // Gold
-        char imgName[50],buttonLabel[15];
+        char imgName[50],buttonLabel[25];
         sprintf(imgName, "assets/ui/icons/prestige/pcoin%d.svg", i+1);
         sprintf(buttonLabel, "Gold %d", i+1);
         if (prestigeTree.Gold->items[i].owned){
@@ -309,7 +311,10 @@ int getMaxPrestigeItems(char * selectedTree){
     return max;
 }
 
-int created[3] = {-1, -1, -1};
+
+int created[3] = {-1, -1, -1}; //Pour savoir si un texte a été créé ou pas dans une catégorie
+
+//Affiche les information de l'amélioration de prestige lorsqu'on passe la souris dessus
 void checkDisplayPrestigeItemText(){
     if (currentpage != &pageHolder.page[2]){
         return;
@@ -380,6 +385,7 @@ void checkDisplayPrestigeItemText(){
     }
 }
 
+//Ajouter un item de prestige à la liste
 void addPrestigeItem(prestigeList *list, char *name, char *description, int cost, void (*effect)(float), float value) {
     if (list->count >= MAX_PRESTIGE_ITEMS) {
         printf("Error: Max Prestige Item\n");
@@ -418,11 +424,12 @@ void addPrestigeItem(prestigeList *list, char *name, char *description, int cost
     list->count++;
 }
 
+//Destruction d'un item de prestige
 static void destroyPrestigeItem(prestigeItem *item){
     free(item->name);
     free(item->description);
 }
-
+// Destruction de la liste de prestige
 void destroyPrestigeList(){
     if (prestigeTree.Gold != NULL) {
         for (int i = 0; i < prestigeTree.Gold->count; i++) {
@@ -472,6 +479,7 @@ void prestigeKeepHeroLevel(float value){
     heroKeepLevel += value;
 }
 
+// Vérifie si l'item peut être acheté
 int canBuy(char *selectedTree, int index){
     if (strcmp(selectedTree, "Gold") == 0){
         if (prestigeTree.Gold->items[index].owned) return 0;
@@ -506,6 +514,7 @@ int canBuy(char *selectedTree, int index){
     return 0;
 }
 
+// Acheter un item de prestige 
 void buyPrestigeItem(char *selectedTree, int index, int pay){
     if (strcmp(selectedTree, "Gold") == 0){
         if (!pay || canBuy(selectedTree, index)){
