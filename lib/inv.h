@@ -125,235 +125,236 @@ extern liste_inventaires * list_inv ;
  * \param item Pointeur vers le pointeur de l'item à détruire.
  */
 void dest_item(item_t ** item);
-
- /**
- * \brief destruction des info stocker par l'item pour le reutiliser.
- * \fn void liberer_item(item_t * item)
- *
- * \param item Pointeur sur item à libérer.
+/**
+ @fn void gestion_inv(inv **inventaire, int NB_items, int scroll_id, SDL_Rect SDL_Rect, 
+ *                      int nb_collone, int nb_ligne, int arrondis, int decalage_bas, 
+ *                      int decalage_cote, int id_back_item)
+ * @brief Gère l'affichage et l'interaction avec l'inventaire.
+ * @param inventaire Pointeur vers l'inventaire.
+ * @param NB_items Nombre total d'objets dans l'inventaire.
+ * @param scroll_id Identifiant du défilement.
+ * @param SDL_Rect Rectangle SDL définissant la position et la taille de l'affichage.
+ * @param nb_collone Nombre de colonnes de l'inventaire.
+ * @param nb_ligne Nombre de lignes de l'inventaire.
+ * @param arrondis Rayon d'arrondi des bords de l'affichage.
+ * @param decalage_bas Décalage vers le bas pour l'affichage.
+ * @param decalage_cote Décalage latéral pour l'affichage.
+ * @param id_back_item Identifiant de l'arrière-plan des objets.
  */
-
-void liberer_item(item_t * item);
- 
- /**
-  * @brief Gère l'inventaire.
-  *
-  * \fn void gestion_inv(inv **inventaire)
-  * @param inventaire Pointeur vers le pointeur de l'inventaire à gérer.
-  */
- extern void gestion_inv(inv ** inventaire, int NB_items,int scroll_id,SDL_Rect SDL_Rect ,int nb_collone ,int nb_ligne  ,
-    int arrondis ,int decalage_bas ,int decalage_cote, int id_back_item);
- 
-
- /**
- * \brief Détruit un inventaire et libère la mémoire allouée.
- * \fn void dest_inv(inv ** inventaire)
- *
- * \param inventaire Pointeur vers le pointeur de l'inventaire à détruire.
- */
-void dest_inv(inv ** inventaire);
- 
- /**
-  * @brief Trouve le premier emplacement vide dans l'inventaire.
-  *
-  * \fn int prem_vide(inv *inventaire)
-  * @param inventaire Pointeur vers l'inventaire à vérifier.
-  * @return int L'indice du premier emplacement vide, ou -1 si l'inventaire est plein.
-  */
- int prem_vide(inv *inventaire);
- 
- /**
-  * @brief Vérifie si un item est vide.
-  *
-  * \fn int est_vide(item_t *item)
-  * @param item Pointeur vers l'item à vérifier.
-  * @return int 1 si l'item est vide, 0 sinon.
-  */
- int est_vide(item_t *item);
- 
- /**
-  * @brief Vérifie si deux items peuvent être fusionnés.
-  *
-  * \fn int droit_fusion(item_t *item1, item_t *item2)
-  * @param item1 Pointeur vers le premier item.
-  * @param item2 Pointeur vers le second item.
-  * @return int Code de retour indiquant si la fusion est possible.
-  */
- int droit_fusion(item_t *item1, item_t *item2);
-
-
- /**
- * \brief Génère un nombre de statistique influencé par un niveau.
- * \fn int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv)
- *
- * \param x Niveau actuel.
- * \param type Type de statistique (0 = or, 1 = degat, 2 = vit_att).
- * \param stat_ameliorer Statistique à améliorer.
- * \param rarete Rareté de l'item.
- * \param nb_max_nv Niveau maximal.
- * \return int Nouvelle valeur de la statistique.
- */
-int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv);
-
- /**
- * \brief Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique.
- *
- * \fn void deb_fusion(item_t * item1, item_t * item2)
- * \param item1 Premier item à fusionner.
- * \param item2 Deuxième item à fusionner.
- */
-void deb_fusion(item_t * item1, item_t * item2);
+extern void gestion_inv(inv **inventaire, int NB_items, int scroll_id, SDL_Rect SDL_Rect, 
+    int nb_collone, int nb_ligne, int arrondis, int decalage_bas, 
+    int decalage_cote, int id_back_item);
 
 /**
- * @brief Dessine un cercle.
- * 
- * @param renderer Le renderer SDL sur lequel dessiner.
- * @param x La coordonnée x du centre du cercle.
- * @param y La coordonnée y du centre du cercle.
- * @param rayon Le rayon du cercle.
- */
+* @brief Détruit l'inventaire et libère la mémoire associée.
+* 
+* @param inventaire Pointeur vers l'inventaire.
+*/
+void dest_inv(inv **inventaire);
+
+/**
+* @brief Trouve la première position vide dans l'inventaire.
+* 
+* @param inventaire Pointeur vers l'inventaire.
+* @return Index de la première position vide, -1 si l'inventaire est plein.
+*/
+int prem_vide(inv *inventaire);
+
+/**
+* @brief Vérifie si un objet est vide.
+* 
+* @param item Pointeur vers l'objet.
+* @return 1 si l'objet est vide, 0 sinon.
+*/
+int est_vide(item_t *item);
+
+/**
+* @brief Vérifie si deux objets peuvent être fusionnés.
+* 
+* @param item1 Premier objet.
+* @param item2 Deuxième objet.
+* @return 1 si la fusion est possible, 0 sinon.
+*/
+int droit_fusion(item_t *item1, item_t *item2);
+
+/**
+* @brief Génère une statistique aléatoire pour un objet.
+* 
+* @param x Valeur de base.
+* @param type Type de statistique.
+* @param stat_ameliorer Niveau d'amélioration.
+* @param rarete Niveau de rareté.
+* @param nb_max_nv Nombre maximum de niveaux.
+* @return Valeur générée pour la statistique.
+*/
+int generate_stat_nb(int x, int type, int stat_ameliorer, int rarete, int nb_max_nv);
+
+/**
+* @brief Fusionne deux objets.
+* 
+* @param item1 Premier objet.
+* @param item2 Deuxième objet.
+*/
+void deb_fusion(item_t *item1, item_t *item2);
+
+/**
+* @brief Dessine un cercle graphique.
+* 
+* @param x Coordonnée X du centre.
+* @param y Coordonnée Y du centre.
+* @param rayon Rayon du cercle.
+*/
 void cercle_graf(int x, int y, int rayon);
 
 /**
- * @brief Dessine un rectangle avec des coins arrondis.
- * 
- * @param renderer Le renderer SDL sur lequel dessiner.
- * @param x La coordonnée x du coin supérieur gauche du rectangle.
- * @param y La coordonnée y du coin supérieur gauche du rectangle.
- * @param w La largeur du rectangle.
- * @param h La hauteur du rectangle.
- * @param radius Le rayon des coins arrondis.
- * @param r La composante rouge de la couleur du rectangle.
- * @param g La composante verte de la couleur du rectangle.
- * @param b La composante bleue de la couleur du rectangle.
- */
+* @brief Dessine un rectangle aux coins arrondis.
+* 
+* @param SDL_Rect Rectangle SDL définissant la zone de dessin.
+* @param radius Rayon des coins arrondis.
+* @param r Valeur de la couleur rouge.
+* @param g Valeur de la couleur verte.
+* @param b Valeur de la couleur bleue.
+*/
 void rectangle_arrondis(SDL_Rect SDL_Rect, int radius, int r, int g, int b);
 
 /**
- * @brief Affiche plusieurs rectangles arrondis en grille.
- * 
- * @param pRenderer Le renderer SDL sur lequel dessiner.
- * @param scrool_pos La position de défilement.
- * @param cof_scrollbar_window Le coefficient de vitesse de défilement.
- * @param nb_collone Le nombre de colonnes.
- * @param nb_ligne Le nombre de lignes.
- * @param taille La taille de chaque rectangle.
- * @param decalage L'espace entre les rectangles.
- * @param arrondis Le rayon des coins arrondis.
- */
-void aff_inv_graf(inv * inventaire);
-/**
- * @brief Dessine une barre de défilement verticale.
- * 
- * @param renderer Le renderer SDL sur lequel dessiner.
- * @param scrollbar_position La position y du sommet de la barre de défilement.
- * @param scrollbar_height La hauteur de la barre de défilement.
- */
-void draw_scrollbar(int scrollbar_x,int scrollbar_y, int scrollbar_height , int scrollbar_wheight ) ;
+* @brief Affiche l'inventaire graphiquement.
+* 
+* @param inventaire Pointeur vers l'inventaire.
+*/
+void aff_inv_graf(inv *inventaire);
 
 /**
- * @brief Calcule la hauteur totale du contenu.
- * 
- * @param nb_ligne Le nombre de lignes.
- * @param taille La taille de chaque rectangle.
- * @param decalage L'espace entre les rectangles.
- * @return La hauteur totale du contenu.
- */
-int calculate_total_content_height(int nb_ligne, int taille, int decalage);
-
-
-/**
- * @brief Calcule le coefficient de vitesse de défilement de la barre de défilement.
- * 
- * @param visible_area_height La hauteur de la zone visible.
- * @param total_content_height La hauteur totale du contenu.
- * @return Le coefficient de vitesse de défilement de la barre de défilement.
- */
-float cof_scrollbar_window(int visible_area_height, int total_content_height);
+* @brief Dessine une barre de défilement.
+* 
+* @param scrollbar_x Position X.
+* @param scrollbar_y Position Y.
+* @param scrollbar_height Hauteur totale.
+* @param scrollbar_wheight Hauteur de la partie défilable.
+*/
+void draw_scrollbar(int scrollbar_x, int scrollbar_y, int scrollbar_height, int scrollbar_wheight);
 
 /**
- * @brief Calcule la position maximale de la barre de défilement.
- * 
- * @param screen_height La hauteur de l'écran.
- * @param scrollbar_heigt La hauteur de la barre de défilement.
- * @return La position maximale de la barre de défilement.
- */
-int calculate_scrollbar_max_position(int screen_height, int scrollbar_heigt , float cof);
-
-/**
- * @brief Gère les événements de défilement.
- * 
- * @param event L'événement SDL à gérer.
- * @param scrollbar_position La position de la barre de défilement.
- * @param scrollbar_speed La vitesse de déplacement de la barre de défilement.
- * @param scrollbar_max_position La position maximale de la barre de défilement.
- */
+* @brief Gère les événements liés à l'inventaire.
+* 
+* @param event Événement SDL capturé.
+*/
 extern void handle_inv_event(SDL_Event event);
 
-
 /**
- * @brief Vérifie si les coordonnées de la souris sont dans les limites d'un carré.
- * 
- * @param x_deb La coordonnée x de départ du carré.
- * @param y_deb La coordonnée y de départ du carré.
- * @param x_fin La coordonnée x de fin du carré.
- * @param y_fin La coordonnée y de fin du carré.
- * @return 1 si les coordonnées de la souris sont dans les limites du carré, 0 sinon.
- */
-int coordonner_realiste(int x_deb, int y_deb, int x_fin, int y_fin);
-
-/**
- * @brief Calcule les dimensions de la zone de contenu.
- * 
- * @param x_larg Pointeur vers la largeur calculée.
- * @param y_haut Pointeur vers la hauteur calculée.
- * @param nb_ligne Le nombre de lignes.
- * @param nb_colonne Le nombre de colonnes.
- * @param largeur La largeur de chaque élément.
- * @param hauteur La hauteur de chaque élément.
- * @param decalage L'espace entre les éléments.
- */
-void calculate_zone_content(int* x_larg, int* y_haut, int nb_ligne, int nb_colonne, int largeur, int hauteur, int decalage);
-
-/**
- * @brief Calcule le numéro de case en fonction des coordonnées de la souris.
- * 
- * @param x La coordonnée x de départ.
- * @param y La coordonnée y de départ.
- * @param nb_collone Le nombre de colonnes.
- * @param nb_ligne Le nombre de lignes.
- * @param taille_largeur La largeur de chaque élément.
- * @param taille_longeur La longueur de chaque élément.
- * @param decalage L'espace entre les éléments.
- * @return Le numéro de case en fonction des coordonnées de la souris, ou -1 si aucune case n'est trouvée.
- */
+* @brief Calcule la position d'un élément dans l'inventaire.
+* 
+* @return Position calculée.
+*/
 int calcule_pos_inv();
 
+/**
+* @brief Détruit tous les inventaires chargés.
+*/
 extern void dest_all_inventaires();
-extern void aff_all_inventaires() ;
-extern void load() ;
-extern void cleanup() ;
+
+/**
+* @brief Affiche tous les inventaires.
+*/
+extern void aff_all_inventaires();
+
+/**
+* @brief Charge les ressources de l'inventaire.
+*/
+extern void load();
+
+/**
+* @brief Dépose un objet de l'inventaire.
+*/
 extern void drop_item();
 
+/**
+* @brief Charge un inventaire à partir d'un fichier.
+* 
+* @param nom_fichier Nom du fichier à charger.
+*/
+extern void load_inv(const char *nom_fichier);
 
+/**
+* @brief Initialise l'inventaire principal.
+*/
+void init_inv_main();
 
-extern void load_inv(const char *nom_fichier) ;
-void init_inv_main() ;
-extern item_t * load_item_ref(FILE *f) ;
-extern item_t * load_item_joueur(FILE *f);
+/**
+* @brief Charge un objet de référence depuis un fichier.
+* 
+* @param f Fichier source.
+* @return Pointeur vers l'objet chargé.
+*/
+extern item_t *load_item_ref(FILE *f);
 
+/**
+* @brief Charge un objet appartenant au joueur depuis un fichier.
+* 
+* @param f Fichier source.
+* @return Pointeur vers l'objet chargé.
+*/
+extern item_t *load_item_joueur(FILE *f);
 
-extern int stat_item_degat ;
-extern int stat_item_temps ;
+/**
+* @brief Variable globale représentant les dégâts des objets.
+*/
+extern int stat_item_degat;
+
+/**
+* @brief Variable globale représentant le temps des objets.
+*/
+extern int stat_item_temps;
+
+/**
+* @brief Applique un bonus d'or.
+* 
+* @return Valeur du bonus.
+*/
 extern int boost_gold();
+
+/**
+* @brief Gère les statistiques d'un héros.
+* 
+* @param index_heros Index du héros concerné.
+*/
 extern void gestion_stat_heros(int index_heros);
-void save_inv(inv *inventaire, char *save) ;
 
+/**
+* @brief Sauvegarde un inventaire dans un fichier.
+* 
+* @param inventaire Pointeur vers l'inventaire à sauvegarder.
+* @param save Nom du fichier de sauvegarde.
+*/
+void save_inv(inv *inventaire, char *save);
 
+/**
+* @brief Dessine le cadre de l'inventaire.
+*/
+extern void draw_rect_inv();
 
-extern void draw_rect_inv() ;
-void racourcis_createUI(item_t * it,int x,int y,int id_tuille);
+/**
+* @brief Crée une interface utilisateur pour un raccourci.
+* 
+* @param it Pointeur vers l'objet associé.
+* @param x Position X.
+* @param y Position Y.
+* @param id_tuille Identifiant de la tuile associée.
+*/
+void racourcis_createUI(item_t *it, int x, int y, int id_tuille);
+
+/**
+* @brief Effectue une sauvegarde de l'inventaire.
+*/
 extern void makeSaveInventaire();
+
+/**
+* @brief Rafraîchit l'affichage de l'inventaire.
+*/
 extern void refresh_inv();
+
+/**
+* @brief Met à jour l'inventaire et son affichage.
+*/
 extern void actualiser();
 #endif

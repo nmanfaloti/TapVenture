@@ -1036,8 +1036,6 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
             int ligne = inv_source->liste[i]->select_heros;
             int case_vide = -1;
 
-            printf("Item %d : Déplacement vers ligne %d\n", i, ligne);
-
             // Recherche d'une case vide
             for (int j = 0; j < NB_AMPLECEMENT && case_vide == -1; j++) {
                 int case_target = ligne * inv_receveur->info_inv.nb_collone + j;
@@ -1050,13 +1048,6 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
             }
 
             if (case_vide != -1) {
-                uiImg *imge = getImgFromLabel(inv_source->liste[i]->label);
-                if ( imge) printf("image bien trouver \n");
-                else printf("image bien non non non \n");
-                printf("Case vide trouvée à l'index %d label : %s\n", case_vide,inv_source->liste[i]->label);
-
-                // Déplacement
-
                 inv_receveur->liste[case_vide] = inv_source->liste[i];
                 inv_source->liste[i] = NULL;
 
@@ -1075,11 +1066,8 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
 
                 int emp_ligne = case_vide / nb_colonne;
                 int emp_colonne = case_vide % nb_colonne;
-                printf("raccoursis->SDL_Rect.x : %d\n",raccoursis->SDL_Rect.x);
                 int x_case = emp_colonne * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w) + raccoursis->SDL_Rect.x ;
                 int y_case = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h) + raccoursis->SDL_Rect.y;
-
-                printf("Nouvelle position : x=%d, y=%d\n", x_case, y_case);
 
                 // Mise à jour de l'item déplacé
                 if (inv_receveur->liste[case_vide]) {
@@ -1088,7 +1076,6 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
                 }
 
                 // Mise à jour graphique
-                printf("\napres label : %s\n\n",inv_receveur->liste[case_vide]->label);
                 uiImg *img = getImgFromLabel(inv_receveur->liste[case_vide]->label);//probleme image non creer createuiimg
                 if (img) {
                     printf("imag decal \n");
