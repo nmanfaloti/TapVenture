@@ -93,7 +93,7 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
     for ( int i = 0 ; i < NOMBRE_MAX_SCROLL ; i++ ){
         if ( scroll_liste[i].empl_alloue == 0){
             if ( erreur_activer != NULL && !est_dans_scroll(&zone_scroll,zone_interaction) ){
-                printf("la zone de scroll  (%d) n'est pas dans la zone interaction(visible) = probleme ( bizarre) \n\t\t elem : %d , %d ,%d , %d \n\t\t zone : %d , %d ,%d , %d \n",i+1,zone_scroll.x,zone_scroll.y,zone_scroll.w,zone_scroll.h,zone_interaction.x,zone_interaction.y,zone_interaction.w,zone_interaction.h);
+                //printf("la zone de scroll  (%d) n'est pas dans la zone interaction(visible) = probleme ( bizarre) \n\t\t elem : %d , %d ,%d , %d \n\t\t zone : %d , %d ,%d , %d \n",i+1,zone_scroll.x,zone_scroll.y,zone_scroll.w,zone_scroll.h,zone_interaction.x,zone_interaction.y,zone_interaction.w,zone_interaction.h);
                 exit(2);
             }
             scroll_liste[i].zone_interaction = zone_interaction;
@@ -111,6 +111,7 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
             scroll_liste[i].min_pos = zone_scroll.y ;
             scroll_liste[i].total_content_height = total_content_height ;
             scroll_liste[i].scrollbar_max_position = total_content_height - zone_scroll.h;
+
             creation_succes = 1 ; 
             if ( label != NULL){
                 strcpy(scroll_liste[i].label, *label);
@@ -120,7 +121,7 @@ int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total
         }
     }
     if ( !creation_succes ){
-        printf("probleme allocation nb de scroll max\n");
+        //printf("probleme allocation nb de scroll max\n");
         exit(3);
     }
     return 1 ;
@@ -225,7 +226,6 @@ extern void handle_scroll_event(SDL_Event event) {
 
     // Gérer le déplacement de la souris pour déplacer la scrollbar
     if (event.type == SDL_MOUSEMOTION && scroll_interact != -1) {
-        printf("%d\n",event.motion.y+scroll_liste[0].scroll_pos);
         // Calculer la nouvelle position en fonction du mouvement de la souris
         mouse_y = mouseY - scroll_liste[scroll_interact].rect_scroll.h / 2;
         // Déplacer la scrollbar en tenant compte du décalage de la souris

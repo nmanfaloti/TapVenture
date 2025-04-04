@@ -335,19 +335,6 @@ char * item_rondam(int * piece_equipement){
     return type ;
 }
 
-void switch_pos_render_img(char * label_item_drop , char * label_bordure){
-    uiImg * path_img_item = getImgFromLabel(label_item_drop) ;
-    uiImg * path_img_background = getImgFromLabel(label_bordure) ;
-    if ( label_item_drop!=NULL)printf("1 bon %s \n ",label_bordure);
-    if ( path_img_background!=NULL)printf("2 bon ");
-    if (path_img_item != NULL && path_img_background != NULL) {
-        printf("swap");
-        uiImg *temp = path_img_item;
-        path_img_item = path_img_background;
-        path_img_background = temp;
-    }
-}
-
 void drop_item(){
     if (rand() % 100 + 1 > SDL_min(DROP_ITEM * level.mobKilled, 100)) return;
     int emplacement_vide = prem_vide(list_inv->inventaires[0]);
@@ -365,7 +352,6 @@ void drop_item(){
         return ;
     }
     char * nom = list_inv->inventaires[1]->liste[id_ref]->nom ;
-    printf("nom : %s ; path : %s ; id_ref:%d\n",nom,nom_path_icon,id_ref);
 
     item_t * it = generation_item(nom,nom_path_icon);
     it->stat = stat ;
@@ -383,9 +369,7 @@ void drop_item(){
     int x = emp_colone * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w)  + raccoursis->SDL_Rect.x ;
     int y = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h)  + raccoursis->SDL_Rect.y ;
     it->pos_y = y ;
-    printf("drop_item \n");
     racourcis_createUI(it,x,y,0);
-    switch_pos_render_img(it->label,BORDURE_LABEL);
 }
 //gestion inv 
 
@@ -627,11 +611,7 @@ int click_heros_pos(){
     uiImg * path_img_max = getImgFromLabel(heroLabel) ;
 
     int taille = path_img -> dest . h ;
-    int total_hauteur  = path_img_max -> dest . y - path_img -> dest . y ; 
     int id_case = ( mouseY - BORDURE - (path_img -> dest . y - BORDURE ) ) / (taille + DECALE_HEROS)    ;
-    printf("\n --------------\n");
-    printf("taille:%d , total_hauteur:%d , decalage:%d , id_case:%d %d",taille,total_hauteur,DECALE_HEROS,id_case , path_img -> dest . y);
-    printf("\n --------------\n");
     return id_case ;
 
 }
@@ -707,7 +687,6 @@ void detecter_click_item() {
         drag.actif = 1;
         drag.index = clicked_case;
         drag.inv_id = chercher_select();
-        printf("Drag activé : index=%d, inv_id=%d\n", drag.index, drag.inv_id);
     }
 }
 
@@ -721,7 +700,6 @@ void lacher_item() {
     if (case_finale != -1) {
 
         drag.target_inv_id = chercher_select();
-        printf("case finale : %d scol_id : %d \n",case_finale,drag.target_inv_id);
         
         // Vérifier si l'inventaire source et cible sont valides
         if (drag.inv_id < 0 || drag.inv_id >= list_inv->nb_inventaires) {
@@ -747,7 +725,6 @@ void lacher_item() {
         if (drag.index >= 0 && drag.index < source_inv->nb_items && target_inv->liste[case_finale] != source_inv->liste[drag.index]) {
             // Si la case cible est occupée
             if (existe_item(target_inv->liste[case_finale]) && droit_fusion(target_inv->liste[case_finale], source_inv->liste[drag.index]) == 1 ){
-                printf("fusion \n");
                 deb_fusion(target_inv->liste[case_finale], source_inv->liste[drag.index]);
             }
             else if (existe_item(target_inv->liste[case_finale])) {
@@ -873,9 +850,7 @@ void lacher_item() {
             drag.actif = 0;
             drag.index = -1;
             drag.target_inv_id = -1;  // Réinitialiser l'inventaire cible après le déplacement
-        } else {
-            printf("Erreur : index de drag invalide : %d\n", drag.index);
-        }
+        } 
     }
 }
 
@@ -885,7 +860,7 @@ void transvaser(inv *inv_receveur, inv *inv_source) {
     trier_inventaire(inv_receveur);
     trier_inventaire(inv_source);
 
-    aff_inv_items(inv_source);
+    //aff_inv_items(inv_source);
     if (inv_receveur == NULL || inv_source == NULL) {
         printf("Erreur : Inventaire source ou receveur NULL.\n");
         return;
@@ -1078,7 +1053,6 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
                 // Mise à jour graphique
                 uiImg *img = getImgFromLabel(inv_receveur->liste[case_vide]->label);//probleme image non creer createuiimg
                 if (img) {
-                    printf("imag decal \n");
                     img->dest.x = x_case;
                     img->dest.y = y_case;
                 }

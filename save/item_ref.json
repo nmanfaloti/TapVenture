@@ -1,0 +1,120 @@
+[
+  {
+    "nom": "casque 1", 
+    "nom_fichier": "casque-1.png"
+  },
+  {
+    "nom": "casque 2", 
+    "nom_fichier": "casque-2.png"
+  },
+  {
+    "nom": "casque 3",
+     "nom_fichier": "casque-3.png"
+  },
+  {
+    "nom": "casque 4", 
+    "nom_fichier": "casque-4.png"
+  },
+  
+  {
+      "nom": "casque 5", 
+      "nom_fichier": "casque-5.png"
+  },
+  {
+    "nom": "casque 6", 
+    "nom_fichier": "casque-6.png"
+  },
+  {
+    "nom": "plastron 1", 
+    "nom_fichier": "plastron-1.png"
+  },
+  {
+    "nom": "plastron 2", 
+    "nom_fichier": "plastron-2.png"
+  },
+  {
+    "nom": "plastron 3", 
+    "nom_fichier": "plastron-3.png"
+  },
+  {
+    "nom": "plastron 4", 
+    "nom_fichier": "plastron-4.png"
+  },
+  {
+    "nom": "plastron 5", 
+    "nom_fichier": "plastron-5.png"
+  },
+  {
+    "nom": "plastron 6", 
+    "nom_fichier": "plastron-6.png"
+  },
+  {
+    "nom": "bottes 1", 
+    "nom_fichier": "bottes-1.png"
+  },
+  {
+    "nom": "bottes 2", 
+    "nom_fichier": "bottes-2.png"
+  },
+  {
+    "nom": "bottes 3", 
+    "nom_fichier": "bottes-3.png"
+  },
+  {
+    "nom": "bottes 4", 
+    "nom_fichier": "bottes-4.png"
+  },
+  {
+    "nom": "bottes 5", 
+    "nom_fichier": "bottes-5.png"
+  },
+  {
+    "nom": "bottes 6", 
+    "nom_fichier": "bottes-6.png"
+  },
+    {
+      "nom": "Épée de feu", 
+      "nom_fichier": "arme-1.png"
+    },
+    {
+      "nom": "Bouclier sacré", 
+      "nom_fichier": "arme-2.png"
+    },
+    {
+      "nom": "Arc elfique", 
+      "nom_fichier": "arme-3.png"
+    },
+    {
+      "nom": "arme 4", 
+      "nom_fichier": "arme-4.png"
+    },
+    {
+      "nom": "arme 5", 
+      "nom_fichier": "arme-5.png"
+    },
+    {
+      "nom": "arme 6", 
+      "nom_fichier": "arme-6.png"
+    },
+    {
+      "nom": "arme 7", 
+      "nom_fichier": "arme-7.png"
+    },
+    {
+      "nom": "arme 8", 
+      "nom_fichier": "arme-8.png"
+    },
+    {
+      "nom": "arme 9", 
+      "nom_fichier": "arme-9.png"
+    },
+    {
+      "nom": "arme 10", 
+      "nom_fichier": "arme-10.png"
+    },
+    {
+      "nom": "arme 11", 
+      "nom_fichier": "arme-11.png"
+    }
+  ]
+  
