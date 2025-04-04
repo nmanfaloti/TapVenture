@@ -25,6 +25,7 @@ typedef struct scroll_inf_s{
 
 extern scroll_inf scroll_liste[NOMBRE_MAX_SCROLL];
 
+extern void clear_scroll();
 extern int est_dans_scroll(SDL_Rect * elem_pos,SDL_Rect zone_interaction);
 extern void init_scroll();
 float cof_scrollbar_window(int visible_area_height, int total_content_height);

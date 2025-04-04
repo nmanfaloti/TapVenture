@@ -53,7 +53,7 @@ int attackHeros(){
             unsigned long long int degat_attaque_booster ;
             heros[i].lastAttack = SDL_GetTicks();
             if ( heros[i].degat * stat_item_degat < LLD_MAX)
-                degat_attaque_booster = heros[i].degat * (1+stat_item_degat/100);
+                degat_attaque_booster = heros[i].degat * stat_item_degat;
             else degat_attaque_booster = LLD_MAX ;
             args[0] = &(degat_attaque_booster);
             bool joueur = false;

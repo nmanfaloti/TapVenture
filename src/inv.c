@@ -25,19 +25,14 @@
 #include "../lib/chaine.h"
 
 const int proportion_item_carrer_prio = 0 ;
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 500;
 const int SCROLLBAR_WIDTH = 20;
-const int VISIBLE_AREA_HEIGHT = 500;
 const int NB_COLLONE = 4;
 const int NB_LIGNE = 25;
-int ITEM_SIZE = 64;
-const int DEPLACEMENT = 20;
+const int DEPLACEMENT = 5;
 const int ARRONDIS = 20;
+int reactualiser = 1 ;
 
 #define LABEL_HEROS "zone_interaction_scroll" 
-
-
 
 void draw_rect(SDL_Rect rect) {
     SDL_Color color = {255,0,0,255};
@@ -55,23 +50,32 @@ liste_inventaires * list_inv = NULL ;
 int conteur_item_ref_img = 0  ;
 
 //test item 
-int existe_item(item_t * it){
-    return (it != NULL && it -> nom_fichier != NULL && it -> nom != NULL && it -> label != NULL);
+int existe_item(const  item_t *it) {
+    return (it != NULL && it->nom_fichier != NULL && it->nom != NULL && it->label != NULL);
 }
 
 int comparer_items(const void *a, const void *b) {
-    item_t *itemA = *(item_t **)a;
-    item_t *itemB = *(item_t **)b;
+    // Vérification que les pointeurs ne sont pas NULL avant de les déréférencer
+    if (!a && !b) return 0;
+    if (!a) return 1;
+    if (!b) return -1;
 
-    // Check if any of the items or their 'nom' fields are NULL
-    if (!itemA || !itemA->nom) return itemB && itemB->nom ? -1 : 0;
-    if (!itemB || !itemB->nom) return 1;
+    const item_t *itemA = *(const item_t **)a;
+    const item_t *itemB = *(const item_t **)b;
+
+    // Vérification des objets avant utilisation
+    if (!existe_item(itemA) && !existe_item(itemB)) return 0;
+    if (!existe_item(itemA)) return 1;
+    if (!existe_item(itemB)) return -1;
 
     return strcmp(itemA->nom, itemB->nom);
 }
 
+
+
 int droit_fusion(item_t * item1, item_t * item2){
     if (item1 == NULL || item2 == NULL) return -1; // item non recreer probleme code
+    if(item1->label == item2->label)return -2;
     if (item1->nom_fichier == NULL || item2->nom_fichier == NULL) return -2; // item non remplis
     if (strcmp(item1->nom_fichier, item2->nom_fichier) != 0) return -4; // pas le même item
     if (item1->rarity != item2->rarity) return -5; // pas la même rareté
@@ -87,7 +91,7 @@ item_t * generation_item(char * name , char * nom_fichier ){
 }
 
 void dest_item(item_t ** item){
-    if ( *item == NULL) return;
+    if ( !existe_item ( *item)) return;
     if ((*item)->nom != NULL) {
         free((*item)->nom);
         (*item)->nom = NULL;
@@ -131,6 +135,7 @@ void init_inv(inv *inventaire){
         it->stat = 0;
         it->piece_equipement = 0;
         it->boost = 0;
+        it->select_heros = -2 ;
         inventaire -> liste[i] = it ;
     }
 }
@@ -138,8 +143,8 @@ void init_inv(inv *inventaire){
 int chercher_nom_fichier(char * nom_fichier , inv * inventaire){
     if ( inventaire ==NULL)return -1 ;
     for ( int i = 0 ; i < inventaire ->nb_items ; i++){
-        if ( existe_item(inventaire->liste[i]) && nom_fichier && inventaire->liste[i]->nom_fichier)
-            if (strcmp ( nom_fichier , inventaire->liste[i]->nom_fichier))return i ;
+        if ( existe_item(inventaire->liste[i]) &&  nom_fichier != NULL && inventaire->liste[i]->nom_fichier != NULL)
+            if (strcmp ( nom_fichier , inventaire->liste[i]->nom_fichier) == 0)return i ;
     } 
     return -1 ;
 }
@@ -171,6 +176,14 @@ int chercher_select(){
     for ( int i = 0 ;  i < list_inv->nb_inventaires ; i++)
         if (list_inv->inventaires[i]->id_scroll == id_scroll_select)return i ;
     return -1 ;
+}
+
+int nb_item_inv(inv * inventaire){
+    if (inventaire == NULL )return - 1 ;
+    int compteur = 0 ;
+    for( int i = 0 ; i < inventaire->nb_items ; i++)
+        if (existe_item(inventaire->liste[i])) compteur ++;
+    return compteur;
 }
 
 
@@ -250,13 +263,30 @@ int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv
     return -1;
 }
 
-void deb_fusion(item_t * item1, item_t * item2) {
-    if (droit_fusion(item1, item2) == 1) {
-        item1->rarity++;        // rareté up / ex: commun -> uncommun / uncommun -> rare etc
-        item1->stat = generate_stat_nb(1, item1->boost, item1->stat, item1->rarity, 1);
-        dest_item(&item2);
-    }
+void echange(uiImg **imag1, uiImg **imag2) {
+    uiImg *temp = *imag1;
+    *imag1 = *imag2;
+    *imag2 = temp;
 }
+
+void deb_fusion(item_t *target, item_t *drag) {
+    char label[50], label2[50];
+
+    printf("Label drag: %s\n", drag->label);
+    printf("Label target: %s\n", target->label);
+    
+    sprintf(label, "tile_item_%d.png/%s", 0, drag->label);
+    sprintf(label2, "tile_item_%d.png/%s", 0, target->label);
+
+    // Augmenter la rareté et recalculer les stats
+    target->rarity++;
+    target->stat = generate_stat_nb(1, target->boost, (target->stat + drag->stat) / 2, target->rarity, 1);
+
+    // Récupérer les images associées
+    dest_item(&drag);
+    refresh_inv();
+}
+
 
 
 void generation_label(char ** label ){
@@ -305,9 +335,20 @@ char * item_rondam(int * piece_equipement){
     return type ;
 }
 
+void switch_pos_render_img(char * label_item_drop , char * label_bordure){
+    uiImg * path_img_item = getImgFromLabel(label_item_drop) ;
+    uiImg * path_img_background = getImgFromLabel(label_bordure) ;
+    if ( label_item_drop!=NULL)printf("1 bon %s \n ",label_bordure);
+    if ( path_img_background!=NULL)printf("2 bon ");
+    if (path_img_item != NULL && path_img_background != NULL) {
+        printf("swap");
+        uiImg *temp = path_img_item;
+        path_img_item = path_img_background;
+        path_img_background = temp;
+    }
+}
 
 void drop_item(){
-
     if (rand() % 100 + 1 > SDL_min(DROP_ITEM * level.mobKilled, 100)) return;
     int emplacement_vide = prem_vide(list_inv->inventaires[0]);
     if (emplacement_vide == -1){
@@ -315,7 +356,7 @@ void drop_item(){
         return ;
     }
     int type_stat = rand() % 3 + 1 ;
-    int stat = generate_stat_nb(25,type_stat,1,0,70);// a remplacer 1 et dernier stat 
+    int stat = generate_stat_nb(25,type_stat,1,0,50);// a remplacer 1 et dernier stat 
     
     int piece_equipement ;
     char * nom_path_icon = item_rondam(&piece_equipement);
@@ -324,12 +365,14 @@ void drop_item(){
         return ;
     }
     char * nom = list_inv->inventaires[1]->liste[id_ref]->nom ;
+    printf("nom : %s ; path : %s ; id_ref:%d\n",nom,nom_path_icon,id_ref);
 
     item_t * it = generation_item(nom,nom_path_icon);
     it->stat = stat ;
     it -> boost = type_stat ;
     it->piece_equipement = piece_equipement ;
     it->rarity = COMMUN ;
+    it->select_heros = -2 ;
     generation_label(&(it -> label));
     list_inv->inventaires[0]->liste[emplacement_vide] = it;
 
@@ -340,8 +383,9 @@ void drop_item(){
     int x = emp_colone * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w)  + raccoursis->SDL_Rect.x ;
     int y = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h)  + raccoursis->SDL_Rect.y ;
     it->pos_y = y ;
-
+    printf("drop_item \n");
     racourcis_createUI(it,x,y,0);
+    switch_pos_render_img(it->label,BORDURE_LABEL);
 }
 //gestion inv 
 
@@ -392,7 +436,7 @@ void gestion_inv(inv **inventaire, int NB_items, int id_scroll, SDL_Rect SDL_Rec
             }
     
             int total_content_height = calculate_total_content_size(nb_ligne, SDL_Rect.h, decalage_bas);
-            int total_content_width = calculate_total_content_size(nb_colonne, SDL_Rect.w, decalage_cote);
+            int total_content_width = calculate_total_content_size(nb_colonne, SDL_Rect.w,decalage_cote );
     
             scroll_liste[id_scroll].total_content_height = total_content_height ;
             scroll_liste[id_scroll].zone_interaction.w = total_content_width ;
@@ -466,12 +510,12 @@ void racourcis_createUI(item_t * it,int x,int y,int id_tuille){
     sprintf(temp,"assets/ui/background/tile_item_%d.png",id_tuille);
     sprintf(label,"tile_item_%d.png/%s",id_tuille,it->label);
 
-    createUIImg(&pageHolder.page[4], temp, (SDL_Rect){x-DECALAGE, y - DECALAGE, TAILLE_ITEM + 2 * DECALAGE, TAILLE_ITEM + 2 * DECALAGE}, label);
+    createUIImg(&pageHolder.page[4], temp, (SDL_Rect){x-vw(DECALAGE), y - vh(DECALAGE)*2, vw(ITEM_SIZE) +2 * vw(DECALAGE), vw(ITEM_SIZE) + 2 *vw(DECALAGE)}, label);
 
     char *chemin = malloc(strlen("assets/ui/icons/items/") + strlen(it->nom_fichier) + 1);
     strcpy(chemin, "assets/ui/icons/items/");
     strcat(chemin, it->nom_fichier);
-    createUIImg(&pageHolder.page[4], chemin, (SDL_Rect){x, y, TAILLE_ITEM, TAILLE_ITEM}, it->label);
+    createUIImg(&pageHolder.page[4], chemin, (SDL_Rect){x, y, vw(ITEM_SIZE), vw(ITEM_SIZE)}, it->label);
 
 
     free(chemin);
@@ -501,30 +545,29 @@ void aff_inv_graf(inv* inventaire) {
 
 
 void aff_heros(){
-    int taille_hauteur = list_inv->inventaires[2]->info_inv.SDL_Rect.h + DECALAGE;
+    int taille_hauteur = list_inv->inventaires[2]->info_inv.SDL_Rect.h + vh(DECALAGE);
     int taille_largeur = list_inv->inventaires[2]->info_inv.SDL_Rect.w ;
     for (int heroIndex = 0; heroIndex < HEROS_COUNT; heroIndex++){
         char imgHero[50],heroLabel[15];
         sprintf(imgHero, "assets/ui/heros/hero%d.png", heroIndex);
         sprintf(heroLabel, "hero%d", heroIndex);
-        createUIImg(&pageHolder.page[4], imgHero, getRectForCentenredCord(vw(POS_HEROS_X),  heroIndex* taille_hauteur + DECALAGE, taille_largeur, taille_hauteur ), heroLabel);
+        createUIImg(&pageHolder.page[4], imgHero, getRectForCentenredCord(vw(POS_HEROS_X),  heroIndex* (taille_hauteur + vh(DEPLACEMENT)) + vh(BORDURE), taille_largeur, (taille_hauteur + vh(DECALAGE)) ), heroLabel);
     }
     char * label = LABEL_HEROS;
-    creation_scroll((SDL_Rect){vw(POS_HEROS_X)-taille_largeur/2, BORDURE/2, taille_largeur,WINDOW_HEIGHT -BORDURE}, 
+    creation_scroll((SDL_Rect){vw(POS_HEROS_X)-taille_largeur/2, BORDURE/2, taille_largeur,heightscreen -BORDURE}, 
                                      (SDL_Rect){vw(POS_HEROS_X)+1, 1, -1, -1},
-                                     0, 0,NULL,&label); //scroll bidon pour juste utiliser la zone d'interaction 
+                                     0, 0,NULL,&label); //scroll bidon pour juste utiliser la zone d'interaction
 } 
 
 
 
 void aff_background_fond(){
     char chemin[]= "assets/ui/background/cobble.png";
-    createUIImg(&pageHolder.page[4], chemin, (SDL_Rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, "/global_inv/background_inv_fond");
+    createUIImg(&pageHolder.page[4], chemin, (SDL_Rect){0, 0, vw(100), vh(100)}, "/global_inv/background_inv_fond");
 }
 
 void aff_background_bordure(){
-    char chemin[]= "assets/ui/background/bordure.png";
-    createUIImg(&pageHolder.page[4], chemin, (SDL_Rect){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, "/global_inv/background_inv_bordure");
+    createUIImg(&pageHolder.page[4], BORDURE_PATH, (SDL_Rect){0, 0, vw(100), vh(100)},BORDURE_LABEL);
 }
 
 
@@ -543,8 +586,6 @@ void aff_all_inventaires() {
 
 }
 
-
-
 //actualisation 
 void img_inv_actualliser(inv * inventaire){
     if ( inventaire == NULL)return ;
@@ -553,13 +594,15 @@ void img_inv_actualliser(inv * inventaire){
             char temp[100];
             item_t * it = inventaire->liste[i] ;
             uiImg * path_img = getImgFromLabel(it->label) ;
-            path_img -> dest . y  = it->pos_y - scroll_liste[inventaire->id_scroll].scroll_pos ;
+
+            if (path_img != NULL){
+            path_img -> dest . y  = it->pos_y - scroll_liste[inventaire->id_scroll].scroll_pos  ;
 
             sprintf(temp,"tile_item_%d.png/%s",inventaire->id_tuile,it->label);
             uiImg * path_img_back = getImgFromLabel(temp) ;
-            path_img_back -> dest . y  = path_img -> dest . y - DECALAGE;
-            path_img_back -> dest . x  = path_img -> dest . x - DECALAGE;
-            
+            path_img_back -> dest . y  = path_img -> dest . y - vh(DECALAGE);
+            path_img_back -> dest . x  = path_img -> dest . x - vw(DECALAGE);
+            }
         }
     }
 }
@@ -571,7 +614,8 @@ void actualiser_heros(){
         char heroLabel[15];
         sprintf(heroLabel, "hero%d", heroIndex);
         uiImg * path_img = getImgFromLabel(heroLabel) ;
-        path_img -> dest . y  =  heroIndex * (path_img->dest.h + DECALE_HEROS)  +  BORDURE - scroll_liste[1].scroll_pos ;
+        if ( path_img != NULL)
+            path_img -> dest . y  =  heroIndex * (path_img->dest.h + DECALE_HEROS)  +  vh(BORDURE) - scroll_liste[1].scroll_pos ;
     }
 }
 
@@ -618,6 +662,17 @@ void aff_item(item_t * it){
     printf("item stat_a_booster : %d\n",it->boost);
     printf("item rareter : %d\n",it->rarity);
     printf("item stat : %d\n",it->stat);
+    printf("item select_heros : %d\n",it->select_heros);
+    printf("--------------\n");
+}
+
+void aff_inv_items(inv * invrntaire){
+    for (int i = 0 ; i < invrntaire->nb_items;i++){
+        if (existe_item(invrntaire->liste[i])){
+            printf("items index : %d\n",i);
+        }
+        
+    }
 }
 
 void aff_stat_item(SDL_Event event) {
@@ -689,12 +744,18 @@ void lacher_item() {
         }
 
         // Vérification si l'index de drag est valide pour l'inventaire source
-        if (drag.index >= 0 && drag.index < source_inv->nb_items) {
+        if (drag.index >= 0 && drag.index < source_inv->nb_items && target_inv->liste[case_finale] != source_inv->liste[drag.index]) {
             // Si la case cible est occupée
-            if (existe_item(target_inv->liste[case_finale])) {
+            if (existe_item(target_inv->liste[case_finale]) && droit_fusion(target_inv->liste[case_finale], source_inv->liste[drag.index]) == 1 ){
+                printf("fusion \n");
+                deb_fusion(target_inv->liste[case_finale], source_inv->liste[drag.index]);
+            }
+            else if (existe_item(target_inv->liste[case_finale])) {
+
                 item_t *temp = target_inv->liste[case_finale];
                 target_inv->liste[case_finale] = source_inv->liste[drag.index];
                 source_inv->liste[drag.index] = temp;
+
 
                 // Calcul des positions
                 aff_inv_inf *raccoursis_case_final = &(target_inv->info_inv);  // Raccourci pour les informations de la case finale
@@ -732,14 +793,15 @@ void lacher_item() {
                 int x_drag = emp_colone_drag * (raccoursis_drag->decalage_cote + raccoursis_drag->SDL_Rect.w) + raccoursis_drag->SDL_Rect.x;
                 int y_drag = emp_ligne_drag * (raccoursis_drag->decalage_bas + raccoursis_drag->SDL_Rect.h) + raccoursis_drag->SDL_Rect.y;
 
-                printf("x:%d %d %d %d %d\n",x_drag ,emp_colone_drag,raccoursis_drag->decalage_cote,raccoursis_drag->SDL_Rect.w,raccoursis_drag->SDL_Rect.x);
-
                 // Mise à jour des positions X et Y des éléments déplacés
                 if (target_inv->liste[case_finale] != NULL) {
                     target_inv->liste[case_finale]->pos_y = y_case_finale;
+                    target_inv->liste[case_finale]->select_heros = drag.target_inv_id == 2 ? emp_ligne_case_finale : -2;
                 }
                 if (source_inv->liste[drag.index] != NULL) {
                     source_inv->liste[drag.index]->pos_y = y_drag;
+                    target_inv->liste[drag.index]->select_heros = drag.inv_id == 2 ? emp_ligne_drag : -2;
+
                 }
 
                 // Mise à jour des images des éléments déplacés
@@ -789,6 +851,9 @@ void lacher_item() {
                 // Mise à jour de la position Y de l'élément déplacé
                 if (target_inv->liste[case_finale] != NULL) {
                     target_inv->liste[case_finale]->pos_y = y_case_finale;
+
+
+                    target_inv->liste[case_finale]->select_heros = drag.target_inv_id == 2 ? emp_ligne_case_finale : -2;
                 }
 
                 // Mise à jour de la position X de l'élément déplacé
@@ -816,20 +881,71 @@ void lacher_item() {
 
 
 //load and save 
+void transvaser(inv *inv_receveur, inv *inv_source) {
+    trier_inventaire(inv_receveur);
+    trier_inventaire(inv_source);
+
+    aff_inv_items(inv_source);
+    if (inv_receveur == NULL || inv_source == NULL) {
+        printf("Erreur : Inventaire source ou receveur NULL.\n");
+        return;
+    }
+
+    int nb_item_deplacer = nb_item_inv(inv_source);
+    if (nb_item_deplacer == 0) {
+        //printf("Aucun objet à déplacer.\n");
+        return;
+    }
+
+    int espace_libre = inv_receveur->nb_items - nb_item_inv(inv_receveur);
+
+    // Si pas assez de place, on agrandit l'inventaire
+    if (espace_libre < nb_item_deplacer) {
+        int espace_total_alloue = inv_receveur->nb_items + (nb_item_deplacer - espace_libre);
+        inv_receveur->liste = realloc(inv_receveur->liste, espace_total_alloue * sizeof(item_t *));
+        
+        if (inv_receveur->liste == NULL) {
+            printf("Erreur d'allocation mémoire.\n");
+            return;
+        }
+        inv_receveur->nb_items = espace_total_alloue;
+    }
+
+    int case_vide = prem_vide(inv_receveur);  // Trouver la première case vide avant la boucle
+    for (int i = 0; i < nb_item_deplacer; i++) {
+        if (existe_item(inv_source->liste[i])) {
+            // Chercher une case vide à chaque itération
+            if (case_vide != -1) {
+                inv_receveur->liste[case_vide] = inv_source->liste[i];
+                inv_source->liste[i] = NULL;  // Vider la case source
+                case_vide = prem_vide(inv_receveur);
+            } else {
+                printf("\n\nAucune case disponible dans l'inventaire receveur.\n\n");
+                break; // Si pas de place, on arrête le transfert
+            }
+        } else {
+            printf("\n\nL'élément à la position %d n'existe pas.\n\n", i);
+        }
+    }
+}
+
+
+
 
 
 extern void load(){
     inv *inventaire_item = NULL;
     inv *inv_ref = NULL;
     inv *inventaire_heros = NULL;
+    clear_scroll();
 
     //creation zone interaction extention : scroll
-    int id_scroll1 = creation_scroll((SDL_Rect){70, 64, 0, VISIBLE_AREA_HEIGHT},
-                                     (SDL_Rect){0, 0, SCROLLBAR_WIDTH, VISIBLE_AREA_HEIGHT - 100},
-                                     0, 30,NULL,NULL);
+    int id_scroll1 = creation_scroll((SDL_Rect){vw(BORDURE), vh(8), 0,vh( 100 - 8 - BORDURE)},
+                                     (SDL_Rect){0, 0, vw(2), vh(100 - 100)},
+                                     0, vh(5),NULL,NULL);
 
-    int id_scroll2 = creation_scroll((SDL_Rect){WINDOW_WIDTH/2, 64,WINDOW_WIDTH/2, VISIBLE_AREA_HEIGHT},
-                                     (SDL_Rect){WINDOW_WIDTH-20, 0, SCROLLBAR_WIDTH, VISIBLE_AREA_HEIGHT - 10},
+    int id_scroll2 = creation_scroll((SDL_Rect){vw(46), vh(10),vw(50-BORDURE), vh(90-BORDURE)},
+                                     (SDL_Rect){vw(100-20), 0, vw(2), vh(100 - 10)},
                                      0, 10,NULL,NULL);
 
     int id_NULL = creation_scroll((SDL_Rect){-10, -10, 0, 0}, 
@@ -838,16 +954,16 @@ extern void load(){
 
 
     //creation et association des zone d'interaction scroll aux inventaire 
-    gestion_inv(&inventaire_item,100, id_scroll1, (SDL_Rect){DECALAGE, DECALAGE, ITEM_SIZE, ITEM_SIZE},
-    3, NB_LIGNE , ARRONDIS, DEPLACEMENT, DEPLACEMENT,0);
+    gestion_inv(&inventaire_item,100, id_scroll1, (SDL_Rect){vw(DECALAGE), vh(DECALAGE), vw(ITEM_SIZE), vw(ITEM_SIZE)},
+    3, NB_LIGNE , ARRONDIS, vw(DEPLACEMENT), vh(DEPLACEMENT),0);
 
     int total_item = NB_BOTTES + NB_PLASTRON + NB_CASQUE + NB_ARME ;
     gestion_inv(&inv_ref,total_item, id_NULL, (SDL_Rect){0, 0,0 , 0},
     0, 0 , 0, 0, 0, 0);
 
-    int decalage_interne_item_background_item = DECALAGE * 2 ;
-    gestion_inv(&inventaire_heros,HEROS_COUNT * NB_AMPLECEMENT, id_scroll2, (SDL_Rect){DECALAGE, 10,ITEM_SIZE, ITEM_SIZE},
-    NB_AMPLECEMENT, HEROS_COUNT , ARRONDIS, decalage_interne_item_background_item + DECALAGE, 20,0);
+    int decalage_interne_item_background_item = vw(DECALAGE) * 2 ;
+    gestion_inv(&inventaire_heros,HEROS_COUNT * NB_AMPLECEMENT, id_scroll2, (SDL_Rect){vw(DECALAGE), vh(DECALAGE), vw(ITEM_SIZE), vw(ITEM_SIZE)},
+    NB_AMPLECEMENT, HEROS_COUNT , ARRONDIS, decalage_interne_item_background_item + vw(DECALAGE), vh(DEPLACEMENT),0);
 
     ajouter_inventaire(3 , inventaire_item , inv_ref ,inventaire_heros);
 
@@ -903,49 +1019,139 @@ int boost_gold(){
 
 
 // load et save 
+void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
+    if (!inv_receveur || !inv_source) {
+        printf("Erreur : Inventaire source ou receveur NULL.\n");
+        return;
+    }
 
-item_t * load_item(FILE *f, int type ) { // type = 0 : ref-items ou type = 1 : inv joueur
-    item_t *it = malloc(sizeof(item_t));
-    char ligne[MAX_LIGNE];
-    char temp_name[256] = {0};
-    char temp_nom_fichier[256] = {0};
+    int nb_it = prem_vide(inv_source);
+    if (nb_it <= 0) {
+        printf("Aucun item à déplacer.\n");
+        return;
+    }
 
-    while (fgets(ligne, MAX_LIGNE, f)) {
-        if (strstr(ligne, "}")) break;
-        if (strstr(ligne, "\"nom\"")) {
-            sscanf(ligne, " \"nom\": \"%255[^\"]\"", temp_name);
-        } else if (strstr(ligne, "\"nom_fichier\"")) {
-            sscanf(ligne, " \"nom_fichier\": \"%255[^\"]\"", temp_nom_fichier);
-        }
-        
-        if (type) {  // Charger tous les champs si nécessaire
-            if (strstr(ligne, "\"piece_equipement\"")) {
-                sscanf(ligne, " \"piece_equipement\": %d", (int *)&it->piece_equipement);
-            } else if (strstr(ligne, "\"boost\"")) {
-                sscanf(ligne, " \"boost\": %d", (int *)&it->boost);
-            } else if (strstr(ligne, "\"rarity\"")) {
-                sscanf(ligne, " \"rarity\": %d",(int *)&it->rarity);
-            } else if (strstr(ligne, "\"stat\"")) {
-                sscanf(ligne, " \"stat\": %d", &it->stat);
+    for (int i = 0; i < nb_it; i++) {
+        if (existe_item(inv_source->liste[i]) && inv_source->liste[i]->select_heros >= 0) {
+            int ligne = inv_source->liste[i]->select_heros;
+            int case_vide = -1;
+
+            printf("Item %d : Déplacement vers ligne %d\n", i, ligne);
+
+            // Recherche d'une case vide
+            for (int j = 0; j < NB_AMPLECEMENT && case_vide == -1; j++) {
+                int case_target = ligne * inv_receveur->info_inv.nb_collone + j;
+
+                if (case_target < inv_receveur->nb_items && 
+                    case_target >= 0 &&
+                    !existe_item(inv_receveur->liste[case_target])) {
+                    case_vide = case_target;
+                }
+            }
+
+            if (case_vide != -1) {
+                uiImg *imge = getImgFromLabel(inv_source->liste[i]->label);
+                if ( imge) printf("image bien trouver \n");
+                else printf("image bien non non non \n");
+                printf("Case vide trouvée à l'index %d label : %s\n", case_vide,inv_source->liste[i]->label);
+
+                // Déplacement
+
+                inv_receveur->liste[case_vide] = inv_source->liste[i];
+                inv_source->liste[i] = NULL;
+
+                // Mise à jour des coordonnées et positions
+                aff_inv_inf *raccoursis = &(inv_receveur->info_inv);
+                if (!raccoursis) {
+                    printf("Erreur : raccoursis NULL\n");
+                    return;
+                }
+
+                int nb_colonne = raccoursis->nb_collone;
+                if (nb_colonne <= 0) {
+                    printf("Erreur : Nombre de colonnes invalide (%d)\n", nb_colonne);
+                    return;
+                }
+
+                int emp_ligne = case_vide / nb_colonne;
+                int emp_colonne = case_vide % nb_colonne;
+                printf("raccoursis->SDL_Rect.x : %d\n",raccoursis->SDL_Rect.x);
+                int x_case = emp_colonne * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w) + raccoursis->SDL_Rect.x ;
+                int y_case = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h) + raccoursis->SDL_Rect.y;
+
+                printf("Nouvelle position : x=%d, y=%d\n", x_case, y_case);
+
+                // Mise à jour de l'item déplacé
+                if (inv_receveur->liste[case_vide]) {
+                    inv_receveur->liste[case_vide]->pos_y = y_case;
+                    inv_receveur->liste[case_vide]->select_heros = emp_ligne;
+                }
+
+                // Mise à jour graphique
+                printf("\napres label : %s\n\n",inv_receveur->liste[case_vide]->label);
+                uiImg *img = getImgFromLabel(inv_receveur->liste[case_vide]->label);//probleme image non creer createuiimg
+                if (img) {
+                    printf("imag decal \n");
+                    img->dest.x = x_case;
+                    img->dest.y = y_case;
+                }
             }
         }
-    } 
-
-    if (temp_name[0] != '\0') {
-        it->nom = strdup(temp_name);
     }
-    if (temp_nom_fichier[0] != '\0') {
-        it->nom_fichier = strdup(temp_nom_fichier);
-    }
-
-    if (it->nom && it->nom_fichier) 
-        generation_label(&(it->label)); 
-    else it->label = strdup("default_label");
-    it->nom = strdup(temp_name);
-    it->nom_fichier = strdup(temp_nom_fichier);
-
-    return it;
+    
 }
+
+
+
+
+item_t *load_item(FILE *f, int type) {  
+    if (!f) return NULL;  
+
+    item_t *it = malloc(sizeof(item_t));  
+    if (!it) return NULL;  
+ 
+    char ligne[MAX_LIGNE];  
+    char temp_name[256] = {0};  
+    char temp_nom_fichier[256] = {0};  
+    it->select_heros = -2; 
+
+    while (fgets(ligne, MAX_LIGNE, f)) {  
+        if (strstr(ligne, "}")) break;  
+
+        if (strstr(ligne, "\"nom\"")) {  
+            sscanf(ligne, " \"nom\": \"%255[^\"]\"", temp_name);  
+        } else if (strstr(ligne, "\"nom_fichier\"")) {  
+            sscanf(ligne, " \"nom_fichier\": \"%255[^\"]\"", temp_nom_fichier);  
+        }  
+
+        if (type) {  
+            if (strstr(ligne, "\"piece_equipement\"")) {  
+                sscanf(ligne, " \"piece_equipement\": \"%d\"",(int *) &it->piece_equipement);  
+            } else if (strstr(ligne, "\"boost\"")) {  
+                sscanf(ligne, " \"boost\": %d",(int *) &it->boost);  
+            } else if (strstr(ligne, "\"rarity\"")) {  
+                sscanf(ligne, " \"rarity\": %d",(int *) &it->rarity);  
+            } else if (strstr(ligne, "\"stat\"")) {  
+                sscanf(ligne, " \"stat\": %d", &it->stat);  
+            } else if (strstr(ligne, "\"select_heros\"")) {  
+                sscanf(ligne, " \"select_heros\": %d", &it->select_heros) ;
+            }  
+        }  
+    }   
+
+    it->nom = (temp_name[0] != '\0') ? strdup(temp_name) : NULL;  
+    it->nom_fichier = (temp_nom_fichier[0] != '\0') ? strdup(temp_nom_fichier) : NULL;  
+
+    if (it->nom && it->nom_fichier) {  
+        generation_label(&(it->label));  
+    } else {  
+        it->label = strdup("default_label");  
+    }  
+    //if ( type ) aff_item(it);
+
+    return it;  
+}  
+
 
 void load_inv(const char *nom_fichier) {
     if ( nom_fichier == NULL )return ;
@@ -977,16 +1183,19 @@ void save_inv(inv *inventaire, char *save) {
         fprintf(stderr, "Erreur lors de l'ouverture du fichier pour l'enregistrement: %s\n", save);
         return;
     }
-
+    int depart = 1 ;
     // Démarrer l'écriture du fichier
-    fprintf(f, "{\n");
-    fprintf(f, " \"inventaire\": [\n");
 
     // Parcourir chaque item dans l'inventaire et le sauvegarder
     for (int i = 0; i < inventaire->nb_items; i++) {
         item_t *it = inventaire->liste[i];
-
-        if (i > 0) {
+        if (existe_item(it)){
+            if ( depart == 1){
+                fprintf(f, "{\n");
+                fprintf(f, " \"inventaire\": [\n");
+                depart = 0 ;
+            }
+        if (i > 0 && depart == 0) {
             fprintf(f, ",\n");
         }
 
@@ -1004,17 +1213,21 @@ void save_inv(inv *inventaire, char *save) {
         fprintf(f, "   \"rarity\": %d,\n", it->rarity);
         fprintf(f, "   \"stat\": %d", it->stat);
 
-        // Sauvegarder le label si il existe
-        if (it->label) {
-            fprintf(f, ",\n   \"label\": \"%s\"\n", it->label);
+        // Sauvegarder le select_heros si il existe
+        if (it->select_heros >= 0) {
+            fprintf(f, ",\n   \"select_heros\": %d\n", it->select_heros);
         }
 
-        fprintf(f, "  }");
+        fprintf(f, "\n   }");
+        }
     }
 
     // Fin de l'écriture
-    fprintf(f, "\n ]\n");
-    fprintf(f, "}\n");
+    if ( depart==0){
+        fprintf(f, "\n ]\n");
+        fprintf(f, "}\n");
+    }
+    
 
     fclose(f);
 }
@@ -1024,13 +1237,30 @@ void init_inv_main(){
     load_inv("save/item_inv.json");
     load_inv("save/item_ref.json");
 }
+void actualiser(){
+    rearanger_item_heros(list_inv->inventaires[2], list_inv->inventaires[0]);
+}
+void makeSaveInventaire(){
+    if (list_inv == NULL || list_inv-> inventaires[0] == NULL || list_inv-> inventaires[2] == NULL)return ;
+    transvaser(list_inv-> inventaires[0], list_inv-> inventaires[2]);
+    save_inv(list_inv-> inventaires[0],"save/item_inv.json");
+}
 
+void refresh_inv(){
+    makeSaveInventaire();
+    dest_all_inventaires() ;
+    clear_scroll();
+    conteur_item_ref_img = 0 ;
+    reactualiser = 1 ;
+    init_inv_page();
+}
 
 
 
 
 
 // interaction inv 
+
 
 void handle_inv_event(SDL_Event event) {
     handle_scroll_event(event);
@@ -1051,14 +1281,16 @@ void handle_inv_event(SDL_Event event) {
         img_inv_actualliser_all();
         
     }
+    if ( reactualiser){
+        reactualiser = 0 ;
+        actualiser();
+    }
     
 }
 
 void draw_rect_inv(){
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    draw_rect((SDL_Rect){70, 64, 3 * 80, VISIBLE_AREA_HEIGHT});
-    draw_rect((SDL_Rect){WINDOW_WIDTH/2, 64,WINDOW_WIDTH/2, VISIBLE_AREA_HEIGHT});
-    draw_rect((SDL_Rect){vw(POS_HEROS_X)-64/2, BORDURE / 2, 64,WINDOW_HEIGHT -BORDURE});
+    draw_rect((SDL_Rect){380,149, vw(ITEM_SIZE),vh(ITEM_SIZE)});
     SDL_RenderPresent(renderer);
     SDL_Delay(16);
 }

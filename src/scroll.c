@@ -8,6 +8,13 @@
 
 scroll_inf scroll_liste[NOMBRE_MAX_SCROLL];
 
+
+void clear_scroll(){
+    for (int i = 0 ; i < NOMBRE_MAX_SCROLL ; i ++){
+        scroll_liste[i].empl_alloue = 0 ;
+    }
+}
+
 //est se que l'elem est dans la zone de scroll
 //a utiliser pour l'affichage des element 
 extern int est_dans_scroll(SDL_Rect * elem_pos, SDL_Rect zone_interaction) {
@@ -83,7 +90,6 @@ extern void update_scroll(int * id_scroll){
 int creation_scroll(SDL_Rect zone_interaction , SDL_Rect zone_scroll , int total_content_height , int speed , int * erreur_activer ,char **label ){
     int creation_succes = 0 ;
     //SDL_GetWindowSize(window, &largeur, &hauteur) ;
-
     for ( int i = 0 ; i < NOMBRE_MAX_SCROLL ; i++ ){
         if ( scroll_liste[i].empl_alloue == 0){
             if ( erreur_activer != NULL && !est_dans_scroll(&zone_scroll,zone_interaction) ){

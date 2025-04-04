@@ -18,10 +18,13 @@
 
  #define NB_EQU 40
  #define EQU_HEROS 5
- #define POS_HEROS_X 46 // 46/100
- #define BORDURE 64
- #define DECALAGE 10
- #define TAILLE_ITEM 64
+ #define POS_HEROS_X 43 // 46/100
+ #define BORDURE 10
+ #define DECALAGE 1.5
+ #define ITEM_SIZE 7
+ 
+ #define BORDURE_PATH "assets/ui/background/bordure.png"
+ #define BORDURE_LABEL "/bordure_label"
  
  /**
   * @brief Inventaire, place : inf, equipable : variable lim 10 max, drop : selon stat boss
@@ -72,6 +75,7 @@
      stat_a_booster boost;             ///< Statistique à booster
      rarity rarity;                     ///< Rareté
      int stat;                          ///< Statistique (représente un pourcentage)
+     int select_heros;
  } item_t;
 
 typedef struct aff_inv_inf_s{
@@ -349,5 +353,7 @@ void save_inv(inv *inventaire, char *save) ;
 
 extern void draw_rect_inv() ;
 void racourcis_createUI(item_t * it,int x,int y,int id_tuille);
-extern void handle_inv_event(SDL_Event event) ;
+extern void makeSaveInventaire();
+extern void refresh_inv();
+extern void actualiser();
 #endif

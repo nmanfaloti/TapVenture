@@ -60,7 +60,7 @@ uiImg * getImgFromLabel(char * label){
         return NULL;
     }
     for (int i = 0; i < currentpage->container->nbImg; i++){
-        if (strcmp(currentpage->container->img[i].label, label) == 0){
+        if ( currentpage->container->img[i].label != NULL && strcmp(currentpage->container->img[i].label, label) == 0){
             return &currentpage->container->img[i];
         }
     }
@@ -451,6 +451,7 @@ void initSettingsPage(){
     createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(92), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
 }
 void init_inv_page(){
+    init_inv_main();
     createPage(&pageHolder.page[4]);
 
     pageHolder.page[4].container->nbTxt = 0;
@@ -468,7 +469,7 @@ void initPage(){
     initSettingsPage();
     initPrestige();
     initHerosPage();
-    init_inv_page();
+    refresh_inv();
 }
 
 void destroyAllPages(){
