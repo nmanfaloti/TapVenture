@@ -327,7 +327,7 @@ void checkDisplayPrestigeItemText(){
         if (prestigePageIndex) {
             i+=NB_PRESTIGE_ITEMS_PER_PAGE*prestigePageIndex;
         }
-        int hover = checkBoutton(prestigeTree.Gold->items[i].pos, mouseX, mouseY);
+        int hover = checkButton(prestigeTree.Gold->items[i].pos, mouseX, mouseY);
         if (hover && created[0] == -1) {
             if (prestigeTree.Gold->items[i].description) {
                 char *desc = malloc(strlen(prestigeTree.Gold->items[i].description) + 1);
@@ -346,7 +346,7 @@ void checkDisplayPrestigeItemText(){
             created[0] = -1;
         }
 
-        hover = checkBoutton(prestigeTree.Damage->items[i].pos, mouseX, mouseY);
+        hover = checkButton(prestigeTree.Damage->items[i].pos, mouseX, mouseY);
         if (hover && created[2] == -1) {
             if (prestigeTree.Damage->items[i].description) {
                 char *desc = malloc(strlen(prestigeTree.Damage->items[i].description) + 1);
@@ -364,7 +364,7 @@ void checkDisplayPrestigeItemText(){
             created[2] = -1;
         }
 
-        hover = checkBoutton(prestigeTree.Prestige->items[i].pos, mouseX, mouseY);  
+        hover = checkButton(prestigeTree.Prestige->items[i].pos, mouseX, mouseY);  
         if (hover && created[1] == -1) {
             if (prestigeTree.Prestige->items[i].description) {
                 char *desc = malloc(strlen(prestigeTree.Prestige->items[i].description) + 1);

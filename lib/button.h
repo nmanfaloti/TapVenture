@@ -174,7 +174,7 @@
  void drawButton(Button *button);
  
  /**
-  * @fn int checkBoutton(SDL_Rect rect, int mouse_x, int mouse_y)
+  * @fn int checkButton(SDL_Rect rect, int mouse_x, int mouse_y)
   * @brief Vérifie si un clic de souris se trouve dans un bouton.
   *
   * @param rect Rectangle définissant la position et la taille du bouton.
@@ -182,7 +182,7 @@
   * @param mouse_y Position Y de la souris.
   * @return 1 si le clic est dans le bouton, 0 sinon.
   */
- int checkBoutton(SDL_Rect rect, int mouse_x, int mouse_y);
+ int checkButton(SDL_Rect rect, int mouse_x, int mouse_y);
  
  /**
   * @fn SDL_Rect getRectForCentenredCord(int x, int y, int w, int h)

@@ -31,7 +31,7 @@ int input_event(SDL_Event event){
                 mouseXclickD = event.button.y;
                 /*appelle de la fonction pour check si on click sur un bouton */
                 for (int i = 0; i < currentpage->buttonsList->nbButton; i++) {
-                    if (checkBoutton(currentpage->buttonsList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
+                    if (checkButton(currentpage->buttonsList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
                         if (currentpage->buttonsList->buttons[i].callFunction) {
                             currentpage->buttonsList->buttons[i].callFunction(currentpage->buttonsList->buttons[i].args);
                             break; //Pour ne pas cliquer sur plusieurs boutons en meme temps
@@ -39,7 +39,7 @@ int input_event(SDL_Event event){
                     }
                 }
                 for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) {
-                    if (checkBoutton(currentpage->buttonsImgList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
+                    if (checkButton(currentpage->buttonsImgList->buttons[i].rect, mouseXclickG, mouseXclickD)) {
                         if (currentpage->buttonsImgList->buttons[i].callFunction) {
                             currentpage->buttonsImgList->buttons[i].callFunction(currentpage->buttonsImgList->buttons[i].args);
                             break; //Pour ne pas cliquer sur plusieurs boutons en meme temps

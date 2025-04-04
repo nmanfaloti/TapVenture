@@ -59,7 +59,7 @@ void drawButton(Button *button) {
     }
 }
 
-int checkBoutton(SDL_Rect rect, int mouse_x, int mouse_y) {
+int checkButton(SDL_Rect rect, int mouse_x, int mouse_y) {
     return mouse_x >= rect.x && mouse_x <= (rect.x + rect.w) && mouse_y >= rect.y && mouse_y <= (rect.y + rect.h);
 }
 
@@ -416,7 +416,7 @@ void ButtonHandle() {
     if (currentpage->buttonsImgList != NULL) {
         for (int i = 0; i < currentpage->buttonsImgList->nbButton; i++) {
             drawButtonImg(&currentpage->buttonsImgList->buttons[i]);
-            if (checkBoutton(currentpage->buttonsImgList->buttons[i].rect, mouseX, mouseY)) {
+            if (checkButton(currentpage->buttonsImgList->buttons[i].rect, mouseX, mouseY)) {
                 if (strcmp(currentpage->buttonsImgList->buttons[i].label, "mobImg") == 0) {
                     if (cursor != swordCursor) {
                         SDL_SetCursor(swordCursor);
@@ -441,7 +441,7 @@ void ButtonHandle() {
     if (currentpage->buttonsList != NULL) {
         for (int i = 0; i < currentpage->buttonsList->nbButton; i++) {
             drawButton(&currentpage->buttonsList->buttons[i]);
-            if (checkBoutton(currentpage->buttonsList->buttons[i].rect, mouseX, mouseY)) {
+            if (checkButton(currentpage->buttonsList->buttons[i].rect, mouseX, mouseY)) {
                 if (currentpage->buttonsList->buttons[i].selectedTexture) {
                     currentpage->buttonsList->buttons[i].texture = currentpage->buttonsList->buttons[i].selectedTexture;
                 }
