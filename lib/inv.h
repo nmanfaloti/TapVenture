@@ -14,6 +14,8 @@
 /**
  * @file inv.h
  * @brief Déclarations et définitions pour la gestion de l'inventaire.
+ * @author Logan Evenisse
+ * @date 17 février 2025
  */
 
  #define NB_EQU 40

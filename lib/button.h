@@ -6,7 +6,7 @@
  * et gérer les boutons dans l'interface utilisateur. Il inclut également des outils
  * pour manipuler les textures, les événements de clic, et les états des boutons.
  * @author Noam MANFALOTI
- * @date 2 avril 2025
+ * @date 7 decembre 2024
  */
 
  #ifndef BUTTON_H

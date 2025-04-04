@@ -7,7 +7,7 @@
  * Il inclut également des outils pour manipuler les dimensions relatives à l'écran.
  * @author Noam MANFALOTI
  * 
- * @date 2 avril 2025
+ * @date 7 decembre 2024
  */
 
  #ifndef AFF_H

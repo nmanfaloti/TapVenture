@@ -6,8 +6,8 @@
  * y compris les arbres de prestige, les items de prestige, et leurs effets sur le jeu.
  * Il inclut également des outils pour l'achat d'items, la gestion des points de prestige,
  * et les mises à jour des pages de prestige.
- * 
- * @date 2 avril 2025
+ * @author Noam MANFALOTI
+ * @date 28 fevrier 2025
  */
 
  #ifndef PRESTIGE_H

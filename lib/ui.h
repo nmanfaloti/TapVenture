@@ -6,6 +6,9 @@
  * pour gérer les pages, les boutons, les textes, les images et les notifications
  * dans l'interface utilisateur du jeu.
  * Il contient toutes les elements/fonctions de l'interface utilisateur qui ont besoin d'éléments de bouton et d'aff.
+ * @author Noam MANFALOTI
+ * 
+ * @date 31 Janvier 2025
  */
 
  #ifndef UI_H
