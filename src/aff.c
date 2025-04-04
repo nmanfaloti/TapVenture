@@ -413,7 +413,7 @@ void initMainPage(){
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(12), vh(92), vw(6), vh(10)), "assets/ui/icons/prestige/pprestige7.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage, "prestigeButton",1, &pageHolder.page[2]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(5), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, changePage,"herosButton", 1, &pageHolder.page[3]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(19), vh(92), vw(6), vh(10)), "assets/ui/icons/others/challenge.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 0, launchChallenge,"challengeButton",0);
-    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(26), vh(92), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 2, changePage,"inv_botton0", 1, &pageHolder.page[4]);
+    createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(26), vh(92), vw(6), vh(10)), "assets/ui/icons/others/inventory.svg", "assets/ui/buttons/extra/button_round_line.svg", 0, 2, changePage,"inv_botton0", 1, &pageHolder.page[4]);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(40), vw(6), vh(10)), "assets/ui/buttons/blue/arrow_basic_n.svg", "assets/ui/buttons/blue/arrow_basic_n.svg", 0, -2, changeLevel,"nextLevel", 1, 1);
     createImgButton(&pageHolder.page[0],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/blue/arrow_basic_s.svg", 0, 2, changeLevel,"previousLevel", 1, 2);
 }
@@ -457,7 +457,7 @@ void init_inv_page(){
     pageHolder.page[4].container->nbTxt = 0;
     pageHolder.page[4].container->txt = NULL; 
     aff_all_inventaires();
-    createImgButton(&pageHolder.page[4],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/icons/others/heros.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"inv_botton1", 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[4],getRectForCentenredCord(vw(90), vh(60), vw(6), vh(10)), "assets/ui/icons/others/inventory.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"inv_botton1", 1, &pageHolder.page[0]);
 }
 
 //pageHolder.page[0] = main page 

@@ -335,6 +335,16 @@ char * item_rondam(int * piece_equipement){
     return type ;
 }
 
+void switch_pos_render_img(char * label_item_drop , char * label_bordure){
+    uiImg * path_img_item = getImgFromLabel(label_item_drop) ;
+    uiImg * path_img_background = getImgFromLabel(label_bordure) ;
+    if (path_img_item != NULL && path_img_background != NULL) {
+        uiImg *temp = path_img_item;
+        path_img_item = path_img_background;
+        path_img_background = temp;
+    }
+}
+
 void drop_item(){
     if (rand() % 100 + 1 > SDL_min(DROP_ITEM * level.mobKilled, 100)) return;
     int emplacement_vide = prem_vide(list_inv->inventaires[0]);
@@ -370,6 +380,7 @@ void drop_item(){
     int y = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h)  + raccoursis->SDL_Rect.y ;
     it->pos_y = y ;
     racourcis_createUI(it,x,y,0);
+    switch_pos_render_img(it->label,BORDURE_LABEL);
 }
 //gestion inv 
 
@@ -608,7 +619,6 @@ int click_heros_pos(){
     char heroLabel[15];
     sprintf(heroLabel, "hero%d", HEROS_COUNT-1);
     uiImg * path_img = getImgFromLabel("hero0") ;
-    uiImg * path_img_max = getImgFromLabel(heroLabel) ;
 
     int taille = path_img -> dest . h ;
     int id_case = ( mouseY - BORDURE - (path_img -> dest . y - BORDURE ) ) / (taille + DECALE_HEROS)    ;
@@ -860,7 +870,6 @@ void transvaser(inv *inv_receveur, inv *inv_source) {
     trier_inventaire(inv_receveur);
     trier_inventaire(inv_source);
 
-    //aff_inv_items(inv_source);
     if (inv_receveur == NULL || inv_source == NULL) {
         printf("Erreur : Inventaire source ou receveur NULL.\n");
         return;
