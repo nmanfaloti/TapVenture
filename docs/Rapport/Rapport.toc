@@ -1,0 +1,39 @@
+\babel@toc {french}{}
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Analyse et conception}{3}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Description du projet}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Fonctionnalités}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Direction artistique}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Gestion du projet}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Planification}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Organisation du travail}{6}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Outils de travail}{6}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Realisation}{7}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Gestion des textes et de la traduction}{7}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Gestion de l'interface utilisateur}{7}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Structure de données}{7}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Fonctions de gestion de l'interface}{8}{subsubsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.3}Gestion de l'inventaire et du scroll}{9}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Implémentation du système de scroll}{9}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Gestion de l'inventaire}{10}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Intégration et synchronisation des modules}{11}{subsubsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.4}Gestion des sauvegardes}{11}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.4.1}Type de fichier}{11}{subsubsection.4.4.1}%
+\contentsline {subsubsection}{\numberline {4.4.2}Repartition des données}{12}{subsubsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.3}Structure des fichiers}{12}{subsubsection.4.4.3}%
+\contentsline {subsubsection}{\numberline {4.4.4}Fonctions de sauvegarde}{12}{subsubsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.5}Système de combat et de challenge}{12}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Structure de données}{12}{subsubsection.4.5.1}%
+\contentsline {subsubsection}{\numberline {4.5.2}Progression des monstres}{13}{subsubsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.3}Animation de dégâts}{13}{subsubsection.4.5.3}%
+\contentsline {subsubsection}{\numberline {4.5.4}Fonctions du système de combat}{13}{subsubsection.4.5.4}%
+\contentsline {subsubsection}{\numberline {4.5.5}Système de challenge}{14}{subsubsection.4.5.5}%
+\contentsline {subsection}{\numberline {4.6}Les héros et jeux hors ligne}{15}{subsection.4.6}%
+\contentsline {subsubsection}{\numberline {4.6.1}Structure des héros}{15}{subsubsection.4.6.1}%
+\contentsline {subsubsection}{\numberline {4.6.2}Fonctions des héros}{15}{subsubsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.3}Gestion du jeu hors ligne}{16}{subsubsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.7}Système de prestige}{17}{subsection.4.7}%
+\contentsline {subsubsection}{\numberline {4.7.1}Structure de données}{17}{subsubsection.4.7.1}%
+\contentsline {subsubsection}{\numberline {4.7.2}Fonction du système de prestige}{17}{subsubsection.4.7.2}%
+\contentsline {section}{\numberline {5}Conclusion}{18}{section.5}%
+\contentsline {section}{\numberline {6}Annexe}{20}{section.6}%

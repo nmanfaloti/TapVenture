@@ -45,21 +45,21 @@ struct \mbox{\hyperlink{structdrag__t}{drag\+\_\+t}}
 \Hypertarget{inv_8c_a3ac66c8652db3d0ef746eb600d753d16}\label{inv_8c_a3ac66c8652db3d0ef746eb600d753d16} 
 void {\bfseries draw\+\_\+rect} (SDL\+\_\+\+Rect rect)
 \item 
-\Hypertarget{inv_8c_aee3205ab40a984a909ebcf6111992b36}\label{inv_8c_aee3205ab40a984a909ebcf6111992b36} 
-int {\bfseries existe\+\_\+item} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}it)
+\Hypertarget{inv_8c_a0c52008811c2522db4218c159e98d341}\label{inv_8c_a0c52008811c2522db4218c159e98d341} 
+int {\bfseries existe\+\_\+item} (const \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}it)
 \item 
 \Hypertarget{inv_8c_afe7910be60ea1b7db664b82e0072392f}\label{inv_8c_afe7910be60ea1b7db664b82e0072392f} 
 int {\bfseries comparer\+\_\+items} (const void \texorpdfstring{$\ast$}{*}a, const void \texorpdfstring{$\ast$}{*}b)
 \item 
 int \mbox{\hyperlink{inv_8c_ae6229776e3fc981c2f1295d008e94963}{droit\+\_\+fusion}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item1, \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item2)
-\begin{DoxyCompactList}\small\item\em Vérifie si deux items peuvent être fusionnés. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Vérifie si deux objets peuvent être fusionnés. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a64ac735591e2e6692cbb39b22b1307a2}\label{inv_8c_a64ac735591e2e6692cbb39b22b1307a2} 
 \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries generation\+\_\+item} (char \texorpdfstring{$\ast$}{*}name, char \texorpdfstring{$\ast$}{*}nom\+\_\+fichier)
 \item 
 void \mbox{\hyperlink{inv_8c_a4ef3f326c61db3cf2484f7706d4dfa3c}{dest\+\_\+item}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}item)
 \begin{DoxyCompactList}\small\item\em Détruit un item et libère la mémoire allouée. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{inv_8c_a0539356cfaad795a5997fa5929f5bd44}{dest\+\_\+inv}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}inventaire)
-\begin{DoxyCompactList}\small\item\em Détruit un inventaire et libère la mémoire allouée. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Détruit l\textquotesingle{}inventaire et libère la mémoire associée. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{inv_8c_adaf44a36ef675aa8571c1211b292c805}{init\+\_\+inv}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
 \begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a0987d953522135e3bfc75fec1d4ee7ef}\label{inv_8c_a0987d953522135e3bfc75fec1d4ee7ef} 
@@ -69,9 +69,12 @@ int {\bfseries chercher\+\_\+nom\+\_\+fichier} (char \texorpdfstring{$\ast$}{*}n
 void {\bfseries insert\+\_\+inf\+\_\+aff} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire, SDL\+\_\+\+Rect SDL\+\_\+\+Rect, int nb\+\_\+collone, int nb\+\_\+ligne, int nb\+\_\+element, int arrondis, int decalage\+\_\+bas, int decalage\+\_\+cote)
 \item 
 int \mbox{\hyperlink{inv_8c_a1efd18ab74c9d51e41bbf07fb282772f}{prem\+\_\+vide}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
-\begin{DoxyCompactList}\small\item\em Trouve le premier emplacement vide dans l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Trouve la première position vide dans l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_af2a87af1b4dfa9114aec1aab7be53c06}\label{inv_8c_af2a87af1b4dfa9114aec1aab7be53c06} 
 int {\bfseries chercher\+\_\+select} ()
+\item 
+\Hypertarget{inv_8c_ad45f9406a77e5b075c1631550db30342}\label{inv_8c_ad45f9406a77e5b075c1631550db30342} 
+int {\bfseries nb\+\_\+item\+\_\+inv} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
 \item 
 \Hypertarget{inv_8c_a855e0b4be75b6ba38027aebfd8992b46}\label{inv_8c_a855e0b4be75b6ba38027aebfd8992b46} 
 int {\bfseries calculate\+\_\+total\+\_\+content\+\_\+size} (int nb\+\_\+ligne, int taille, int decalage)
@@ -80,9 +83,12 @@ int {\bfseries calculate\+\_\+total\+\_\+content\+\_\+size} (int nb\+\_\+ligne, 
 int {\bfseries calcule\+\_\+pos\+\_\+inv} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}it)
 \item 
 int \mbox{\hyperlink{inv_8c_ac6178f19d4f45ce6c33b01927a4f5af2}{generate\+\_\+stat\+\_\+nb}} (int x, int type, int stat\+\_\+ameliorer, int rarete, int nb\+\_\+max\+\_\+nv)
-\begin{DoxyCompactList}\small\item\em Génère un nombre de statistique influencé par un niveau. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{inv_8c_a9fdb529559d32a1007edfa2b949e208b}{deb\+\_\+fusion}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item1, \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}item2)
-\begin{DoxyCompactList}\small\item\em Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Génère une statistique aléatoire pour un objet. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8c_aca2d0107f2b9c44d11bbad244e6ddce0}\label{inv_8c_aca2d0107f2b9c44d11bbad244e6ddce0} 
+void {\bfseries echange} (\mbox{\hyperlink{structuiImg}{ui\+Img}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}imag1, \mbox{\hyperlink{structuiImg}{ui\+Img}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}imag2)
+\item 
+void \mbox{\hyperlink{inv_8c_ad6b7ea17750fa8922043b7be5f57b507}{deb\+\_\+fusion}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}target, \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}drag)
+\begin{DoxyCompactList}\small\item\em Fusionne deux objets. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_abc698c467c5b58c4060b143d3b598207}\label{inv_8c_abc698c467c5b58c4060b143d3b598207} 
 void {\bfseries generation\+\_\+label} (char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}label)
 \item 
@@ -91,31 +97,29 @@ char \texorpdfstring{$\ast$}{*} {\bfseries item\+\_\+rondam} (int \texorpdfstrin
 \item 
 \Hypertarget{inv_8c_ae69f7d4289895ec184f8e0e91da01184}\label{inv_8c_ae69f7d4289895ec184f8e0e91da01184} 
 void {\bfseries drop\+\_\+item} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Dépose un objet de l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_ad6854581078399bf475b14d2163de464}\label{inv_8c_ad6854581078399bf475b14d2163de464} 
 void {\bfseries dest\+\_\+all\+\_\+inventaires} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Détruit tous les inventaires chargés. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a51ae8fea3be41cee1a5c4b91d07e4c83}\label{inv_8c_a51ae8fea3be41cee1a5c4b91d07e4c83} 
 void {\bfseries ajouter\+\_\+inventaire} (int nb\+\_\+inventaires,...)
 \item 
 \Hypertarget{inv_8c_a1e01243b1f6c12949e7b8caed36aaeb3}\label{inv_8c_a1e01243b1f6c12949e7b8caed36aaeb3} 
 void {\bfseries init\+\_\+liste\+\_\+inventaires} ()
 \item 
-\Hypertarget{inv_8c_aeafe82eb708527a402a147359c827a71}\label{inv_8c_aeafe82eb708527a402a147359c827a71} 
-void {\bfseries gestion\+\_\+inv} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}inventaire, int NB\+\_\+items, int id\+\_\+scroll, SDL\+\_\+\+Rect SDL\+\_\+\+Rect, int nb\+\_\+colonne, int nb\+\_\+ligne, int arrondis, int decalage\+\_\+bas, int decalage\+\_\+cote, int id\+\_\+back\+\_\+item)
-\item 
+void \mbox{\hyperlink{inv_8c_aeafe82eb708527a402a147359c827a71}{gestion\+\_\+inv}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}inventaire, int NB\+\_\+items, int id\+\_\+scroll, SDL\+\_\+\+Rect SDL\+\_\+\+Rect, int nb\+\_\+colonne, int nb\+\_\+ligne, int arrondis, int decalage\+\_\+bas, int decalage\+\_\+cote, int id\+\_\+back\+\_\+item)
+\begin{DoxyCompactList}\small\item\em Gère l\textquotesingle{}affichage et l\textquotesingle{}interaction avec l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a1ea6ab93c6420804878452be0ba4d25c}\label{inv_8c_a1ea6ab93c6420804878452be0ba4d25c} 
 void {\bfseries trier\+\_\+inventaire} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
 \item 
 void \mbox{\hyperlink{inv_8c_abbc013647564cd9a409be37f0536b209}{cercle\+\_\+graf}} (int x, int y, int rayon)
-\begin{DoxyCompactList}\small\item\em Dessine un cercle. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Dessine un cercle graphique. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{inv_8c_a6d2e701a83b8f2f09718652cc439d529}{rectangle\+\_\+arrondis}} (SDL\+\_\+\+Rect Rect, int radius, int r, int g, int b)
-\begin{DoxyCompactList}\small\item\em Dessine un rectangle avec des coins arrondis. \end{DoxyCompactList}\item 
-\Hypertarget{inv_8c_a955f832f72a60a8338fad249b6863504}\label{inv_8c_a955f832f72a60a8338fad249b6863504} 
-void {\bfseries racourcis\+\_\+create\+UI} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}it, int x, int y, int id\+\_\+tuille)
-\item 
+\begin{DoxyCompactList}\small\item\em Dessine un rectangle aux coins arrondis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8c_a955f832f72a60a8338fad249b6863504}{racourcis\+\_\+create\+UI}} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}it, int x, int y, int id\+\_\+tuille)
+\begin{DoxyCompactList}\small\item\em Crée une interface utilisateur pour un raccourci. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{inv_8c_a9d6e1d9329536054b04a4cc689cabafb}{aff\+\_\+inv\+\_\+graf}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
-\begin{DoxyCompactList}\small\item\em Affiche plusieurs rectangles arrondis en grille. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Affiche l\textquotesingle{}inventaire graphiquement. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_abe83f9d4797e7e8158552afed989dc45}\label{inv_8c_abe83f9d4797e7e8158552afed989dc45} 
 void {\bfseries aff\+\_\+heros} ()
 \item 
@@ -127,7 +131,7 @@ void {\bfseries aff\+\_\+background\+\_\+bordure} ()
 \item 
 \Hypertarget{inv_8c_abe5203fd0a196bcb624e0c58f2ecec1b}\label{inv_8c_abe5203fd0a196bcb624e0c58f2ecec1b} 
 void {\bfseries aff\+\_\+all\+\_\+inventaires} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Affiche tous les inventaires. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a97f21325eb5772576c307b2b1fcbd234}\label{inv_8c_a97f21325eb5772576c307b2b1fcbd234} 
 void {\bfseries img\+\_\+inv\+\_\+actualliser} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire)
 \item 
@@ -143,6 +147,9 @@ void {\bfseries img\+\_\+inv\+\_\+actualliser\+\_\+all} ()
 \Hypertarget{inv_8c_ab05ebc2778dcde851f8c758e7f207b09}\label{inv_8c_ab05ebc2778dcde851f8c758e7f207b09} 
 void {\bfseries aff\+\_\+item} (\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}it)
 \item 
+\Hypertarget{inv_8c_a0821f642c462df61a8af40a5fd71320d}\label{inv_8c_a0821f642c462df61a8af40a5fd71320d} 
+void {\bfseries aff\+\_\+inv\+\_\+items} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}invrntaire)
+\item 
 \Hypertarget{inv_8c_adef15ced6035a23b211a07831d4de857}\label{inv_8c_adef15ced6035a23b211a07831d4de857} 
 void {\bfseries aff\+\_\+stat\+\_\+item} (SDL\+\_\+\+Event event)
 \item 
@@ -152,49 +159,51 @@ void {\bfseries detecter\+\_\+click\+\_\+item} ()
 \Hypertarget{inv_8c_ae91d940cdab7831d75ce1c25cea5be26}\label{inv_8c_ae91d940cdab7831d75ce1c25cea5be26} 
 void {\bfseries lacher\+\_\+item} ()
 \item 
+\Hypertarget{inv_8c_aa1ed9c77c196275fb58fb89a3ab88ed7}\label{inv_8c_aa1ed9c77c196275fb58fb89a3ab88ed7} 
+void {\bfseries transvaser} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inv\+\_\+receveur, \mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inv\+\_\+source)
+\item 
 \Hypertarget{inv_8c_a78f61ac2dd03bcba8e09ca20cd7d68e3}\label{inv_8c_a78f61ac2dd03bcba8e09ca20cd7d68e3} 
 void {\bfseries load} ()
-\item 
-\Hypertarget{inv_8c_add628839759e405b20263980ee5fd3da}\label{inv_8c_add628839759e405b20263980ee5fd3da} 
-void {\bfseries gestion\+\_\+stat\+\_\+heros} (int index\+\_\+heros)
-\item 
-\Hypertarget{inv_8c_a146fd1e52d8051a948ce373dd7274ae7}\label{inv_8c_a146fd1e52d8051a948ce373dd7274ae7} 
-int {\bfseries boost\+\_\+gold} ()
+\begin{DoxyCompactList}\small\item\em Charge les ressources de l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8c_add628839759e405b20263980ee5fd3da}{gestion\+\_\+stat\+\_\+heros}} (int index\+\_\+heros)
+\begin{DoxyCompactList}\small\item\em Gère les statistiques d\textquotesingle{}un héros. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{inv_8c_a146fd1e52d8051a948ce373dd7274ae7}{boost\+\_\+gold}} ()
+\begin{DoxyCompactList}\small\item\em Applique un bonus d\textquotesingle{}or. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8c_af9bce2b414852fb23d34c4d27ae922ea}\label{inv_8c_af9bce2b414852fb23d34c4d27ae922ea} 
+void {\bfseries rearanger\+\_\+item\+\_\+heros} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inv\+\_\+receveur, \mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inv\+\_\+source)
 \item 
 \Hypertarget{inv_8c_a27411163409c50251f4bb1f8468b02a5}\label{inv_8c_a27411163409c50251f4bb1f8468b02a5} 
 \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} {\bfseries load\+\_\+item} (FILE \texorpdfstring{$\ast$}{*}f, int type)
 \item 
-\Hypertarget{inv_8c_a6c9868e5656ddd1e1504586bb77fa6a4}\label{inv_8c_a6c9868e5656ddd1e1504586bb77fa6a4} 
-void {\bfseries load\+\_\+inv} (const char \texorpdfstring{$\ast$}{*}nom\+\_\+fichier)
-\item 
-\Hypertarget{inv_8c_a66927071e676d5ff59384db3af61624b}\label{inv_8c_a66927071e676d5ff59384db3af61624b} 
-void {\bfseries save\+\_\+inv} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire, char \texorpdfstring{$\ast$}{*}save)
-\item 
+void \mbox{\hyperlink{inv_8c_a6c9868e5656ddd1e1504586bb77fa6a4}{load\+\_\+inv}} (const char \texorpdfstring{$\ast$}{*}nom\+\_\+fichier)
+\begin{DoxyCompactList}\small\item\em Charge un inventaire à partir d\textquotesingle{}un fichier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{inv_8c_a66927071e676d5ff59384db3af61624b}{save\+\_\+inv}} (\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}inventaire, char \texorpdfstring{$\ast$}{*}save)
+\begin{DoxyCompactList}\small\item\em Sauvegarde un inventaire dans un fichier. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a8b24d6b1de53ea509efd9299876444f1}\label{inv_8c_a8b24d6b1de53ea509efd9299876444f1} 
 void {\bfseries init\+\_\+inv\+\_\+main} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Initialise l\textquotesingle{}inventaire principal. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8c_a58228e5887bbfc3c06f4e080c3f21475}\label{inv_8c_a58228e5887bbfc3c06f4e080c3f21475} 
+void {\bfseries actualiser} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}inventaire et son affichage. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8c_a86570da23d20d3d803f75dcee10e8678}\label{inv_8c_a86570da23d20d3d803f75dcee10e8678} 
+void {\bfseries make\+Save\+Inventaire} ()
+\begin{DoxyCompactList}\small\item\em Effectue une sauvegarde de l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
+\Hypertarget{inv_8c_af8176e6026b6fec6a55b7fa15283fa51}\label{inv_8c_af8176e6026b6fec6a55b7fa15283fa51} 
+void {\bfseries refresh\+\_\+inv} ()
+\begin{DoxyCompactList}\small\item\em Rafraîchit l\textquotesingle{}affichage de l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{inv_8c_a1aea9793363cbba5a9062f8c7c2e5bb7}{handle\+\_\+inv\+\_\+event}} (SDL\+\_\+\+Event event)
-\begin{DoxyCompactList}\small\item\em Gère les événements de défilement. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gère les événements liés à l\textquotesingle{}inventaire. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a6485a7f435a20095cd7b4119557459bf}\label{inv_8c_a6485a7f435a20095cd7b4119557459bf} 
 void {\bfseries draw\+\_\+rect\+\_\+inv} ()
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Dessine le cadre de l\textquotesingle{}inventaire. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{inv_8c_ac84670449bca0eab3e1bab4e75e51ce0}\label{inv_8c_ac84670449bca0eab3e1bab4e75e51ce0} 
 const int {\bfseries proportion\+\_\+item\+\_\+carrer\+\_\+prio} = 0
 \item 
-\Hypertarget{inv_8c_a5e6ce0dd58078611570510dc4b8d81f3}\label{inv_8c_a5e6ce0dd58078611570510dc4b8d81f3} 
-const int {\bfseries WINDOW\+\_\+\+WIDTH} = 800
-\item 
-\Hypertarget{inv_8c_ab76d138fa589df9a65fc05eb3bd56073}\label{inv_8c_ab76d138fa589df9a65fc05eb3bd56073} 
-const int {\bfseries WINDOW\+\_\+\+HEIGHT} = 500
-\item 
 \Hypertarget{inv_8c_aa1e3558eaf19f1c993ebce8170ea0d19}\label{inv_8c_aa1e3558eaf19f1c993ebce8170ea0d19} 
 const int {\bfseries SCROLLBAR\+\_\+\+WIDTH} = 20
-\item 
-\Hypertarget{inv_8c_a3262dbc59f76408cd29b3227d2cda918}\label{inv_8c_a3262dbc59f76408cd29b3227d2cda918} 
-const int {\bfseries VISIBLE\+\_\+\+AREA\+\_\+\+HEIGHT} = 500
 \item 
 \Hypertarget{inv_8c_a5e958c0c2d84556d7535c61fc52cb39c}\label{inv_8c_a5e958c0c2d84556d7535c61fc52cb39c} 
 const int {\bfseries NB\+\_\+\+COLLONE} = 4
@@ -202,14 +211,14 @@ const int {\bfseries NB\+\_\+\+COLLONE} = 4
 \Hypertarget{inv_8c_a3729b386b78f801a134c792dab56ddfa}\label{inv_8c_a3729b386b78f801a134c792dab56ddfa} 
 const int {\bfseries NB\+\_\+\+LIGNE} = 25
 \item 
-\Hypertarget{inv_8c_ad266ae04b2743fa3dce356bf62acfee1}\label{inv_8c_ad266ae04b2743fa3dce356bf62acfee1} 
-int {\bfseries ITEM\+\_\+\+SIZE} = 64
-\item 
 \Hypertarget{inv_8c_a157563f84f97e4fcfd8e531740a6ec65}\label{inv_8c_a157563f84f97e4fcfd8e531740a6ec65} 
-const int {\bfseries DEPLACEMENT} = 20
+const int {\bfseries DEPLACEMENT} = 5
 \item 
 \Hypertarget{inv_8c_a0a32253eb1d734a39e3b127a83f8a93f}\label{inv_8c_a0a32253eb1d734a39e3b127a83f8a93f} 
 const int {\bfseries ARRONDIS} = 20
+\item 
+\Hypertarget{inv_8c_a5998903ba881309225710b8908091e7e}\label{inv_8c_a5998903ba881309225710b8908091e7e} 
+int {\bfseries reactualiser} = 1
 \item 
 \Hypertarget{inv_8c_a4ab5380be52bad9605ad2c3f22fe8ac9}\label{inv_8c_a4ab5380be52bad9605ad2c3f22fe8ac9} 
 \mbox{\hyperlink{structliste__inventaires}{liste\+\_\+inventaires}} \texorpdfstring{$\ast$}{*} {\bfseries list\+\_\+inv} = NULL
@@ -222,10 +231,10 @@ int {\bfseries conteur\+\_\+item\+\_\+ref\+\_\+img} = 0
 \item 
 \Hypertarget{inv_8c_a2e9d7a95de79011bd010dcc3f9367501}\label{inv_8c_a2e9d7a95de79011bd010dcc3f9367501} 
 int {\bfseries stat\+\_\+item\+\_\+degat}
-\item 
+\begin{DoxyCompactList}\small\item\em Variable globale représentant les dégâts des objets. \end{DoxyCompactList}\item 
 \Hypertarget{inv_8c_a22ec1b6e890d3cb651793842bf318821}\label{inv_8c_a22ec1b6e890d3cb651793842bf318821} 
 int {\bfseries stat\+\_\+item\+\_\+temps}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Variable globale représentant le temps des objets. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -242,27 +251,26 @@ Implémentation des fonctions de gestion de l\textquotesingle{}inventaire.
 
 
 
-Affiche plusieurs rectangles arrondis en grille. 
+Affiche l\textquotesingle{}inventaire graphiquement. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em p\+Renderer} & Le renderer SDL sur lequel dessiner. \\
-\hline
-{\em scrool\+\_\+pos} & La position de défilement. \\
-\hline
-{\em cof\+\_\+scrollbar\+\_\+window} & Le coefficient de vitesse de défilement. \\
-\hline
-{\em nb\+\_\+collone} & Le nombre de colonnes. \\
-\hline
-{\em nb\+\_\+ligne} & Le nombre de lignes. \\
-\hline
-{\em taille} & La taille de chaque rectangle. \\
-\hline
-{\em decalage} & L\textquotesingle{}espace entre les rectangles. \\
-\hline
-{\em arrondis} & Le rayon des coins arrondis. \\
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire. \\
 \hline
 \end{DoxyParams}
+\Hypertarget{inv_8c_a146fd1e52d8051a948ce373dd7274ae7}\label{inv_8c_a146fd1e52d8051a948ce373dd7274ae7} 
+\index{inv.c@{inv.c}!boost\_gold@{boost\_gold}}
+\index{boost\_gold@{boost\_gold}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{boost\_gold()}{boost\_gold()}}
+{\footnotesize\ttfamily int boost\+\_\+gold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Applique un bonus d\textquotesingle{}or. 
+
+\begin{DoxyReturn}{Returns}
+Valeur du bonus. 
+\end{DoxyReturn}
 \Hypertarget{inv_8c_abbc013647564cd9a409be37f0536b209}\label{inv_8c_abbc013647564cd9a409be37f0536b209} 
 \index{inv.c@{inv.c}!cercle\_graf@{cercle\_graf}}
 \index{cercle\_graf@{cercle\_graf}!inv.c@{inv.c}}
@@ -271,20 +279,18 @@ Affiche plusieurs rectangles arrondis en grille.
 
 
 
-Dessine un cercle. 
+Dessine un cercle graphique. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em renderer} & Le renderer SDL sur lequel dessiner. \\
+{\em x} & Coordonnée X du centre. \\
 \hline
-{\em x} & La coordonnée x du centre du cercle. \\
+{\em y} & Coordonnée Y du centre. \\
 \hline
-{\em y} & La coordonnée y du centre du cercle. \\
-\hline
-{\em rayon} & Le rayon du cercle. \\
+{\em rayon} & Rayon du cercle. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{inv_8c_a9fdb529559d32a1007edfa2b949e208b}\label{inv_8c_a9fdb529559d32a1007edfa2b949e208b} 
+\Hypertarget{inv_8c_ad6b7ea17750fa8922043b7be5f57b507}\label{inv_8c_ad6b7ea17750fa8922043b7be5f57b507} 
 \index{inv.c@{inv.c}!deb\_fusion@{deb\_fusion}}
 \index{deb\_fusion@{deb\_fusion}!inv.c@{inv.c}}
 \doxysubsubsection{\texorpdfstring{deb\_fusion()}{deb\_fusion()}}
@@ -292,13 +298,13 @@ Dessine un cercle.
 
 
 
-Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique. 
+Fusionne deux objets. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em item1} & Premier item à fusionner. \\
+{\em item1} & Premier objet. \\
 \hline
-{\em item2} & Deuxième item à fusionner. \\
+{\em item2} & Deuxième objet. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{inv_8c_a0539356cfaad795a5997fa5929f5bd44}\label{inv_8c_a0539356cfaad795a5997fa5929f5bd44} 
@@ -309,11 +315,11 @@ Fusionne deux items en augmentant leur rareté et en générant une nouvelle sta
 
 
 
-Détruit un inventaire et libère la mémoire allouée. 
+Détruit l\textquotesingle{}inventaire et libère la mémoire associée. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em inventaire} & Pointeur vers le pointeur de l\textquotesingle{}inventaire à détruire. \\
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{inv_8c_a4ef3f326c61db3cf2484f7706d4dfa3c}\label{inv_8c_a4ef3f326c61db3cf2484f7706d4dfa3c} 
@@ -339,17 +345,17 @@ Détruit un item et libère la mémoire allouée.
 
 
 
-Vérifie si deux items peuvent être fusionnés. 
+Vérifie si deux objets peuvent être fusionnés. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em item1} & Pointeur vers le premier item. \\
+{\em item1} & Premier objet. \\
 \hline
-{\em item2} & Pointeur vers le second item. \\
+{\em item2} & Deuxième objet. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int Code de retour indiquant si la fusion est possible. 
+1 si la fusion est possible, 0 sinon. 
 \end{DoxyReturn}
 \Hypertarget{inv_8c_ac6178f19d4f45ce6c33b01927a4f5af2}\label{inv_8c_ac6178f19d4f45ce6c33b01927a4f5af2} 
 \index{inv.c@{inv.c}!generate\_stat\_nb@{generate\_stat\_nb}}
@@ -359,24 +365,72 @@ int Code de retour indiquant si la fusion est possible.
 
 
 
-Génère un nombre de statistique influencé par un niveau. 
+Génère une statistique aléatoire pour un objet. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em x} & Niveau actuel. \\
+{\em x} & Valeur de base. \\
 \hline
-{\em type} & Type de statistique (0 = or, 1 = degat, 2 = vit\+\_\+att). \\
+{\em type} & Type de statistique. \\
 \hline
-{\em stat\+\_\+ameliorer} & Statistique à améliorer. \\
+{\em stat\+\_\+ameliorer} & Niveau d\textquotesingle{}amélioration. \\
 \hline
-{\em rarete} & Rareté de l\textquotesingle{}item. \\
+{\em rarete} & Niveau de rareté. \\
 \hline
-{\em nb\+\_\+max\+\_\+nv} & Niveau maximal. \\
+{\em nb\+\_\+max\+\_\+nv} & Nombre maximum de niveaux. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int Nouvelle valeur de la statistique. 
+Valeur générée pour la statistique. 
 \end{DoxyReturn}
+\Hypertarget{inv_8c_aeafe82eb708527a402a147359c827a71}\label{inv_8c_aeafe82eb708527a402a147359c827a71} 
+\index{inv.c@{inv.c}!gestion\_inv@{gestion\_inv}}
+\index{gestion\_inv@{gestion\_inv}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{gestion\_inv()}{gestion\_inv()}}
+{\footnotesize\ttfamily void gestion\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{inventaire,  }\item[{int}]{NB\+\_\+items,  }\item[{int}]{scroll\+\_\+id,  }\item[{SDL\+\_\+\+Rect}]{SDL\+\_\+\+Rect,  }\item[{int}]{nb\+\_\+collone,  }\item[{int}]{nb\+\_\+ligne,  }\item[{int}]{arrondis,  }\item[{int}]{decalage\+\_\+bas,  }\item[{int}]{decalage\+\_\+cote,  }\item[{int}]{id\+\_\+back\+\_\+item }\end{DoxyParamCaption})}
+
+
+
+Gère l\textquotesingle{}affichage et l\textquotesingle{}interaction avec l\textquotesingle{}inventaire. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire. \\
+\hline
+{\em NB\+\_\+items} & Nombre total d\textquotesingle{}objets dans l\textquotesingle{}inventaire. \\
+\hline
+{\em scroll\+\_\+id} & Identifiant du défilement. \\
+\hline
+{\em SDL\+\_\+\+Rect} & Rectangle SDL définissant la position et la taille de l\textquotesingle{}affichage. \\
+\hline
+{\em nb\+\_\+collone} & Nombre de colonnes de l\textquotesingle{}inventaire. \\
+\hline
+{\em nb\+\_\+ligne} & Nombre de lignes de l\textquotesingle{}inventaire. \\
+\hline
+{\em arrondis} & Rayon d\textquotesingle{}arrondi des bords de l\textquotesingle{}affichage. \\
+\hline
+{\em decalage\+\_\+bas} & Décalage vers le bas pour l\textquotesingle{}affichage. \\
+\hline
+{\em decalage\+\_\+cote} & Décalage latéral pour l\textquotesingle{}affichage. \\
+\hline
+{\em id\+\_\+back\+\_\+item} & Identifiant de l\textquotesingle{}arrière-\/plan des objets. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{inv_8c_add628839759e405b20263980ee5fd3da}\label{inv_8c_add628839759e405b20263980ee5fd3da} 
+\index{inv.c@{inv.c}!gestion\_stat\_heros@{gestion\_stat\_heros}}
+\index{gestion\_stat\_heros@{gestion\_stat\_heros}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{gestion\_stat\_heros()}{gestion\_stat\_heros()}}
+{\footnotesize\ttfamily void gestion\+\_\+stat\+\_\+heros (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+heros }\end{DoxyParamCaption})}
+
+
+
+Gère les statistiques d\textquotesingle{}un héros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index\+\_\+heros} & Index du héros concerné. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{inv_8c_a1aea9793363cbba5a9062f8c7c2e5bb7}\label{inv_8c_a1aea9793363cbba5a9062f8c7c2e5bb7} 
 \index{inv.c@{inv.c}!handle\_inv\_event@{handle\_inv\_event}}
 \index{handle\_inv\_event@{handle\_inv\_event}!inv.c@{inv.c}}
@@ -385,17 +439,11 @@ int Nouvelle valeur de la statistique.
 
 
 
-Gère les événements de défilement. 
+Gère les événements liés à l\textquotesingle{}inventaire. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em event} & L\textquotesingle{}événement SDL à gérer. \\
-\hline
-{\em scrollbar\+\_\+position} & La position de la barre de défilement. \\
-\hline
-{\em scrollbar\+\_\+speed} & La vitesse de déplacement de la barre de défilement. \\
-\hline
-{\em scrollbar\+\_\+max\+\_\+position} & La position maximale de la barre de défilement. \\
+{\em event} & Événement SDL capturé. \\
 \hline
 \end{DoxyParams}
 \Hypertarget{inv_8c_adaf44a36ef675aa8571c1211b292c805}\label{inv_8c_adaf44a36ef675aa8571c1211b292c805} 
@@ -413,6 +461,21 @@ Initialise l\textquotesingle{}inventaire.
 {\em inventaire} & Pointeur vers l\textquotesingle{}inventaire à initialiser. \\
 \hline
 \end{DoxyParams}
+\Hypertarget{inv_8c_a6c9868e5656ddd1e1504586bb77fa6a4}\label{inv_8c_a6c9868e5656ddd1e1504586bb77fa6a4} 
+\index{inv.c@{inv.c}!load\_inv@{load\_inv}}
+\index{load\_inv@{load\_inv}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{load\_inv()}{load\_inv()}}
+{\footnotesize\ttfamily void load\+\_\+inv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{nom\+\_\+fichier }\end{DoxyParamCaption})}
+
+
+
+Charge un inventaire à partir d\textquotesingle{}un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nom\+\_\+fichier} & Nom du fichier à charger. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{inv_8c_a1efd18ab74c9d51e41bbf07fb282772f}\label{inv_8c_a1efd18ab74c9d51e41bbf07fb282772f} 
 \index{inv.c@{inv.c}!prem\_vide@{prem\_vide}}
 \index{prem\_vide@{prem\_vide}!inv.c@{inv.c}}
@@ -421,16 +484,37 @@ Initialise l\textquotesingle{}inventaire.
 
 
 
-Trouve le premier emplacement vide dans l\textquotesingle{}inventaire. 
+Trouve la première position vide dans l\textquotesingle{}inventaire. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire à vérifier. \\
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-int L\textquotesingle{}indice du premier emplacement vide, ou -\/1 si l\textquotesingle{}inventaire est plein. 
+Index de la première position vide, -\/1 si l\textquotesingle{}inventaire est plein. 
 \end{DoxyReturn}
+\Hypertarget{inv_8c_a955f832f72a60a8338fad249b6863504}\label{inv_8c_a955f832f72a60a8338fad249b6863504} 
+\index{inv.c@{inv.c}!racourcis\_createUI@{racourcis\_createUI}}
+\index{racourcis\_createUI@{racourcis\_createUI}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{racourcis\_createUI()}{racourcis\_createUI()}}
+{\footnotesize\ttfamily void racourcis\+\_\+create\+UI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{it,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{id\+\_\+tuille }\end{DoxyParamCaption})}
+
+
+
+Crée une interface utilisateur pour un raccourci. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em it} & Pointeur vers l\textquotesingle{}objet associé. \\
+\hline
+{\em x} & Position X. \\
+\hline
+{\em y} & Position Y. \\
+\hline
+{\em id\+\_\+tuille} & Identifiant de la tuile associée. \\
+\hline
+\end{DoxyParams}
 \Hypertarget{inv_8c_a6d2e701a83b8f2f09718652cc439d529}\label{inv_8c_a6d2e701a83b8f2f09718652cc439d529} 
 \index{inv.c@{inv.c}!rectangle\_arrondis@{rectangle\_arrondis}}
 \index{rectangle\_arrondis@{rectangle\_arrondis}!inv.c@{inv.c}}
@@ -439,26 +523,35 @@ int L\textquotesingle{}indice du premier emplacement vide, ou -\/1 si l\textquot
 
 
 
-Dessine un rectangle avec des coins arrondis. 
+Dessine un rectangle aux coins arrondis. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em renderer} & Le renderer SDL sur lequel dessiner. \\
+{\em SDL\+\_\+\+Rect} & Rectangle SDL définissant la zone de dessin. \\
 \hline
-{\em x} & La coordonnée x du coin supérieur gauche du rectangle. \\
+{\em radius} & Rayon des coins arrondis. \\
 \hline
-{\em y} & La coordonnée y du coin supérieur gauche du rectangle. \\
+{\em r} & Valeur de la couleur rouge. \\
 \hline
-{\em w} & La largeur du rectangle. \\
+{\em g} & Valeur de la couleur verte. \\
 \hline
-{\em h} & La hauteur du rectangle. \\
+{\em b} & Valeur de la couleur bleue. \\
 \hline
-{\em radius} & Le rayon des coins arrondis. \\
+\end{DoxyParams}
+\Hypertarget{inv_8c_a66927071e676d5ff59384db3af61624b}\label{inv_8c_a66927071e676d5ff59384db3af61624b} 
+\index{inv.c@{inv.c}!save\_inv@{save\_inv}}
+\index{save\_inv@{save\_inv}!inv.c@{inv.c}}
+\doxysubsubsection{\texorpdfstring{save\_inv()}{save\_inv()}}
+{\footnotesize\ttfamily void save\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}}]{inventaire,  }\item[{char \texorpdfstring{$\ast$}{*}}]{save }\end{DoxyParamCaption})}
+
+
+
+Sauvegarde un inventaire dans un fichier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventaire} & Pointeur vers l\textquotesingle{}inventaire à sauvegarder. \\
 \hline
-{\em r} & La composante rouge de la couleur du rectangle. \\
-\hline
-{\em g} & La composante verte de la couleur du rectangle. \\
-\hline
-{\em b} & La composante bleue de la couleur du rectangle. \\
+{\em save} & Nom du fichier de sauvegarde. \\
 \hline
 \end{DoxyParams}

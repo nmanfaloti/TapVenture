@@ -1,0 +1,38 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Analyse et conception}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Description du projet}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{Fonctionnalit\351s}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{Direction artistique}{section.2}% 5
+\BOOKMARK [1][-]{section.3}{Gestion du projet}{}% 6
+\BOOKMARK [2][-]{subsection.3.1}{Planification}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.2}{Organisation du travail}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.3}{Outils de travail}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Realisation}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Gestion des textes et de la traduction}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.2}{Gestion de l'interface utilisateur}{section.4}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Structure de donn\351es}{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Fonctions de gestion de l'interface}{subsection.4.2}% 14
+\BOOKMARK [2][-]{subsection.4.3}{Gestion de l'inventaire et du scroll}{section.4}% 15
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Impl\351mentation du syst\350me de scroll}{subsection.4.3}% 16
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Gestion de l'inventaire}{subsection.4.3}% 17
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Int\351gration et synchronisation des modules}{subsection.4.3}% 18
+\BOOKMARK [2][-]{subsection.4.4}{Gestion des sauvegardes}{section.4}% 19
+\BOOKMARK [3][-]{subsubsection.4.4.1}{Type de fichier}{subsection.4.4}% 20
+\BOOKMARK [3][-]{subsubsection.4.4.2}{Repartition des donn\351es}{subsection.4.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.4.3}{Structure des fichiers}{subsection.4.4}% 22
+\BOOKMARK [3][-]{subsubsection.4.4.4}{Fonctions de sauvegarde}{subsection.4.4}% 23
+\BOOKMARK [2][-]{subsection.4.5}{Syst\350me de combat et de challenge}{section.4}% 24
+\BOOKMARK [3][-]{subsubsection.4.5.1}{Structure de donn\351es}{subsection.4.5}% 25
+\BOOKMARK [3][-]{subsubsection.4.5.2}{Progression des monstres}{subsection.4.5}% 26
+\BOOKMARK [3][-]{subsubsection.4.5.3}{Animation de d\351g\342ts}{subsection.4.5}% 27
+\BOOKMARK [3][-]{subsubsection.4.5.4}{Fonctions du syst\350me de combat}{subsection.4.5}% 28
+\BOOKMARK [3][-]{subsubsection.4.5.5}{Syst\350me de challenge}{subsection.4.5}% 29
+\BOOKMARK [2][-]{subsection.4.6}{Les h\351ros et jeux hors ligne}{section.4}% 30
+\BOOKMARK [3][-]{subsubsection.4.6.1}{Structure des h\351ros}{subsection.4.6}% 31
+\BOOKMARK [3][-]{subsubsection.4.6.2}{Fonctions des h\351ros}{subsection.4.6}% 32
+\BOOKMARK [3][-]{subsubsection.4.6.3}{Gestion du jeu hors ligne}{subsection.4.6}% 33
+\BOOKMARK [2][-]{subsection.4.7}{Syst\350me de prestige}{section.4}% 34
+\BOOKMARK [3][-]{subsubsection.4.7.1}{Structure de donn\351es}{subsection.4.7}% 35
+\BOOKMARK [3][-]{subsubsection.4.7.2}{Fonction du syst\350me de prestige}{subsection.4.7}% 36
+\BOOKMARK [1][-]{section.5}{Conclusion}{}% 37
+\BOOKMARK [1][-]{section.6}{Annexe}{}% 38
