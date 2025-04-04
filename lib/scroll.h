@@ -9,6 +9,8 @@
 /**
  * @struct scroll_inf
  * @brief Structure représentant les informations d'un élément de défilement.
+ * @author Logan Evenisse
+ * @date 16 mars 2025
  */
 typedef struct scroll_inf_s {
    SDL_Rect zone_interaction; /**< Zone d'interaction avec la barre de défilement. */
