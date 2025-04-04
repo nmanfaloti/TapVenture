@@ -29,7 +29,6 @@ int main() {
 
     initLevel(level.monstre);
     initShop();
-    init_inv_main();
     initLang("English");
     initPage();
     initMusic();

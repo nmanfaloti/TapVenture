@@ -14,6 +14,7 @@
 #include "../lib/chaine.h"
 #include "../lib/challenge.h"
 #include "../lib/prestige.h"
+#include "../lib/inv.h"
 
 
 
@@ -190,6 +191,7 @@ int makeSave(){
     makeSavePlayer("save/player.json");
     makeSaveHeros("save/heros.json");
     makeSavePrestige("save/prestige.json");
+    makeSaveInventaire();
     return 0;
 }
 

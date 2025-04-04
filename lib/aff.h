@@ -178,5 +178,8 @@
   * @param text Chaîne de caractères représentant le nouveau contenu du texte.
   */
  void setUiText(uiTxt *txt, char *text);
+
+
+ extern void init_inv_page();
  
  #endif // AFF_H

@@ -8,6 +8,7 @@
 #include "../lib/ui.h"
 #include "../lib/challenge.h"
 #include "../lib/audio.h"
+#include "../lib/inv.h"
 
 int mouseX = 0;
 int mouseY = 0;
