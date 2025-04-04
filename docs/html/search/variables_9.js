@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['label_0',['label',['../structuiTxt__s.html#a8de48f1feba5bd11d4154e1907ba1c0c',1,'uiTxt_s::label'],['../structuiImg__s.html#af34783ffa0ddb2ef03519f6219bbd6e7',1,'uiImg_s::label'],['../structButtonImg.html#ab88cc76467305d35e7a0a36599b04010',1,'ButtonImg::label'],['../structlevelInfo.html#a58de2b4e77ad880a468f64b972142e97',1,'levelInfo::label'],['../structitem__t.html#a12470869715bf6625cfaa1ee515714cd',1,'item_t::label']]],
+  ['label_0',['label',['../structuiTxt__s.html#a8de48f1feba5bd11d4154e1907ba1c0c',1,'uiTxt_s::label'],['../structuiImg__s.html#af34783ffa0ddb2ef03519f6219bbd6e7',1,'uiImg_s::label'],['../structButtonImg.html#ab88cc76467305d35e7a0a36599b04010',1,'ButtonImg::label'],['../structlevelInfo.html#a58de2b4e77ad880a468f64b972142e97',1,'levelInfo::label'],['../structitem__t.html#a12470869715bf6625cfaa1ee515714cd',1,'item_t::label'],['../structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84',1,'scroll_inf_s::label']]],
   ['language_1',['Language',['../structLang.html#ad2cce1cdad82996a75169811218aa905',1,'Lang']]],
   ['languageact_2',['LanguageAct',['../lang_8h.html#a887b8b3b903aadd41047b37807c55e56',1,'lang.c']]],
   ['lastattack_3',['lastAttack',['../structhero.html#a82587de15c83910f5ba441b11bc5c9f3',1,'hero']]],

@@ -5,7 +5,7 @@ var button_8h =
     [ "ListeButton", "structListeButton.html", "structListeButton" ],
     [ "ListeButtonImg", "structListeButtonImg.html", "structListeButtonImg" ],
     [ "ButtonHandle", "button_8h.html#a5cb861d83899ac480edaa66fb8654a66", null ],
-    [ "checkBoutton", "button_8h.html#ae9f8c4e78f4f90f4a8e045b2d44e331c", null ],
+    [ "checkButton", "button_8h.html#a557a60e91ba3f67a13dd75d4e8eb0037", null ],
     [ "destroyAllButtonFromPage", "button_8h.html#a4acb440ebf49861acbec1cde19bea400", null ],
     [ "destroyAllButtonImgFromPage", "button_8h.html#afe468db096a60593384bcd8ef30b583d", null ],
     [ "drawButton", "button_8h.html#ade880d1633125473ee0059f78bc60df7", null ],

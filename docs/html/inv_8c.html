@@ -191,14 +191,14 @@ Functions</h2></td></tr>
 <tr class="memitem:a3ac66c8652db3d0ef746eb600d753d16"><td class="memItemLeft" align="right" valign="top"><a id="a3ac66c8652db3d0ef746eb600d753d16" name="a3ac66c8652db3d0ef746eb600d753d16"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_rect</b> (SDL_Rect rect)</td></tr>
 <tr class="separator:a3ac66c8652db3d0ef746eb600d753d16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee3205ab40a984a909ebcf6111992b36"><td class="memItemLeft" align="right" valign="top"><a id="aee3205ab40a984a909ebcf6111992b36" name="aee3205ab40a984a909ebcf6111992b36"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>existe_item</b> (<a class="el" href="structitem__t.html">item_t</a> *it)</td></tr>
-<tr class="separator:aee3205ab40a984a909ebcf6111992b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c52008811c2522db4218c159e98d341"><td class="memItemLeft" align="right" valign="top"><a id="a0c52008811c2522db4218c159e98d341" name="a0c52008811c2522db4218c159e98d341"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>existe_item</b> (const <a class="el" href="structitem__t.html">item_t</a> *it)</td></tr>
+<tr class="separator:a0c52008811c2522db4218c159e98d341"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe7910be60ea1b7db664b82e0072392f"><td class="memItemLeft" align="right" valign="top"><a id="afe7910be60ea1b7db664b82e0072392f" name="afe7910be60ea1b7db664b82e0072392f"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>comparer_items</b> (const void *a, const void *b)</td></tr>
 <tr class="separator:afe7910be60ea1b7db664b82e0072392f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6229776e3fc981c2f1295d008e94963"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#ae6229776e3fc981c2f1295d008e94963">droit_fusion</a> (<a class="el" href="structitem__t.html">item_t</a> *item1, <a class="el" href="structitem__t.html">item_t</a> *item2)</td></tr>
-<tr class="memdesc:ae6229776e3fc981c2f1295d008e94963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si deux items peuvent être fusionnés.  <br /></td></tr>
+<tr class="memdesc:ae6229776e3fc981c2f1295d008e94963"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie si deux objets peuvent être fusionnés.  <br /></td></tr>
 <tr class="separator:ae6229776e3fc981c2f1295d008e94963"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64ac735591e2e6692cbb39b22b1307a2"><td class="memItemLeft" align="right" valign="top"><a id="a64ac735591e2e6692cbb39b22b1307a2" name="a64ac735591e2e6692cbb39b22b1307a2"></a>
 <a class="el" href="structitem__t.html">item_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>generation_item</b> (char *name, char *nom_fichier)</td></tr>
@@ -207,7 +207,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>comparer_items</b> (co
 <tr class="memdesc:a4ef3f326c61db3cf2484f7706d4dfa3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Détruit un item et libère la mémoire allouée.  <br /></td></tr>
 <tr class="separator:a4ef3f326c61db3cf2484f7706d4dfa3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0539356cfaad795a5997fa5929f5bd44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a0539356cfaad795a5997fa5929f5bd44">dest_inv</a> (<a class="el" href="structinv.html">inv</a> **inventaire)</td></tr>
-<tr class="memdesc:a0539356cfaad795a5997fa5929f5bd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Détruit un inventaire et libère la mémoire allouée.  <br /></td></tr>
+<tr class="memdesc:a0539356cfaad795a5997fa5929f5bd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Détruit l'inventaire et libère la mémoire associée.  <br /></td></tr>
 <tr class="separator:a0539356cfaad795a5997fa5929f5bd44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adaf44a36ef675aa8571c1211b292c805"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#adaf44a36ef675aa8571c1211b292c805">init_inv</a> (<a class="el" href="structinv.html">inv</a> *inventaire)</td></tr>
 <tr class="memdesc:adaf44a36ef675aa8571c1211b292c805"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'inventaire.  <br /></td></tr>
@@ -219,11 +219,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>chercher_nom_fichier</
 void&#160;</td><td class="memItemRight" valign="bottom"><b>insert_inf_aff</b> (<a class="el" href="structinv.html">inv</a> *inventaire, SDL_Rect SDL_Rect, int nb_collone, int nb_ligne, int nb_element, int arrondis, int decalage_bas, int decalage_cote)</td></tr>
 <tr class="separator:ac65127596700a7d74ae2694bebdf8cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1efd18ab74c9d51e41bbf07fb282772f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a1efd18ab74c9d51e41bbf07fb282772f">prem_vide</a> (<a class="el" href="structinv.html">inv</a> *inventaire)</td></tr>
-<tr class="memdesc:a1efd18ab74c9d51e41bbf07fb282772f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trouve le premier emplacement vide dans l'inventaire.  <br /></td></tr>
+<tr class="memdesc:a1efd18ab74c9d51e41bbf07fb282772f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trouve la première position vide dans l'inventaire.  <br /></td></tr>
 <tr class="separator:a1efd18ab74c9d51e41bbf07fb282772f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2a87af1b4dfa9114aec1aab7be53c06"><td class="memItemLeft" align="right" valign="top"><a id="af2a87af1b4dfa9114aec1aab7be53c06" name="af2a87af1b4dfa9114aec1aab7be53c06"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>chercher_select</b> ()</td></tr>
 <tr class="separator:af2a87af1b4dfa9114aec1aab7be53c06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad45f9406a77e5b075c1631550db30342"><td class="memItemLeft" align="right" valign="top"><a id="ad45f9406a77e5b075c1631550db30342" name="ad45f9406a77e5b075c1631550db30342"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_item_inv</b> (<a class="el" href="structinv.html">inv</a> *inventaire)</td></tr>
+<tr class="separator:ad45f9406a77e5b075c1631550db30342"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a855e0b4be75b6ba38027aebfd8992b46"><td class="memItemLeft" align="right" valign="top"><a id="a855e0b4be75b6ba38027aebfd8992b46" name="a855e0b4be75b6ba38027aebfd8992b46"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>calculate_total_content_size</b> (int nb_ligne, int taille, int decalage)</td></tr>
 <tr class="separator:a855e0b4be75b6ba38027aebfd8992b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -231,11 +234,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>calculate_total_conten
 int&#160;</td><td class="memItemRight" valign="bottom"><b>calcule_pos_inv</b> (<a class="el" href="structitem__t.html">item_t</a> **it)</td></tr>
 <tr class="separator:a32d4b3b9c1d02ad79809074f349e83b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6178f19d4f45ce6c33b01927a4f5af2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#ac6178f19d4f45ce6c33b01927a4f5af2">generate_stat_nb</a> (int x, int type, int stat_ameliorer, int rarete, int nb_max_nv)</td></tr>
-<tr class="memdesc:ac6178f19d4f45ce6c33b01927a4f5af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un nombre de statistique influencé par un niveau.  <br /></td></tr>
+<tr class="memdesc:ac6178f19d4f45ce6c33b01927a4f5af2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère une statistique aléatoire pour un objet.  <br /></td></tr>
 <tr class="separator:ac6178f19d4f45ce6c33b01927a4f5af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fdb529559d32a1007edfa2b949e208b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a9fdb529559d32a1007edfa2b949e208b">deb_fusion</a> (<a class="el" href="structitem__t.html">item_t</a> *item1, <a class="el" href="structitem__t.html">item_t</a> *item2)</td></tr>
-<tr class="memdesc:a9fdb529559d32a1007edfa2b949e208b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique.  <br /></td></tr>
-<tr class="separator:a9fdb529559d32a1007edfa2b949e208b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2d0107f2b9c44d11bbad244e6ddce0"><td class="memItemLeft" align="right" valign="top"><a id="aca2d0107f2b9c44d11bbad244e6ddce0" name="aca2d0107f2b9c44d11bbad244e6ddce0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>echange</b> (<a class="el" href="structuiImg.html">uiImg</a> **imag1, <a class="el" href="structuiImg.html">uiImg</a> **imag2)</td></tr>
+<tr class="separator:aca2d0107f2b9c44d11bbad244e6ddce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b7ea17750fa8922043b7be5f57b507"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#ad6b7ea17750fa8922043b7be5f57b507">deb_fusion</a> (<a class="el" href="structitem__t.html">item_t</a> *target, <a class="el" href="structitem__t.html">item_t</a> *drag)</td></tr>
+<tr class="memdesc:ad6b7ea17750fa8922043b7be5f57b507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fusionne deux objets.  <br /></td></tr>
+<tr class="separator:ad6b7ea17750fa8922043b7be5f57b507"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc698c467c5b58c4060b143d3b598207"><td class="memItemLeft" align="right" valign="top"><a id="abc698c467c5b58c4060b143d3b598207" name="abc698c467c5b58c4060b143d3b598207"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>generation_label</b> (char **label)</td></tr>
 <tr class="separator:abc698c467c5b58c4060b143d3b598207"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,9 +250,11 @@ char *&#160;</td><td class="memItemRight" valign="bottom"><b>item_rondam</b> (in
 <tr class="separator:a7487592620c4eb9ab4ae9dbb610f0149"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae69f7d4289895ec184f8e0e91da01184"><td class="memItemLeft" align="right" valign="top"><a id="ae69f7d4289895ec184f8e0e91da01184" name="ae69f7d4289895ec184f8e0e91da01184"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>drop_item</b> ()</td></tr>
+<tr class="memdesc:ae69f7d4289895ec184f8e0e91da01184"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dépose un objet de l'inventaire. <br /></td></tr>
 <tr class="separator:ae69f7d4289895ec184f8e0e91da01184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6854581078399bf475b14d2163de464"><td class="memItemLeft" align="right" valign="top"><a id="ad6854581078399bf475b14d2163de464" name="ad6854581078399bf475b14d2163de464"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dest_all_inventaires</b> ()</td></tr>
+<tr class="memdesc:ad6854581078399bf475b14d2163de464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Détruit tous les inventaires chargés. <br /></td></tr>
 <tr class="separator:ad6854581078399bf475b14d2163de464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51ae8fea3be41cee1a5c4b91d07e4c83"><td class="memItemLeft" align="right" valign="top"><a id="a51ae8fea3be41cee1a5c4b91d07e4c83" name="a51ae8fea3be41cee1a5c4b91d07e4c83"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ajouter_inventaire</b> (int nb_inventaires,...)</td></tr>
@@ -254,23 +262,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ajouter_inventaire</b
 <tr class="memitem:a1e01243b1f6c12949e7b8caed36aaeb3"><td class="memItemLeft" align="right" valign="top"><a id="a1e01243b1f6c12949e7b8caed36aaeb3" name="a1e01243b1f6c12949e7b8caed36aaeb3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init_liste_inventaires</b> ()</td></tr>
 <tr class="separator:a1e01243b1f6c12949e7b8caed36aaeb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeafe82eb708527a402a147359c827a71"><td class="memItemLeft" align="right" valign="top"><a id="aeafe82eb708527a402a147359c827a71" name="aeafe82eb708527a402a147359c827a71"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>gestion_inv</b> (<a class="el" href="structinv.html">inv</a> **inventaire, int NB_items, int id_scroll, SDL_Rect SDL_Rect, int nb_colonne, int nb_ligne, int arrondis, int decalage_bas, int decalage_cote, int id_back_item)</td></tr>
+<tr class="memitem:aeafe82eb708527a402a147359c827a71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#aeafe82eb708527a402a147359c827a71">gestion_inv</a> (<a class="el" href="structinv.html">inv</a> **inventaire, int NB_items, int id_scroll, SDL_Rect SDL_Rect, int nb_colonne, int nb_ligne, int arrondis, int decalage_bas, int decalage_cote, int id_back_item)</td></tr>
+<tr class="memdesc:aeafe82eb708527a402a147359c827a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère l'affichage et l'interaction avec l'inventaire.  <br /></td></tr>
 <tr class="separator:aeafe82eb708527a402a147359c827a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ea6ab93c6420804878452be0ba4d25c"><td class="memItemLeft" align="right" valign="top"><a id="a1ea6ab93c6420804878452be0ba4d25c" name="a1ea6ab93c6420804878452be0ba4d25c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>trier_inventaire</b> (<a class="el" href="structinv.html">inv</a> *inventaire)</td></tr>
 <tr class="separator:a1ea6ab93c6420804878452be0ba4d25c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abbc013647564cd9a409be37f0536b209"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#abbc013647564cd9a409be37f0536b209">cercle_graf</a> (int x, int y, int rayon)</td></tr>
-<tr class="memdesc:abbc013647564cd9a409be37f0536b209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine un cercle.  <br /></td></tr>
+<tr class="memdesc:abbc013647564cd9a409be37f0536b209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine un cercle graphique.  <br /></td></tr>
 <tr class="separator:abbc013647564cd9a409be37f0536b209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d2e701a83b8f2f09718652cc439d529"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a6d2e701a83b8f2f09718652cc439d529">rectangle_arrondis</a> (SDL_Rect Rect, int radius, int r, int g, int b)</td></tr>
-<tr class="memdesc:a6d2e701a83b8f2f09718652cc439d529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine un rectangle avec des coins arrondis.  <br /></td></tr>
+<tr class="memdesc:a6d2e701a83b8f2f09718652cc439d529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine un rectangle aux coins arrondis.  <br /></td></tr>
 <tr class="separator:a6d2e701a83b8f2f09718652cc439d529"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a955f832f72a60a8338fad249b6863504"><td class="memItemLeft" align="right" valign="top"><a id="a955f832f72a60a8338fad249b6863504" name="a955f832f72a60a8338fad249b6863504"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>racourcis_createUI</b> (<a class="el" href="structitem__t.html">item_t</a> *it, int x, int y, int id_tuille)</td></tr>
+<tr class="memitem:a955f832f72a60a8338fad249b6863504"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a955f832f72a60a8338fad249b6863504">racourcis_createUI</a> (<a class="el" href="structitem__t.html">item_t</a> *it, int x, int y, int id_tuille)</td></tr>
+<tr class="memdesc:a955f832f72a60a8338fad249b6863504"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crée une interface utilisateur pour un raccourci.  <br /></td></tr>
 <tr class="separator:a955f832f72a60a8338fad249b6863504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d6e1d9329536054b04a4cc689cabafb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a9d6e1d9329536054b04a4cc689cabafb">aff_inv_graf</a> (<a class="el" href="structinv.html">inv</a> *inventaire)</td></tr>
-<tr class="memdesc:a9d6e1d9329536054b04a4cc689cabafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche plusieurs rectangles arrondis en grille.  <br /></td></tr>
+<tr class="memdesc:a9d6e1d9329536054b04a4cc689cabafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche l'inventaire graphiquement.  <br /></td></tr>
 <tr class="separator:a9d6e1d9329536054b04a4cc689cabafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe83f9d4797e7e8158552afed989dc45"><td class="memItemLeft" align="right" valign="top"><a id="abe83f9d4797e7e8158552afed989dc45" name="abe83f9d4797e7e8158552afed989dc45"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>aff_heros</b> ()</td></tr>
@@ -283,6 +291,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>aff_background_bordur
 <tr class="separator:a29e69fa302b347b97826d48287afd914"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe5203fd0a196bcb624e0c58f2ecec1b"><td class="memItemLeft" align="right" valign="top"><a id="abe5203fd0a196bcb624e0c58f2ecec1b" name="abe5203fd0a196bcb624e0c58f2ecec1b"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>aff_all_inventaires</b> ()</td></tr>
+<tr class="memdesc:abe5203fd0a196bcb624e0c58f2ecec1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche tous les inventaires. <br /></td></tr>
 <tr class="separator:abe5203fd0a196bcb624e0c58f2ecec1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97f21325eb5772576c307b2b1fcbd234"><td class="memItemLeft" align="right" valign="top"><a id="a97f21325eb5772576c307b2b1fcbd234" name="a97f21325eb5772576c307b2b1fcbd234"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>img_inv_actualliser</b> (<a class="el" href="structinv.html">inv</a> *inventaire)</td></tr>
@@ -299,6 +308,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>img_inv_actualliser_a
 <tr class="memitem:ab05ebc2778dcde851f8c758e7f207b09"><td class="memItemLeft" align="right" valign="top"><a id="ab05ebc2778dcde851f8c758e7f207b09" name="ab05ebc2778dcde851f8c758e7f207b09"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>aff_item</b> (<a class="el" href="structitem__t.html">item_t</a> *it)</td></tr>
 <tr class="separator:ab05ebc2778dcde851f8c758e7f207b09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0821f642c462df61a8af40a5fd71320d"><td class="memItemLeft" align="right" valign="top"><a id="a0821f642c462df61a8af40a5fd71320d" name="a0821f642c462df61a8af40a5fd71320d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>aff_inv_items</b> (<a class="el" href="structinv.html">inv</a> *invrntaire)</td></tr>
+<tr class="separator:a0821f642c462df61a8af40a5fd71320d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef15ced6035a23b211a07831d4de857"><td class="memItemLeft" align="right" valign="top"><a id="adef15ced6035a23b211a07831d4de857" name="adef15ced6035a23b211a07831d4de857"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>aff_stat_item</b> (SDL_Event event)</td></tr>
 <tr class="separator:adef15ced6035a23b211a07831d4de857"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -308,32 +320,53 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>detecter_click_item</
 <tr class="memitem:ae91d940cdab7831d75ce1c25cea5be26"><td class="memItemLeft" align="right" valign="top"><a id="ae91d940cdab7831d75ce1c25cea5be26" name="ae91d940cdab7831d75ce1c25cea5be26"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>lacher_item</b> ()</td></tr>
 <tr class="separator:ae91d940cdab7831d75ce1c25cea5be26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1ed9c77c196275fb58fb89a3ab88ed7"><td class="memItemLeft" align="right" valign="top"><a id="aa1ed9c77c196275fb58fb89a3ab88ed7" name="aa1ed9c77c196275fb58fb89a3ab88ed7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>transvaser</b> (<a class="el" href="structinv.html">inv</a> *inv_receveur, <a class="el" href="structinv.html">inv</a> *inv_source)</td></tr>
+<tr class="separator:aa1ed9c77c196275fb58fb89a3ab88ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78f61ac2dd03bcba8e09ca20cd7d68e3"><td class="memItemLeft" align="right" valign="top"><a id="a78f61ac2dd03bcba8e09ca20cd7d68e3" name="a78f61ac2dd03bcba8e09ca20cd7d68e3"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
+<tr class="memdesc:a78f61ac2dd03bcba8e09ca20cd7d68e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charge les ressources de l'inventaire. <br /></td></tr>
 <tr class="separator:a78f61ac2dd03bcba8e09ca20cd7d68e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add628839759e405b20263980ee5fd3da"><td class="memItemLeft" align="right" valign="top"><a id="add628839759e405b20263980ee5fd3da" name="add628839759e405b20263980ee5fd3da"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>gestion_stat_heros</b> (int index_heros)</td></tr>
+<tr class="memitem:add628839759e405b20263980ee5fd3da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#add628839759e405b20263980ee5fd3da">gestion_stat_heros</a> (int index_heros)</td></tr>
+<tr class="memdesc:add628839759e405b20263980ee5fd3da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les statistiques d'un héros.  <br /></td></tr>
 <tr class="separator:add628839759e405b20263980ee5fd3da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a146fd1e52d8051a948ce373dd7274ae7"><td class="memItemLeft" align="right" valign="top"><a id="a146fd1e52d8051a948ce373dd7274ae7" name="a146fd1e52d8051a948ce373dd7274ae7"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>boost_gold</b> ()</td></tr>
+<tr class="memitem:a146fd1e52d8051a948ce373dd7274ae7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a146fd1e52d8051a948ce373dd7274ae7">boost_gold</a> ()</td></tr>
+<tr class="memdesc:a146fd1e52d8051a948ce373dd7274ae7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applique un bonus d'or.  <br /></td></tr>
 <tr class="separator:a146fd1e52d8051a948ce373dd7274ae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9bce2b414852fb23d34c4d27ae922ea"><td class="memItemLeft" align="right" valign="top"><a id="af9bce2b414852fb23d34c4d27ae922ea" name="af9bce2b414852fb23d34c4d27ae922ea"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>rearanger_item_heros</b> (<a class="el" href="structinv.html">inv</a> *inv_receveur, <a class="el" href="structinv.html">inv</a> *inv_source)</td></tr>
+<tr class="separator:af9bce2b414852fb23d34c4d27ae922ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27411163409c50251f4bb1f8468b02a5"><td class="memItemLeft" align="right" valign="top"><a id="a27411163409c50251f4bb1f8468b02a5" name="a27411163409c50251f4bb1f8468b02a5"></a>
 <a class="el" href="structitem__t.html">item_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>load_item</b> (FILE *f, int type)</td></tr>
 <tr class="separator:a27411163409c50251f4bb1f8468b02a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c9868e5656ddd1e1504586bb77fa6a4"><td class="memItemLeft" align="right" valign="top"><a id="a6c9868e5656ddd1e1504586bb77fa6a4" name="a6c9868e5656ddd1e1504586bb77fa6a4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load_inv</b> (const char *nom_fichier)</td></tr>
+<tr class="memitem:a6c9868e5656ddd1e1504586bb77fa6a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a6c9868e5656ddd1e1504586bb77fa6a4">load_inv</a> (const char *nom_fichier)</td></tr>
+<tr class="memdesc:a6c9868e5656ddd1e1504586bb77fa6a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Charge un inventaire à partir d'un fichier.  <br /></td></tr>
 <tr class="separator:a6c9868e5656ddd1e1504586bb77fa6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66927071e676d5ff59384db3af61624b"><td class="memItemLeft" align="right" valign="top"><a id="a66927071e676d5ff59384db3af61624b" name="a66927071e676d5ff59384db3af61624b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>save_inv</b> (<a class="el" href="structinv.html">inv</a> *inventaire, char *save)</td></tr>
+<tr class="memitem:a66927071e676d5ff59384db3af61624b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a66927071e676d5ff59384db3af61624b">save_inv</a> (<a class="el" href="structinv.html">inv</a> *inventaire, char *save)</td></tr>
+<tr class="memdesc:a66927071e676d5ff59384db3af61624b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sauvegarde un inventaire dans un fichier.  <br /></td></tr>
 <tr class="separator:a66927071e676d5ff59384db3af61624b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b24d6b1de53ea509efd9299876444f1"><td class="memItemLeft" align="right" valign="top"><a id="a8b24d6b1de53ea509efd9299876444f1" name="a8b24d6b1de53ea509efd9299876444f1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init_inv_main</b> ()</td></tr>
+<tr class="memdesc:a8b24d6b1de53ea509efd9299876444f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise l'inventaire principal. <br /></td></tr>
 <tr class="separator:a8b24d6b1de53ea509efd9299876444f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58228e5887bbfc3c06f4e080c3f21475"><td class="memItemLeft" align="right" valign="top"><a id="a58228e5887bbfc3c06f4e080c3f21475" name="a58228e5887bbfc3c06f4e080c3f21475"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>actualiser</b> ()</td></tr>
+<tr class="memdesc:a58228e5887bbfc3c06f4e080c3f21475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Met à jour l'inventaire et son affichage. <br /></td></tr>
+<tr class="separator:a58228e5887bbfc3c06f4e080c3f21475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86570da23d20d3d803f75dcee10e8678"><td class="memItemLeft" align="right" valign="top"><a id="a86570da23d20d3d803f75dcee10e8678" name="a86570da23d20d3d803f75dcee10e8678"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>makeSaveInventaire</b> ()</td></tr>
+<tr class="memdesc:a86570da23d20d3d803f75dcee10e8678"><td class="mdescLeft">&#160;</td><td class="mdescRight">Effectue une sauvegarde de l'inventaire. <br /></td></tr>
+<tr class="separator:a86570da23d20d3d803f75dcee10e8678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8176e6026b6fec6a55b7fa15283fa51"><td class="memItemLeft" align="right" valign="top"><a id="af8176e6026b6fec6a55b7fa15283fa51" name="af8176e6026b6fec6a55b7fa15283fa51"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>refresh_inv</b> ()</td></tr>
+<tr class="memdesc:af8176e6026b6fec6a55b7fa15283fa51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rafraîchit l'affichage de l'inventaire. <br /></td></tr>
+<tr class="separator:af8176e6026b6fec6a55b7fa15283fa51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aea9793363cbba5a9062f8c7c2e5bb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="inv_8c.html#a1aea9793363cbba5a9062f8c7c2e5bb7">handle_inv_event</a> (SDL_Event event)</td></tr>
-<tr class="memdesc:a1aea9793363cbba5a9062f8c7c2e5bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les événements de défilement.  <br /></td></tr>
+<tr class="memdesc:a1aea9793363cbba5a9062f8c7c2e5bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les événements liés à l'inventaire.  <br /></td></tr>
 <tr class="separator:a1aea9793363cbba5a9062f8c7c2e5bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6485a7f435a20095cd7b4119557459bf"><td class="memItemLeft" align="right" valign="top"><a id="a6485a7f435a20095cd7b4119557459bf" name="a6485a7f435a20095cd7b4119557459bf"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_rect_inv</b> ()</td></tr>
+<tr class="memdesc:a6485a7f435a20095cd7b4119557459bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dessine le cadre de l'inventaire. <br /></td></tr>
 <tr class="separator:a6485a7f435a20095cd7b4119557459bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -341,33 +374,24 @@ Variables</h2></td></tr>
 <tr class="memitem:ac84670449bca0eab3e1bab4e75e51ce0"><td class="memItemLeft" align="right" valign="top"><a id="ac84670449bca0eab3e1bab4e75e51ce0" name="ac84670449bca0eab3e1bab4e75e51ce0"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>proportion_item_carrer_prio</b> = 0</td></tr>
 <tr class="separator:ac84670449bca0eab3e1bab4e75e51ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e6ce0dd58078611570510dc4b8d81f3"><td class="memItemLeft" align="right" valign="top"><a id="a5e6ce0dd58078611570510dc4b8d81f3" name="a5e6ce0dd58078611570510dc4b8d81f3"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>WINDOW_WIDTH</b> = 800</td></tr>
-<tr class="separator:a5e6ce0dd58078611570510dc4b8d81f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab76d138fa589df9a65fc05eb3bd56073"><td class="memItemLeft" align="right" valign="top"><a id="ab76d138fa589df9a65fc05eb3bd56073" name="ab76d138fa589df9a65fc05eb3bd56073"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>WINDOW_HEIGHT</b> = 500</td></tr>
-<tr class="separator:ab76d138fa589df9a65fc05eb3bd56073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1e3558eaf19f1c993ebce8170ea0d19"><td class="memItemLeft" align="right" valign="top"><a id="aa1e3558eaf19f1c993ebce8170ea0d19" name="aa1e3558eaf19f1c993ebce8170ea0d19"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>SCROLLBAR_WIDTH</b> = 20</td></tr>
 <tr class="separator:aa1e3558eaf19f1c993ebce8170ea0d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3262dbc59f76408cd29b3227d2cda918"><td class="memItemLeft" align="right" valign="top"><a id="a3262dbc59f76408cd29b3227d2cda918" name="a3262dbc59f76408cd29b3227d2cda918"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>VISIBLE_AREA_HEIGHT</b> = 500</td></tr>
-<tr class="separator:a3262dbc59f76408cd29b3227d2cda918"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5e958c0c2d84556d7535c61fc52cb39c"><td class="memItemLeft" align="right" valign="top"><a id="a5e958c0c2d84556d7535c61fc52cb39c" name="a5e958c0c2d84556d7535c61fc52cb39c"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>NB_COLLONE</b> = 4</td></tr>
 <tr class="separator:a5e958c0c2d84556d7535c61fc52cb39c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3729b386b78f801a134c792dab56ddfa"><td class="memItemLeft" align="right" valign="top"><a id="a3729b386b78f801a134c792dab56ddfa" name="a3729b386b78f801a134c792dab56ddfa"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>NB_LIGNE</b> = 25</td></tr>
 <tr class="separator:a3729b386b78f801a134c792dab56ddfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad266ae04b2743fa3dce356bf62acfee1"><td class="memItemLeft" align="right" valign="top"><a id="ad266ae04b2743fa3dce356bf62acfee1" name="ad266ae04b2743fa3dce356bf62acfee1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ITEM_SIZE</b> = 64</td></tr>
-<tr class="separator:ad266ae04b2743fa3dce356bf62acfee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a157563f84f97e4fcfd8e531740a6ec65"><td class="memItemLeft" align="right" valign="top"><a id="a157563f84f97e4fcfd8e531740a6ec65" name="a157563f84f97e4fcfd8e531740a6ec65"></a>
-const int&#160;</td><td class="memItemRight" valign="bottom"><b>DEPLACEMENT</b> = 20</td></tr>
+const int&#160;</td><td class="memItemRight" valign="bottom"><b>DEPLACEMENT</b> = 5</td></tr>
 <tr class="separator:a157563f84f97e4fcfd8e531740a6ec65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a32253eb1d734a39e3b127a83f8a93f"><td class="memItemLeft" align="right" valign="top"><a id="a0a32253eb1d734a39e3b127a83f8a93f" name="a0a32253eb1d734a39e3b127a83f8a93f"></a>
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>ARRONDIS</b> = 20</td></tr>
 <tr class="separator:a0a32253eb1d734a39e3b127a83f8a93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5998903ba881309225710b8908091e7e"><td class="memItemLeft" align="right" valign="top"><a id="a5998903ba881309225710b8908091e7e" name="a5998903ba881309225710b8908091e7e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>reactualiser</b> = 1</td></tr>
+<tr class="separator:a5998903ba881309225710b8908091e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ab5380be52bad9605ad2c3f22fe8ac9"><td class="memItemLeft" align="right" valign="top"><a id="a4ab5380be52bad9605ad2c3f22fe8ac9" name="a4ab5380be52bad9605ad2c3f22fe8ac9"></a>
 <a class="el" href="structliste__inventaires.html">liste_inventaires</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>list_inv</b> = NULL</td></tr>
 <tr class="separator:a4ab5380be52bad9605ad2c3f22fe8ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -379,9 +403,11 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>conteur_item_ref_img</
 <tr class="separator:a40f1db1366f5e0a519a10c29c73661de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e9d7a95de79011bd010dcc3f9367501"><td class="memItemLeft" align="right" valign="top"><a id="a2e9d7a95de79011bd010dcc3f9367501" name="a2e9d7a95de79011bd010dcc3f9367501"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_degat</b></td></tr>
+<tr class="memdesc:a2e9d7a95de79011bd010dcc3f9367501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable globale représentant les dégâts des objets. <br /></td></tr>
 <tr class="separator:a2e9d7a95de79011bd010dcc3f9367501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22ec1b6e890d3cb651793842bf318821"><td class="memItemLeft" align="right" valign="top"><a id="a22ec1b6e890d3cb651793842bf318821" name="a22ec1b6e890d3cb651793842bf318821"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></td></tr>
+<tr class="memdesc:a22ec1b6e890d3cb651793842bf318821"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable globale représentant le temps des objets. <br /></td></tr>
 <tr class="separator:a22ec1b6e890d3cb651793842bf318821"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -403,20 +429,33 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Affiche plusieurs rectangles arrondis en grille. </p>
+<p>Affiche l'inventaire graphiquement. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pRenderer</td><td>Le renderer SDL sur lequel dessiner. </td></tr>
-    <tr><td class="paramname">scrool_pos</td><td>La position de défilement. </td></tr>
-    <tr><td class="paramname">cof_scrollbar_window</td><td>Le coefficient de vitesse de défilement. </td></tr>
-    <tr><td class="paramname">nb_collone</td><td>Le nombre de colonnes. </td></tr>
-    <tr><td class="paramname">nb_ligne</td><td>Le nombre de lignes. </td></tr>
-    <tr><td class="paramname">taille</td><td>La taille de chaque rectangle. </td></tr>
-    <tr><td class="paramname">decalage</td><td>L'espace entre les rectangles. </td></tr>
-    <tr><td class="paramname">arrondis</td><td>Le rayon des coins arrondis. </td></tr>
+    <tr><td class="paramname">inventaire</td><td>Pointeur vers l'inventaire. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a146fd1e52d8051a948ce373dd7274ae7" name="a146fd1e52d8051a948ce373dd7274ae7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a146fd1e52d8051a948ce373dd7274ae7">&#9670;&#160;</a></span>boost_gold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int boost_gold </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Applique un bonus d'or. </p>
+<dl class="section return"><dt>Returns</dt><dd>Valeur du bonus. </dd></dl>
 
 </div>
 </div>
@@ -452,21 +491,20 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Dessine un cercle. </p>
+<p>Dessine un cercle graphique. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">renderer</td><td>Le renderer SDL sur lequel dessiner. </td></tr>
-    <tr><td class="paramname">x</td><td>La coordonnée x du centre du cercle. </td></tr>
-    <tr><td class="paramname">y</td><td>La coordonnée y du centre du cercle. </td></tr>
-    <tr><td class="paramname">rayon</td><td>Le rayon du cercle. </td></tr>
+    <tr><td class="paramname">x</td><td>Coordonnée X du centre. </td></tr>
+    <tr><td class="paramname">y</td><td>Coordonnée Y du centre. </td></tr>
+    <tr><td class="paramname">rayon</td><td>Rayon du cercle. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a9fdb529559d32a1007edfa2b949e208b" name="a9fdb529559d32a1007edfa2b949e208b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fdb529559d32a1007edfa2b949e208b">&#9670;&#160;</a></span>deb_fusion()</h2>
+<a id="ad6b7ea17750fa8922043b7be5f57b507" name="ad6b7ea17750fa8922043b7be5f57b507"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6b7ea17750fa8922043b7be5f57b507">&#9670;&#160;</a></span>deb_fusion()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -491,11 +529,11 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Fusionne deux items en augmentant leur rareté et en générant une nouvelle statistique. </p>
+<p>Fusionne deux objets. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item1</td><td>Premier item à fusionner. </td></tr>
-    <tr><td class="paramname">item2</td><td>Deuxième item à fusionner. </td></tr>
+    <tr><td class="paramname">item1</td><td>Premier objet. </td></tr>
+    <tr><td class="paramname">item2</td><td>Deuxième objet. </td></tr>
   </table>
   </dd>
 </dl>
@@ -518,10 +556,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Détruit un inventaire et libère la mémoire allouée. </p>
+<p>Détruit l'inventaire et libère la mémoire associée. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inventaire</td><td>Pointeur vers le pointeur de l'inventaire à détruire. </td></tr>
+    <tr><td class="paramname">inventaire</td><td>Pointeur vers l'inventaire. </td></tr>
   </table>
   </dd>
 </dl>
@@ -580,15 +618,15 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Vérifie si deux items peuvent être fusionnés. </p>
+<p>Vérifie si deux objets peuvent être fusionnés. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">item1</td><td>Pointeur vers le premier item. </td></tr>
-    <tr><td class="paramname">item2</td><td>Pointeur vers le second item. </td></tr>
+    <tr><td class="paramname">item1</td><td>Premier objet. </td></tr>
+    <tr><td class="paramname">item2</td><td>Deuxième objet. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int Code de retour indiquant si la fusion est possible. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>1 si la fusion est possible, 0 sinon. </dd></dl>
 
 </div>
 </div>
@@ -636,18 +674,137 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Génère un nombre de statistique influencé par un niveau. </p>
+<p>Génère une statistique aléatoire pour un objet. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">x</td><td>Niveau actuel. </td></tr>
-    <tr><td class="paramname">type</td><td>Type de statistique (0 = or, 1 = degat, 2 = vit_att). </td></tr>
-    <tr><td class="paramname">stat_ameliorer</td><td>Statistique à améliorer. </td></tr>
-    <tr><td class="paramname">rarete</td><td>Rareté de l'item. </td></tr>
-    <tr><td class="paramname">nb_max_nv</td><td>Niveau maximal. </td></tr>
+    <tr><td class="paramname">x</td><td>Valeur de base. </td></tr>
+    <tr><td class="paramname">type</td><td>Type de statistique. </td></tr>
+    <tr><td class="paramname">stat_ameliorer</td><td>Niveau d'amélioration. </td></tr>
+    <tr><td class="paramname">rarete</td><td>Niveau de rareté. </td></tr>
+    <tr><td class="paramname">nb_max_nv</td><td>Nombre maximum de niveaux. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int Nouvelle valeur de la statistique. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Valeur générée pour la statistique. </dd></dl>
+
+</div>
+</div>
+<a id="aeafe82eb708527a402a147359c827a71" name="aeafe82eb708527a402a147359c827a71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeafe82eb708527a402a147359c827a71">&#9670;&#160;</a></span>gestion_inv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gestion_inv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structinv.html">inv</a> **&#160;</td>
+          <td class="paramname"><em>inventaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>NB_items</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>scroll_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_Rect&#160;</td>
+          <td class="paramname"><em>SDL_Rect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb_collone</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nb_ligne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>arrondis</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>decalage_bas</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>decalage_cote</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id_back_item</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gère l'affichage et l'interaction avec l'inventaire. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inventaire</td><td>Pointeur vers l'inventaire. </td></tr>
+    <tr><td class="paramname">NB_items</td><td>Nombre total d'objets dans l'inventaire. </td></tr>
+    <tr><td class="paramname">scroll_id</td><td>Identifiant du défilement. </td></tr>
+    <tr><td class="paramname">SDL_Rect</td><td>Rectangle SDL définissant la position et la taille de l'affichage. </td></tr>
+    <tr><td class="paramname">nb_collone</td><td>Nombre de colonnes de l'inventaire. </td></tr>
+    <tr><td class="paramname">nb_ligne</td><td>Nombre de lignes de l'inventaire. </td></tr>
+    <tr><td class="paramname">arrondis</td><td>Rayon d'arrondi des bords de l'affichage. </td></tr>
+    <tr><td class="paramname">decalage_bas</td><td>Décalage vers le bas pour l'affichage. </td></tr>
+    <tr><td class="paramname">decalage_cote</td><td>Décalage latéral pour l'affichage. </td></tr>
+    <tr><td class="paramname">id_back_item</td><td>Identifiant de l'arrière-plan des objets. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="add628839759e405b20263980ee5fd3da" name="add628839759e405b20263980ee5fd3da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add628839759e405b20263980ee5fd3da">&#9670;&#160;</a></span>gestion_stat_heros()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gestion_stat_heros </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index_heros</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gère les statistiques d'un héros. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">index_heros</td><td>Index du héros concerné. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -667,13 +824,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Gère les événements de défilement. </p>
+<p>Gère les événements liés à l'inventaire. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">event</td><td>L'événement SDL à gérer. </td></tr>
-    <tr><td class="paramname">scrollbar_position</td><td>La position de la barre de défilement. </td></tr>
-    <tr><td class="paramname">scrollbar_speed</td><td>La vitesse de déplacement de la barre de défilement. </td></tr>
-    <tr><td class="paramname">scrollbar_max_position</td><td>La position maximale de la barre de défilement. </td></tr>
+    <tr><td class="paramname">event</td><td>Événement SDL capturé. </td></tr>
   </table>
   </dd>
 </dl>
@@ -706,6 +860,32 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
 
 </div>
 </div>
+<a id="a6c9868e5656ddd1e1504586bb77fa6a4" name="a6c9868e5656ddd1e1504586bb77fa6a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c9868e5656ddd1e1504586bb77fa6a4">&#9670;&#160;</a></span>load_inv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void load_inv </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>nom_fichier</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Charge un inventaire à partir d'un fichier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nom_fichier</td><td>Nom du fichier à charger. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a1efd18ab74c9d51e41bbf07fb282772f" name="a1efd18ab74c9d51e41bbf07fb282772f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1efd18ab74c9d51e41bbf07fb282772f">&#9670;&#160;</a></span>prem_vide()</h2>
 
@@ -722,14 +902,65 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Trouve le premier emplacement vide dans l'inventaire. </p>
+<p>Trouve la première position vide dans l'inventaire. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">inventaire</td><td>Pointeur vers l'inventaire à vérifier. </td></tr>
+    <tr><td class="paramname">inventaire</td><td>Pointeur vers l'inventaire. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>int L'indice du premier emplacement vide, ou -1 si l'inventaire est plein. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Index de la première position vide, -1 si l'inventaire est plein. </dd></dl>
+
+</div>
+</div>
+<a id="a955f832f72a60a8338fad249b6863504" name="a955f832f72a60a8338fad249b6863504"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a955f832f72a60a8338fad249b6863504">&#9670;&#160;</a></span>racourcis_createUI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void racourcis_createUI </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structitem__t.html">item_t</a> *&#160;</td>
+          <td class="paramname"><em>it</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id_tuille</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Crée une interface utilisateur pour un raccourci. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">it</td><td>Pointeur vers l'objet associé. </td></tr>
+    <tr><td class="paramname">x</td><td>Position X. </td></tr>
+    <tr><td class="paramname">y</td><td>Position Y. </td></tr>
+    <tr><td class="paramname">id_tuille</td><td>Identifiant de la tuile associée. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -777,18 +1008,51 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>stat_item_temps</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Dessine un rectangle avec des coins arrondis. </p>
+<p>Dessine un rectangle aux coins arrondis. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">renderer</td><td>Le renderer SDL sur lequel dessiner. </td></tr>
-    <tr><td class="paramname">x</td><td>La coordonnée x du coin supérieur gauche du rectangle. </td></tr>
-    <tr><td class="paramname">y</td><td>La coordonnée y du coin supérieur gauche du rectangle. </td></tr>
-    <tr><td class="paramname">w</td><td>La largeur du rectangle. </td></tr>
-    <tr><td class="paramname">h</td><td>La hauteur du rectangle. </td></tr>
-    <tr><td class="paramname">radius</td><td>Le rayon des coins arrondis. </td></tr>
-    <tr><td class="paramname">r</td><td>La composante rouge de la couleur du rectangle. </td></tr>
-    <tr><td class="paramname">g</td><td>La composante verte de la couleur du rectangle. </td></tr>
-    <tr><td class="paramname">b</td><td>La composante bleue de la couleur du rectangle. </td></tr>
+    <tr><td class="paramname">SDL_Rect</td><td>Rectangle SDL définissant la zone de dessin. </td></tr>
+    <tr><td class="paramname">radius</td><td>Rayon des coins arrondis. </td></tr>
+    <tr><td class="paramname">r</td><td>Valeur de la couleur rouge. </td></tr>
+    <tr><td class="paramname">g</td><td>Valeur de la couleur verte. </td></tr>
+    <tr><td class="paramname">b</td><td>Valeur de la couleur bleue. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a66927071e676d5ff59384db3af61624b" name="a66927071e676d5ff59384db3af61624b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66927071e676d5ff59384db3af61624b">&#9670;&#160;</a></span>save_inv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void save_inv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structinv.html">inv</a> *&#160;</td>
+          <td class="paramname"><em>inventaire</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>save</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sauvegarde un inventaire dans un fichier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inventaire</td><td>Pointeur vers l'inventaire à sauvegarder. </td></tr>
+    <tr><td class="paramname">save</td><td>Nom du fichier de sauvegarde. </td></tr>
   </table>
   </dd>
 </dl>

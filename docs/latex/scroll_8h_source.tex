@@ -9,37 +9,48 @@
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
 \DoxyCodeLine{00007\ }
-\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structscroll__inf__s}{scroll\_inf\_s}}\{}
-\DoxyCodeLine{00009\ \ \ \ \textcolor{comment}{//val\ fix\ ecrant}}
-\DoxyCodeLine{00010\ \ \ \ SDL\_Rect\ zone\_interaction\ ;\ \textcolor{comment}{//a\ init\ (\ zone\ interaction\ scroll\ +\ zone\ affichage\ element\ contenue\ dans\ la\ zone\ )}}
-\DoxyCodeLine{00011\ \ \ \ SDL\_Rect\ zone\_scroll;\ \textcolor{comment}{//a\ init}}
-\DoxyCodeLine{00012\ \ \ \ SDL\_Rect\ rect\_scroll;\ \textcolor{comment}{//a\ calculer}}
-\DoxyCodeLine{00013\ }
-\DoxyCodeLine{00014\ \ \ \ \textcolor{keywordtype}{float}\ coef\ ;\textcolor{comment}{//\ zone\_interaction\ *\ coef\ =\ zone\ total\ }}
-\DoxyCodeLine{00015\ \ \ \ \textcolor{keywordtype}{int}\ empl\_alloue\ ;\textcolor{comment}{//scroll\ est\ il\ init\ /\ faut\ il\ l'afficher\ ?\ 1\ =\ oui\ ,\ 0\ =\ non}}
-\DoxyCodeLine{00016\ \ \ \ \textcolor{comment}{//position\ de\ deplacement\ }}
-\DoxyCodeLine{00017\ \ \ \ \textcolor{keywordtype}{int}\ selection\_scroll;}
-\DoxyCodeLine{00018\ \ \ \ \textcolor{keywordtype}{int}\ scroll\_pos\ ;}
-\DoxyCodeLine{00019\ \ \ \ \textcolor{keywordtype}{int}\ scrollbar\_max\_position\ ;}
-\DoxyCodeLine{00020\ \ \ \ \textcolor{keywordtype}{int}\ total\_content\_height;}
-\DoxyCodeLine{00021\ \ \ \ \textcolor{keywordtype}{int}\ speed\ ;}
-\DoxyCodeLine{00022\ \ \ \ \textcolor{keywordtype}{int}\ min\_pos\ ;}
-\DoxyCodeLine{00023\ \ \ \ \textcolor{keywordtype}{char}\ label[100];}
-\DoxyCodeLine{00024\ \}\mbox{\hyperlink{structscroll__inf__s}{scroll\_inf}};}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structscroll__inf__s}{scroll\_inf}}\ scroll\_liste[NOMBRE\_MAX\_SCROLL];}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ est\_dans\_scroll(SDL\_Rect\ *\ elem\_pos,SDL\_Rect\ zone\_interaction);}
-\DoxyCodeLine{00029\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ init\_scroll();}
-\DoxyCodeLine{00030\ \textcolor{keywordtype}{float}\ cof\_scrollbar\_window(\textcolor{keywordtype}{int}\ visible\_area\_height,\ \textcolor{keywordtype}{int}\ total\_content\_height);}
-\DoxyCodeLine{00031\ \textcolor{keywordtype}{int}\ calculate\_scrollbar\_height(\textcolor{keywordtype}{int}\ visible\_area\_height,\textcolor{keywordtype}{float}\ cof);}
-\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ creation\_scroll(SDL\_Rect\ zone\_interaction\ ,\ SDL\_Rect\ zone\_scroll\ ,\ \textcolor{keywordtype}{int}\ total\_content\_height\ ,\ \textcolor{keywordtype}{int}\ speed\ ,\ \textcolor{keywordtype}{int}\ *\ erreur\_activer\ ,\textcolor{keywordtype}{char}\ **label);}
-\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ aff\_scrollbar\_simple(SDL\_Color\ *color\_scrollbar,\ SDL\_Color\ *color\_rect);}
-\DoxyCodeLine{00034\ \textcolor{keywordtype}{int}\ first\_pos\_scroll();}
-\DoxyCodeLine{00035\ \textcolor{keywordtype}{int}\ select\_quelle\_scroll(\textcolor{keywordtype}{int}\ nb);}
-\DoxyCodeLine{00036\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ handle\_scroll\_event(SDL\_Event\ event);}
-\DoxyCodeLine{00037\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ update\_scroll(\textcolor{keywordtype}{int}\ *\ id\_scroll);}
-\DoxyCodeLine{00038\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ chercher\_id\_scroll\_par\_label(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label\_recherche);}
-\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SCROLL\_H}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structscroll__inf__s}{scroll\_inf\_s}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structscroll__inf__s_a60e6de439907b572b7ef08eec5d79eb8}{zone\_interaction}};\ }
+\DoxyCodeLine{00015\ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structscroll__inf__s_a20734b9c0d447579d1b84f09f566716e}{zone\_scroll}};\ }
+\DoxyCodeLine{00016\ \ \ \ SDL\_Rect\ \mbox{\hyperlink{structscroll__inf__s_a8cf191c6b7cc2838e20eeb6be42a795b}{rect\_scroll}};\ }
+\DoxyCodeLine{00018\ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structscroll__inf__s_a72c246b81b9328196f1ccf65cd9193b6}{coef}};\ }
+\DoxyCodeLine{00019\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_a1bfc6e8cacfd37f6b1a4e9b58297f5c6}{empl\_alloue}};\ }
+\DoxyCodeLine{00020\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_afec60e0cedc69416d9f0901f57af4f89}{selection\_scroll}};\ }
+\DoxyCodeLine{00021\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_a11f58f5e40877e11c47e72e2cf3d151b}{scroll\_pos}};\ }
+\DoxyCodeLine{00022\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_abf98790ebbb4a07bf1cf892761415424}{scrollbar\_max\_position}};\ }
+\DoxyCodeLine{00023\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_afcc0c118cced3fe1da3fdd00c7e8db48}{total\_content\_height}};\ }
+\DoxyCodeLine{00024\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_a85100d384870c786b97592bf8c74f79f}{speed}};\ }
+\DoxyCodeLine{00025\ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structscroll__inf__s_a52c3007b1a938a84adf199cb42a5e425}{min\_pos}};\ }
+\DoxyCodeLine{00026\ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structscroll__inf__s_aa94b3e7ac29eeaf206a648e20ce22e84}{label}}[100];\ }
+\DoxyCodeLine{00027\ \}\ \mbox{\hyperlink{structscroll__inf}{scroll\_inf}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structscroll__inf}{scroll\_inf}}\ scroll\_liste[NOMBRE\_MAX\_SCROLL];}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ clear\_scroll();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ est\_dans\_scroll(SDL\_Rect\ *elem\_pos,\ SDL\_Rect\ zone\_interaction);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ init\_scroll();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{float}\ cof\_scrollbar\_window(\textcolor{keywordtype}{int}\ visible\_area\_height,\ \textcolor{keywordtype}{int}\ total\_content\_height);}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00066\ \textcolor{keywordtype}{int}\ calculate\_scrollbar\_height(\textcolor{keywordtype}{int}\ visible\_area\_height,\ \textcolor{keywordtype}{float}\ cof);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ creation\_scroll(SDL\_Rect\ zone\_interaction,\ SDL\_Rect\ zone\_scroll,\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ total\_content\_height,\ \textcolor{keywordtype}{int}\ speed,\ \textcolor{keywordtype}{int}\ *erreur\_activer,\ \textcolor{keywordtype}{char}\ **label);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ aff\_scrollbar\_simple(SDL\_Color\ *color\_scrollbar,\ SDL\_Color\ *color\_rect);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{int}\ first\_pos\_scroll();}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00095\ \textcolor{keywordtype}{int}\ select\_quelle\_scroll(\textcolor{keywordtype}{int}\ nb);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00101\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ handle\_scroll\_event(SDL\_Event\ event);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ update\_scroll(\textcolor{keywordtype}{int}\ *id\_scroll);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ chercher\_id\_scroll\_par\_label(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *label\_recherche);}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SCROLL\_H}}
 
 \end{DoxyCode}

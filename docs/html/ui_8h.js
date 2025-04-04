@@ -15,7 +15,6 @@ var ui_8h =
     [ "destroyAllPages", "ui_8h.html#a75770e19795b3ca1de984856604b5e1c", null ],
     [ "destroyNotifList", "ui_8h.html#ace6d91206157c2c6222fa4498a62406b", null ],
     [ "destroyPage", "ui_8h.html#ac96341acbe1eac32109342c9d059b276", null ],
-    [ "destroyPages", "ui_8h.html#a721b73ea03676b50deae6301dc798574", null ],
     [ "destroyUIImg", "ui_8h.html#ae8a16aac3a1a9197c07127504f85ced9", null ],
     [ "destroyUITxt", "ui_8h.html#a70f520ffd37c08603dcf5023f440ac33", null ],
     [ "getImgFromLabel", "ui_8h.html#af8df3d18e6cab749b32c92c8545c43ec", null ],
