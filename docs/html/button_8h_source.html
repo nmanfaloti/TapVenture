@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: lib/button.h Source File</title>
+<title>TapVenture: lib/button.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">TapVenture
    </div>
   </td>
  </tr>
@@ -50,6 +50,11 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -98,6 +103,7 @@ $(document).ready(function(){initNavTree('button_8h_source.html',''); initResiza
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor"> #include &quot;<a class="code" href="sdl_8h.html">sdl.h</a>&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structButton.html">   24</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structButton.html#a6fcfa8e3d62cf1b78f5c4d5c9384b30d">   25</a></span>     SDL_Rect <a class="code hl_variable" href="structButton.html#a6fcfa8e3d62cf1b78f5c4d5c9384b30d">rect</a>;                  </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structButton.html#a29bd54a37c00f02b2339557433983a7a">   26</a></span>     SDL_Rect <a class="code hl_variable" href="structButton.html#a29bd54a37c00f02b2339557433983a7a">iniRect</a>;               </div>
@@ -116,7 +122,9 @@ $(document).ready(function(){initNavTree('button_8h_source.html',''); initResiza
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structButton.html#a6b7bf8749bc9ed008ffdbb9aa02b94ff">   39</a></span>     SDL_Color <a class="code hl_variable" href="structButton.html#a6b7bf8749bc9ed008ffdbb9aa02b94ff">textColor</a>;            </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structButton.html#aa5571a7ee87f4a2d6038ca8cfae90ea6">   40</a></span>     TTF_Font *<a class="code hl_variable" href="structButton.html#aa5571a7ee87f4a2d6038ca8cfae90ea6">font</a>;                 </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> } <a class="code hl_struct" href="structButton.html">Button</a>;</div>
+</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00050" data-start="{" data-end="};">
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structButtonImg.html">   50</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structButtonImg.html#adbdc1fc2099f2998b6a3be790c6497d1">   51</a></span>     SDL_Rect <a class="code hl_variable" href="structButtonImg.html#adbdc1fc2099f2998b6a3be790c6497d1">rect</a>;                  </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="structButtonImg.html#a1e870b0d2603a963160c762409676d22">   52</a></span>     SDL_Rect <a class="code hl_variable" href="structButtonImg.html#a1e870b0d2603a963160c762409676d22">iniRect</a>;               </div>
@@ -130,16 +138,21 @@ $(document).ready(function(){initNavTree('button_8h_source.html',''); initResiza
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structButtonImg.html#a7a987d7780996495b0b160831cc310f9">   60</a></span>     SDL_Texture *<a class="code hl_variable" href="structButtonImg.html#a7a987d7780996495b0b160831cc310f9">backgroundTexture</a>; </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="structButtonImg.html#ab88cc76467305d35e7a0a36599b04010">   61</a></span>     <span class="keywordtype">char</span> *<a class="code hl_variable" href="structButtonImg.html#ab88cc76467305d35e7a0a36599b04010">label</a>;                    </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> } <a class="code hl_struct" href="structButtonImg.html">ButtonImg</a>;</div>
+</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00070" data-start="{" data-end="};">
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structListeButton.html">   70</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structListeButton.html#aecc9e21d30117f166458e81e3cd178af">   71</a></span>     <span class="keywordtype">int</span> <a class="code hl_variable" href="structListeButton.html#aecc9e21d30117f166458e81e3cd178af">nbButton</a>;                   </div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structListeButton.html#a3efd90144b290a9ca4c835f84f985f40">   72</a></span>     <a class="code hl_struct" href="structButton.html">Button</a> *<a class="code hl_variable" href="structListeButton.html#a3efd90144b290a9ca4c835f84f985f40">buttons</a>;                </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> } <a class="code hl_struct" href="structListeButton.html">ListeButton</a>;</div>
+</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="foldopen" id="foldopen00081" data-start="{" data-end="};">
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="structListeButtonImg.html">   81</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="structListeButtonImg.html#a25f16a18356af84c3e81c4b07751898c">   82</a></span>     <span class="keywordtype">int</span> <a class="code hl_variable" href="structListeButtonImg.html#a25f16a18356af84c3e81c4b07751898c">nbButton</a>;                   </div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structListeButtonImg.html#a359aae3fd99b2bb264f38ae222813930">   83</a></span>     <a class="code hl_struct" href="structButtonImg.html">ButtonImg</a> *<a class="code hl_variable" href="structListeButtonImg.html#a359aae3fd99b2bb264f38ae222813930">buttons</a>;             </div>
 <div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> } <a class="code hl_struct" href="structListeButtonImg.html">ListeButtonImg</a>;</div>
+</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> <span class="keywordtype">void</span> <a class="code hl_function" href="button_8h.html#a5cb861d83899ac480edaa66fb8654a66">ButtonHandle</a>();</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>

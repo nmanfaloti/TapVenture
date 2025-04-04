@@ -5,7 +5,7 @@
 Déclarations et définitions pour la gestion de l\textquotesingle{}inventaire.  
 
 
-{\ttfamily \#include \"{}../lib/scroll.\+h\"{}}\newline
+{\ttfamily \#include "{}../lib/scroll.\+h"{}}\newline
 Include dependency graph for inv.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -71,10 +71,10 @@ struct \mbox{\hyperlink{structliste__inventaires}{liste\+\_\+inventaires}}
 \#define {\bfseries ITEM\+\_\+\+SIZE}~7
 \item 
 \Hypertarget{inv_8h_ab50cdaed8f1b8f58e5c7ecea2d7d2980}\label{inv_8h_ab50cdaed8f1b8f58e5c7ecea2d7d2980} 
-\#define {\bfseries BORDURE\+\_\+\+PATH}~\"{}assets/ui/background/bordure.\+png\"{}
+\#define {\bfseries BORDURE\+\_\+\+PATH}~"{}assets/ui/background/bordure.\+png"{}
 \item 
 \Hypertarget{inv_8h_aef61555ebfe9a57c9d12149b10df1732}\label{inv_8h_aef61555ebfe9a57c9d12149b10df1732} 
-\#define {\bfseries BORDURE\+\_\+\+LABEL}~\"{}/bordure\+\_\+label\"{}
+\#define {\bfseries BORDURE\+\_\+\+LABEL}~"{}/bordure\+\_\+label"{}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -314,7 +314,7 @@ Affiche l\textquotesingle{}inventaire graphiquement.
 \index{inv.h@{inv.h}!boost\_gold@{boost\_gold}}
 \index{boost\_gold@{boost\_gold}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{boost\_gold()}{boost\_gold()}}
-{\footnotesize\ttfamily int boost\+\_\+gold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int boost\+\_\+gold (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 
@@ -491,7 +491,7 @@ Valeur générée pour la statistique.
 \index{inv.h@{inv.h}!gestion\_inv@{gestion\_inv}}
 \index{gestion\_inv@{gestion\_inv}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{gestion\_inv()}{gestion\_inv()}}
-{\footnotesize\ttfamily void gestion\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{inventaire,  }\item[{int}]{NB\+\_\+items,  }\item[{int}]{id\+\_\+scroll,  }\item[{SDL\+\_\+\+Rect}]{SDL\+\_\+\+Rect,  }\item[{int}]{nb\+\_\+colonne,  }\item[{int}]{nb\+\_\+ligne,  }\item[{int}]{arrondis,  }\item[{int}]{decalage\+\_\+bas,  }\item[{int}]{decalage\+\_\+cote,  }\item[{int}]{id\+\_\+back\+\_\+item }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void gestion\+\_\+inv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structinv}{inv}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{inventaire,  }\item[{int}]{NB\+\_\+items,  }\item[{int}]{id\+\_\+scroll,  }\item[{SDL\+\_\+\+Rect}]{SDL\+\_\+\+Rect,  }\item[{int}]{nb\+\_\+colonne,  }\item[{int}]{nb\+\_\+ligne,  }\item[{int}]{arrondis,  }\item[{int}]{decalage\+\_\+bas,  }\item[{int}]{decalage\+\_\+cote,  }\item[{int}]{id\+\_\+back\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 
@@ -524,7 +524,7 @@ Gère l\textquotesingle{}affichage et l\textquotesingle{}interaction avec l\text
 \index{inv.h@{inv.h}!gestion\_stat\_heros@{gestion\_stat\_heros}}
 \index{gestion\_stat\_heros@{gestion\_stat\_heros}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{gestion\_stat\_heros()}{gestion\_stat\_heros()}}
-{\footnotesize\ttfamily void gestion\+\_\+stat\+\_\+heros (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+heros }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void gestion\+\_\+stat\+\_\+heros (\begin{DoxyParamCaption}\item[{int}]{index\+\_\+heros }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 
@@ -539,7 +539,7 @@ Gère les statistiques d\textquotesingle{}un héros.
 \index{inv.h@{inv.h}!handle\_inv\_event@{handle\_inv\_event}}
 \index{handle\_inv\_event@{handle\_inv\_event}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{handle\_inv\_event()}{handle\_inv\_event()}}
-{\footnotesize\ttfamily void handle\+\_\+inv\+\_\+event (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{event }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void handle\+\_\+inv\+\_\+event (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 
@@ -569,7 +569,7 @@ Initialise l\textquotesingle{}inventaire.
 \index{inv.h@{inv.h}!load\_inv@{load\_inv}}
 \index{load\_inv@{load\_inv}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{load\_inv()}{load\_inv()}}
-{\footnotesize\ttfamily void load\+\_\+inv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{nom\+\_\+fichier }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void load\+\_\+inv (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{nom\+\_\+fichier }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 
@@ -584,7 +584,7 @@ Charge un inventaire à partir d\textquotesingle{}un fichier.
 \index{inv.h@{inv.h}!load\_item\_joueur@{load\_item\_joueur}}
 \index{load\_item\_joueur@{load\_item\_joueur}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{load\_item\_joueur()}{load\_item\_joueur()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} load\+\_\+item\+\_\+joueur (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} load\+\_\+item\+\_\+joueur (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 
@@ -602,7 +602,7 @@ Pointeur vers l\textquotesingle{}objet chargé.
 \index{inv.h@{inv.h}!load\_item\_ref@{load\_item\_ref}}
 \index{load\_item\_ref@{load\_item\_ref}!inv.h@{inv.h}}
 \doxysubsubsection{\texorpdfstring{load\_item\_ref()}{load\_item\_ref()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} load\+\_\+item\+\_\+ref (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{structitem__t}{item\+\_\+t}} \texorpdfstring{$\ast$}{*} load\+\_\+item\+\_\+ref (\begin{DoxyParamCaption}\item[{FILE \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
 
 
 

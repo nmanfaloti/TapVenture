@@ -1,7 +1,7 @@
 var searchData=
 [
   ['calcule_5fpos_5finv_0',['calcule_pos_inv',['../inv_8h.html#a3d4a2f6177d528e86bb9ef8b757beba5',1,'inv.h']]],
-  ['callfunction_1',['callFunction',['../structButton.html#aea4e39cc7f0df21fbe96ea9486d5167b',1,'Button::callFunction'],['../structButtonImg.html#abde305f1cf062ebaded5d8bdedd27c4f',1,'ButtonImg::callFunction']]],
+  ['callfunction_1',['callfunction',['../structButton.html#aea4e39cc7f0df21fbe96ea9486d5167b',1,'Button::callFunction'],['../structButtonImg.html#abde305f1cf062ebaded5d8bdedd27c4f',1,'ButtonImg::callFunction']]],
   ['canal_5fcount_2',['CANAL_COUNT',['../audio_8h.html#aad0777a8498d8a7cced4281dae2aa61aa77e8f9c9fdb2ff9bbf5cc20b6f572d77',1,'audio.h']]],
   ['canal_5feffect_3',['CANAL_EFFECT',['../audio_8h.html#aad0777a8498d8a7cced4281dae2aa61aa783b06e3a3a570f13aec34d5187640c9',1,'audio.h']]],
   ['canal_5fmusic_5fback_4',['CANAL_MUSIC_BACK',['../audio_8h.html#aad0777a8498d8a7cced4281dae2aa61aa8eeb0f5e86f13e2ada662f57c9b6cd88',1,'audio.h']]],
@@ -43,11 +43,12 @@ var searchData=
   ['createuiimg_40',['createUIImg',['../ui_8h.html#aa9787a000e5465904f88cea1ea894d61',1,'aff.c']]],
   ['createuitext_41',['createUIText',['../ui_8h.html#a9d799d4fb70929c15dda75681475c4df',1,'aff.c']]],
   ['createvalueforkey_42',['createValueForKey',['../save__json_8h.html#a6009a23c76bcde854d58cd7048097972',1,'save_json.c']]],
-  ['credits_5fassets_5fmsg_43',['CREDITS_ASSETS_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a276467cb44cb2c2d0dd61bd353acbe37',1,'lang.h']]],
-  ['credits_5fdev_5fmsg_44',['CREDITS_DEV_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a20c94529b70554d5b4d4dbfea9ddde12',1,'lang.h']]],
-  ['credits_5festeban_5fmsg_45',['CREDITS_ESTEBAN_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a9469d8efb3cfa122de5e7323ae4a78cf',1,'lang.h']]],
-  ['credits_5fmsg_46',['CREDITS_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05ae67a4a2eb246154ae742b7ce89678086',1,'lang.h']]],
-  ['currentlvl_47',['currentLvl',['../structlevelInfo.html#aa3374d45136fd223868ee2f4ae2531e3',1,'levelInfo']]],
-  ['currentpage_48',['currentpage',['../ui_8h.html#a02013bd8e68c3111494486b4278001bd',1,'aff.c']]],
-  ['cursor_49',['cursor',['../sdl_8h.html#a06e8dd1f849973ccc456f8553601e8b9',1,'sdl.c']]]
+  ['credits_43',['Credits',['../index.html#autotoc_md1',1,'']]],
+  ['credits_5fassets_5fmsg_44',['CREDITS_ASSETS_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a276467cb44cb2c2d0dd61bd353acbe37',1,'lang.h']]],
+  ['credits_5fdev_5fmsg_45',['CREDITS_DEV_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a20c94529b70554d5b4d4dbfea9ddde12',1,'lang.h']]],
+  ['credits_5festeban_5fmsg_46',['CREDITS_ESTEBAN_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a9469d8efb3cfa122de5e7323ae4a78cf',1,'lang.h']]],
+  ['credits_5fmsg_47',['CREDITS_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05ae67a4a2eb246154ae742b7ce89678086',1,'lang.h']]],
+  ['currentlvl_48',['currentLvl',['../structlevelInfo.html#aa3374d45136fd223868ee2f4ae2531e3',1,'levelInfo']]],
+  ['currentpage_49',['currentpage',['../ui_8h.html#a02013bd8e68c3111494486b4278001bd',1,'aff.c']]],
+  ['cursor_50',['cursor',['../sdl_8h.html#a06e8dd1f849973ccc456f8553601e8b9',1,'sdl.c']]]
 ];

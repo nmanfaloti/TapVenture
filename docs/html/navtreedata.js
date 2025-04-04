@@ -24,7 +24,15 @@
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "TapVenture", "index.html", [
+    [ "TapVenture", "index.html#autotoc_md0", [
+      [ "Credits", "index.html#autotoc_md1", null ],
+      [ "Description du Jeu", "index.html#autotoc_md2", null ],
+      [ "Gameplay", "index.html#autotoc_md3", null ],
+      [ "Progression dans le jeux", "index.html#autotoc_md4", null ],
+      [ "GANTT", "index.html#autotoc_md5", null ],
+      [ "Taches", "index.html#autotoc_md6", null ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -50,8 +58,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "aff_8h.html",
-"lang_8h.html#a2330daae4e89530d4585df3c66a40c05a2b0575181552e3b0f7f20b2ca1905606",
-"structuiPageHolder__s.html#a50168e4a763564bea7b20fb5eb0d7bb6"
+"lang_8h.html#a2330daae4e89530d4585df3c66a40c05a12cdb552d50c045ff676490d1d977242",
+"structuiNotif__s.html#a955c668cf7f697d61b81689bcfa418f9"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

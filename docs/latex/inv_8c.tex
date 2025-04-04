@@ -10,14 +10,14 @@ Implémentation des fonctions de gestion de l\textquotesingle{}inventaire.
 {\ttfamily \#include $<$string.\+h$>$}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
-{\ttfamily \#include \"{}../lib/inv.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/input\+\_\+user.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/heros.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/combat.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/player.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/ui.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/lang.\+h\"{}}\newline
-{\ttfamily \#include \"{}../lib/chaine.\+h\"{}}\newline
+{\ttfamily \#include "{}../lib/inv.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/input\+\_\+user.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/heros.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/combat.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/player.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/ui.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/lang.\+h"{}}\newline
+{\ttfamily \#include "{}../lib/chaine.\+h"{}}\newline
 Include dependency graph for inv.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
@@ -34,7 +34,7 @@ struct \mbox{\hyperlink{structdrag__t}{drag\+\_\+t}}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{inv_8c_a1f76ccf91933d3ae149e71f731ef9506}\label{inv_8c_a1f76ccf91933d3ae149e71f731ef9506} 
-\#define {\bfseries LABEL\+\_\+\+HEROS}~\"{}zone\+\_\+interaction\+\_\+scroll\"{}
+\#define {\bfseries LABEL\+\_\+\+HEROS}~"{}zone\+\_\+interaction\+\_\+scroll"{}
 \item 
 \Hypertarget{inv_8c_a21509c1b2bcd3bcc5053ec4e5cea46c7}\label{inv_8c_a21509c1b2bcd3bcc5053ec4e5cea46c7} 
 \#define {\bfseries DECALE\+\_\+\+HEROS}~20
@@ -94,6 +94,9 @@ void {\bfseries generation\+\_\+label} (char \texorpdfstring{$\ast$}{*}\texorpdf
 \item 
 \Hypertarget{inv_8c_a7487592620c4eb9ab4ae9dbb610f0149}\label{inv_8c_a7487592620c4eb9ab4ae9dbb610f0149} 
 char \texorpdfstring{$\ast$}{*} {\bfseries item\+\_\+rondam} (int \texorpdfstring{$\ast$}{*}piece\+\_\+equipement)
+\item 
+\Hypertarget{inv_8c_a30719e01233c9d648f2f5f9be135a686}\label{inv_8c_a30719e01233c9d648f2f5f9be135a686} 
+void {\bfseries switch\+\_\+pos\+\_\+render\+\_\+img} (char \texorpdfstring{$\ast$}{*}label\+\_\+item\+\_\+drop, char \texorpdfstring{$\ast$}{*}label\+\_\+bordure)
 \item 
 \Hypertarget{inv_8c_ae69f7d4289895ec184f8e0e91da01184}\label{inv_8c_ae69f7d4289895ec184f8e0e91da01184} 
 void {\bfseries drop\+\_\+item} ()

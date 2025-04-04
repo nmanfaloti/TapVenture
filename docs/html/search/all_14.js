@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['welcome_5fdesc_5fmsg_0',['WELCOME_DESC_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05ae3d29d3c871719738e2231006eadd85e',1,'lang.h']]],
-  ['welcome_5fmsg_1',['WELCOME_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a721d58980e5093c50798bb8d6f5f2a57',1,'lang.h']]],
-  ['widthscreen_2',['widthscreen',['../aff_8h.html#af7938f2fddb32cc5fda5cfb1b11a1f6a',1,'aff.c']]],
-  ['window_3',['window',['../sdl_8h.html#aaa8e409e04dcf575ef63fd5fb3db06f9',1,'sdl.c']]],
-  ['windowed_5fmsg_4',['WINDOWED_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a2933a089b996bbcffe6e5efb717cd604',1,'lang.h']]]
+  ['value_0',['value',['../structprestigeItem__s.html#a41309681bdb21075db97396dbaba8bde',1,'prestigeItem_s']]],
+  ['vh_1',['vh',['../aff_8h.html#a423a6a66abaaf13fdbc4a50d51b3d1a5',1,'aff.c']]],
+  ['vie_5fmsg_2',['VIE_MSG',['../lang_8h.html#a2330daae4e89530d4585df3c66a40c05a7edb4a59007cd46700897bdc4e9c4c82',1,'lang.h']]],
+  ['vitesse_5fattaque_3',['VITESSE_ATTAQUE',['../inv_8h.html#a36c201eb589717e0370478d4ca9c2959af05376ceaaf87def66982de3df392c8d',1,'inv.h']]],
+  ['vw_4',['vw',['../aff_8h.html#ae8fe7d31378c00422ab654ed779b5ce5',1,'aff.c']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: lib/scroll.h Source File</title>
+<title>TapVenture: lib/scroll.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">TapVenture
    </div>
   </td>
  </tr>
@@ -50,6 +50,11 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -100,61 +105,63 @@ $(document).ready(function(){initNavTree('scroll_8h_source.html',''); initResiza
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html">   13</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structscroll__inf__s.html">scroll_inf_s</a> {</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a60e6de439907b572b7ef08eec5d79eb8">   14</a></span>   SDL_Rect <a class="code hl_variable" href="structscroll__inf__s.html#a60e6de439907b572b7ef08eec5d79eb8">zone_interaction</a>; </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a20734b9c0d447579d1b84f09f566716e">   15</a></span>   SDL_Rect <a class="code hl_variable" href="structscroll__inf__s.html#a20734b9c0d447579d1b84f09f566716e">zone_scroll</a>; </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a8cf191c6b7cc2838e20eeb6be42a795b">   16</a></span>   SDL_Rect <a class="code hl_variable" href="structscroll__inf__s.html#a8cf191c6b7cc2838e20eeb6be42a795b">rect_scroll</a>; </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a72c246b81b9328196f1ccf65cd9193b6">   18</a></span>   <span class="keywordtype">float</span> <a class="code hl_variable" href="structscroll__inf__s.html#a72c246b81b9328196f1ccf65cd9193b6">coef</a>; </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a1bfc6e8cacfd37f6b1a4e9b58297f5c6">   19</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a1bfc6e8cacfd37f6b1a4e9b58297f5c6">empl_alloue</a>; </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#afec60e0cedc69416d9f0901f57af4f89">   20</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#afec60e0cedc69416d9f0901f57af4f89">selection_scroll</a>; </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a11f58f5e40877e11c47e72e2cf3d151b">   21</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a11f58f5e40877e11c47e72e2cf3d151b">scroll_pos</a>; </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#abf98790ebbb4a07bf1cf892761415424">   22</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#abf98790ebbb4a07bf1cf892761415424">scrollbar_max_position</a>; </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#afcc0c118cced3fe1da3fdd00c7e8db48">   23</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#afcc0c118cced3fe1da3fdd00c7e8db48">total_content_height</a>; </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a85100d384870c786b97592bf8c74f79f">   24</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a85100d384870c786b97592bf8c74f79f">speed</a>; </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a52c3007b1a938a84adf199cb42a5e425">   25</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a52c3007b1a938a84adf199cb42a5e425">min_pos</a>; </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84">   26</a></span>   <span class="keywordtype">char</span> <a class="code hl_variable" href="structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84">label</a>[100]; </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} <a class="code hl_struct" href="structscroll__inf.html">scroll_inf</a>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">extern</span> <a class="code hl_struct" href="structscroll__inf.html">scroll_inf</a> scroll_liste[NOMBRE_MAX_SCROLL];</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">extern</span> <span class="keywordtype">void</span> clear_scroll();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">extern</span> <span class="keywordtype">int</span> est_dans_scroll(SDL_Rect *elem_pos, SDL_Rect zone_interaction);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">extern</span> <span class="keywordtype">void</span> init_scroll();</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keywordtype">float</span> cof_scrollbar_window(<span class="keywordtype">int</span> visible_area_height, <span class="keywordtype">int</span> total_content_height);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keywordtype">int</span> calculate_scrollbar_height(<span class="keywordtype">int</span> visible_area_height, <span class="keywordtype">float</span> cof);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">extern</span> <span class="keywordtype">int</span> creation_scroll(SDL_Rect zone_interaction, SDL_Rect zone_scroll, </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                           <span class="keywordtype">int</span> total_content_height, <span class="keywordtype">int</span> speed, <span class="keywordtype">int</span> *erreur_activer, <span class="keywordtype">char</span> **label);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">extern</span> <span class="keywordtype">void</span> aff_scrollbar_simple(SDL_Color *color_scrollbar, SDL_Color *color_rect);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keywordtype">int</span> first_pos_scroll();</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="keywordtype">int</span> select_quelle_scroll(<span class="keywordtype">int</span> nb);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">extern</span> <span class="keywordtype">void</span> handle_scroll_event(SDL_Event event);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keyword">extern</span> <span class="keywordtype">void</span> update_scroll(<span class="keywordtype">int</span> *id_scroll);</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">extern</span> <span class="keywordtype">int</span> chercher_id_scroll_par_label(<span class="keyword">const</span> <span class="keywordtype">char</span> *label_recherche);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#endif </span><span class="comment">// SCROLL_H</span></div>
-<div class="ttc" id="astructscroll__inf__s_html"><div class="ttname"><a href="structscroll__inf__s.html">scroll_inf_s</a></div><div class="ttdef"><b>Definition</b> scroll.h:13</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a11f58f5e40877e11c47e72e2cf3d151b"><div class="ttname"><a href="structscroll__inf__s.html#a11f58f5e40877e11c47e72e2cf3d151b">scroll_inf_s::scroll_pos</a></div><div class="ttdeci">int scroll_pos</div><div class="ttdef"><b>Definition</b> scroll.h:21</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a1bfc6e8cacfd37f6b1a4e9b58297f5c6"><div class="ttname"><a href="structscroll__inf__s.html#a1bfc6e8cacfd37f6b1a4e9b58297f5c6">scroll_inf_s::empl_alloue</a></div><div class="ttdeci">int empl_alloue</div><div class="ttdef"><b>Definition</b> scroll.h:19</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a20734b9c0d447579d1b84f09f566716e"><div class="ttname"><a href="structscroll__inf__s.html#a20734b9c0d447579d1b84f09f566716e">scroll_inf_s::zone_scroll</a></div><div class="ttdeci">SDL_Rect zone_scroll</div><div class="ttdef"><b>Definition</b> scroll.h:15</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a52c3007b1a938a84adf199cb42a5e425"><div class="ttname"><a href="structscroll__inf__s.html#a52c3007b1a938a84adf199cb42a5e425">scroll_inf_s::min_pos</a></div><div class="ttdeci">int min_pos</div><div class="ttdef"><b>Definition</b> scroll.h:25</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a60e6de439907b572b7ef08eec5d79eb8"><div class="ttname"><a href="structscroll__inf__s.html#a60e6de439907b572b7ef08eec5d79eb8">scroll_inf_s::zone_interaction</a></div><div class="ttdeci">SDL_Rect zone_interaction</div><div class="ttdef"><b>Definition</b> scroll.h:14</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a72c246b81b9328196f1ccf65cd9193b6"><div class="ttname"><a href="structscroll__inf__s.html#a72c246b81b9328196f1ccf65cd9193b6">scroll_inf_s::coef</a></div><div class="ttdeci">float coef</div><div class="ttdef"><b>Definition</b> scroll.h:18</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a85100d384870c786b97592bf8c74f79f"><div class="ttname"><a href="structscroll__inf__s.html#a85100d384870c786b97592bf8c74f79f">scroll_inf_s::speed</a></div><div class="ttdeci">int speed</div><div class="ttdef"><b>Definition</b> scroll.h:24</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_a8cf191c6b7cc2838e20eeb6be42a795b"><div class="ttname"><a href="structscroll__inf__s.html#a8cf191c6b7cc2838e20eeb6be42a795b">scroll_inf_s::rect_scroll</a></div><div class="ttdeci">SDL_Rect rect_scroll</div><div class="ttdef"><b>Definition</b> scroll.h:16</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_aa94b3e7ac29eeaf206a648e20ce22e84"><div class="ttname"><a href="structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84">scroll_inf_s::label</a></div><div class="ttdeci">char label[100]</div><div class="ttdef"><b>Definition</b> scroll.h:26</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_abf98790ebbb4a07bf1cf892761415424"><div class="ttname"><a href="structscroll__inf__s.html#abf98790ebbb4a07bf1cf892761415424">scroll_inf_s::scrollbar_max_position</a></div><div class="ttdeci">int scrollbar_max_position</div><div class="ttdef"><b>Definition</b> scroll.h:22</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_afcc0c118cced3fe1da3fdd00c7e8db48"><div class="ttname"><a href="structscroll__inf__s.html#afcc0c118cced3fe1da3fdd00c7e8db48">scroll_inf_s::total_content_height</a></div><div class="ttdeci">int total_content_height</div><div class="ttdef"><b>Definition</b> scroll.h:23</div></div>
-<div class="ttc" id="astructscroll__inf__s_html_afec60e0cedc69416d9f0901f57af4f89"><div class="ttname"><a href="structscroll__inf__s.html#afec60e0cedc69416d9f0901f57af4f89">scroll_inf_s::selection_scroll</a></div><div class="ttdeci">int selection_scroll</div><div class="ttdef"><b>Definition</b> scroll.h:20</div></div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html">   15</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structscroll__inf__s.html">scroll_inf_s</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a60e6de439907b572b7ef08eec5d79eb8">   16</a></span>   SDL_Rect <a class="code hl_variable" href="structscroll__inf__s.html#a60e6de439907b572b7ef08eec5d79eb8">zone_interaction</a>; </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a20734b9c0d447579d1b84f09f566716e">   17</a></span>   SDL_Rect <a class="code hl_variable" href="structscroll__inf__s.html#a20734b9c0d447579d1b84f09f566716e">zone_scroll</a>; </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a8cf191c6b7cc2838e20eeb6be42a795b">   18</a></span>   SDL_Rect <a class="code hl_variable" href="structscroll__inf__s.html#a8cf191c6b7cc2838e20eeb6be42a795b">rect_scroll</a>; </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a72c246b81b9328196f1ccf65cd9193b6">   20</a></span>   <span class="keywordtype">float</span> <a class="code hl_variable" href="structscroll__inf__s.html#a72c246b81b9328196f1ccf65cd9193b6">coef</a>; </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a1bfc6e8cacfd37f6b1a4e9b58297f5c6">   21</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a1bfc6e8cacfd37f6b1a4e9b58297f5c6">empl_alloue</a>; </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#afec60e0cedc69416d9f0901f57af4f89">   22</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#afec60e0cedc69416d9f0901f57af4f89">selection_scroll</a>; </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a11f58f5e40877e11c47e72e2cf3d151b">   23</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a11f58f5e40877e11c47e72e2cf3d151b">scroll_pos</a>; </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#abf98790ebbb4a07bf1cf892761415424">   24</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#abf98790ebbb4a07bf1cf892761415424">scrollbar_max_position</a>; </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#afcc0c118cced3fe1da3fdd00c7e8db48">   25</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#afcc0c118cced3fe1da3fdd00c7e8db48">total_content_height</a>; </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a85100d384870c786b97592bf8c74f79f">   26</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a85100d384870c786b97592bf8c74f79f">speed</a>; </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#a52c3007b1a938a84adf199cb42a5e425">   27</a></span>   <span class="keywordtype">int</span> <a class="code hl_variable" href="structscroll__inf__s.html#a52c3007b1a938a84adf199cb42a5e425">min_pos</a>; </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84">   28</a></span>   <span class="keywordtype">char</span> <a class="code hl_variable" href="structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84">label</a>[100]; </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>} <a class="code hl_struct" href="structscroll__inf.html">scroll_inf</a>;</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">extern</span> <a class="code hl_struct" href="structscroll__inf.html">scroll_inf</a> scroll_liste[NOMBRE_MAX_SCROLL];</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">extern</span> <span class="keywordtype">void</span> clear_scroll();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keyword">extern</span> <span class="keywordtype">int</span> est_dans_scroll(SDL_Rect *elem_pos, SDL_Rect zone_interaction);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keyword">extern</span> <span class="keywordtype">void</span> init_scroll();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">float</span> cof_scrollbar_window(<span class="keywordtype">int</span> visible_area_height, <span class="keywordtype">int</span> total_content_height);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">int</span> calculate_scrollbar_height(<span class="keywordtype">int</span> visible_area_height, <span class="keywordtype">float</span> cof);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">extern</span> <span class="keywordtype">int</span> creation_scroll(SDL_Rect zone_interaction, SDL_Rect zone_scroll, </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                           <span class="keywordtype">int</span> total_content_height, <span class="keywordtype">int</span> speed, <span class="keywordtype">int</span> *erreur_activer, <span class="keywordtype">char</span> **label);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">extern</span> <span class="keywordtype">void</span> aff_scrollbar_simple(SDL_Color *color_scrollbar, SDL_Color *color_rect);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="keywordtype">int</span> first_pos_scroll();</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="keywordtype">int</span> select_quelle_scroll(<span class="keywordtype">int</span> nb);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="keyword">extern</span> <span class="keywordtype">void</span> handle_scroll_event(SDL_Event event);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keyword">extern</span> <span class="keywordtype">void</span> update_scroll(<span class="keywordtype">int</span> *id_scroll);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">extern</span> <span class="keywordtype">int</span> chercher_id_scroll_par_label(<span class="keyword">const</span> <span class="keywordtype">char</span> *label_recherche);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif </span><span class="comment">// SCROLL_H</span></div>
+<div class="ttc" id="astructscroll__inf__s_html"><div class="ttname"><a href="structscroll__inf__s.html">scroll_inf_s</a></div><div class="ttdef"><b>Definition</b> scroll.h:15</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a11f58f5e40877e11c47e72e2cf3d151b"><div class="ttname"><a href="structscroll__inf__s.html#a11f58f5e40877e11c47e72e2cf3d151b">scroll_inf_s::scroll_pos</a></div><div class="ttdeci">int scroll_pos</div><div class="ttdef"><b>Definition</b> scroll.h:23</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a1bfc6e8cacfd37f6b1a4e9b58297f5c6"><div class="ttname"><a href="structscroll__inf__s.html#a1bfc6e8cacfd37f6b1a4e9b58297f5c6">scroll_inf_s::empl_alloue</a></div><div class="ttdeci">int empl_alloue</div><div class="ttdef"><b>Definition</b> scroll.h:21</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a20734b9c0d447579d1b84f09f566716e"><div class="ttname"><a href="structscroll__inf__s.html#a20734b9c0d447579d1b84f09f566716e">scroll_inf_s::zone_scroll</a></div><div class="ttdeci">SDL_Rect zone_scroll</div><div class="ttdef"><b>Definition</b> scroll.h:17</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a52c3007b1a938a84adf199cb42a5e425"><div class="ttname"><a href="structscroll__inf__s.html#a52c3007b1a938a84adf199cb42a5e425">scroll_inf_s::min_pos</a></div><div class="ttdeci">int min_pos</div><div class="ttdef"><b>Definition</b> scroll.h:27</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a60e6de439907b572b7ef08eec5d79eb8"><div class="ttname"><a href="structscroll__inf__s.html#a60e6de439907b572b7ef08eec5d79eb8">scroll_inf_s::zone_interaction</a></div><div class="ttdeci">SDL_Rect zone_interaction</div><div class="ttdef"><b>Definition</b> scroll.h:16</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a72c246b81b9328196f1ccf65cd9193b6"><div class="ttname"><a href="structscroll__inf__s.html#a72c246b81b9328196f1ccf65cd9193b6">scroll_inf_s::coef</a></div><div class="ttdeci">float coef</div><div class="ttdef"><b>Definition</b> scroll.h:20</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a85100d384870c786b97592bf8c74f79f"><div class="ttname"><a href="structscroll__inf__s.html#a85100d384870c786b97592bf8c74f79f">scroll_inf_s::speed</a></div><div class="ttdeci">int speed</div><div class="ttdef"><b>Definition</b> scroll.h:26</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_a8cf191c6b7cc2838e20eeb6be42a795b"><div class="ttname"><a href="structscroll__inf__s.html#a8cf191c6b7cc2838e20eeb6be42a795b">scroll_inf_s::rect_scroll</a></div><div class="ttdeci">SDL_Rect rect_scroll</div><div class="ttdef"><b>Definition</b> scroll.h:18</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_aa94b3e7ac29eeaf206a648e20ce22e84"><div class="ttname"><a href="structscroll__inf__s.html#aa94b3e7ac29eeaf206a648e20ce22e84">scroll_inf_s::label</a></div><div class="ttdeci">char label[100]</div><div class="ttdef"><b>Definition</b> scroll.h:28</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_abf98790ebbb4a07bf1cf892761415424"><div class="ttname"><a href="structscroll__inf__s.html#abf98790ebbb4a07bf1cf892761415424">scroll_inf_s::scrollbar_max_position</a></div><div class="ttdeci">int scrollbar_max_position</div><div class="ttdef"><b>Definition</b> scroll.h:24</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_afcc0c118cced3fe1da3fdd00c7e8db48"><div class="ttname"><a href="structscroll__inf__s.html#afcc0c118cced3fe1da3fdd00c7e8db48">scroll_inf_s::total_content_height</a></div><div class="ttdeci">int total_content_height</div><div class="ttdef"><b>Definition</b> scroll.h:25</div></div>
+<div class="ttc" id="astructscroll__inf__s_html_afec60e0cedc69416d9f0901f57af4f89"><div class="ttname"><a href="structscroll__inf__s.html#afec60e0cedc69416d9f0901f57af4f89">scroll_inf_s::selection_scroll</a></div><div class="ttdeci">int selection_scroll</div><div class="ttdef"><b>Definition</b> scroll.h:22</div></div>
 <div class="ttc" id="astructscroll__inf_html"><div class="ttname"><a href="structscroll__inf.html">scroll_inf</a></div><div class="ttdoc">Structure représentant les informations d'un élément de défilement.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

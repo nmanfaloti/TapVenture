@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: lib/aff.h Source File</title>
+<title>TapVenture: lib/aff.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">My Project
+   <div id="projectname">TapVenture
    </div>
   </td>
  </tr>
@@ -50,6 +50,11 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -99,6 +104,7 @@ $(document).ready(function(){initNavTree('aff_8h_source.html',''); initResizable
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor"> #include &quot;SDL2/SDL.h&quot;</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor"> #include &quot;SDL2/SDL_ttf.h&quot;</span></div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structuiTxt__s.html">   26</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structuiTxt__s.html">uiTxt_s</a> {</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structuiTxt__s.html#aa9dfc6336c0372194570b831a9921ede">   27</a></span>     <span class="keywordtype">char</span> *<a class="code hl_variable" href="structuiTxt__s.html#aa9dfc6336c0372194570b831a9921ede">chaine</a>;           </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structuiTxt__s.html#a8de48f1feba5bd11d4154e1907ba1c0c">   28</a></span>     <span class="keywordtype">char</span> *<a class="code hl_variable" href="structuiTxt__s.html#a8de48f1feba5bd11d4154e1907ba1c0c">label</a>;            </div>
@@ -106,19 +112,24 @@ $(document).ready(function(){initNavTree('aff_8h_source.html',''); initResizable
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structuiTxt__s.html#a704ad607f7ecd86882d885b9459d04fc">   30</a></span>     SDL_Color <a class="code hl_variable" href="structuiTxt__s.html#a704ad607f7ecd86882d885b9459d04fc">color</a>;        </div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structuiTxt__s.html#a38f0f89253185457727fa5021f87e658">   31</a></span>     SDL_Texture *<a class="code hl_variable" href="structuiTxt__s.html#a38f0f89253185457727fa5021f87e658">texture</a>;   </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> } <a class="code hl_struct" href="structuiTxt.html">uiTxt</a>;</div>
+</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structuiImg__s.html">   41</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structuiImg__s.html">uiImg_s</a> {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structuiImg__s.html#af34783ffa0ddb2ef03519f6219bbd6e7">   42</a></span>     <span class="keywordtype">char</span> *<a class="code hl_variable" href="structuiImg__s.html#af34783ffa0ddb2ef03519f6219bbd6e7">label</a>;            </div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structuiImg__s.html#abc9d4013212132ee3564fdbf44f2c8db">   43</a></span>     SDL_Rect <a class="code hl_variable" href="structuiImg__s.html#abc9d4013212132ee3564fdbf44f2c8db">dest</a>;          </div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structuiImg__s.html#ad782bbf09480869d89e7824a2fbe8275">   44</a></span>     SDL_Texture *<a class="code hl_variable" href="structuiImg__s.html#ad782bbf09480869d89e7824a2fbe8275">texture</a>;   </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> } <a class="code hl_struct" href="structuiImg.html">uiImg</a>;</div>
+</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="foldopen" id="foldopen00053" data-start="{" data-end="};">
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structuiContainer__s.html">   53</a></span> <span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structuiContainer__s.html">uiContainer_s</a> {</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structuiContainer__s.html#a266992c1a71f15222c4d4e1609f27c8f">   54</a></span>     <span class="keywordtype">int</span> <a class="code hl_variable" href="structuiContainer__s.html#a266992c1a71f15222c4d4e1609f27c8f">nbTxt</a>;              </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structuiContainer__s.html#a2c7c698c0b700946e52d3658b49aa276">   55</a></span>     <a class="code hl_struct" href="structuiTxt__s.html">uiTxt</a> *<a class="code hl_variable" href="structuiContainer__s.html#a2c7c698c0b700946e52d3658b49aa276">txt</a>;             </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structuiContainer__s.html#a6787fa4467dee0e532f96035bfb50d11">   56</a></span>     <span class="keywordtype">int</span> <a class="code hl_variable" href="structuiContainer__s.html#a6787fa4467dee0e532f96035bfb50d11">nbImg</a>;              </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structuiContainer__s.html#ab41f149d06ac384adde2f9cd99eda416">   57</a></span>     <a class="code hl_struct" href="structuiImg__s.html">uiImg</a> *<a class="code hl_variable" href="structuiContainer__s.html#ab41f149d06ac384adde2f9cd99eda416">img</a>;             </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> } <a class="code hl_struct" href="structuiContainer.html">uiContainer</a>;</div>
+</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="aff_8h.html#af7938f2fddb32cc5fda5cfb1b11a1f6a">widthscreen</a>;     </div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> <span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="aff_8h.html#ac410034681234df57aadb25655697426">heightscreen</a>;    </div>
