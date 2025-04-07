@@ -69,6 +69,5 @@ void setPlayerDamage(unsigned long long int damage){
 int quitGame(void * args[20]){
     args[0] = NULL;
     quitGameValue = 1;
-    printf("Game is quitting\n");
     return 0;
 }

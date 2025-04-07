@@ -448,7 +448,7 @@ void initSettingsPage(){
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(35), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, FULLSCREEN_MSG, NULL, 1.05, SelectScreen, 1, &full_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(65), vh(40), vw(15), vh(10)),"assets/ui/buttons/green/button_rectangle_depth_gloss.svg", "assets/ui/buttons/green/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, WINDOWED_MSG, NULL, 1.05, SelectScreen, 1, &window_txt);
     createButton(&pageHolder.page[1],getRectForCentenredCord(vw(10), vh(92), vw(12), vh(8)),"assets/ui/buttons/red/button_rectangle_depth_gloss.svg", "assets/ui/buttons/red/button_rectangle_depth_flat.svg", font, (SDL_Color){0, 0, 0, 200}, QUIT_MSG, NULL, 1.05, quitGame, 1, NULL);
-    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(92), 50, 50), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[1],getRectForCentenredCord(vw(90), vh(92),vw(6), vh(10)), "assets/ui/icons/others/settings.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage,"returnButton", 1, &pageHolder.page[0]);
 }
 void init_inv_page(){
     init_inv_main();

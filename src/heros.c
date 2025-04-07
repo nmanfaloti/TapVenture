@@ -201,7 +201,7 @@ void initHerosPage(){
     createUIText(&pageHolder.page[3],fontBig,formatChaine("%t: %w",OR_MSG, gold), (SDL_Rect) {vw(1),vh(1), vw(15), vh(10)}, (SDL_Color){255, 255, 255, 255}, "playerGoldHeroShop");
     createUIText(&pageHolder.page[3],fontBig,formatChaine("%t: %w",DPS_MSG, herosAllDPS()), getRectForCentenredCord(vw(50), vh(92), vw(22), vh(8)), (SDL_Color){255, 255, 255, 255}, "DPSHeroShop");
 
-    createImgButton(&pageHolder.page[3],getRectForCentenredCord(vw(95), vh(90), 50, 50), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, "returnButton",1, &pageHolder.page[0]);
+    createImgButton(&pageHolder.page[3],getRectForCentenredCord(vw(95), vh(90), vw(6), vh(10)), "assets/ui/icons/others/return.svg", "assets/ui/buttons/extra/button_round_depth_line.svg", 0, 2, changePage, "returnButton",1, &pageHolder.page[0]);
 
     loadHerosMatrice();
 }
