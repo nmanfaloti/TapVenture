@@ -297,7 +297,6 @@ void initPrestige(){
     // Calcul une fois pour eviter de le recalculer à chaque fois
     vectorPrestige = vh(100) / NB_PRESTIGE_ITEMS_PER_PAGE;
 
-    printf("Init prestige\n");
     initPrestigeState();
     initPrestigePage();
     loadPrestigeTree();
