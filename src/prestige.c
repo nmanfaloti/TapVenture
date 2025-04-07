@@ -266,8 +266,29 @@ static void initPrestigePage(){
     createImgButton(&pageHolder.page[2],getRectForCentenredCord(vw(96), vh(5), vw(5), vw(5)), "assets/ui/buttons/blue/arrow_basic_s.svg", "assets/ui/buttons/extra/button_square_line.svg", 0, 0, ChangePrestigePage, "arrow2",1, 1);
 }
 
+void refreshPrestigeTreeSize(){
+    //Refresh les positions des items de prestige celon la taille de la fenetre
+    for (int i = 0; i < prestigeTree.Gold->count; i++) {
+        prestigeTree.Gold->items[i].pos = getRectForCentenredCord(vw(15), 
+            vh(90) - (i % NB_PRESTIGE_ITEMS_PER_PAGE) * vh(100) / NB_PRESTIGE_ITEMS_PER_PAGE, 
+            vw(10), vh(10));
+    }
+    for (int i = 0; i < prestigeTree.Damage->count; i++) {
+        prestigeTree.Damage->items[i].pos = getRectForCentenredCord(vw(50), 
+            vh(90) - (i % NB_PRESTIGE_ITEMS_PER_PAGE) * vh(100) / NB_PRESTIGE_ITEMS_PER_PAGE, 
+            vw(10), vh(10));
+    }
+    for (int i = 0; i < prestigeTree.Prestige->count; i++) {
+        prestigeTree.Prestige->items[i].pos = getRectForCentenredCord(vw(85), 
+            vh(90) - (i % NB_PRESTIGE_ITEMS_PER_PAGE) * vh(100) / NB_PRESTIGE_ITEMS_PER_PAGE, 
+            vw(10), vh(10));
+    }
+    refreshPrestigePage();
+}
+
 void refreshPrestigePage(){
     destroyPage(&pageHolder.page[2]);
+    
     initPrestigePage();
     loadPrestigeTree();
 }
@@ -276,6 +297,7 @@ void initPrestige(){
     // Calcul une fois pour eviter de le recalculer à chaque fois
     vectorPrestige = vh(100) / NB_PRESTIGE_ITEMS_PER_PAGE;
 
+    printf("Init prestige\n");
     initPrestigeState();
     initPrestigePage();
     loadPrestigeTree();

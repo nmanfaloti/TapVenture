@@ -161,6 +161,13 @@
  void destroyPrestigeList();
  
  /**
+  * @fn void refreshPrestigeTreeSize()
+  * @brief Rafraîchit la taille de l'arbre de prestige.
+  *
+  * Cette fonction met à jour la taille de l'arbre de prestige en fonction de la taille de la fenêtre.
+  */
+ void refreshPrestigeTreeSize();
+ /**
   * @fn void refreshPrestigePage()
   * @brief Rafraîchit la page de prestige.
   *

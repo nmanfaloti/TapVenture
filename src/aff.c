@@ -294,6 +294,7 @@ void refreshUI(){
     char * txt = formatChaine("%t: %w", DMG_MSG, shop.nextPrice);
     setButtonText(&pageHolder.page[0].buttonsList->buttons[0], txt);
     free(txt);
+    refreshPrestigeTreeSize();
 }
 
 

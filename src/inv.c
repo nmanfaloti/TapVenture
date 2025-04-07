@@ -412,6 +412,9 @@ void ajouter_inventaire(int nb_inventaires, ...) {
 }
 
 void init_liste_inventaires(){
+    if (list_inv != NULL) {
+        dest_all_inventaires();  
+    }
     list_inv = malloc (sizeof(liste_inventaires));
     list_inv->inventaires = malloc(sizeof(inv *));
     list_inv->nb_inventaires = 0 ;
