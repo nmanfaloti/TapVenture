@@ -9,7 +9,7 @@
 #define NB_PLASTRON 6
 #define NB_CASQUE 6
 #define NB_ARME 11
-#define DROP_ITEM 1.5 // en pourcentage par nv.monstre 
+#define DROP_ITEM 100 // en pourcentage par nv.monstre 
 #include "../lib/scroll.h"
 /**
  * @file inv.h
@@ -161,6 +161,22 @@ void dest_inv(inv **inventaire);
 * @return Index de la première position vide, -1 si l'inventaire est plein.
 */
 int prem_vide(inv *inventaire);
+
+
+/**
+* @brief cherche quelle est l'inventaire selectionner
+* 
+* @return Index de l'inventaire selectionner, -1 si aucun inventaire selectionner.
+*/
+int chercher_select();
+
+/**
+* @brief compte le nombre d'item dans l'inventaire.
+* 
+* @param inventaire Pointeur vers l'inventaire.
+* @return nb d'item qui existe dans l'inventaire, -1 si aucun item.
+*/
+int nb_item_inv(inv * inventaire);
 
 /**
 * @brief Vérifie si un objet est vide.

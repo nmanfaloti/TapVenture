@@ -83,15 +83,16 @@ int droit_fusion(item_t * item1, item_t * item2){
 }
 
 //allocation et destruction item / inv 
-item_t * generation_item(char * name , char * nom_fichier ){
-    item_t * it = malloc(sizeof(item_t));
+item_t * generation_item(char * name , char * nom_fichier,inv * inventaire ){
+    int id_item = prem_vide(inventaire);
+    item_t * it = inventaire -> liste[id_item] ;
     it->nom = strdup(name);
     it->nom_fichier = strdup(nom_fichier);
     return it ;
 }
 
 void dest_item(item_t ** item){
-    if ( !existe_item ( *item)) return;
+    if ( *item == NULL ) return;
     if ((*item)->nom != NULL) {
         free((*item)->nom);
         (*item)->nom = NULL;
@@ -347,7 +348,8 @@ void switch_pos_render_img(char * label_item_drop , char * label_bordure){
 
 void drop_item(){
     if (rand() % 100 + 1 > SDL_min(DROP_ITEM * level.mobKilled, 100)) return;
-    int emplacement_vide = prem_vide(list_inv->inventaires[0]);
+    inv * inv_global = list_inv->inventaires[0] ;
+    int emplacement_vide = prem_vide(inv_global);
     if (emplacement_vide == -1){
         //notif inv full
         return ;
@@ -363,7 +365,7 @@ void drop_item(){
     }
     char * nom = list_inv->inventaires[1]->liste[id_ref]->nom ;
 
-    item_t * it = generation_item(nom,nom_path_icon);
+    item_t * it = generation_item(nom,nom_path_icon,inv_global);
     it->stat = stat ;
     it -> boost = type_stat ;
     it->piece_equipement = piece_equipement ;
@@ -372,7 +374,7 @@ void drop_item(){
     generation_label(&(it -> label));
     list_inv->inventaires[0]->liste[emplacement_vide] = it;
 
-    aff_inv_inf * raccoursis = &(list_inv->inventaires[0]->info_inv );
+    aff_inv_inf * raccoursis = &(inv_global->info_inv );
     int nb_colone = raccoursis->nb_collone;
     int emp_ligne = emplacement_vide/nb_colone ;
     int emp_colone = emplacement_vide % nb_colone ;
@@ -392,7 +394,6 @@ void dest_all_inventaires() {
     }
     free(list_inv->inventaires);  // Libération du tableau d'inventaires
     list_inv->inventaires = NULL;
-    list_inv->nb_inventaires = 0;
     free(list_inv);
     list_inv = NULL ;
 }
@@ -412,9 +413,6 @@ void ajouter_inventaire(int nb_inventaires, ...) {
 }
 
 void init_liste_inventaires(){
-    if (list_inv != NULL) {
-        dest_all_inventaires();  
-    }
     list_inv = malloc (sizeof(liste_inventaires));
     list_inv->inventaires = malloc(sizeof(inv *));
     list_inv->nb_inventaires = 0 ;
@@ -1077,10 +1075,10 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
 
 
 
-item_t *load_item(FILE *f, int type) {  
+item_t *load_item(FILE *f, int type , inv * inventaire) {  
     if (!f) return NULL;  
 
-    item_t *it = malloc(sizeof(item_t));  
+    item_t *it = inventaire->liste[prem_vide(inventaire)];  
     if (!it) return NULL;  
  
     char ligne[MAX_LIGNE];  
@@ -1138,7 +1136,7 @@ void load_inv(const char *nom_fichier) {
     while (fgets(ligne, MAX_LIGNE, f) && inventaire->nb_items > compteur) {
         if (strstr(ligne, "{")) {  // Début d'un item
             
-            inventaire->liste[compteur] = load_item(f, id); // Chargement complet
+            inventaire->liste[compteur] = load_item(f, id , inventaire); // Chargement complet
             if (inventaire->liste[compteur]) {
                 compteur++;
             }
