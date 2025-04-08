@@ -258,7 +258,7 @@ int generate_stat_nb(int x,int type,int stat_ameliorer ,int rarete,int nb_max_nv
     for (int i = 0; i < taille; i++) {
         som_croi += liste_stat[i];
         if(som_croi >= random_nb)
-            return stat_ameliorer + round(( i + 1 ) * rar * var) ;
+            return round( ( stat_ameliorer +  ( i + 1 ) * rar ) * var) ;
     }
 
     return -1;
@@ -336,16 +336,6 @@ char * item_rondam(int * piece_equipement){
     return type ;
 }
 
-void switch_pos_render_img(char * label_item_drop , char * label_bordure){
-    uiImg * path_img_item = getImgFromLabel(label_item_drop) ;
-    uiImg * path_img_background = getImgFromLabel(label_bordure) ;
-    if (path_img_item != NULL && path_img_background != NULL) {
-        uiImg *temp = path_img_item;
-        path_img_item = path_img_background;
-        path_img_background = temp;
-    }
-}
-
 void drop_item(){
     if (rand() % 100 + 1 > SDL_min(DROP_ITEM * level.mobKilled, 100)) return;
     inv * inv_global = list_inv->inventaires[0] ;
@@ -381,8 +371,7 @@ void drop_item(){
     int x = emp_colone * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w)  + raccoursis->SDL_Rect.x ;
     int y = emp_ligne * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h)  + raccoursis->SDL_Rect.y ;
     it->pos_y = y ;
-    racourcis_createUI(it,x,y,0);
-    switch_pos_render_img(it->label,BORDURE_LABEL);
+    refresh_inv();
 }
 //gestion inv 
 

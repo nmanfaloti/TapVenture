@@ -9,7 +9,7 @@
 #define NB_PLASTRON 6
 #define NB_CASQUE 6
 #define NB_ARME 11
-#define DROP_ITEM 100 // en pourcentage par nv.monstre 
+#define DROP_ITEM 1.5 // en pourcentage par nv.monstre 
 #include "../lib/scroll.h"
 /**
  * @file inv.h
