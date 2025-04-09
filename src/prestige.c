@@ -13,6 +13,7 @@
 #include "../lib/player.h"
 #include "../lib/combat.h"
 #include "../lib/heros.h"
+#include "../lib/boutique.h"
 
 prestigeTree_t prestigeTree = {NULL, NULL, NULL};
 
@@ -41,6 +42,7 @@ void doPrestige(){
     level.currentLvl = 0;
     level.maxLevel = 0;
     level.mobKilled = 0;
+    initShop();
     addGold(0);
     setPlayerDamage(10);
     initHeros();
@@ -50,6 +52,8 @@ void doPrestige(){
         }
     }
     refreshCurrentLvl();
+    refreshButtonShop();
+    mobHandler();
 }
 
 static void initPrestigeState(){

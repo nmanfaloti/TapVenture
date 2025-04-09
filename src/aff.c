@@ -366,6 +366,15 @@ int changePage(void * args[20]){
             updateHeroShopPage();
             addGold(0); //Pour mettre a jour l'affichage de l'or et des heros
         }
+        else if (currentpage == &pageHolder.page[0]){
+            addGold(0); //Pour mettre a jour l'affichage de l'or
+            //Pour mettre a jour l'affichage des dégats
+            uiTxt *txtToChange = getTxtFromLabel("playerDamage");
+            if (damage_click * damageModifier >= LLD_MAX)
+                setUiText(txtToChange, formatChaine("%t: %w", DMG_MSG, LLD_MAX));
+            else
+                setUiText(txtToChange, formatChaine("%t: %w", DMG_MSG, (unsigned long long int)(damage_click * damageModifier)));
+        }
     }
     return 0;
 }
