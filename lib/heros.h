@@ -60,7 +60,7 @@ typedef struct {
     int level;                         /**< Niveau actuel du héros */
     int cooldown;                      /**< Temps de recharge entre les attaques (en ms) */
     unsigned int lastAttack;           /**< Horodatage de la dernière attaque */
-} hero;
+} hero_t;
 
 /**
  * @fn int initHeros()
@@ -217,6 +217,6 @@ int changeMultiplicator();
 /**
  * @brief Tableau global contenant tous les héros.
  */
-extern hero heros[HEROS_COUNT];
+extern hero_t heros[HEROS_COUNT];
 
 #endif // HEROS_H

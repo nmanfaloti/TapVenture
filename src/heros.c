@@ -26,7 +26,7 @@
 
 #define MAX_MULTIPLICATOR 1000
 
-hero heros[HEROS_COUNT];
+hero_t heros[HEROS_COUNT];
 int multiplicator = 1;
 
 int initHeros(){
