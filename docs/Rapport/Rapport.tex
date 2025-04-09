@@ -400,9 +400,20 @@ aux monstres tout les x temps pour aider le joueur dans sa progression.
     \item \texttt{lastAttack}: Nombre qui représente le moment de la dernière attaque du hero.
 \end{itemize}
 
-Les heros sont stockés dans une liste de type \texttt{hero}, pour les manipuler plus facilement. Une structure enum \texttt{herosIndex} est 
+Les heros sont stockés dans une liste de type \texttt{hero_t}, pour les manipuler plus facilement. Une structure enum \texttt{herosIndex} est 
 utilisée pour touver facilement l'indice de chaque heros dans la liste avec comme dennier element du \texttt{herosIndex} 
 un \texttt{HEROS\_COUNT} qui représente le nombre total de héros.
+
+\textbf{La boutique des héros}
+
+La boutique des héros est accessible via le menu principal du jeu. Elle permet au joueur d'acheter et d'améliorer ses héros. 
+Le menu est conçu pour être intuitif, avec des boutons clairs pour chaque action. Le joueur peut voir les informations sur chaque héros, 
+ses dégâts, son prix et son niveau actuel.
+\begin{figure}[h] 
+    \centering 
+    \includegraphics[width=6cm]{img/MenuHeros.png} 
+    \caption{Menu d'achat des héros}
+\end{figure}
 
 \subsubsection{Fonctions des héros}
 
@@ -497,11 +508,6 @@ Cette expérience nous a non seulement permis de développer nos compétences te
     \centering 
     \includegraphics[width=12cm]{img/jeuPrincipale.png} 
     \caption{Menu principale}
-\end{figure}
-\begin{figure}[h] 
-    \centering 
-    \includegraphics[width=12cm]{img/MenuHeros.png} 
-    \caption{Menu des héros}
 \end{figure}
 \begin{figure}[h] 
     \centering 
