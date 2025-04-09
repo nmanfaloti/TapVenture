@@ -269,8 +269,13 @@ La coordination entre le module de scroll et l'inventaire est cruciale pour gara
     \item La synchronisation garantit également que les interactions sur les items (sélection, drag-and-drop, fusion) prennent en compte la position courante de la scrollbar, via des fonctions telles que \texttt{calcule\_pos\_inv} qui utilisent les coordonnées ajustées par la zone de défilement.
     \item Enfin, la fusion d'items, gérée par la fonction \texttt{deb\_fusion}, illustre parfaitement cette intégration : après modification d'un item (par fusion ou mise à jour de statistiques), l'interface est rafraîchie pour reposer la grille d'inventaire avec le scrollbar positionné correctement.
 \end{itemize}
-Cette intégration étroite entre l'inventaire et le système de scroll permet à TapVenture de gérer efficacement de grandes quantités d'items tout en conservant une interface utilisateur réactive et intuitive (voir annexe \ref{interface}).
-
+Cette intégration étroite entre l'inventaire et le système de scroll permet à TapVenture de gérer efficacement de grandes quantités d'items tout en conservant une interface utilisateur réactive et intuitive.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=6cm]{img/inv.png}
+    \caption{Interface de l'inventaire avec les différents éléments visuels. Le carré rouge indique la zone de gestion des items et des interface scroll et les carrer vers les items .}
+    \label{interface}
+\end{figure}
 \subsection{Gestion des sauvegardes}
 Cette partie portera sur le systeme de sauvegardes de TapVenture basé sur des fichiers JSON.
 \subsubsection{Type de fichier}
@@ -400,11 +405,10 @@ aux monstres tout les x temps pour aider le joueur dans sa progression.
     \item \texttt{lastAttack}: Nombre qui représente le moment de la dernière attaque du hero.
 \end{itemize}
 
-Les heros sont stockés dans une liste de type \texttt{hero_t}, pour les manipuler plus facilement. Une structure enum \texttt{herosIndex} est 
+Les héros sont stockés dans une liste de type \texttt{hero\_t}, pour les manipuler plus facilement. Une structure enum \texttt{herosIndex} est 
 utilisée pour touver facilement l'indice de chaque heros dans la liste avec comme dennier element du \texttt{herosIndex} 
 un \texttt{HEROS\_COUNT} qui représente le nombre total de héros.
 
-\textbf{La boutique des héros}
 
 La boutique des héros est accessible via le menu principal du jeu. Elle permet au joueur d'acheter et d'améliorer ses héros. 
 Le menu est conçu pour être intuitif, avec des boutons clairs pour chaque action. Le joueur peut voir les informations sur chaque héros, 
@@ -445,7 +449,7 @@ La gestion du jeu hors ligne permet également de recommencer un challenge si le
 Cette partie portera sur le système de prestige, qui est un élément clé de TapVenture. 
 
 \subsubsection{Structure de données}
-L’arbre de prestige est une structure prestigeTree\_t (Voir annexe \ref{Arbre de compétence de prestige}), composée de 3 structures prestigeList: Gold, Damage, Prestige. Cette structure contient une liste de structure prestigeItem et leur nombre.
+L’arbre de prestige est une structure prestigeTree\_t, composée de 3 structures prestigeList: Gold, Damage, Prestige. Cette structure contient une liste de structure prestigeItem et leur nombre.
 La structure prestigeItem est décrite par:
 \begin{itemize}
     \item \textbf{un nom}: le nom de l'amélioration.
@@ -457,7 +461,12 @@ La structure prestigeItem est décrite par:
     \item \textbf{des coordonnées}: sa position dans la fenêtre de jeu.
 \end{itemize}
 Les améliorations sont stockées comme variables flottantes globales agissant comme des multiplicateurs: prestigeModifier, damageModifier, goldModifier. Mais aussi comme des entiers: heroKeepLevel, heroKeepUpgrade.
-
+\begin{figure}[h] 
+    \centering 
+    \includegraphics[width=6cm]{img/prestige_image.png} 
+    \caption{Arbre de compétence de prestige}
+    \label{Arbre de compétence de prestige}
+\end{figure}
 \subsubsection{Fonction du système de prestige}
 \begin{itemize}
     \item \texttt{addPrestigeItem}: Nous permet d’ajouter un nouveau bonus de prestige achetable dans l’arbre passé en paramètre en précisant ses informations telles que le nom, la description, le coût, la fonction d’amélioration, et sa valeur d’amélioration.
@@ -493,25 +502,13 @@ Cette expérience nous a non seulement permis de développer nos compétences te
 \textbf{Images du jeu: }\\
 
 \begin{figure}[h] 
-        \centering 
-        \includegraphics[width=12cm]{img/prestige_image.png} 
-        \caption{Arbre de compétence de prestige}
-        \label{Arbre de compétence de prestige}
-\end{figure}
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=12cm]{img/inv.png}
-    \caption{Interface de l'inventaire avec les différents éléments visuels. Le carré rouge indique la zone de gestion des items et des interface scroll et les carrer vers les items .}
-    \label{interface}
-\end{figure}
-\begin{figure}[h] 
     \centering 
-    \includegraphics[width=12cm]{img/jeuPrincipale.png} 
+    \includegraphics[width=10cm]{img/jeuPrincipale.png} 
     \caption{Menu principale}
 \end{figure}
 \begin{figure}[h] 
     \centering 
-    \includegraphics[width=12cm]{img/Parametre.png} 
+    \includegraphics[width=10cm]{img/Parametre.png} 
     \caption{Menu des paramètres}
 \end{figure}
 
