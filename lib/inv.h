@@ -375,4 +375,12 @@ extern void refresh_inv();
 * @brief Met à jour l'inventaire et son affichage.
 */
 extern void actualiser();
+
+/**
+ * @brief Cette fonction est appelée lorsqu’un joueur relâche un item via un glisser-déposer .
+ *
+ *
+ * @return 1 si succès, 0 si erreur.
+ */
+int lacher_item();
 #endif

@@ -57,6 +57,7 @@ int main() {
     int frameTime;
     int frameCount = 0;
     Uint32 lastTime = SDL_GetTicks();
+    srand( time( NULL ) );
 
     while (running){
         frameStart = SDL_GetTicks();

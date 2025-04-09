@@ -688,9 +688,9 @@ void detecter_click_item() {
 
 
 
-void lacher_item() {
+int  lacher_item() {
     if (!drag.actif)
-        return;  // Vérifier si le drag est actif
+        return 0 ;  // Vérifier si le drag est actif
 
     int case_finale = calcule_pos_inv(NULL);  // Calculer la case cible
     if (case_finale != -1) {
@@ -700,12 +700,12 @@ void lacher_item() {
         // Vérifier si l'inventaire source et cible sont valides
         if (drag.inv_id < 0 || drag.inv_id >= list_inv->nb_inventaires) {
             //printf("Erreur : inv_id invalide : %d\n", drag.inv_id);
-            return;
+            return  0 ;
         }
         
         if (drag.target_inv_id < 0 || drag.target_inv_id >= list_inv->nb_inventaires) {
             //printf("Erreur : target_inv_id invalide : %d\n", drag.target_inv_id);
-            return;
+            return 0 ;
         }
         
         inv *source_inv = list_inv->inventaires[drag.inv_id];  // Inventaire source
@@ -714,7 +714,7 @@ void lacher_item() {
         // Vérifier si les inventaires sont valides
         if (source_inv == NULL || target_inv == NULL) {
             //printf("Erreur : Inventaire source ou cible NULL.\n");
-            return;
+            return 0 ;
         }
 
         // Vérification si l'index de drag est valide pour l'inventaire source
@@ -722,8 +722,9 @@ void lacher_item() {
             // Si la case cible est occupée
             if (existe_item(target_inv->liste[case_finale]) && droit_fusion(target_inv->liste[case_finale], source_inv->liste[drag.index]) == 1 ){
                 deb_fusion(target_inv->liste[case_finale], source_inv->liste[drag.index]);
+                return 1 ;
             }
-            else if (existe_item(target_inv->liste[case_finale])) {
+            else if (target_inv->liste[case_finale] != NULL ) {
 
                 item_t *temp = target_inv->liste[case_finale];
                 target_inv->liste[case_finale] = source_inv->liste[drag.index];
@@ -734,25 +735,25 @@ void lacher_item() {
                 aff_inv_inf *raccoursis_case_final = &(target_inv->info_inv);  // Raccourci pour les informations de la case finale
                 if (raccoursis_case_final == NULL) {
                     //printf("Erreur : raccoursis_case_final NULL\n");
-                    return;
+                    return 0 ;
                 }
 
                 int nb_colone_final = raccoursis_case_final->nb_collone;
                 if (nb_colone_final <= 0) {
                     //printf("Erreur : nombre de colonnes invalide : %d\n", nb_colone_final);
-                    return;
+                    return 0 ;
                 }
 
                 aff_inv_inf *raccoursis_drag = &(source_inv->info_inv);  // Raccourci pour les informations de l'inventaire source
                 if (raccoursis_drag == NULL) {
                     //printf("Erreur : raccoursis_drag NULL\n");
-                    return;
+                    return 0 ;
                 }
 
                 int nb_colone_drag = raccoursis_drag->nb_collone;
                 if (nb_colone_drag <= 0) {
                     //printf("Erreur : nombre de colonnes invalide pour drag : %d\n", nb_colone_drag);
-                    return;
+                    return 0;
                 }
 
                 // Calcul des positions
@@ -798,56 +799,14 @@ void lacher_item() {
                     path_img_drag->dest.y = y_drag;
                 }
 
-            } else {
-                // Déplacer l'item dans une case vide dans l'inventaire cible
-                target_inv->liste[case_finale] = source_inv->liste[drag.index];
-                source_inv->liste[drag.index] = NULL;
-
-                // Recalculer la position de l'élément déplacé
-                aff_inv_inf *raccoursis = &(target_inv->info_inv);
-                if (raccoursis == NULL) {
-                    //printf("Erreur : raccoursis NULL pour target_inv\n");
-                    return;
-                }
-
-                int nb_colone = raccoursis->nb_collone;
-                if (nb_colone <= 0) {
-                    //printf("Erreur : nombre de colonnes invalide pour target_inv : %d\n", nb_colone);
-                    return;
-                }
-
-                int emp_ligne_case_finale = case_finale / nb_colone;
-                int emp_colone_case_finale = case_finale % nb_colone;
-                int x_case_finale = emp_colone_case_finale * (raccoursis->decalage_cote + raccoursis->SDL_Rect.w) + raccoursis->SDL_Rect.x;
-                int y_case_finale = emp_ligne_case_finale * (raccoursis->decalage_bas + raccoursis->SDL_Rect.h) + raccoursis->SDL_Rect.y;
-
-                // Mise à jour de la position Y de l'élément déplacé
-                if (target_inv->liste[case_finale] != NULL) {
-                    target_inv->liste[case_finale]->pos_y = y_case_finale;
-
-
-                    target_inv->liste[case_finale]->select_heros = drag.target_inv_id == 2 ? emp_ligne_case_finale : -2;
-                }
-
-                // Mise à jour de la position X de l'élément déplacé
-                uiImg *path_img_case_finale = NULL;
-                if (existe_item(target_inv->liste[case_finale])) {
-                    path_img_case_finale = getImgFromLabel(target_inv->liste[case_finale]->label);
-                }
-
-                if (path_img_case_finale != NULL) {
-                    path_img_case_finale->dest.x = x_case_finale;
-                    path_img_case_finale->dest.y = y_case_finale;
-                }
-
-            }
-
+            } 
             // Réinitialiser l'état du drag
             drag.actif = 0;
             drag.index = -1;
             drag.target_inv_id = -1;  // Réinitialiser l'inventaire cible après le déplacement
         } 
     }
+    return 1 ;
 }
 
 
@@ -886,8 +845,9 @@ void transvaser(inv *inv_receveur, inv *inv_source) {
         if (existe_item(inv_source->liste[i])) {
             // Chercher une case vide à chaque itération
             if (case_vide != -1) {
+                item_t * temp = inv_receveur->liste[case_vide] ;
                 inv_receveur->liste[case_vide] = inv_source->liste[i];
-                inv_source->liste[i] = NULL;  // Vider la case source
+                inv_source->liste[i] = temp;  // Vider la case source
                 case_vide = prem_vide(inv_receveur);
             } else {
                 //printf("\n\nAucune case disponible dans l'inventaire receveur.\n\n");
@@ -1018,8 +978,9 @@ void rearanger_item_heros(inv *inv_receveur, inv *inv_source) {
             }
 
             if (case_vide != -1) {
+                item_t * temp = inv_receveur->liste[case_vide] ; 
                 inv_receveur->liste[case_vide] = inv_source->liste[i];
-                inv_source->liste[i] = NULL;
+                inv_source->liste[i] = temp;
 
                 // Mise à jour des coordonnées et positions
                 aff_inv_inf *raccoursis = &(inv_receveur->info_inv);
@@ -1219,6 +1180,7 @@ void refresh_inv(){
 
 
 void handle_inv_event(SDL_Event event) {
+    int action = 0 ;
     handle_scroll_event(event);
     aff_stat_item(event);
     if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT){
@@ -1230,9 +1192,9 @@ void handle_inv_event(SDL_Event event) {
     }
     if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT) {
 
-        lacher_item();
+        action = lacher_item();
     }
-    if ( event.type == SDL_MOUSEWHEEL || event.button.button == SDL_BUTTON_LEFT  ){
+    if ( event.type == SDL_MOUSEWHEEL || event.button.button == SDL_BUTTON_LEFT  || action ){
 
         img_inv_actualliser_all();
         
